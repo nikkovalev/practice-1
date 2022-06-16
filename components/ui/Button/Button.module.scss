@@ -1,0 +1,44 @@
+@import "../../../assets/styles/_variables.scss";
+
+.button {
+  @apply flex items-center justify-center rounded-full text-white-100 text-lg font-bold;
+  min-width: 245px;
+  height: 60px;
+  padding: 19px 0;
+  transition: background-color 0.25s, color 0.25s, box-shadow 0.25s;
+}
+.buttonContained {
+  background-color: $primary-400;
+  box-shadow: 0px 10px 20px rgba(127, 134, 232, 0.25);
+  &:hover {
+    background-color: $primary-300;
+    box-shadow: none;
+  }
+}
+.buttonPrimaryActive {
+  background-color: $primary-500;
+  box-shadow: none;
+}
+.buttonOutlined {
+  border: 2px solid $primary-400;
+  color: $primary-400;
+  background-color: $black-400;
+  box-shadow: none;
+  &:hover {
+    border-color: transparent;
+    background-color: $primary-400;
+    color: $white-100;
+    box-shadow: 0px 10px 20px rgba(127, 134, 232, 0.25);
+  }
+}
+.buttonSecondary {
+  background-color: $secondary-400;
+  color: $black-400;
+  box-shadow: 0px 10px 20px rgba(255, 219, 89, 0.25);
+  &:hover {
+    background-color: $secondary-300;
+  }
+}
+.buttonSecondaryActive {
+  background-color: $secondary-500;
+}

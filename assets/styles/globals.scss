@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url("../fonts/Exo2/stylesheet.css");
+/* сброс и нормализация стилей */
+@import "./normalize.scss";
+@import "./variables";
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  font-family: "Exo 2", sans-serif;
+  color: $black-400;
+}
+
+*,
+*:focus {
+  outline: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+.inner-container {
+  max-width: $inner-container;
+  margin: 0 auto;
+}
