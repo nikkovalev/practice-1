@@ -20,6 +20,7 @@
   visibility: hidden;
   opacity: 0;
   transition: opacity 0.25s, transform 0.25s, 0.25s;
+  z-index: 2;
   & > ul {
     @apply flex items-center justify-between flex-wrap;
     & > li {
@@ -97,7 +98,7 @@
   @apply flex-col;
   transform: translateY(30px);
   height: fit-content;
-  padding: 5px;
+  padding: 7px;
   &:hover {
     border-color: $gray-400;
   }

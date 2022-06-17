@@ -15,6 +15,8 @@ module.exports = {
       "secondary-300": "#FFE06E",
       "secondary-300": "#FFDB59",
       "secondary-300": "#FFD22E",
+      "red-100": "#D32F2F",
+      "green-100": "#2E7D32",
     },
     fontFamily: {
       sans: ["Exo 2", "sans-serif"],

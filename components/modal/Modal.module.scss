@@ -1,0 +1,106 @@
+@import "../../assets/styles/variables";
+
+.modal {
+  @apply w-screen h-screen relative flex items-center justify-center bg-black-400;
+}
+
+.modalClose {
+  @apply flex items-center justify-center absolute bg-black-300 cursor-pointer;
+  width: 70px;
+  height: 70px;
+  top: 10px;
+  right: 10px;
+  border-radius: 10px;
+  transition: background-color 0.3s;
+  & svg {
+    transition: transform 0.3s;
+    path {
+      transition: fill 0.3s;
+    }
+  }
+  &:hover {
+    background-color: lighten($black-300, 5%);
+    & svg {
+      transform: scale(1.1);
+      path {
+        fill: #ffffff;
+      }
+    }
+  }
+}
+
+.modalTop {
+  @apply flex items-end;
+  margin-bottom: 50px;
+  & h3 {
+    @apply font-bold text-white-100;
+    font-size: 52px;
+    line-height: 57px;
+  }
+  a {
+    @apply text-primary-400 font-bold;
+    font-size: 32px;
+    & h4 {
+      transition: color 0.25s;
+      &:hover {
+        color: darken($primary-400, 5);
+      }
+    }
+  }
+}
+
+.authButton {
+  margin-top: 30px;
+}
+
+.registerInputs {
+  @apply flex justify-between flex-wrap;
+  width: 650px;
+}
+
+.checkbox {
+  margin-top: 30px;
+  & input {
+    width: 0;
+    height: 0;
+    overflow: none;
+    display: none;
+  }
+  & input:checked ~ label::before {
+    color: $white-100;
+  }
+  & label {
+    @apply block font-medium cursor-pointer relative;
+    width: 550px;
+    padding-left: 34px;
+    color: $gray-400;
+    font-size: 17px;
+    & span {
+      color: $primary-400;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+    &::before {
+      content: "\2713";
+      @apply absolute w-6 h-6 left-0 flex items-center justify-center;
+      top: calc(50% - 12.5px);
+      border: 2px solid #ffffff;
+      border-radius: 5px;
+      color: transparent;
+      transition: color 0.15s;
+    }
+  }
+}
+
+.checkboxError label::before {
+  border-color: $red-100;
+}
+
+.mr50 {
+  margin-right: 50px;
+}
+
+.ml50 {
+  margin-left: 50px;
+}

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import classNames from "classnames";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { useOutside } from "@/hooks/useOutside";
 
 import { MenuBurger } from "./Menu";
@@ -22,10 +23,13 @@ export const Header = () => {
   } = useOutside(false);
   const [currentCurrency, setCurrentCurrency] = useState<string>("₽");
   const [mode, setMode] = useState<"light" | "dark">("light");
+  const router = useRouter();
 
   const changeMode = () => setMode((p) => (p === "light" ? "dark" : "light"));
   const handleClickCurrency = () => setIsShowCurrency(!isShowCurrency);
   const handleSelectCurrency = (currency: string) => () => setCurrentCurrency(currency);
+
+  const goToAuth = () => localStorage.setItem("modal_prev_url", router.asPath);
 
   useEffect(() => {
     document.documentElement.classList[mode === "light" ? "remove" : "add"]("dark");
@@ -53,7 +57,7 @@ export const Header = () => {
             <div className={styles.headerIconButtonCount}>5</div>
           </div>
           <Link href="/auth">
-            <a className={styles.headerIconButton}>
+            <a className={styles.headerIconButton} onClick={goToAuth}>
               <UserIcon />
             </a>
           </Link>
@@ -80,8 +84,8 @@ export const Header = () => {
           </button>
           <button
             className={classNames(styles.headerChangeMode, {
-              [styles.headerChangeModeLight]: mode === "light",
-              [styles.headerChangeModeDark]: mode === "dark",
+              [styles.headerChangeModeLight]: mode === "dark",
+              [styles.headerChangeModeDark]: mode === "light",
             })}
             onClick={changeMode}
           >

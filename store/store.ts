@@ -11,7 +11,10 @@ import {
   REGISTER,
 } from "redux-persist";
 
-const rootReducer = combineReducers({});
+import authReducer from "./reducers/auth/AuthSlice";
+import alertReducer from "./reducers/alert/AlertSlice";
+
+const rootReducer = combineReducers({ authReducer, alertReducer });
 
 const persistConfig = {
   key: "root",

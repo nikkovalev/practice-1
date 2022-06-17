@@ -1,0 +1,36 @@
+@import "../../../assets/styles/variables.scss";
+
+.input {
+  width: 320px;
+  padding: 20px 25px;
+  font-size: 17px;
+  font-weight: 500;
+  background-color: $black-300;
+  border-radius: 50px;
+  color: $white-100;
+  &::placeholder {
+    color: $gray-400;
+    opacity: 0.8;
+  }
+}
+
+.inputPassword {
+  padding-right: 50px;
+}
+
+.inputError {
+  border: 1px solid $red-100;
+}
+
+.passwordIcon {
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  transform: translateY(-47%);
+  cursor: pointer;
+  & svg {
+    width: 25px;
+    height: 25px;
+    fill: $primary-400;
+  }
+}

@@ -7,7 +7,7 @@ interface ILayout {
 
 export const Layout: FC<ILayout> = ({ children }) => {
   return (
-    <div className="min-h-screen transition-colors duration-300 dark:bg-black-500">
+    <div className="min-h-screen transition-colors duration-300 dark:bg-black-400">
       <Header />
       {children}
     </div>
