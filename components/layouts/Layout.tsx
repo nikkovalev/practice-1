@@ -1,6 +1,8 @@
 import React, { FC, ReactNode } from "react";
-import { Header } from "@/components/header/Header";
 import Head from "next/head";
+
+import { Header } from "@/components/header/Header";
+import { Footer } from "../footer/Footer";
 
 interface ILayout {
   title: string;
@@ -15,6 +17,7 @@ export const Layout: FC<ILayout> = ({ children, title }) => {
       </Head>
       <Header />
       {children}
+      <Footer />
     </div>
   );
 };

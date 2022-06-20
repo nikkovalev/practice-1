@@ -14,12 +14,9 @@ interface IHomeCategory {
 
 export const HomeCategory: FC<IHomeCategory> = ({ category, likedServices }) => {
   return (
-    <div className={classNames("dark:bg-black-300", styles.homeCategory)}>
-      <div className={styles.homeCategoryTop}>
-        <div
-          className={styles.homeCategoryIcon}
-          style={{ backgroundImage: `url(${category.icon})` }}
-        />
+    <div className={classNames("dark:bg-black-300", styles.category)}>
+      <div className={styles.categoryTop}>
+        <div className={styles.categoryIcon} style={{ backgroundImage: `url(${category.icon})` }} />
         <Link href="/">
           <a className="dark:text-white-100 dark:hover:text-secondary-400">{category.name}</a>
         </Link>
@@ -29,7 +26,7 @@ export const HomeCategory: FC<IHomeCategory> = ({ category, likedServices }) => 
           <li
             key={s.id}
             className={classNames({
-              [styles.homeServiceLiked]: likedServices.indexOf(s.id) !== -1,
+              [styles.serviceLiked]: likedServices.indexOf(s.id) !== -1,
             })}
           >
             <Link href="/">

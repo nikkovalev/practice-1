@@ -1,0 +1,81 @@
+@import "../../assets/styles/_variables.scss";
+
+.footer {
+  @apply bg-white-200 dark:bg-black-500;
+  & a {
+    @apply font-medium text-gray-400 hover:text-secondary-400;
+    transition: color 0.25s;
+  }
+}
+
+.footerContainer {
+  @apply relative;
+  padding-top: 175px;
+  padding-bottom: 100px;
+}
+
+.footerInfo {
+  @apply flex items-center;
+  margin: 0 70px;
+  & li {
+    margin-right: 50px;
+    &:last-child {
+      margin-right: 0;
+    }
+    & b {
+      @apply block font-bold text-primary-400 mb-1;
+      font-size: 28px;
+    }
+    & span {
+      @apply font-medium text-gray-400;
+      font-size: 17px;
+    }
+  }
+}
+
+.footerNav {
+  @apply flex items-center flex-wrap;
+  width: 600px;
+  & li {
+    width: 25%;
+    margin-bottom: 18px;
+    a {
+      transition: color 0.25s;
+      font-size: 18px;
+    }
+    &:nth-last-child(-n + 4) {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.footerBottom {
+  @apply flex items-center justify-between;
+  margin-top: 50px;
+  & a,
+  & span {
+    @apply text-gray-400 font-medium;
+    font-size: 16px;
+  }
+}
+
+.footerTop {
+  @apply absolute top-0 w-full flex items-center justify-center bg-white-200 dark:bg-black-500 dark:border-black-400;
+  border: 2px solid $white-100;
+  border-radius: 10px;
+  min-height: 150px;
+  padding: 56px 0;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  & a {
+    margin-right: 120px;
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+  & b {
+    @apply inline-block font-bold;
+    font-size: 32px;
+    margin-left: 20px;
+  }
+}

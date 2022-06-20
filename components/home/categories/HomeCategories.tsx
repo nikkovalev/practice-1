@@ -17,12 +17,12 @@ export const HomeCategories = () => {
   const likedServices = isAuth ? categoriesAPI.useFetchLikedServicesQuery(true) : null;
 
   return (
-    <section className={classNames("dark:bg-black-400", styles.homeCategories)}>
-      <div className="container relative">
-        <div className="inner-container">
-          <h2 className={classNames("dark:text-gray-400", styles.homeSectionTitle)}>Игры</h2>
-          {categories?.isLoading || (likedServices?.isLoading && <Loader />)}
-        </div>
+    <section className={classNames("dark:bg-black-400 relative", styles.categories)}>
+      <div className="inner-container">
+        <h2 className={classNames("dark:text-black-300", styles.sectionTitle)}>Игры</h2>
+        {categories?.isLoading || (likedServices?.isLoading && <Loader />)}
+      </div>
+      <div className="container">
         {!categories?.isLoading && categories?.data && (
           <div className="relative z-10">
             {categories?.data.map((c: ICategory) => (
