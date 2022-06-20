@@ -20,7 +20,7 @@ export const HomeCategories = () => {
     <section className={classNames("dark:bg-black-400 relative", styles.categories)}>
       <div className="inner-container">
         <h2 className={classNames("dark:text-black-300", styles.sectionTitle)}>Игры</h2>
-        {categories?.isLoading || (likedServices?.isLoading && <Loader />)}
+        {(categories?.isLoading || likedServices?.isLoading) && <Loader />}
       </div>
       <div className="container">
         {!categories?.isLoading && categories?.data && (
