@@ -3,7 +3,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 interface AlertState {
   isShow: boolean;
   text: string;
-  type: "error" | "success";
+  type: "error" | "success" | "warning";
 }
 
 const initialState: AlertState = {
@@ -20,7 +20,7 @@ export const alertSlice = createSlice({
       state: AlertState,
       action: PayloadAction<{
         text: string;
-        type: "error" | "success";
+        type: "error" | "success" | "warning";
       }>
     ) => {
       state.isShow = true;

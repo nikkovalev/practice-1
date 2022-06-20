@@ -1,7 +1,7 @@
-import classNames from "classnames";
 import React, { ChangeEvent, FocusEvent, ForwardedRef, forwardRef, useState } from "react";
+import classNames from "classnames";
 
-import { EyeIcon } from "@/components/icons/EyeIcon";
+import { EyeIcon } from "@/components/icons";
 
 import styles from "./Input.module.scss";
 

@@ -6,7 +6,8 @@ import { useForm } from "react-hook-form";
 import { useAppDispatch, useAppSelector } from "@/hooks/redux";
 
 import { IAuthLogin } from "@/models/IAuth";
-import { loginUser } from "@/store/reducers/auth/AuthActionCreators";
+import { loginUser } from "@/store/reducers/auth/authActionCreators";
+import { showAlert } from "@/store/reducers/alert/alertSlice";
 
 import { Modal } from "@/components/modal/Modal";
 import { Button } from "@/components/ui";
@@ -22,19 +23,27 @@ const AuthPage: NextPage = () => {
   } = useForm();
   const router = useRouter();
   const dispatch = useAppDispatch();
-  const { token } = useAppSelector((state) => state.authReducer);
+  const { isAuth, isLoading } = useAppSelector((state) => state.authReducer);
+  const { modalPrevUrl } = useAppSelector((state) => state.globalReducer);
 
-  const handleClose = () => router.push(localStorage.getItem("modal_prev_url") || "/");
+  const handleClose = () => router.push(modalPrevUrl);
   const login = (data: { [key: string]: any }) => {
     dispatch(loginUser(data as IAuthLogin));
   };
 
   useEffect(() => {
-    if (!!token) handleClose();
-  }, [token]);
+    if (isAuth) handleClose();
+  }, [isAuth]);
+
+  useEffect(() => {
+    if (isAuth) {
+      dispatch(showAlert({ text: "Вы уже авторизованы", type: "warning" }));
+      handleClose();
+    }
+  }, []);
 
   return (
-    <Modal handleClose={handleClose}>
+    <Modal title="Войти" handleClose={handleClose}>
       <div className="flex flex-col items-center">
         <div className={modalStyles.modalTop}>
           <h3 className={modalStyles.mr50}>Войти</h3>
@@ -46,16 +55,26 @@ const AuthPage: NextPage = () => {
         </div>
         <form onSubmit={handleSubmit(login)}>
           <div className="mb-5">
-            <Input {...register("login", { required: true })} placeholder="Имя или почта" />
+            <Input
+              {...register("login", { required: true })}
+              placeholder="Имя или почта"
+              isError={!!errors.login}
+            />
           </div>
           <div>
             <Input
               {...register("password", { required: true })}
               placeholder="Пароль"
               type="password"
+              isError={!!errors.password}
             />
           </div>
-          <Button className={modalStyles.authButton} color="secondary" size="large">
+          <Button
+            className={modalStyles.authButton}
+            color="secondary"
+            size="large"
+            isDisabled={isLoading}
+          >
             Войти
           </Button>
         </form>

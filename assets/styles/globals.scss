@@ -4,8 +4,9 @@
 
 @import url("../fonts/Exo2/stylesheet.css");
 /* сброс и нормализация стилей */
-@import "./normalize.scss";
-@import "./variables";
+@import "./_normalize.scss";
+@import "./_variables.scss";
+@import "./loader.scss";
 
 *,
 *::after,

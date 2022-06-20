@@ -1,12 +1,6 @@
 import type { NextPage } from "next";
-import { Layout } from "@/components/layouts/Layout";
+import { Home } from "@/components/home/Home";
 
-const Home: NextPage = () => {
-  return (
-    <Layout>
-      <div className="container">{process.env.API_BASE_URL}</div>
-    </Layout>
-  );
-};
+const HomePage: NextPage = () => <Home />;
 
-export default Home;
+export default HomePage;

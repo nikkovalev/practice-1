@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import classNames from "classnames";
 import { useAppDispatch, useAppSelector } from "@/hooks/redux";
-import { hideAlert } from "@/store/reducers/alert/AlertSlice";
+import { hideAlert } from "@/store/reducers/alert/alertSlice";
 
 import styles from "./Alert.module.scss";
 
@@ -23,6 +23,7 @@ export const Alert = () => {
       className={classNames(styles.alert, {
         [styles.alertActive]: isShow,
         [styles.alertSuccess]: type === "success",
+        [styles.alertWarning]: type === "warning",
       })}
     >
       {text}

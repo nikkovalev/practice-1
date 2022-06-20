@@ -1,14 +1,16 @@
+import React, { FC, MouseEvent } from "react";
 import classNames from "classnames";
-import React, { FC } from "react";
 import styles from "./Button.module.scss";
 
 interface IButton {
   className?: any;
-  size?: "large";
+  size?: "large" | "small";
   children: string;
   isActive?: boolean;
   variant?: "contained" | "outlined";
   color?: "primary" | "secondary";
+  isDisabled?: boolean;
+  onClick?: (e: MouseEvent<HTMLButtonElement>) => void;
 }
 export const Button: FC<IButton> = ({
   className,
@@ -17,6 +19,8 @@ export const Button: FC<IButton> = ({
   isActive = false,
   color = "primary",
   variant = "contained",
+  isDisabled,
+  onClick,
 }) => (
   <button
     className={classNames(styles.button, className, {
@@ -26,7 +30,11 @@ export const Button: FC<IButton> = ({
       [styles.buttonPrimaryActive]: isActive && color === "primary",
       [styles.buttonSecondaryActive]: isActive && color === "secondary",
       [styles.buttonLarge]: size === "large",
+      [styles.buttonSmall]: size === "small",
+      [styles.buttonDisabled]: isDisabled,
     })}
+    disabled={isDisabled}
+    onClick={onClick}
   >
     {children}
   </button>

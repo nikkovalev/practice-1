@@ -1,7 +1,7 @@
 @import "../../assets/styles/variables";
 
 .modal {
-  @apply w-screen h-screen relative flex items-center justify-center bg-black-400;
+  @apply w-screen min-h-screen relative flex items-center justify-center bg-black-400;
 }
 
 .modalClose {

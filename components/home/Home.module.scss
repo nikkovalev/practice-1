@@ -1,0 +1,125 @@
+@import "../../assets/styles/_variables.scss";
+
+.homeTop {
+  margin-top: 100px;
+  padding-bottom: 332px;
+  & h1 {
+    @apply font-bold;
+    font-size: 62px;
+    margin-bottom: 30px;
+    transition: color 0.25s;
+    & b {
+      @apply text-primary-400 font-bold;
+      transition: color 0.25s;
+    }
+  }
+  & p {
+    @apply inline-block text-gray-400 font-normal leading-8;
+    font-size: 20px;
+    margin-bottom: 40px;
+  }
+}
+.homeTopImage {
+  position: relative;
+  @apply flex-shrink-0;
+  margin-left: 85px;
+  &::before {
+    content: "";
+    position: absolute;
+    top: -55%;
+    left: -50%;
+    width: 1164px;
+    height: 1046px;
+    background: url("../../assets/images/blur.svg") no-repeat center / cover;
+  }
+}
+.homeTopButtons {
+  @apply flex items-center;
+  & span {
+    @apply inline-block mx-5 text-gray-400 text-xl;
+  }
+}
+
+.homeCategories {
+  padding-bottom: 100px;
+}
+
+.homeCategory {
+  @apply bg-white-200;
+  width: calc(25% - 10px);
+  min-height: 154px;
+  border-radius: 10px;
+  padding: 30px 40px 15px;
+  margin: 0 5px 10px 5px;
+  float: left;
+  & ul {
+    @apply flex items-center flex-wrap;
+    & li {
+      @apply flex items-center w-1/2;
+      margin-bottom: 15px;
+      &:hover {
+        & a {
+          color: $primary-400;
+        }
+        & svg {
+          opacity: 1;
+          visibility: visible;
+        }
+      }
+      & a {
+        @apply text-xl font-medium text-gray-400 cursor-pointer;
+        transition: color 0.25s;
+      }
+      & svg {
+        margin-left: 10px;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.5s;
+        fill: $primary-400;
+        stroke: $primary-400;
+        cursor: pointer;
+        & path:first-child {
+          display: none;
+        }
+      }
+    }
+  }
+}
+
+.homeServiceLiked svg {
+  opacity: 1 !important;
+  visibility: visible !important;
+  & path:first-child {
+    display: block !important;
+  }
+}
+
+.homeCategoryTop {
+  @apply flex items-center mb-5;
+  & a {
+    @apply font-bold;
+    font-size: 32px;
+    transition: color 0.25s;
+    &:hover {
+      color: $primary-400;
+    }
+  }
+}
+
+.homeCategoryIcon {
+  @apply bg-center bg-cover bg-no-repeat;
+  width: 50px;
+  height: 50px;
+  margin-right: 15px;
+}
+
+.homeSectionTitle {
+  @apply font-bold text-primary-400;
+  font-size: 240px;
+  opacity: 0.15;
+  line-height: 288px;
+  position: absolute;
+  transform: translate(-3%, -83%);
+  z-index: 1;
+  pointer-events: none;
+}

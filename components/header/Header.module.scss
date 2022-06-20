@@ -44,9 +44,9 @@
 }
 
 .headerIconButton {
-  @apply flex items-center;
+  @apply relative flex items-center;
   height: 40px;
-  margin-right: 20px;
+  margin-right: 26px;
   cursor: pointer;
   & svg {
     & path {
@@ -58,58 +58,56 @@
   }
 }
 
-.headerLikeIcon {
-  width: 34px;
-  &:hover svg path {
-    stroke: $secondary-400;
-  }
+.headerLikeIcon:hover svg path {
+  stroke: $secondary-400;
 }
 
 .headerIconButtonCount {
   @apply absolute flex items-center justify-center w-5 h-5 bg-primary-400 rounded-full font-extrabold text-white-100;
   font-size: 13px;
   top: 3px;
-  right: -2px;
+  right: 1px;
 }
 
-.headerButtonText {
-  @apply relative flex items-center justify-center font-medium rounded-full text-lg;
-  border: 2px solid $gray-400;
+.headerSelect {
+  @apply relative font-medium text-lg;
   width: 60px;
   height: 40px;
   margin-right: 15px;
-  transition: border-color 0.25s, transform 0.25s;
-  &:hover {
+  &:hover button {
     border-color: $secondary-400;
+    color: $secondary-400;
   }
+  button {
+    @apply relative w-full h-full flex items-center justify-center rounded-full;
+    border: 2px solid $gray-400;
+    transition: color 0.25s, border-color 0.25s;
+  }
+}
+
+.headerSelectPopper {
+  @apply flex flex-col w-full rounded-full bg-black-400 py-2;
+  position: absolute;
+  left: 0;
+  top: 0;
+  border: 2px solid $gray-400;
+  transform: translateY(20%);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s, transform 0.25s;
   & span {
-    width: 100%;
+    @apply w-full text-center text-white-100 cursor-pointer;
     transition: color 0.25s;
-    &:not(&:first-child) {
-      display: none;
-    }
     &:hover {
       color: $secondary-400;
     }
   }
 }
 
-.headerButtonTextActive {
-  @apply flex-col;
-  transform: translateY(30px);
-  height: fit-content;
-  padding: 7px;
-  &:hover {
-    border-color: $gray-400;
-  }
-  & span {
-    &:not(&:first-child) {
-      display: block;
-    }
-    &:first-child {
-      display: none;
-    }
-  }
+.headerSelectPopperActive {
+  transform: translateY(-10%);
+  opacity: 1;
+  visibility: visible;
 }
 
 .headerIcon svg {
@@ -172,4 +170,122 @@
     fill: $white-100;
     stroke: $white-100;
   }
+}
+
+.headerSearch {
+  @apply absolute top-0 left-0 right-0 w-full bg-primary-400 z-20;
+  height: 120px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s;
+  & input {
+    @apply w-full h-full outline-none border-none text-white-100 font-bold;
+    background-color: transparent;
+    font-size: 32px;
+    padding-right: 40px;
+    &::placeholder {
+      color: rgba(255, 255, 255, 0.2);
+    }
+  }
+}
+
+.headerSearchIcon {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  border: none;
+  transform: translateY(-50%);
+  cursor: pointer;
+  & path {
+    fill: #ffffff;
+  }
+}
+
+.headerSearchActive {
+  opacity: 1;
+  visibility: visible;
+}
+
+.headerSell {
+  margin-left: 15px;
+}
+.headerUser {
+  @apply relative;
+  margin: 0 13px;
+}
+.headerUserTop {
+  @apply flex items-start bg-white-100 p-3 cursor-pointer;
+  width: 170px;
+  height: 64px;
+  border-radius: 10px 10px 0 0;
+  border: 2px solid $gray-400;
+  transition: background-color 0.25s;
+}
+.headerUserAvatar {
+  @apply bg-cover bg-no-repeat bg-center bg-white-100 rounded-full;
+  width: 40px;
+  height: 40px;
+  border: 2px solid $gray-400;
+  margin-right: 10px;
+  flex-shrink: 0;
+}
+.headerUserInfo {
+  @apply w-full;
+  font-size: 17px;
+  line-height: 20px;
+  & div {
+    @apply flex items-center;
+    cursor: pointer;
+    transition: color 0.25s;
+    & svg {
+      margin-left: 7px;
+    }
+  }
+  & b {
+    @apply text-secondary-400;
+  }
+}
+
+.headerUserPopper {
+  @apply w-full bg-black-300;
+  position: absolute;
+  left: 0;
+  top: 0;
+  border-top: 2px solid #23272e;
+  padding: 20px 10px 20px 20px;
+  border-radius: 0 0 10px 10px;
+  transform: translateY(21%);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s;
+  & ul {
+    @apply flex flex-col;
+    & li {
+      margin-bottom: 15px;
+      &:last-child {
+        margin-bottom: 0;
+      }
+      a {
+        @apply w-full flex items-center justify-between;
+        &:hover b {
+          color: $secondary-400;
+        }
+        & b {
+          @apply text-gray-400 text-base font-medium;
+          transition: color 0.25s;
+        }
+        & span {
+          @apply w-6 h-6 flex items-center justify-center text-xs text-white-100 font-extrabold bg-primary-400 rounded-full;
+          margin-left: 10px;
+        }
+      }
+    }
+  }
+}
+.headerUserPopperActive {
+  opacity: 1;
+  visibility: visible;
+}
+.mr0 {
+  margin-right: 0;
 }

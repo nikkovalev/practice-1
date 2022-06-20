@@ -11,10 +11,18 @@ import {
   REGISTER,
 } from "redux-persist";
 
-import authReducer from "./reducers/auth/AuthSlice";
-import alertReducer from "./reducers/alert/AlertSlice";
+import { categoriesAPI } from "@/api/categoriesAPI";
 
-const rootReducer = combineReducers({ authReducer, alertReducer });
+import authReducer from "./reducers/auth/authSlice";
+import alertReducer from "./reducers/alert/alertSlice";
+import globalReducer from "./reducers/global/globalSlice";
+
+const rootReducer = combineReducers({
+  authReducer,
+  alertReducer,
+  globalReducer,
+  [categoriesAPI.reducerPath]: categoriesAPI.reducer,
+});
 
 const persistConfig = {
   key: "root",
@@ -30,7 +38,7 @@ const store = configureStore({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    }),
+    }).concat(categoriesAPI.middleware),
 });
 
 export const persistor = persistStore(store);

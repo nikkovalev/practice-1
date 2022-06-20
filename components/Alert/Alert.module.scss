@@ -7,10 +7,15 @@
   transform: translateX(100%) scale(0.5);
   transition: transform 0.25s;
   z-index: 100;
+  visibility: hidden;
 }
 .alertActive {
   transform: translateX(-10px) scale(1);
+  visibility: visible;
 }
 .alertSuccess {
   background-color: $green-100;
+}
+.alertWarning {
+  background-color: $orange-100;
 }

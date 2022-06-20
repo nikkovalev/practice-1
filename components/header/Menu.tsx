@@ -3,7 +3,7 @@ import classNames from "classnames";
 import Link from "next/link";
 import { useOutside } from "@/hooks/useOutside";
 
-import { HamburgerIcon } from "@/components/icons/HamburgerIcon";
+import { HamburgerIcon } from "@/components/icons";
 
 import styles from "./Header.module.scss";
 

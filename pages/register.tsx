@@ -6,7 +6,8 @@ import { useForm } from "react-hook-form";
 import classNames from "classnames";
 import { useAppDispatch, useAppSelector } from "@/hooks/redux";
 
-import { registerUser } from "@/store/reducers/auth/AuthActionCreators";
+import { registerUser } from "@/store/reducers/auth/authActionCreators";
+import { showAlert } from "@/store/reducers/alert/alertSlice";
 
 import { Modal } from "@/components/modal/Modal";
 import { Button } from "@/components/ui";
@@ -21,7 +22,7 @@ const AuthPage: NextPage = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const { token } = useAppSelector((state) => state.authReducer);
+  const { isAuth, isLoading } = useAppSelector((state) => state.authReducer);
   const router = useRouter();
   const dispatch = useAppDispatch();
 
@@ -51,11 +52,14 @@ const AuthPage: NextPage = () => {
   };
 
   useEffect(() => {
-    if (!!token) router.push("/");
-  }, [token]);
+    if (isAuth) {
+      dispatch(showAlert({ text: "Вы уже авторизованы", type: "warning" }));
+      handleClose();
+    }
+  }, []);
 
   return (
-    <Modal handleClose={handleClose}>
+    <Modal title="Зарегистрироваться" handleClose={handleClose}>
       <form className="flex flex-col items-center" onSubmit={handleSubmit(onRegister)}>
         <div className={modalStyles.modalTop}>
           <Link href="/auth">
@@ -69,7 +73,7 @@ const AuthPage: NextPage = () => {
           <div className="mb-5">
             <Input
               {...register("login", { required: true })}
-              placeholder="Имя или ник"
+              placeholder="Имя учётной записи YaonPay"
               isError={!!errors.login}
             />
           </div>
@@ -121,7 +125,7 @@ const AuthPage: NextPage = () => {
             ознакомился, принимаю в полном объеме
           </label>
         </div>
-        <Button className={modalStyles.authButton} size="large">
+        <Button className={modalStyles.authButton} size="large" isDisabled={isLoading}>
           Зарегистрироваться
         </Button>
       </form>

@@ -1,52 +1,67 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { loginUser, registerUser } from "./AuthActionCreators";
+import { IUser } from "@/models/IUser";
+import { getMe, loginUser, registerUser } from "./authActionCreators";
 
 interface AuthState {
   isLoading: boolean;
-  isError: string;
+  error: string;
   userId: string;
-  token: string;
+  isAuth: boolean;
+  user: IUser | null;
 }
 
 const initialState: AuthState = {
+  isAuth: false,
   isLoading: false,
-  isError: "",
-  token: "",
+  error: "",
   userId: "",
+  user: null,
 };
 
 export const authSlice = createSlice({
   name: "auth",
   initialState,
-  reducers: {},
+  reducers: {
+    logout: (state: AuthState) => {
+      state.userId = "";
+      state.user = null;
+      state.isAuth = false;
+    },
+  },
   extraReducers: {
     [registerUser.pending.type]: (state: AuthState) => {
       state.isLoading = true;
-      state.isError = "";
+      state.error = "";
     },
     [registerUser.rejected.type]: (state: AuthState, action: PayloadAction<string>) => {
       state.isLoading = false;
-      state.isError = action.payload;
+      state.error = action.payload;
     },
     [registerUser.fulfilled.type]: (state: AuthState, action: PayloadAction<string>) => {
       state.isLoading = false;
-      state.isError = "";
+      state.error = "";
       state.userId = action.payload;
     },
     [loginUser.pending.type]: (state: AuthState) => {
       state.isLoading = true;
-      state.isError = "";
+      state.error = "";
     },
     [loginUser.rejected.type]: (state: AuthState, action: PayloadAction<string>) => {
       state.isLoading = false;
-      state.isError = action.payload;
+      state.error = action.payload;
     },
     [loginUser.fulfilled.type]: (state: AuthState, action: PayloadAction<string>) => {
+      localStorage.setItem("token", action.payload);
       state.isLoading = false;
-      state.isError = "";
-      state.token = action.payload;
+      state.error = "";
+      state.isAuth = true;
+    },
+    [getMe.fulfilled.type]: (state: AuthState, action: PayloadAction<IUser>) => {
+      state.user = action.payload;
     },
   },
 });
+
+export const { logout } = authSlice.actions;
 
 export default authSlice.reducer;
