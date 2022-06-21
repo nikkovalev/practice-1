@@ -77,38 +77,42 @@
 
 .categoriesList {
   @apply relative z-10;
-  margin: 0 -5px;
+  column-count: 4;
+  column-gap: 10px;
 }
 
 .category {
-  @apply bg-white-200;
-  width: calc(25% - 10px);
+  @apply inline-block bg-white-200;
+  min-width: 25%;
+  width: 100%;
   min-height: 154px;
   border-radius: 10px;
   padding: 30px 40px 15px;
-  margin: 0 5px 10px 5px;
-  float: left;
+  margin-bottom: 10px;
   & ul {
     @apply flex items-center flex-wrap;
     & li {
-      @apply flex items-center w-1/2;
+      @apply w-1/2;
       margin-bottom: 15px;
-      &:hover {
-        & a {
-          color: $primary-400;
-        }
-        & svg {
-          opacity: 1;
-          visibility: visible;
+      & span {
+        @apply w-fit flex items-center cursor-pointer;
+        &:hover {
+          & a {
+            @apply text-primary-400 dark:text-secondary-400;
+          }
+          & svg {
+            opacity: 1;
+            visibility: visible;
+          }
         }
       }
       & a {
         @apply text-xl font-medium text-gray-400 cursor-pointer flex-shrink-0;
+        padding-right: 10px;
         transition: color 0.25s;
       }
       & svg {
         flex-shrink: 0;
-        margin-left: 10px;
         opacity: 0;
         visibility: hidden;
         transition: opacity 0.5s;

@@ -29,10 +29,12 @@ export const HomeCategory: FC<IHomeCategory> = ({ category, likedServices }) => 
               [styles.serviceLiked]: likedServices.indexOf(s.id) !== -1,
             })}
           >
-            <Link href="/">
-              <a className="dark:hover:text-secondary-400">{s.name}</a>
-            </Link>
-            <LikeIcon isSmall />
+            <span>
+              <Link href="/">
+                <a>{s.name}</a>
+              </Link>
+              <LikeIcon isSmall />
+            </span>
           </li>
         ))}
       </ul>

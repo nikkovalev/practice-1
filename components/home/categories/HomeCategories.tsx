@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import classNames from "classnames";
 
 import { useAppSelector } from "@/hooks/redux";
@@ -16,6 +16,10 @@ export const HomeCategories = () => {
   const categories = categoriesAPI.useFetchCategoriesQuery(false);
   const likedServices = isAuth ? categoriesAPI.useFetchLikedServicesQuery(true) : null;
 
+  useEffect(() => {
+    categories.refetch();
+  }, []);
+
   return (
     <section className={classNames("dark:bg-black-400 relative", styles.categories)}>
       <div className="inner-container">
@@ -24,7 +28,7 @@ export const HomeCategories = () => {
       </div>
       <div className="container">
         {!categories?.isLoading && categories?.data && (
-          <div className="relative z-10">
+          <div className={styles.categoriesList}>
             {categories?.data.map((c: ICategory) => (
               <HomeCategory
                 key={c.id}
@@ -32,7 +36,6 @@ export const HomeCategories = () => {
                 likedServices={(likedServices?.data || []) as number[]}
               />
             ))}
-            <div className="clear-both" />
           </div>
         )}
       </div>
