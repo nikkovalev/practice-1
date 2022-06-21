@@ -71,7 +71,7 @@
 .categories {
   padding-bottom: 100px;
   & h2 {
-    transform: translate(-3%, -100%);
+    transform: translate(-3%, -84%);
   }
 }
 
@@ -103,10 +103,11 @@
         }
       }
       & a {
-        @apply text-xl font-medium text-gray-400 cursor-pointer;
+        @apply text-xl font-medium text-gray-400 cursor-pointer flex-shrink-0;
         transition: color 0.25s;
       }
       & svg {
+        flex-shrink: 0;
         margin-left: 10px;
         opacity: 0;
         visibility: hidden;
