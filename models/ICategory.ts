@@ -8,5 +8,7 @@ export interface ICategory {
   name: string;
   slug: string;
   icon: string;
+  banner?: string;
   services: IService[];
+  servers?: string[];
 }
