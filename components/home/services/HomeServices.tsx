@@ -83,7 +83,7 @@ export const HomeServices = () => {
       <div className="inner-container">
         <h2 className={classNames("dark:text-black-300", styles.sectionTitle)}>Cервисы</h2>
       </div>
-      <div className="container relative z-10 flex justify-between items-start">
+      <div className={classNames("container", styles.servicesList)}>
         {services.map((s) => (
           <HomeService key={s.name} service={s} />
         ))}

@@ -1,9 +1,9 @@
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 import classNames from "classnames";
 import Link from "next/link";
 import { ICategory, IService } from "@/models/ICategory";
 
-import { LikeIcon } from "@/components/icons";
+import { ArrowIcon, LikeIcon } from "@/components/icons";
 
 import styles from "../Home.module.scss";
 
@@ -13,13 +13,22 @@ interface IHomeCategory {
 }
 
 export const HomeCategory: FC<IHomeCategory> = ({ category, likedServices }) => {
+  const [isActive, setIsActive] = useState<boolean>(false);
+  const handleClick = () => setIsActive(!isActive);
+
   return (
-    <div className={classNames("dark:bg-black-300", styles.category)}>
-      <div className={styles.categoryTop}>
+    <div
+      className={classNames("dark:bg-black-300", styles.category, {
+        [styles.categoryActive]: isActive,
+      })}
+      onClick={window.screen.width <= 992 ? handleClick : undefined}
+    >
+      <div className={classNames(styles.categoryTop, { [styles.categoryTopActive]: isActive })}>
         <div className={styles.categoryIcon} style={{ backgroundImage: `url(${category.icon})` }} />
         <Link href="/">
           <a className="dark:text-white-100 dark:hover:text-secondary-400">{category.name}</a>
         </Link>
+        <ArrowIcon pathClassName="fill-primary-400 stroke-primary-400" />
       </div>
       <ul>
         {category.services.map((s: IService) => (

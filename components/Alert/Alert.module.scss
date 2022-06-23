@@ -1,7 +1,7 @@
 @import "./../../assets/styles/_variables.scss";
 
 .alert {
-  @apply absolute p-3 right-0 text-white-100 bg-red-100 rounded-md text-base;
+  @apply fixed p-3 right-0 text-white-100 bg-red-100 rounded-md text-base;
   min-width: 150px;
   top: 100px;
   transform: translateX(100%) scale(0.5);

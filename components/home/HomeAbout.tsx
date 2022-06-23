@@ -21,7 +21,9 @@ export const HomeAbout = () => {
     <div className={styles.about}>
       <div className="inner-container text-center">
         <h2>YaonPay</h2>
-        <p>Добро пожаловать к нам. Давай попробуем ответить на основные вопросы</p>
+        <p className={styles.aboutTitle}>
+          Добро пожаловать к нам. Давай попробуем ответить на основные вопросы
+        </p>
         <div className={styles.aboutList}>
           {list.map((i) => (
             <div key={i.title} className={styles.aboutItem}>
@@ -30,7 +32,7 @@ export const HomeAbout = () => {
             </div>
           ))}
         </div>
-        <p>
+        <p className="sm:hidden">
           А теперь пару слов от нашей команды лично тебе. Мы рады что ты выбрал именно нас и уверены
           в том
           <br />

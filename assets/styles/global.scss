@@ -1,0 +1,87 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import "./_fonts.scss";
+@import "./_normalize.scss";
+@import "./_variables.scss";
+@import "./_loader.scss";
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  font-family: "Exo 2", sans-serif;
+  color: $black-400;
+}
+
+*,
+*:focus {
+  outline: none;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+a {
+  text-decoration: none;
+}
+
+.page {
+  padding-top: 122px;
+  @media (max-width: $breakpoint1450) {
+    padding-top: 97px;
+  }
+  @media (max-width: $breakpoint1200) {
+    padding-top: 86px;
+  }
+}
+
+.container {
+  max-width: ($container + $containerPadding) + px;
+  @media (max-width: $breakpoint1450) {
+    max-width: 1300px;
+  }
+}
+
+.inner-container {
+  max-width: ($inner-container + $containerPadding) + px;
+  @media (max-width: $breakpoint1450) {
+    max-width: 1200px;
+  }
+}
+
+.container,
+.inner-container {
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 $containerSideSpacing + px;
+
+  @media (max-width: $breakpoint992) {
+    max-width: 920px;
+  }
+  @media (max-width: $breakpoint768) {
+    max-width: 740px;
+    padding: 0 10px;
+  }
+  @media (max-width: $breakpoint480) {
+    max-width: none;
+  }
+}
+
+.blur {
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  right: -100%;
+  top: 0;
+  bottom: 0;
+  backdrop-filter: blur(10px);
+  z-index: 40;
+  display: none;
+}
+
+.blur_active {
+  display: block;
+}

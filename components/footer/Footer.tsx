@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 
 import logoIcon from "@/assets/images/logo.svg";
+import logo2Icon from "@/assets/images/logo-2.svg";
 import vkIcon from "@/assets/images/socials/vk.svg";
 import telegramIcon from "@/assets/images/socials/telegram.svg";
 import youtubeIcon from "@/assets/images/socials/youtube.svg";
@@ -54,7 +55,7 @@ const list = [
 const socials = [
   {
     name: "YaonPay",
-    path: "#",
+    href: "#",
     icon: youtubeIcon,
     color: "text-red-100",
   },
@@ -84,10 +85,16 @@ export const Footer = () => {
             </a>
           ))}
         </div>
-        <div className="flex items-center justify-between">
+        <div className={styles.footerMain}>
           <Link href="/">
-            <a>
-              <Image width={270} height={79} src={logoIcon} alt="YaonPay" priority />
+            <a className={styles.footerLogo}>
+              <Image
+                width={window.screen.width > 768 ? 270 : 124}
+                height={window.screen.width > 768 ? 79 : 34}
+                src={window.screen.width > 768 ? logoIcon : logo2Icon}
+                alt="YaonPay"
+                priority
+              />
             </a>
           </Link>
           <ul className={styles.footerInfo}>

@@ -49,15 +49,19 @@ const list = [
 
 interface IHeaderUser {
   user: IUser | null;
+  isShowMenu: boolean;
 }
 
-export const HeaderUser: FC<IHeaderUser> = ({ user }) => {
+export const HeaderUser: FC<IHeaderUser> = ({ user, isShowMenu }) => {
   const { ref, isShow, setIsShow } = useOutside(false);
 
   const handleClick = () => setIsShow(!isShow);
 
   return (
-    <div ref={ref} className={styles.headerUser}>
+    <div
+      ref={ref}
+      className={classNames(styles.headerUser, { [styles.headerUserActive]: isShowMenu })}
+    >
       {user && (
         <div
           className={classNames("dark:bg-black-300 dark:border-transparent", styles.headerUserTop)}

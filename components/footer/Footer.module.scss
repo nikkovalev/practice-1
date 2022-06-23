@@ -12,6 +12,31 @@
   @apply relative;
   padding-top: 175px;
   padding-bottom: 100px;
+  @media (max-width: $breakpoint992) {
+    padding-top: 89px;
+    padding-bottom: 20px;
+  }
+}
+
+.footerLogo {
+  @media (max-width: $breakpoint1450) {
+    width: 100%;
+    flex-grow: 1;
+    margin-bottom: 20px;
+  }
+  @media (max-width: $breakpoint992) {
+    text-align: center;
+  }
+}
+
+.footerMain {
+  @apply flex items-center justify-between;
+  @media (max-width: $breakpoint1450) {
+    flex-wrap: wrap;
+  }
+  @media (max-width: $breakpoint992) {
+    justify-content: center;
+  }
 }
 
 .footerInfo {
@@ -31,11 +56,28 @@
       font-size: 17px;
     }
   }
+  @media (max-width: $breakpoint1450) {
+    width: 35%;
+    margin-left: 0;
+    margin-right: 30px;
+    & li {
+      margin-right: 20px;
+      & b {
+        font-size: 24px;
+      }
+    }
+  }
+  @media (max-width: $breakpoint992) {
+    width: 100%;
+    justify-content: center;
+    & li {
+      text-align: center;
+    }
+  }
 }
 
 .footerNav {
   @apply flex items-center flex-wrap;
-  width: 600px;
   & li {
     width: 25%;
     margin-bottom: 18px;
@@ -47,6 +89,12 @@
       margin-bottom: 0;
     }
   }
+  @media (max-width: $breakpoint1450) {
+    width: 60%;
+  }
+  @media (max-width: $breakpoint992) {
+    display: none;
+  }
 }
 
 .footerBottom {
@@ -56,6 +104,30 @@
   & span {
     @apply text-gray-400 font-medium;
     font-size: 16px;
+  }
+  @media (max-width: $breakpoint1200) {
+    & div {
+      @apply flex flex-col items-center;
+      & a:first-child {
+        display: inline-block;
+        margin-bottom: 15px;
+        margin-right: 0;
+      }
+    }
+  }
+  @media (max-width: $breakpoint992) {
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 30px;
+    & span {
+      order: 2;
+      text-align: center;
+    }
+    & div {
+      @apply order-1;
+      width: 100%;
+      margin-bottom: 30px;
+    }
   }
 }
 
@@ -77,5 +149,28 @@
     @apply inline-block font-bold;
     font-size: 32px;
     margin-left: 20px;
+  }
+  @media (max-width: $breakpoint1200) {
+    width: calc(100% - 40px);
+    padding: 20px;
+    left: 20px;
+    transform: translate(0, -50%);
+  }
+  @media (max-width: $breakpoint992) {
+    & b {
+      font-size: 24px;
+    }
+    & a {
+      margin-right: 60px;
+    }
+  }
+  @media (max-width: $breakpoint768) {
+    & a {
+      flex-direction: column;
+      margin-right: 15px;
+    }
+    & b {
+      margin-left: 0;
+    }
   }
 }

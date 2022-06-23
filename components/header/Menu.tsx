@@ -1,50 +1,23 @@
-import React from "react";
+import React, { FC } from "react";
 import classNames from "classnames";
 import Link from "next/link";
 import { useOutside } from "@/hooks/useOutside";
 
-import { HamburgerIcon } from "@/components/icons";
+import { HamburgerIcon, CloseIcon } from "@/components/icons";
 
 import styles from "./Header.module.scss";
 
-const list = [
-  {
-    name: "Игры",
-    path: "/games",
-  },
-  {
-    name: "Наши плюсы",
-    path: "/our-advantages",
-  },
-  {
-    name: "Cервисы",
-    path: "/services",
-  },
-  {
-    name: "О нас",
-    path: "/about-us",
-  },
-  {
-    name: "Соц сети",
-    path: "/socials",
-  },
-  {
-    name: "Поддержка",
-    path: "/support",
-  },
-  {
-    name: "Помощь",
-    path: "/help",
-  },
-];
+interface IMenuBurger {
+  navList: { name: string; path: string }[];
+}
 
-export const MenuBurger = () => {
+export const MenuBurger: FC<IMenuBurger> = ({ navList }) => {
   const { ref, isShow, setIsShow } = useOutside(false);
 
   const handleClick = () => setIsShow(!isShow);
 
   return (
-    <div className={classNames("relative", { "cursor-pointer": !isShow })}>
+    <div className={styles.headerMenu}>
       <div className={styles.headerIcon} onClick={handleClick}>
         <HamburgerIcon />
       </div>
@@ -54,8 +27,8 @@ export const MenuBurger = () => {
           [styles.headerPopperActive]: isShow,
         })}
       >
-        <ul>
-          {list.map(({ name, path }) => (
+        <ul className={styles.headerNav}>
+          {navList.map(({ name, path }) => (
             <li key={path}>
               <Link href={path}>
                 <a>{name}</a>

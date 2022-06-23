@@ -1,11 +1,71 @@
 @import "../../assets/styles/_variables.scss";
 
 .header {
-  max-height: 79px;
+  @apply fixed z-40 top-0 left-0 right-0 bg-white-100 bg-opacity-75 dark:bg-black-400 dark:bg-opacity-75;
+  height: 122px;
+  backdrop-filter: blur(10px);
+  transition: background-color 0.3s;
+  @media (max-width: $breakpoint1450) {
+    height: 97px;
+  }
+  @media (max-width: $breakpoint1200) {
+    height: 86px;
+  }
+}
+
+.headerContent {
+  @apply relative flex items-center justify-between;
+  padding: 20px 0;
+  @media (max-width: $breakpoint1450) {
+    padding: 18px 10px;
+  }
+}
+
+.headerLeft {
+  @apply flex items-center lg:justify-between;
+}
+
+.headerSelects {
+  @apply flex items-center lg:hidden;
+  ul {
+    display: none;
+  }
+  @media (max-width: $breakpoint1200) {
+    transform: translateX(-100%);
+    ul {
+      display: block;
+    }
+  }
+}
+
+.headerMenu {
+  @apply relative;
+  @media (max-width: $breakpoint1200) {
+    display: none;
+  }
+}
+
+.headerSelectsActive {
+  @media (max-width: $breakpoint1200) {
+    @apply fixed top-0 left-0 bottom-0 bg-black-400 flex flex-col items-start;
+    width: 100%;
+    max-width: fit-content;
+    z-index: 2;
+    padding: 80px 10px 10px;
+    animation: transform 0.25s forwards;
+    min-height: 100vh;
+    overflow-y: auto;
+  }
 }
 
 .headerLogo {
-  @apply mr-10;
+  @apply mr-10 flex-shrink-0;
+  @media (max-width: $breakpoint1450) {
+    max-width: 200px;
+  }
+  @media (max-width: $breakpoint1200) {
+    @apply relative z-10 flex items-center;
+  }
 }
 
 .headerPopper {
@@ -19,21 +79,38 @@
   transform: translateY(30px);
   visibility: hidden;
   opacity: 0;
-  transition: opacity 0.25s, transform 0.25s, 0.25s;
-  z-index: 2;
-  & > ul {
-    @apply flex items-center justify-between flex-wrap;
-    & > li {
-      width: 50%;
-      margin: 7.5px 0;
-      & > a {
-        color: $gray-400;
-        transition: color 0.25s;
-        &:hover {
-          color: $secondary-400;
-        }
+  transition: opacity 0.25s, transform 0.25s;
+  z-index: 40;
+}
+
+.headerNav {
+  @apply flex items-center justify-between flex-wrap;
+  & > li {
+    width: 50%;
+    margin: 7.5px 0;
+    & > a {
+      color: $gray-400;
+      transition: color 0.25s;
+      &:hover {
+        color: $secondary-400;
       }
     }
+  }
+  @media (max-width: $breakpoint1200) {
+    padding-left: 25px;
+    margin-top: 20px;
+    & li {
+      width: 100%;
+      font-size: 18px;
+      margin: 0 0 20px 0;
+    }
+  }
+}
+
+.headerNavAuth {
+  @media (max-width: $breakpoint1200) {
+    order: 3;
+    transform: translateY(-20%);
   }
 }
 
@@ -44,7 +121,7 @@
 }
 
 .headerIconButton {
-  @apply relative flex items-center;
+  @apply relative flex items-center z-10;
   height: 40px;
   margin-right: 26px;
   cursor: pointer;
@@ -55,6 +132,9 @@
   }
   &:hover svg path {
     fill: $secondary-400;
+  }
+  @media (max-width: $breakpoint480) {
+    margin-right: 16px;
   }
 }
 
@@ -70,7 +150,7 @@
 }
 
 .headerSelect {
-  @apply relative font-medium text-lg;
+  @apply relative font-medium text-lg lg:inline-block;
   width: 60px;
   height: 40px;
   margin-right: 15px;
@@ -82,6 +162,9 @@
     @apply relative w-full h-full flex items-center justify-center rounded-full;
     border: 2px solid $gray-400;
     transition: color 0.25s, border-color 0.25s;
+    @media (max-width: $breakpoint1200) {
+      color: #ffffff !important;
+    }
   }
 }
 
@@ -110,17 +193,24 @@
   visibility: visible;
 }
 
-.headerIcon svg {
-  & circle,
-  & path {
-    transition: fill 0.25s, stroke 0.25s;
-  }
+.headerIcon {
+  @apply relative flex items-center justify-center z-10;
+  width: 50px;
+  height: 50px;
+  border: 2px solid $gray-400;
+  border-radius: 50%;
+  transition: border-color 0.25s;
+  cursor: pointer;
   &:hover {
-    & circle {
-      stroke: $secondary-400;
-    }
-    & path {
+    border-color: $secondary-400;
+    & svg path {
       fill: $secondary-400;
+    }
+  }
+  & svg {
+    & circle,
+    & path {
+      transition: fill 0.25s, stroke 0.25s;
     }
   }
 }
@@ -187,6 +277,14 @@
       color: rgba(255, 255, 255, 0.2);
     }
   }
+  @media (max-width: $breakpoint1450) {
+    padding: 0 20px;
+  }
+  @media (max-width: $breakpoint480) {
+    & input {
+      font-size: 24px;
+    }
+  }
 }
 
 .headerSearchIcon {
@@ -207,11 +305,27 @@
 }
 
 .headerSell {
+  @apply lg:w-full lg:flex;
   margin-left: 15px;
+  @media (max-width: $breakpoint1200) {
+    margin-left: 0;
+    order: 2;
+    transform: translateY(-120%);
+    &:active {
+      transform: translateY(-120%) scale(0.95) !important;
+    }
+  }
 }
 .headerUser {
   @apply relative;
   margin: 0 13px;
+}
+.headerUserActive {
+  @media (max-width: $breakpoint1200) {
+    @apply order-1;
+    width: 250px;
+    margin: 0 -10px;
+  }
 }
 .headerUserTop {
   @apply flex items-start bg-white-100 p-3 cursor-pointer;
@@ -220,6 +334,13 @@
   border-radius: 10px 10px 0 0;
   border: 2px solid $gray-400;
   transition: background-color 0.25s;
+  @media (max-width: $breakpoint1200) {
+    @apply w-full border-none;
+    background-color: $black-300;
+    border-radius: 0;
+    min-height: 423px;
+    margin-top: 20px;
+  }
 }
 .headerUserAvatar {
   @apply bg-cover bg-no-repeat bg-center bg-white-100 rounded-full;
@@ -243,6 +364,18 @@
   }
   & b {
     @apply text-secondary-400;
+  }
+  @media (max-width: $breakpoint1200) {
+    @apply flex items-center;
+    margin-top: 8px;
+    & div {
+      width: fit-content;
+      color: #ffffff;
+      margin-right: 10px;
+    }
+    & svg {
+      display: none;
+    }
   }
 }
 
@@ -281,6 +414,17 @@
       }
     }
   }
+  @media (max-width: $breakpoint1200) {
+    opacity: 1;
+    visibility: visible;
+    border-top: none;
+    padding-left: 60px;
+    background-color: transparent;
+    transform: translateY(25%);
+    & ul li {
+      width: 140px;
+    }
+  }
 }
 .headerUserPopperActive {
   opacity: 1;
@@ -288,4 +432,15 @@
 }
 .mr0 {
   margin-right: 0;
+}
+
+.headerUserIcon {
+  @media (max-width: $breakpoint1200) {
+    margin-right: 0;
+  }
+}
+
+.headerNavButton {
+  @apply hidden lg:flex;
+  margin-left: 15px;
 }

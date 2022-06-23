@@ -11,7 +11,7 @@ interface ILayout {
 
 export const Layout: FC<ILayout> = ({ children, title }) => {
   return (
-    <div className="min-h-screen transition-colors duration-300 dark:bg-black-400">
+    <div className="page min-h-screen transition-colors duration-300 dark:bg-black-400 overflow-x-hidden">
       <Head>
         <title>YaonPay - {title}</title>
       </Head>

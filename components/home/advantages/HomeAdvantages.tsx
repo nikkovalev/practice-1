@@ -39,7 +39,7 @@ const advantages = [
 export const HomeAdvantages = () => {
   return (
     <div className="bg-white-200 dark:bg-black-500">
-      <div className="inner-container ">
+      <div className="inner-container">
         <div className={styles.advList}>
           {advantages.map((adv, idx: number) => (
             <div key={adv.title} className={styles.adv}>

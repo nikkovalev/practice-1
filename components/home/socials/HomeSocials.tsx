@@ -90,7 +90,7 @@ export const HomeSocials = () => {
       <div className="inner-container">
         <h2 className={classNames(styles.sectionTitle, "dark:text-black-300")}>Соц.сети</h2>
       </div>
-      <div className="container relative z-10 flex justify-between items-start">
+      <div className={classNames("container", styles.socialsList)}>
         {socials.map((s) => (
           <HomeSocial key={s.name} social={s} />
         ))}

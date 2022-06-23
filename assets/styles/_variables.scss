@@ -1,26 +1,39 @@
+@use "sass:math";
+
 $black-300: #1e2127;
 $black-400: #181a20;
 $black-500: #14161b;
-
 $gray-400: #616d85;
-
 $white-100: #ffffff;
 $white-200: #f5f6ff;
-
-/* purple */
 $primary-300: #8f95eb;
 $primary-400: #7f86e8;
 $primary-500: #5962e1;
-
-/* yellow */
 $secondary-300: #ffe06e;
 $secondary-400: #ffdb59;
 $secondary-500: #ffd22e;
-
 $red-100: #f40000;
 $green-100: #2e7d32;
 $orange-100: #ed6c02;
 $blue-100: #7294c7;
 $blue-200: #2f89ce;
 
-$inner-container: 1310px;
+$container: 1762;
+$inner-container: 1320;
+$containerPadding: 40;
+$containerSideSpacing: math.div($containerPadding, 2);
+$breakpoint1450: 1449.98px;
+$breakpoint1200: 1199.98px;
+$breakpoint992: 991.98px;
+$breakpoint768: 767.98px;
+$breakpoint480: 479.98px;
+
+// animations
+@keyframes transform {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}

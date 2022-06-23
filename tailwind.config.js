@@ -25,15 +25,12 @@ module.exports = {
     fontFamily: {
       sans: ["Exo 2", "sans-serif"],
     },
-    container: {
-      center: true,
-      screens: {
-        xl: "1762px",
-        lg: "1762px",
-        md: "900px",
-        sm: "600px",
-        xs: "360px",
-      },
+    screens: {
+      xl: { max: "1449.98px" },
+      lg: { max: "1199.98px" },
+      md: { max: "991.98px" },
+      sm: { max: "767.98px" },
+      xs: { max: "479.98px" },
     },
   },
   plugins: [],
