@@ -1,5 +1,5 @@
 import React, { FC, useState } from "react";
-import classNames from "classnames";
+import cn from "classnames";
 import { useOutside } from "@/hooks/useOutside";
 
 import styles from "./Header.module.scss";
@@ -25,7 +25,7 @@ export const HeaderSelect: FC<IHeaderSelect> = ({ items }) => {
       </button>
       <div
         ref={ref}
-        className={classNames(styles.headerSelectPopper, {
+        className={cn(styles.headerSelectPopper, {
           [styles.headerSelectPopperActive]: isShow,
         })}
       >

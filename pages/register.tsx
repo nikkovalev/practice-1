@@ -3,11 +3,11 @@ import { NextPage } from "next";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
-import classNames from "classnames";
-import { useAppDispatch, useAppSelector } from "@/hooks/redux";
+import cn from "classnames";
+import { useAppSelector } from "@/hooks/useTypedSelector";
 
-import { registerUser } from "@/store/reducers/auth/authActionCreators";
-import { showAlert } from "@/store/reducers/alert/alertSlice";
+import { useRegisterUserMutation } from "@/store/auth/authApi";
+import { toast } from "react-toastify";
 
 import { Modal } from "@/components/modal/Modal";
 import { Button } from "@/components/ui";
@@ -22,9 +22,9 @@ const AuthPage: NextPage = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const { isAuth, isLoading } = useAppSelector((state) => state.authReducer);
+  const [registerUser, { isLoading, data }] = useRegisterUserMutation();
+  const { isAuth } = useAppSelector((state) => state.auth);
   const router = useRouter();
-  const dispatch = useAppDispatch();
 
   const validatePassword = (value: string) => {
     if (watch("password") != value) {
@@ -42,18 +42,23 @@ const AuthPage: NextPage = () => {
 
   const handleClose = () => router.push("/auth");
   const onRegister = (data: { [key: string]: any }) => {
-    dispatch(
-      registerUser({
-        username: data.login,
-        email: data.email,
-        password: data.password,
-      })
-    );
+    registerUser({
+      username: data.login,
+      email: data.email,
+      password: data.password,
+    });
   };
 
   useEffect(() => {
+    if (!isLoading && data) {
+      toast.success("Успешная регистрация");
+      router.push("/auth");
+    }
+  }, [isLoading, data]);
+
+  useEffect(() => {
     if (isAuth) {
-      dispatch(showAlert({ text: "Вы уже авторизованы", type: "warning" }));
+      toast.warning("Вы уже авторизованы", { toastId: "register_warning" });
       handleClose();
     }
   }, []);
@@ -64,10 +69,10 @@ const AuthPage: NextPage = () => {
         <div className={modalStyles.modalTop}>
           <Link href="/auth">
             <a>
-              <h4 className="text-primary-400 font-bold">Войти</h4>
+              <h3 className="text-primary-400 font-bold">Войти</h3>
             </a>
           </Link>
-          <h3 className={modalStyles.ml50}>Зарегистрироваться</h3>
+          <h1 className={modalStyles.ml50}>Зарегистрироваться</h1>
         </div>
         <div className={modalStyles.registerInputs}>
           <div className="mb-5">
@@ -110,7 +115,7 @@ const AuthPage: NextPage = () => {
           )}
         </div>
         <div
-          className={classNames(modalStyles.checkbox, {
+          className={cn(modalStyles.checkbox, {
             [modalStyles.checkboxError]: errors.register_checkbox,
           })}
         >

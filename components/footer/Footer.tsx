@@ -1,5 +1,5 @@
 import React from "react";
-import classNames from "classnames";
+import cn from "classnames";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -76,7 +76,7 @@ const socials = [
 export const Footer = () => {
   return (
     <footer className={styles.footer}>
-      <div className={classNames("inner-container", styles.footerContainer)}>
+      <div className={cn("inner-container", styles.footerContainer)}>
         <div className={styles.footerTop}>
           {socials.map((s, idx: number) => (
             <a key={`${s.name}_${idx}`} href={s.href} className="flex items-center">

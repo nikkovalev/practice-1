@@ -207,11 +207,8 @@
       fill: $secondary-400;
     }
   }
-  & svg {
-    & circle,
-    & path {
-      transition: fill 0.25s, stroke 0.25s;
-    }
+  & svg & path {
+    transition: fill 0.25s, stroke 0.25s;
   }
 }
 

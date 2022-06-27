@@ -1,13 +1,13 @@
 import React, { useEffect } from "react";
-import classNames from "classnames";
+import cn from "classnames";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useOutside } from "@/hooks/useOutside";
-import { useAppDispatch, useAppSelector } from "@/hooks/redux";
+import { useAppSelector } from "@/hooks/useTypedSelector";
+import { useActions } from "@/hooks/useActions";
 
-import { changeModalPrevUrl, changeTheme } from "@/store/reducers/global/globalSlice";
-import { getMe } from "@/store/reducers/auth/authActionCreators";
+import { useGetMeQuery } from "@/store/auth/authApi";
 
 import { MenuBurger } from "./Menu";
 import { HeaderSearch } from "./HeaderSearch";
@@ -63,17 +63,18 @@ const navList = [
 ];
 
 export const Header = () => {
+  const router = useRouter();
   const { ref: searchRef, isShow: isShowSearch, setIsShow: setIsShowSearch } = useOutside(false);
   const { ref: menuRef, isShow: isShowMenu, setIsShow: setIsShowMenu } = useOutside(false);
-  const { theme } = useAppSelector((state) => state.globalReducer);
-  const { isAuth, user } = useAppSelector((state) => state.authReducer);
-  const dispatch = useAppDispatch();
-  const router = useRouter();
+  const { theme } = useAppSelector((state) => state.global);
+  const { isAuth, user } = useAppSelector((state) => state.auth);
+  const { setModalPrevUrl, changeTheme, login } = useActions();
+  const { data: userData, refetch } = useGetMeQuery("", { skip: !isAuth });
 
-  const changeMode = () => dispatch(changeTheme());
-  const goToAuth = () => dispatch(changeModalPrevUrl(router.asPath));
+  const changeMode = () => changeTheme();
+  const goToAuth = () => setModalPrevUrl(router.asPath);
   const openSearch = () => setIsShowSearch(true);
-  const handleClickUser = () => dispatch(getMe());
+  const handleClickUser = () => refetch();
   const handleClickBurger = () => {
     setIsShowMenu(!isShowMenu);
   };
@@ -83,17 +84,18 @@ export const Header = () => {
   }, [theme]);
 
   useEffect(() => {
-    if (isAuth && !user) dispatch(getMe());
-  }, [isAuth]);
+    const blurEl = document.querySelector(".blur");
+    if (blurEl) blurEl.className = `blur ${isShowMenu ? "blur_active" : ""}`;
+  }, [isShowMenu]);
 
   useEffect(() => {
-    document.querySelector(".blur")?.classList[isShowMenu ? "add" : "remove"]("blur_active");
-  }, [isShowMenu]);
+    if (userData) login(userData);
+  }, [userData]);
 
   return (
     <header className={styles.header}>
       <HeaderSearch ref={searchRef} isShow={isShowSearch} />
-      <div className={classNames("inner-container", styles.headerContent)}>
+      <div className={cn("inner-container", styles.headerContent)}>
         <div className={styles.headerLeft}>
           <Link href="/">
             <a className={styles.headerLogo}>
@@ -114,24 +116,21 @@ export const Header = () => {
             <SearchIcon />
           </div>
           <Link href="/favorites">
-            <a className={classNames("w-9", styles.headerIconButton, styles.headerLikeIcon)}>
+            <a className={cn("w-9", styles.headerIconButton, styles.headerLikeIcon)}>
               <LikeIcon />
               <span className={styles.headerIconButtonCount}>5</span>
             </a>
           </Link>
           {!isAuth && (
             <Link href="/auth">
-              <a
-                className={classNames(styles.headerIconButton, styles.headerUserIcon)}
-                onClick={goToAuth}
-              >
+              <a className={cn(styles.headerIconButton, styles.headerUserIcon)} onClick={goToAuth}>
                 <UserIcon />
               </a>
             </Link>
           )}
           {isAuth && !user && (
             <button
-              className={classNames(styles.headerIconButton, styles.headerUserIcon)}
+              className={cn(styles.headerIconButton, styles.headerUserIcon)}
               onClick={handleClickUser}
             >
               <UserIcon />
@@ -139,21 +138,21 @@ export const Header = () => {
           )}
           {isAuth && user && (
             <Link href="/messages">
-              <a className={classNames("w-9", styles.mr0, styles.headerIconButton)}>
+              <a className={cn("w-9", styles.mr0, styles.headerIconButton)}>
                 <MessageIcon />
                 <span className={styles.headerIconButtonCount}>2</span>
               </a>
             </Link>
           )}
           <div
-            className={classNames(styles.headerIcon, styles.headerNavButton)}
+            className={cn(styles.headerIcon, styles.headerNavButton)}
             onClick={handleClickBurger}
           >
             {isShowMenu ? <CloseIcon pathClassName="dark:fill-white-100" /> : <HamburgerIcon />}
           </div>
           <div
             ref={menuRef}
-            className={classNames(styles.headerSelects, {
+            className={cn(styles.headerSelects, {
               [styles.headerSelectsActive]: isShowMenu,
             })}
           >
@@ -162,7 +161,7 @@ export const Header = () => {
               <HeaderSelect items={currencies} />
               <HeaderSelect items={languages} />
               <button
-                className={classNames(styles.headerChangeMode, {
+                className={cn(styles.headerChangeMode, {
                   [styles.headerChangeModeLight]: theme === "dark",
                   [styles.headerChangeModeDark]: theme === "light",
                 })}
@@ -176,7 +175,7 @@ export const Header = () => {
               </button>
             </div>
             <ul
-              className={classNames(styles.headerNav, {
+              className={cn(styles.headerNav, {
                 [styles.headerNavAuth]: isAuth && user,
               })}
             >

@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import classNames from "classnames";
+import cn from "classnames";
 import Link from "next/link";
 import { useOutside } from "@/hooks/useOutside";
 
@@ -23,7 +23,7 @@ export const MenuBurger: FC<IMenuBurger> = ({ navList }) => {
       </div>
       <div
         ref={ref}
-        className={classNames(styles.headerPopper, {
+        className={cn(styles.headerPopper, {
           [styles.headerPopperActive]: isShow,
         })}
       >

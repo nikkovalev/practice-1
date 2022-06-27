@@ -1,0 +1,29 @@
+@import "../../../../assets/styles/_variables.scss";
+
+.settings {
+  & h3 {
+    @apply font-bold text-gray-400;
+    font-size: 32px;
+    line-height: 130%;
+    margin-bottom: 20px;
+  }
+}
+
+.settingsItem {
+  margin-bottom: 40px;
+  form {
+    @apply flex items-center;
+    & input {
+      margin-right: 10px;
+    }
+  }
+}
+
+.code {
+  @apply flex items-center justify-center text-secondary-400 font-bold text-2xl text-center border-2 border-secondary-400;
+  width: fit-content;
+  padding: 20px 40px;
+  letter-spacing: 20px;
+  border-radius: 10px;
+  margin-top: 30px;
+}

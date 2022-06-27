@@ -1,5 +1,5 @@
 import React, { useEffect, forwardRef } from "react";
-import classNames from "classnames";
+import cn from "classnames";
 import { useForm } from "react-hook-form";
 import { SearchIcon } from "../icons";
 
@@ -19,10 +19,7 @@ export const HeaderSearch = forwardRef<HTMLDivElement, IHeaderSearch>(({ isShow 
   }, [isShow]);
 
   return (
-    <div
-      ref={ref}
-      className={classNames(styles.headerSearch, { [styles.headerSearchActive]: isShow })}
-    >
+    <div ref={ref} className={cn(styles.headerSearch, { [styles.headerSearchActive]: isShow })}>
       <div className="inner-container w-full h-full relative">
         <form className="w-full h-full" onSubmit={handleSubmit(handleSearch)}>
           <input {...register("search")} placeholder="Поиск по 1 500 играм" autoComplete="off" />

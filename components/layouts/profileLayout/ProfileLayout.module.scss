@@ -1,0 +1,143 @@
+@import "../../../assets/styles/_variables.scss";
+
+.layoutPreview {
+  @apply w-full bg-cover bg-center bg-no-repeat;
+  height: 750px;
+  padding-top: 239px;
+}
+
+.user {
+  @apply flex items-center bg-black-300 bg-opacity-60 flex-grow;
+  height: 211px;
+  border-radius: 10px;
+  margin-right: 10px;
+  padding: 36px 146px;
+}
+
+.userImage {
+  @apply relative bg-center bg-cover bg-no-repeat;
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  border: 6px solid $black-300;
+  margin-right: 50px;
+  transition: transform 0.25s;
+  & label {
+    @apply absolute left-0 flex items-center justify-center bg-gray-400 cursor-pointer;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    top: 10px;
+    &:active {
+      transform: scale(0.95);
+    }
+  }
+  & input {
+    display: none;
+  }
+}
+
+.userInfo {
+  h3 {
+    @apply text-white-100 font-bold;
+    font-size: 32px;
+    margin-bottom: 5px;
+    line-height: 130%;
+  }
+  & > b {
+    @apply inline-block font-medium;
+    font-size: 17px;
+    margin-top: 5px;
+    margin-bottom: 20px;
+    line-height: 20px;
+    color: $green-100;
+  }
+}
+
+.userStatistics {
+  @apply flex items-center;
+  & li {
+    @apply flex flex-col;
+    &:first-child {
+      margin-right: 50px;
+    }
+    & span {
+      @apply inline-block text-gray-400 font-medium;
+      font-size: 18px;
+      line-height: 22px;
+      margin-bottom: 10px;
+    }
+    & b {
+      @apply text-white-100 font-bold;
+      font-size: 18px;
+      line-height: 22px;
+    }
+  }
+}
+
+.userStars {
+  @apply flex flex-col items-center justify-center bg-black-300 bg-opacity-60 flex-shrink-0;
+  width: 310px;
+  height: 211px;
+  border: 2px solid $secondary-400;
+  border-radius: 10px;
+  & > span {
+    @apply text-white-100 font-bold;
+    font-size: 24px;
+    line-height: 130%;
+    & b {
+      @apply text-secondary-400;
+    }
+  }
+}
+
+.userStarsTop {
+  @apply flex items-center;
+  margin-bottom: 10px;
+  & b {
+    @apply inline-block text-white-100 font-bold;
+    font-size: 32px;
+    line-height: 38px;
+    margin-right: 10px;
+  }
+  & ul {
+    @apply flex items-center;
+    margin-top: 6px;
+    & li {
+      margin-right: 7px;
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+}
+
+.buttons {
+  @apply flex items-center justify-between;
+  margin-top: 89px;
+}
+
+.button {
+  @apply text-white-100;
+  margin-right: 20px;
+  border-color: $black-300;
+  min-width: 160px;
+  flex-grow: 1;
+  &:last-child {
+    margin-right: 0;
+  }
+  & b {
+    @apply inline-block font-bold text-gray-400;
+    font-size: 18px;
+    line-height: 21.6px;
+    margin-left: 5px;
+  }
+}
+
+.title {
+  @apply text-white-100 font-bold;
+  margin-top: 50px;
+  margin-bottom: 30px;
+  font-size: 52px;
+  line-height: 67.6px;
+}

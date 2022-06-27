@@ -1,5 +1,5 @@
 import React, { ChangeEvent, FocusEvent, ForwardedRef, forwardRef, useState } from "react";
-import classNames from "classnames";
+import cn from "classnames";
 
 import { EyeIcon } from "@/components/icons";
 
@@ -24,7 +24,7 @@ export const Input = forwardRef<HTMLInputElement, IInput>(
         <input
           ref={ref}
           type={inputType}
-          className={classNames(styles.input, styles.inputPassword, {
+          className={cn(styles.input, styles.inputPassword, {
             [styles.inputError]: isError,
           })}
           name={name}

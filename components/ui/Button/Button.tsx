@@ -1,5 +1,5 @@
 import React, { FC, MouseEvent } from "react";
-import classNames from "classnames";
+import cn from "classnames";
 import styles from "./Button.module.scss";
 
 interface IButton {
@@ -23,7 +23,7 @@ export const Button: FC<IButton> = ({
   onClick,
 }) => (
   <button
-    className={classNames(styles.button, className, {
+    className={cn(styles.button, className, {
       [styles.buttonContained]: variant === "contained",
       [styles.buttonOutlined]: variant === "outlined",
       [styles.buttonSecondary]: color === "secondary",

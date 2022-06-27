@@ -12,7 +12,7 @@
 }
 .buttonContained {
   background-color: $primary-400;
-  box-shadow: 0px 10px 20px rgba(127, 134, 232, 0.25);
+  box-shadow: 0px 10px 20px rgba(127, 134, 232, 0.25) !important;
   &:hover {
     background-color: $primary-300;
     box-shadow: none;
@@ -35,7 +35,7 @@
 .buttonSecondary {
   background-color: $secondary-400;
   color: $black-400;
-  box-shadow: 0px 10px 20px rgba(255, 219, 89, 0.25);
+  box-shadow: 0px 10px 20px rgba(255, 219, 89, 0.25) !important;
   &:hover {
     background-color: $secondary-300;
   }

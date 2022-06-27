@@ -10,17 +10,19 @@ import {
   PURGE,
   REGISTER,
 } from "redux-persist";
+import { setupListeners } from "@reduxjs/toolkit/dist/query/react";
 
-import authReducer from "./reducers/auth/authSlice";
-import alertReducer from "./reducers/alert/alertSlice";
-import globalReducer from "./reducers/global/globalSlice";
-import categoriesReducer from "./reducers/categories/categoriesSlice";
+import { authApi } from "./auth/authApi";
+import { categoriesApi } from "./categories/categoriesApi";
+
+import { authReducer } from "./auth/authSlice";
+import { globalReducer } from "./global/globalSlice";
 
 const rootReducer = combineReducers({
-  authReducer,
-  alertReducer,
-  globalReducer,
-  categoriesReducer,
+  auth: authReducer,
+  global: globalReducer,
+  [authApi.reducerPath]: authApi.reducer,
+  [categoriesApi.reducerPath]: categoriesApi.reducer,
 });
 
 const persistConfig = {
@@ -37,13 +39,13 @@ const store = configureStore({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    }),
+    }).concat(authApi.middleware, categoriesApi.middleware),
 });
 
 export const persistor = persistStore(store);
 
-export type RootState = ReturnType<typeof rootReducer>;
-export type AppStore = ReturnType<typeof store.getState>;
-export type AppDispatch = typeof store.dispatch;
+export type TypeRootState = ReturnType<typeof store.getState>;
+
+setupListeners(store.dispatch);
 
 export default store;

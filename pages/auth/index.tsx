@@ -3,11 +3,13 @@ import { NextPage } from "next";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
-import { useAppDispatch, useAppSelector } from "@/hooks/redux";
+import { useAppSelector } from "@/hooks/useTypedSelector";
+import { toast } from "react-toastify";
 
 import { IAuthLogin } from "@/models/IAuth";
-import { loginUser } from "@/store/reducers/auth/authActionCreators";
-import { showAlert } from "@/store/reducers/alert/alertSlice";
+
+import { useLoginUserMutation } from "@/store/auth/authApi";
+import { useActions } from "@/hooks/useActions";
 
 import { Modal } from "@/components/modal/Modal";
 import { Button } from "@/components/ui";
@@ -21,23 +23,30 @@ const AuthPage: NextPage = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
+  const [loginUser, { data, isLoading }] = useLoginUserMutation();
   const router = useRouter();
-  const dispatch = useAppDispatch();
-  const { isAuth, isLoading } = useAppSelector((state) => state.authReducer);
-  const { modalPrevUrl } = useAppSelector((state) => state.globalReducer);
+  const { isAuth } = useAppSelector((state) => state.auth);
+  const { modalPrevUrl } = useAppSelector((state) => state.global);
+  const { setToken } = useActions();
 
   const handleClose = () => router.push(modalPrevUrl);
-  const login = (data: { [key: string]: any }) => {
-    dispatch(loginUser(data as IAuthLogin));
-  };
+  const handleLogin = (data: { [key: string]: any }) => loginUser(data as IAuthLogin);
 
   useEffect(() => {
-    if (isAuth) handleClose();
-  }, [isAuth]);
+    if (!isLoading && data) {
+      if (data.tfa) {
+        router.push("/2fa");
+        return;
+      }
+      toast.success("Успешная авторизация");
+      setToken(data.token);
+      handleClose();
+    }
+  }, [isLoading, data]);
 
   useEffect(() => {
     if (isAuth) {
-      dispatch(showAlert({ text: "Вы уже авторизованы", type: "warning" }));
+      toast.warning("Вы уже авторизованы", { toastId: "auth_warning" });
       handleClose();
     }
   }, []);
@@ -46,14 +55,14 @@ const AuthPage: NextPage = () => {
     <Modal title="Войти" handleClose={handleClose}>
       <div className="flex flex-col items-center">
         <div className={modalStyles.modalTop}>
-          <h3 className={modalStyles.mr50}>Войти</h3>
+          <h1 className={modalStyles.mr50}>Войти</h1>
           <Link href="/register">
             <a>
-              <h4 className="text-primary-400 font-bold">Зарегистрироваться</h4>
+              <h3 className="text-primary-400 font-bold">Зарегистрироваться</h3>
             </a>
           </Link>
         </div>
-        <form onSubmit={handleSubmit(login)}>
+        <form onSubmit={handleSubmit(handleLogin)}>
           <div className="mb-5">
             <Input
               {...register("login", { required: true })}

@@ -5,7 +5,7 @@
 @import "./_fonts.scss";
 @import "./_normalize.scss";
 @import "./_variables.scss";
-@import "./_loader.scss";
+
 
 *,
 *::after,
@@ -26,6 +26,14 @@ body {
 
 a {
   text-decoration: none;
+}
+
+// toaster
+.toaster_success {
+  background: $green-100 !important;
+}
+.toaster_error {
+  background: $red-100 !important;
 }
 
 .page {

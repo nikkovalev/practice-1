@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import classNames from "classnames";
+import cn from "classnames";
 import Link from "next/link";
 import { useOutside } from "@/hooks/useOutside";
 
@@ -58,13 +58,10 @@ export const HeaderUser: FC<IHeaderUser> = ({ user, isShowMenu }) => {
   const handleClick = () => setIsShow(!isShow);
 
   return (
-    <div
-      ref={ref}
-      className={classNames(styles.headerUser, { [styles.headerUserActive]: isShowMenu })}
-    >
+    <div ref={ref} className={cn(styles.headerUser, { [styles.headerUserActive]: isShowMenu })}>
       {user && (
         <div
-          className={classNames("dark:bg-black-300 dark:border-transparent", styles.headerUserTop)}
+          className={cn("dark:bg-black-300 dark:border-transparent", styles.headerUserTop)}
           onClick={handleClick}
         >
           <div
@@ -80,7 +77,7 @@ export const HeaderUser: FC<IHeaderUser> = ({ user, isShowMenu }) => {
         </div>
       )}
       <div
-        className={classNames(styles.headerUserPopper, {
+        className={cn(styles.headerUserPopper, {
           [styles.headerUserPopperActive]: isShow,
         })}
       >
