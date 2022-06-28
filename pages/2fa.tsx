@@ -16,14 +16,14 @@ import modalStyles from "@/components/modal/Modal.module.scss";
 export const CodeEntryPage = () => {
   const { register, handleSubmit } = useForm();
   const [login2fa, { data, isLoading }] = useLogin2faMutation();
-  const { setToken } = useActions();
+  const { saveToken } = useActions();
   const router = useRouter();
 
   const handleSend = (data: { [key: string]: any }) => login2fa(data.code);
 
   useEffect(() => {
     if (data) {
-      setToken(data.token);
+      saveToken(data.token);
       toast.success("Успешная авторизация");
       router.push("/");
     }

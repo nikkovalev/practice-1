@@ -27,7 +27,7 @@ const AuthPage: NextPage = () => {
   const router = useRouter();
   const { isAuth } = useAppSelector((state) => state.auth);
   const { modalPrevUrl } = useAppSelector((state) => state.global);
-  const { setToken } = useActions();
+  const { saveToken } = useActions();
 
   const handleClose = () => router.push(modalPrevUrl);
   const handleLogin = (data: { [key: string]: any }) => loginUser(data as IAuthLogin);
@@ -39,7 +39,7 @@ const AuthPage: NextPage = () => {
         return;
       }
       toast.success("Успешная авторизация");
-      setToken(data.token);
+      saveToken(data.token);
       handleClose();
     }
   }, [isLoading, data]);

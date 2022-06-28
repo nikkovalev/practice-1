@@ -6,7 +6,7 @@ export const FADE_IN: MotionProps = {
   },
   whileInView: { opacity: 1 },
   transition: { duration: 0.7 },
-  viewport: { amount: "some", once: true },
+  viewport: { amount: 0.2, once: true },
 };
 
 export const BACK_IN_RIGHT: MotionProps = {

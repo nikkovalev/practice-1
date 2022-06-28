@@ -6,7 +6,6 @@
 @import "./_normalize.scss";
 @import "./_variables.scss";
 
-
 *,
 *::after,
 *::before {
@@ -92,4 +91,14 @@ a {
 
 .blur_active {
   display: block;
+}
+
+.mb-0 {
+  margin-bottom: 0 !important;
+}
+
+.text-ellipsis {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }

@@ -2,8 +2,18 @@
 
 .layoutPreview {
   @apply w-full bg-cover bg-center bg-no-repeat;
-  height: 750px;
+  height: fit-content;
   padding-top: 239px;
+  @media (max-width: $breakpoint1200) {
+    padding-top: 150px;
+  }
+}
+
+.layoutTop {
+  @apply flex items-center justify-between;
+  @media (max-width: $breakpoint992) {
+    @apply flex-col-reverse items-start max-w-full px-0 mx-0;
+  }
 }
 
 .user {
@@ -12,17 +22,33 @@
   border-radius: 10px;
   margin-right: 10px;
   padding: 36px 146px;
+  @media (max-width: $breakpoint1450) {
+    padding: 30px;
+  }
+  @media (max-width: $breakpoint1200) {
+    padding: 20px;
+  }
+  @media (max-width: $breakpoint992) {
+    @apply relative justify-center;
+    width: 100%;
+    padding: 0 20px;
+    padding-bottom: 80px;
+    height: auto;
+  }
+  @media (max-width: 320px) {
+    padding-bottom: 150px;
+  }
 }
 
 .userImage {
-  @apply relative bg-center bg-cover bg-no-repeat;
+  @apply relative block bg-center bg-cover bg-no-repeat cursor-pointer;
   width: 250px;
   height: 250px;
   border-radius: 50%;
   border: 6px solid $black-300;
   margin-right: 50px;
   transition: transform 0.25s;
-  & label {
+  & div {
     @apply absolute left-0 flex items-center justify-center bg-gray-400 cursor-pointer;
     width: 50px;
     height: 50px;
@@ -34,6 +60,30 @@
   }
   & input {
     display: none;
+  }
+  @media (max-width: $breakpoint1200) {
+    width: 150px;
+    height: 150px;
+    margin-right: 25px;
+    margin-left: -6px;
+  }
+  @media (max-width: $breakpoint992) {
+    width: 80px;
+    height: 80px;
+    margin-right: 10px;
+    & div {
+      width: 30px;
+      height: 30px;
+      top: 0px;
+      left: -6px;
+      & img {
+        width: 14px !important;
+        height: 14px !important;
+      }
+      &:active {
+        transform: scale(1);
+      }
+    }
   }
 }
 
@@ -47,11 +97,24 @@
   & > b {
     @apply inline-block font-medium;
     font-size: 17px;
-    margin-top: 5px;
     margin-bottom: 20px;
     line-height: 20px;
     color: $green-100;
   }
+  @media (max-width: $breakpoint992) {
+    & > b {
+      @apply inline;
+      margin-bottom: 0;
+      font-size: 15px;
+    }
+    & h3 {
+      font-size: 28px;
+    }
+  }
+}
+
+.userStatusOffline {
+  color: $gray-400 !important;
 }
 
 .userStatistics {
@@ -73,6 +136,32 @@
       line-height: 22px;
     }
   }
+  @media (max-width: $breakpoint992) {
+    @apply justify-center flex-wrap;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 20px;
+    & li {
+      &:first-child {
+        margin-right: 30px;
+      }
+      & span {
+        font-size: 15px;
+        margin-bottom: 5px;
+      }
+      & b {
+        font-size: 15px;
+      }
+    }
+  }
+  @media (max-width: 320px) {
+    @apply flex-col;
+    & li:first-child {
+      margin-right: 0;
+      margin-bottom: 10px;
+    }
+  }
 }
 
 .userStars {
@@ -87,6 +176,18 @@
     line-height: 130%;
     & b {
       @apply text-secondary-400;
+    }
+  }
+  @media (max-width: $breakpoint992) {
+    @apply flex-row;
+    width: 100%;
+    border: none;
+    height: auto;
+    padding: 20px;
+  }
+  @media (max-width: $breakpoint480) {
+    & > span {
+      font-size: 18px;
     }
   }
 }
@@ -110,11 +211,33 @@
       }
     }
   }
+  @media (max-width: $breakpoint992) {
+    margin-bottom: 0;
+    margin-right: 15px;
+  }
+  @media (max-width: $breakpoint480) {
+    & b {
+      font-size: 24px;
+    }
+    & img {
+      width: 16px !important;
+      height: 16px !important;
+    }
+  }
 }
 
 .buttons {
   @apply flex items-center justify-between;
   margin-top: 89px;
+  @media (max-width: $breakpoint1200) {
+    overflow-x: auto;
+    margin-top: 50px;
+    padding-bottom: 30px;
+    & a {
+      @apply flex-shrink-0;
+      margin-right: 10px;
+    }
+  }
 }
 
 .button {
@@ -123,6 +246,8 @@
   border-color: $black-300;
   min-width: 160px;
   flex-grow: 1;
+  padding-left: 25px;
+  padding-right: 25px;
   &:last-child {
     margin-right: 0;
   }
@@ -140,4 +265,15 @@
   margin-bottom: 30px;
   font-size: 52px;
   line-height: 67.6px;
+  @media (max-width: $breakpoint1200) {
+    margin-top: 0;
+  }
+  @media (max-width: $breakpoint992) {
+    font-size: 45px;
+    line-height: 55px;
+  }
+  @media (max-width: $breakpoint480) {
+    font-size: 30px;
+    line-height: 39px;
+  }
 }

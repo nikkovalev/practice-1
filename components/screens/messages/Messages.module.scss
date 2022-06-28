@@ -1,0 +1,13 @@
+.title {
+  @apply flex items-start font-bold dark:text-white-100;
+  font-size: 52px;
+  margin-bottom: 30px;
+  & div {
+    @apply flex items-center justify-center bg-primary-400 text-white-100 dark:bg-secondary-400 dark:text-black-400;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-size: 20px;
+    margin-left: 10px;
+  }
+}

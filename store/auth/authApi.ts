@@ -44,6 +44,15 @@ export const authApi = createApi({
         body: formData,
       }),
     }),
+    updateProfileEmail: build.mutation<undefined, string>({
+      query: (email) => ({
+        url: "/profile/set/email",
+        method: "PUT",
+        body: {
+          email,
+        },
+      }),
+    }),
   }),
 });
 
@@ -54,4 +63,5 @@ export const {
   useGet2faCodeMutation,
   useLogin2faMutation,
   useUpdateProfileAvatarMutation,
+  useUpdateProfileEmailMutation,
 } = authApi;

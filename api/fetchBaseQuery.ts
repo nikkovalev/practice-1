@@ -29,5 +29,6 @@ export const baseQuery: BaseQueryFn<string | FetchArgs, unknown, FetchBaseQueryE
     }
     toast.error((result.error.data as any).message, { toastId: "api_toast" });
   }
+  if (!result.error && !result.data) result.data = true;
   return result;
 };

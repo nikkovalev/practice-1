@@ -15,7 +15,7 @@
 
 .headerContent {
   @apply relative flex items-center justify-between;
-  padding: 20px 0;
+  padding: 20px;
   @media (max-width: $breakpoint1450) {
     padding: 18px 10px;
   }

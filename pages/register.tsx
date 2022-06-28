@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
 import cn from "classnames";
 import { useAppSelector } from "@/hooks/useTypedSelector";
+import { useActions } from "@/hooks/useActions";
 
 import { useRegisterUserMutation } from "@/store/auth/authApi";
 import { toast } from "react-toastify";
@@ -23,6 +24,7 @@ const AuthPage: NextPage = () => {
     formState: { errors },
   } = useForm();
   const [registerUser, { isLoading, data }] = useRegisterUserMutation();
+  const { saveUserId } = useActions();
   const { isAuth } = useAppSelector((state) => state.auth);
   const router = useRouter();
 
@@ -51,6 +53,7 @@ const AuthPage: NextPage = () => {
 
   useEffect(() => {
     if (!isLoading && data) {
+      saveUserId(data.id);
       toast.success("Успешная регистрация");
       router.push("/auth");
     }

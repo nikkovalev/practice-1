@@ -38,7 +38,7 @@ export const HomeAbout = () => {
             </div>
           ))}
         </div>
-        <p className="sm:hidden">
+        <p className="sm:hidden mb-0">
           А теперь пару слов от нашей команды лично тебе. Мы рады что ты выбрал именно нас и уверены
           в том
           <br />

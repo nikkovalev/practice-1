@@ -4,11 +4,13 @@ import { IUser } from "@/models/IUser";
 interface IAuthState {
   token: string;
   user: IUser | null;
+  userId: string;
   isAuth: boolean;
 }
 
 const initialState: IAuthState = {
   token: "",
+  userId: "",
   user: null,
   isAuth: false,
 };
@@ -17,19 +19,23 @@ export const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
-    login: (state: IAuthState, action: PayloadAction<IUser>) => {
+    saveUser: (state: IAuthState, action: PayloadAction<IUser>) => {
       state.user = action.payload;
     },
     logout: (state: IAuthState) => {
       state.user = null;
+      state.userId = "";
       state.isAuth = false;
       state.token = "";
     },
-    setToken: (state: IAuthState, action: PayloadAction<string>) => {
+    saveToken: (state: IAuthState, action: PayloadAction<string>) => {
       state.token = action.payload;
       state.isAuth = true;
     },
-    updatePhotoURL: (state: IAuthState, action: PayloadAction<string>) => {
+    saveUserId: (state: IAuthState, action: PayloadAction<string>) => {
+      state.userId = action.payload;
+    },
+    saveAvatar: (state: IAuthState, action: PayloadAction<string>) => {
       (state.user as IUser).photoUrl = action.payload;
     },
   },

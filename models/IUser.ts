@@ -4,4 +4,8 @@ export interface IUser {
   displayName: string;
   photoUrl: string;
   regDate: string;
+  online: boolean;
+  isBanned: boolean;
+  isSuspended: boolean;
+  emailVerified: boolean;
 }

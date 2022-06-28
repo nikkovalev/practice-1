@@ -78,7 +78,7 @@ export const ProfileLayout: FC<IProfileLayout> = ({ children, pageName, title })
   const { isAuth, user } = useAppSelector((state) => state.auth);
   const [updateProfileAvatar, { data: newAvatar, isLoading: isAvatarLoading }] =
     useUpdateProfileAvatarMutation();
-  const { updatePhotoURL } = useActions();
+  const { saveAvatar } = useActions();
   const router = useRouter();
 
   const date = new Date(user?.regDate || "");
@@ -96,7 +96,7 @@ export const ProfileLayout: FC<IProfileLayout> = ({ children, pageName, title })
         return toast.error("Допускаются файлы только .jpeg, .jpg, .png");
       if (file.size > 10000000) toast.error("Файл должен быть не более 10 мегабайт");
       const formData = new FormData();
-      formData.append("file", file);
+      formData.append("avatar", file);
       updateProfileAvatar(formData);
     }
   };
@@ -104,12 +104,15 @@ export const ProfileLayout: FC<IProfileLayout> = ({ children, pageName, title })
   useEffect(() => {
     if (!isAuth) {
       toast.error("Авторизуйтесь", { toastId: "profile_error" });
-      router.push("/");
+      router.push("/auth");
     }
   }, []);
 
   useEffect(() => {
-    if (newAvatar) updatePhotoURL(newAvatar.avatarURL);
+    if (newAvatar) {
+      toast.success("Аватар успешно изменен!");
+      saveAvatar(newAvatar.avatarURL);
+    }
   }, [newAvatar]);
 
   return (
@@ -122,67 +125,70 @@ export const ProfileLayout: FC<IProfileLayout> = ({ children, pageName, title })
         style={{ backgroundImage: `url(${profileBg.src})` }}
       >
         <Header />
-        <div className="inner-container">
-          <div className="flex items-center justify-between">
-            <div className={styles.user}>
-              <div
-                className={styles.userImage}
-                style={{ backgroundImage: `url(${user?.photoUrl || anonymousImage.src})` }}
-              >
-                <input
-                  type="file"
-                  id="profile_edit_avatar"
-                  multiple={false}
-                  accept="image/png, image/jpeg"
-                  onChange={handleUploadAvatar}
-                />
-                <label htmlFor="profile_edit_avatar">
-                  <Image src={editIcon} width={20} height={20} alt="Edit avatar" />
-                </label>
+        <div className={cn("inner-container", styles.layoutTop)}>
+          <div className={styles.user}>
+            <label
+              htmlFor="profile_edit_avatar"
+              className={styles.userImage}
+              style={{ backgroundImage: `url(${user?.photoUrl || anonymousImage.src})` }}
+            >
+              <input
+                type="file"
+                id="profile_edit_avatar"
+                multiple={false}
+                accept="image/png, image/jpeg"
+                onChange={handleUploadAvatar}
+              />
+              <div>
+                <Image src={editIcon} width={20} height={20} alt="Edit avatar" />
               </div>
-              <div className={styles.userInfo}>
-                <h3>{user?.username || "Anonimus"}</h3>
-                <b>В сети</b>
-                <ul className={styles.userStatistics}>
-                  <li>
-                    <span>Зарегистрировался</span>
-                    <b>
-                      {("0" + day).slice(-2)} {month} {year}, {hours}:{minutes}
-                    </b>
-                  </li>
-                  <li>
-                    <span>На сервисе уже</span>
-                    <b>1 год и 7 месяцев</b>
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <div className={styles.userStars}>
-              <div className={styles.userStarsTop}>
-                <b>4.9</b>
-                <ul>
-                  <li>
-                    <Image src={starIcon} width={20} height={20} alt="Star icon" />
-                  </li>
-                  <li>
-                    <Image src={starIcon} width={20} height={20} alt="Star icon" />
-                  </li>
-                  <li>
-                    <Image src={starIcon} width={20} height={20} alt="Star icon" />
-                  </li>
-                  <li>
-                    <Image src={starIcon} width={20} height={20} alt="Star icon" />
-                  </li>
-                  <li>
-                    <Image src={starIcon} width={20} height={20} alt="Star icon" />
-                  </li>
-                </ul>
-              </div>
-              <span>
-                <b>14</b> отзывов
-              </span>
+            </label>
+            <div className={styles.userInfo}>
+              <h3>{user?.username || "Anonimus"}</h3>
+              <b className={cn({ [styles.userStatusOffline]: !user?.online })}>
+                {user?.online ? "В сети" : "Не в сети"}
+              </b>
+              <ul className={styles.userStatistics}>
+                <li>
+                  <span>Зарегистрировался</span>
+                  <b>
+                    {("0" + day).slice(-2)} {month} {year}, {hours}:{minutes}
+                  </b>
+                </li>
+                <li>
+                  <span>На сервисе уже</span>
+                  <b>1 год и 7 месяцев</b>
+                </li>
+              </ul>
             </div>
           </div>
+          <div className={styles.userStars}>
+            <div className={styles.userStarsTop}>
+              <b>4.9</b>
+              <ul>
+                <li>
+                  <Image src={starIcon} width={20} height={20} alt="Star icon" />
+                </li>
+                <li>
+                  <Image src={starIcon} width={20} height={20} alt="Star icon" />
+                </li>
+                <li>
+                  <Image src={starIcon} width={20} height={20} alt="Star icon" />
+                </li>
+                <li>
+                  <Image src={starIcon} width={20} height={20} alt="Star icon" />
+                </li>
+                <li>
+                  <Image src={starIcon} width={20} height={20} alt="Star icon" />
+                </li>
+              </ul>
+            </div>
+            <span>
+              <b>14</b> отзывов
+            </span>
+          </div>
+        </div>
+        <div className="inner-container">
           <div className={styles.buttons}>
             {buttons.map((button) => (
               <Link key={button.title} href={button.path}>

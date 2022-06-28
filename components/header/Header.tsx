@@ -68,13 +68,16 @@ export const Header = () => {
   const { ref: menuRef, isShow: isShowMenu, setIsShow: setIsShowMenu } = useOutside(false);
   const { theme } = useAppSelector((state) => state.global);
   const { isAuth, user } = useAppSelector((state) => state.auth);
-  const { setModalPrevUrl, changeTheme, login } = useActions();
-  const { data: userData, refetch } = useGetMeQuery("", { skip: !isAuth });
+  const { setModalPrevUrl, changeTheme, saveUser } = useActions();
+  const { data: userData, refetch: getMe } = useGetMeQuery("", {
+    skip: !isAuth,
+    refetchOnMountOrArgChange: true,
+  });
 
   const changeMode = () => changeTheme();
   const goToAuth = () => setModalPrevUrl(router.asPath);
   const openSearch = () => setIsShowSearch(true);
-  const handleClickUser = () => refetch();
+  const handleClickUser = () => getMe();
   const handleClickBurger = () => {
     setIsShowMenu(!isShowMenu);
   };
@@ -89,7 +92,7 @@ export const Header = () => {
   }, [isShowMenu]);
 
   useEffect(() => {
-    if (userData) login(userData);
+    if (userData) saveUser(userData);
   }, [userData]);
 
   return (

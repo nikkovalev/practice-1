@@ -1,0 +1,197 @@
+@import "../../assets/styles/_variables.scss";
+
+// Chat
+
+.chat {
+  @apply relative flex items-start bg-black-300 overflow-y-hidden;
+  width: 100%;
+  height: 680px;
+  border-radius: 10px;
+}
+.chatAvatar {
+  @apply relative bg-center bg-cover bg-no-repeat flex-shrink-0;
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+  border-radius: 50%;
+  border: 2px solid $gray-400;
+  border-radius: 50%;
+  &::before {
+    content: "";
+    position: absolute;
+    right: -2px;
+    bottom: -2px;
+    width: 16px;
+    height: 16px;
+    border: 4px solid $black-300;
+    border-radius: 50%;
+    background-color: $gray-400;
+  }
+}
+.chatAvatarOnline {
+  &::before {
+    background-color: $green-100;
+  }
+}
+.chatName {
+  @apply font-medium text-white-100;
+  font-size: 17px;
+}
+.chatText {
+  @apply font-medium text-gray-400;
+  font-size: 15px;
+}
+
+// chat left
+
+.chatLeft {
+  @apply flex-shrink-0;
+  width: 305px;
+  height: 100%;
+  border-right: 2px solid $gray-500;
+  padding: 30px 10px;
+  overflow-y: auto;
+}
+.chatDialogStatus {
+  @apply bg-secondary-400;
+  position: absolute;
+  top: 16px;
+  right: 5px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+.chatDialog {
+  @apply relative flex items-center cursor-pointer;
+  border: 2px solid transparent;
+  transition: background-color 0.25s;
+  border-radius: 10px;
+  padding: 15px 20px;
+  &:hover {
+    @apply bg-gray-500;
+  }
+}
+.chatDialogActive {
+  border-color: $primary-400;
+  &:hover {
+    border-color: $primary-400;
+  }
+}
+.chatDialogTop {
+  @apply flex items-center justify-between;
+  margin-bottom: 3px;
+  & div {
+    width: 135px;
+  }
+  & ~ div {
+    width: 185px;
+  }
+}
+
+// chat right
+
+.chatRight {
+  @apply relative overflow-y-auto;
+  max-width: 730px;
+  width: 100%;
+  height: 680px;
+  border-right: 2px solid $gray-500;
+  &::-webkit-scrollbar {
+    width: 3px;
+  }
+  &::-webkit-scrollbar-track {
+    background-color: $black-300;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: $secondary-400;
+    border-radius: 10px;
+  }
+}
+.chatHeader {
+  @apply absolute top-0 right-0 flex items-center justify-between bg-black-300 z-10;
+  width: 730px;
+  left: 305px;
+  border-bottom: 2px solid $gray-500;
+  padding: 30px;
+  & b {
+    @apply inline-block text-primary-400 font-bold;
+    font-size: 17px;
+    margin-left: 10px;
+  }
+}
+.chatHeaderTitle {
+  max-width: 400px;
+}
+.chatHeaderButton {
+  @apply flex items-center justify-between rounded-full;
+  min-width: 80px;
+  border: 2px solid $gray-400;
+  padding: 8px;
+  & button {
+    @apply flex items-center justify-center;
+    & svg path {
+      transition: fill 0.25s;
+    }
+    &:hover {
+      & svg path {
+        fill: $white-100;
+      }
+    }
+  }
+}
+
+// chat messages
+.chatMessages {
+  @apply flex flex-col;
+  padding: 30px;
+}
+.chatMessage {
+  width: 50%;
+  margin-top: 10px;
+  min-height: 40px;
+  &:first-child {
+    margin-top: 0;
+  }
+}
+.chatMessageTop {
+  @apply flex items-center justify-between;
+  margin-bottom: 10px;
+  padding: 0 15px;
+}
+.chatMessageText {
+  @apply w-full text-white-100 font-medium;
+  font-size: 15px;
+  line-height: 20px;
+  padding: 10px 15px;
+  border-radius: 10px;
+}
+
+// chat form
+
+.chatForm {
+  @apply absolute;
+  width: 730px;
+  left: 305px;
+  bottom: -1px;
+  & input {
+    @apply text-gray-400 font-normal bg-gray-500;
+    width: 100%;
+    height: 70px;
+    padding: 25px 60px 25px 30px;
+    font-size: 17px;
+    &::placeholder {
+      @apply text-gray-400 opacity-100;
+    }
+  }
+  & button {
+    position: absolute;
+    right: 30px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    transition: transform 0.25s;
+    &:active {
+      transform: translateY(-50%) scale(0.9);
+    }
+  }
+}

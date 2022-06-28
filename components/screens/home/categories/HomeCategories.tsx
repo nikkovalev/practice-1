@@ -18,14 +18,14 @@ import { Loader } from "@/components/loader/Loader";
 import styles from "../Home.module.scss";
 
 export const HomeCategories = () => {
-  const { isAuth } = useAppSelector((state) => state.auth);
+  const { isAuth, user } = useAppSelector((state) => state.auth);
   const { data: categories, isLoading: isCategoriesLoading } = useFetchCategoriesQuery(false, {
     refetchOnMountOrArgChange: true,
   });
   const { data: likedServices, isLoading: isLikedServicesLoading } = useFetchLikedServicesQuery(
     true,
     {
-      skip: !isAuth,
+      skip: !isAuth || !user?.emailVerified,
     }
   );
 

@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
+import cn from "classnames";
+import { toast } from "react-toastify";
 import { useForm } from "react-hook-form";
 import { useAppSelector } from "@/hooks/useTypedSelector";
 
-import { useGet2faCodeMutation } from "@/store/auth/authApi";
+import { useGet2faCodeMutation, useUpdateProfileEmailMutation } from "@/store/auth/authApi";
 
 import { Input } from "@/components/ui/Input/Input";
 import { Button } from "@/components/ui";
@@ -24,6 +26,8 @@ export const Settings = () => {
   } = useForm();
   const { user } = useAppSelector((state) => state.auth);
   const [get2faCode, { isLoading: is2faCodeLoading, data: dataCode }] = useGet2faCodeMutation();
+  const [updateProfileEmail, { isLoading: isEmailLoading, data: newEmail }] =
+    useUpdateProfileEmailMutation();
 
   const validatePassword = (value: string) => {
     if (watch("new_password") != value) {
@@ -41,12 +45,18 @@ export const Settings = () => {
 
   const handleConfirm = () => get2faCode("");
   const handleChangePassword = (data: { [key: string]: string }) => console.log(data);
-  const handleBindEmail = (data: { [key: string]: string }) => console.log(data);
+  const handleBindEmail = (data: { [key: string]: string }) => updateProfileEmail(data.email);
+
+  useEffect(() => {
+    if (newEmail) {
+      toast.success("На вашу почту отправлено письмо с подтверждением");
+    }
+  }, [newEmail, isEmailLoading]);
 
   return (
     <div className={styles.settings}>
       <h3>Изменить пароль</h3>
-      <div className={styles.settingsItem}>
+      <div className={cn(styles.settingsItem, styles.settingsPassword)}>
         <form className="justify-between" onSubmit={handleSubmit(handleChangePassword)}>
           <Input
             {...register("old_password", { required: true })}
@@ -63,7 +73,7 @@ export const Settings = () => {
             placeholder="Подтвердите пароль"
             isError={errors.confirm_password}
           />
-          <Button size="large" variant="outlined">
+          <Button className="lg:mt-3 sm:mt-0" size="large" variant="outlined">
             Изменить
           </Button>
         </form>
@@ -73,7 +83,7 @@ export const Settings = () => {
           </div>
         )}
       </div>
-      <h3>Привязать почту</h3>
+      <h3>Изменить почту</h3>
       <div className={styles.settingsItem}>
         <form onSubmit={handleSubmit2(handleBindEmail)}>
           <Input
@@ -81,8 +91,8 @@ export const Settings = () => {
             placeholder="Электронная почта"
             isError={errors2.email}
           />
-          <Button size="large" variant="outlined">
-            Привязать
+          <Button size="large" variant="outlined" isDisabled={isEmailLoading}>
+            Изменить
           </Button>
         </form>
       </div>
@@ -96,7 +106,13 @@ export const Settings = () => {
         Подтвердить аккаунт
       </Button>
       {(is2faCodeLoading || dataCode) && (
-        <div className={styles.code}>{is2faCodeLoading ? <Loader /> : dataCode?.token}</div>
+        <div className={styles.code}>
+          {is2faCodeLoading ? (
+            <Loader />
+          ) : (
+            dataCode?.token.split("").map((l) => <span key={l}>{l}</span>)
+          )}
+        </div>
       )}
     </div>
   );
