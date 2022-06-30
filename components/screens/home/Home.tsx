@@ -1,4 +1,6 @@
-import React from "react";
+import React, { FC } from "react";
+
+import { ICategory } from "@/models/ICategory";
 
 import { Layout } from "@/components/layouts/Layout";
 import { HomeTop } from "./HomeTop";
@@ -8,11 +10,15 @@ import { HomeSocials } from "./socials/HomeSocials";
 import { HomeAdvantages } from "./advantages/HomeAdvantages";
 import { HomeAbout } from "./HomeAbout";
 
-export const Home = () => {
+interface IHome {
+  categories: ICategory[];
+}
+
+export const Home: FC<IHome> = ({ categories }) => {
   return (
     <Layout title="Главная">
       <HomeTop />
-      <HomeCategories />
+      <HomeCategories categories={categories} />
       <HomeServices />
       <HomeSocials />
       <HomeAdvantages />
