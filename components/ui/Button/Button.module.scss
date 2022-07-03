@@ -11,15 +11,16 @@
   }
 }
 .buttonContained {
-  background-color: $primary-400;
+  background-color: $primary-400 !important;
   box-shadow: 0px 10px 20px rgba(127, 134, 232, 0.25) !important;
+  border-color: transparent !important;
   &:hover {
     background-color: $primary-300;
     box-shadow: none;
   }
 }
 .buttonPrimaryActive {
-  background-color: $primary-500;
+  background-color: $primary-500 !important;
   box-shadow: none;
 }
 .buttonOutlined {
@@ -33,11 +34,11 @@
   }
 }
 .buttonSecondary {
-  background-color: $secondary-400;
+  background-color: $secondary-400 !important;
   color: $black-400;
   box-shadow: 0px 10px 20px rgba(255, 219, 89, 0.25) !important;
   &:hover {
-    background-color: $secondary-300;
+    background-color: $secondary-300 !important;
   }
 }
 .buttonSecondaryActive {
@@ -52,4 +53,12 @@
 .buttonDisabled {
   box-shadow: none;
   opacity: 0.5;
+}
+.link {
+  @apply text-white-100 bg-black-400;
+  border-color: $black-300;
+  padding: 19px 40px;
+  &:hover {
+    border-color: transparent;
+  }
 }

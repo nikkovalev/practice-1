@@ -1,8 +1,5 @@
 import React from "react";
 import cn from "classnames";
-import { motion } from "framer-motion";
-
-import { FADE_IN } from "animation/effects";
 
 import { HomeService } from "./HomeService";
 
@@ -83,9 +80,9 @@ const services = [
 export const HomeServices = () => {
   return (
     <section className={cn("dark:bg-black-500 relative", styles.section, styles.services)}>
-      <motion.div {...FADE_IN} className="inner-container">
+      <div className="inner-container">
         <h2 className={cn("dark:text-black-300", styles.sectionTitle)}>Cервисы</h2>
-      </motion.div>
+      </div>
       <div className={cn("container", styles.servicesList)}>
         {services.map((s) => (
           <HomeService key={s.name} service={s} />

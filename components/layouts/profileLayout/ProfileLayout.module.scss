@@ -1,12 +1,9 @@
 @import "../../../assets/styles/_variables.scss";
 
 .layoutPreview {
-  @apply w-full bg-cover bg-center bg-no-repeat;
-  height: fit-content;
-  padding-top: 239px;
-  @media (max-width: $breakpoint1200) {
-    padding-top: 150px;
-  }
+  @apply w-full bg-cover bg-center bg-no-repeat bg-fixed bg-black-400;
+  padding-bottom: 30px;
+  margin-bottom: 30px;
 }
 
 .layoutTop {
@@ -241,13 +238,9 @@
 }
 
 .button {
-  @apply text-white-100;
-  margin-right: 20px;
-  border-color: $black-300;
+  @apply flex-grow;
   min-width: 160px;
-  flex-grow: 1;
-  padding-left: 25px;
-  padding-right: 25px;
+  margin-right: 20px;
   &:last-child {
     margin-right: 0;
   }
@@ -260,9 +253,8 @@
 }
 
 .title {
-  @apply text-white-100 font-bold;
+  @apply font-bold text-white-100;
   margin-top: 50px;
-  margin-bottom: 30px;
   font-size: 52px;
   line-height: 67.6px;
   @media (max-width: $breakpoint1200) {

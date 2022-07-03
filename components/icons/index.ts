@@ -8,3 +8,4 @@ export * from "./SunIcon";
 export * from "./MoonIcon";
 export * from "./EyeIcon";
 export * from "./ArrowIcon";
+export * from "./ListIcon";

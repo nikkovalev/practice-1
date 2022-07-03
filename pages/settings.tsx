@@ -1,7 +1,7 @@
 import React from "react";
 import { NextPage } from "next";
 
-import { ProfileLayout } from "@/components/layouts/profileLayout/ProfileLayout";
+import { ProfileLayout } from "@/components/layouts/profileLayout";
 import { Settings } from "@/components/screens/profile/settings/Settings";
 
 const SettingsPage: NextPage = () => {

@@ -9,8 +9,8 @@ export const useOutside = (initialIsVisible: boolean) => {
   };
 
   useEffect(() => {
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
+    document.addEventListener("mouseup", handleClickOutside);
+    return () => document.removeEventListener("mouseup", handleClickOutside);
   }, []);
 
   return { ref, isShow, setIsShow };

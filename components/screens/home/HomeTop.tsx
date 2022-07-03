@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 
-import { FADE_IN, BACK_IN_RIGHT } from "animation/effects";
+import { BACK_IN_RIGHT } from "animation/effects";
 
 import { Button } from "@/components/ui";
 import LogoImage from "@/assets/images/logo_lg.svg";
@@ -12,7 +12,7 @@ import styles from "./Home.module.scss";
 export const HomeTop = () => (
   <section className={styles.homeTop}>
     <div className="inner-container flex items-center md:flex-col">
-      <motion.div {...FADE_IN} className="relative z-10">
+      <div className="relative z-10">
         <h1 className="dark:text-white-100">
           Экономь своё время и зарабатывай вместе
           <br /> с <b className="dark:text-secondary-400">YaonPay</b>
@@ -29,7 +29,7 @@ export const HomeTop = () => (
             Продать
           </Button>
         </div>
-      </motion.div>
+      </div>
       <motion.div {...BACK_IN_RIGHT} className={styles.homeTopImage}>
         <Image src={LogoImage} width={540} height={430} alt="YaonPay" />
       </motion.div>
