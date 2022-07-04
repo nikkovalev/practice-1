@@ -31,7 +31,7 @@ deploy:
       ssh -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP "
       cd ~/yaonpay-frontend &&
       git pull origin main &&
-      yarn add --frozen-lockfile &&
+      yarn install --frozen-lockfile &&
       yarn build && 
       yarn start;
       exit
