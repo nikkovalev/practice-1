@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  frontend:
+    image: yaonpay-client
+    args:
+        API_URL=$API_URL
+    build: .
+    volumes:
+      - .:/app
+      - ./node_modules:/app/node_modules
+    ports:
+      - 3001:3001
+    command: yarn start
