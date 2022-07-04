@@ -31,8 +31,8 @@ deploy:
       ssh -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP "
       cd ~/yaonpay-frontend &&
       git pull origin main &&
-      docker-compose down --remove-orphans &&
-      docker-compose build && 
-      docker-compose up -d;
+      yarn add --frozen-lockfile &&
+      yarn build && 
+      yarn start;
       exit
       "
