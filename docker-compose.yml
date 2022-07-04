@@ -3,7 +3,7 @@ version: '3.8'
 services:
   frontend:
     image: yaonpay-client
-    args:
+    env:
         API_URL=$API_URL
     build: .
     volumes:
