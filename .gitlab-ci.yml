@@ -33,6 +33,6 @@ deploy:
       git pull origin main &&
       yarn install --frozen-lockfile &&
       yarn build && 
-      yarn start;
+      pm2 start yarn -- start;
       exit
       "
