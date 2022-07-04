@@ -25,7 +25,7 @@ export const HomeCategory: FC<IHomeCategory> = ({ category, likedServices }) => 
     >
       <div className={cn(styles.categoryTop, { [styles.categoryTopActive]: isActive })}>
         <div className={styles.categoryIcon} style={{ backgroundImage: `url(${category.icon})` }} />
-        <Link href="/">
+        <Link href={`/categories/${category.slug}`}>
           <a className="dark:text-white-100 dark:hover:text-secondary-400">{category.name}</a>
         </Link>
         <ArrowIcon pathClassName="fill-primary-400 stroke-primary-400" />

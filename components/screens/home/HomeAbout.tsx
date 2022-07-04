@@ -1,8 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
 
-import { FADE_IN } from "animation/effects";
-
 import styles from "./Home.module.scss";
 
 const list = [
@@ -24,9 +22,7 @@ export const HomeAbout = () => {
   return (
     <div className={styles.about}>
       <div className="inner-container text-center">
-        <motion.div {...FADE_IN}>
-          <h2>YaonPay</h2>
-        </motion.div>
+        <h2>YaonPay</h2>
         <p className={styles.aboutTitle}>
           Добро пожаловать к нам. Давай попробуем ответить на основные вопросы
         </p>
@@ -38,7 +34,7 @@ export const HomeAbout = () => {
             </div>
           ))}
         </div>
-        <p className="sm:hidden mb-0">
+        <p className={styles.aboutBottomText}>
           А теперь пару слов от нашей команды лично тебе. Мы рады что ты выбрал именно нас и уверены
           в том
           <br />

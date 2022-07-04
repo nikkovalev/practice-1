@@ -1,0 +1,27 @@
+@import "../../../assets/styles/_variables.scss";
+
+.checkbox {
+  @apply flex items-center text-white-100 font-medium cursor-pointer;
+  font-size: 17;
+  & input {
+    display: none;
+  }
+  & input:checked ~ div::before {
+    opacity: 1;
+  }
+  & div {
+    @apply flex items-center justify-center;
+    width: 24px;
+    height: 24px;
+    border-radius: 5px;
+    border: 2px solid $white-100;
+    margin-right: 10px;
+    &::before {
+      @apply text-white-100 font-medium;
+      content: "\2713";
+      display: block;
+      font-size: 17px;
+      opacity: 0;
+    }
+  }
+}

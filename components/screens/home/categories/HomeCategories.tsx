@@ -1,9 +1,7 @@
 import React, { FC } from "react";
 import cn from "classnames";
 import { useAppSelector } from "@/hooks/useTypedSelector";
-import { motion } from "framer-motion";
 
-import { FADE_IN } from "animation/effects";
 import { ICategory } from "@/models/ICategory";
 
 import { useFetchLikedServicesQuery } from "@/store/categories/categoriesApi";
@@ -24,9 +22,9 @@ export const HomeCategories: FC<IHomeCategories> = ({ categories }) => {
 
   return (
     <section className={cn("dark:bg-black-400 relative", styles.categories)}>
-      <motion.div {...FADE_IN} className="inner-container">
+      <div className="inner-container">
         <h2 className={cn("dark:text-black-300", styles.sectionTitle)}>Игры</h2>
-      </motion.div>
+      </div>
       <div className="container">
         {categories && (
           <div className={styles.categoriesList}>

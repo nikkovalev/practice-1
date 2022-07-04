@@ -10,7 +10,7 @@ interface IInput {
   name: string;
   placeholder: string;
   isError?: boolean;
-  onBlur: (event: FocusEvent<HTMLInputElement>) => void;
+  onBlur?: (event: FocusEvent<HTMLInputElement>) => void;
   onChange: (event: ChangeEvent<HTMLInputElement>) => void;
 }
 

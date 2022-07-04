@@ -2,6 +2,7 @@ import { createApi } from "@reduxjs/toolkit/query/react";
 import { baseQuery } from "@/api/fetchBaseQuery";
 
 import { ICategory } from "@/models/ICategory";
+import { IGetOffer, IOffer } from "@/models/IOffer";
 
 export const categoriesApi = createApi({
   reducerPath: "api/categories",
@@ -13,7 +14,16 @@ export const categoriesApi = createApi({
     fetchLikedServices: build.query<ICategory[] | number[], boolean>({
       query: (isPlain) => `/categories/liked-services?raw=${isPlain}`,
     }),
+    fetchOffers: build.mutation<IOffer[], IGetOffer>({
+      query: (params) => {
+        const queryString = new URLSearchParams(params as any).toString();
+        return {
+          url: `/offers?${queryString}`,
+        };
+      },
+    }),
   }),
 });
 
-export const { useFetchCategoriesQuery, useFetchLikedServicesQuery } = categoriesApi;
+export const { useFetchCategoriesQuery, useFetchLikedServicesQuery, useFetchOffersMutation } =
+  categoriesApi;

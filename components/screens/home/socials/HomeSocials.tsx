@@ -1,8 +1,5 @@
 import React from "react";
 import cn from "classnames";
-import { motion } from "framer-motion";
-
-import { FADE_IN } from "animation/effects";
 
 import { HomeSocial } from "./HomeSocial";
 
@@ -90,9 +87,9 @@ const socials = [
 export const HomeSocials = () => {
   return (
     <section className={cn("dark:bg-black-400 relative", styles.section, styles.socials)}>
-      <motion.div {...FADE_IN} className="inner-container">
+      <div className="inner-container">
         <h2 className={cn(styles.sectionTitle, "dark:text-black-300")}>Соц.сети</h2>
-      </motion.div>
+      </div>
       <div className={cn("container", styles.socialsList)}>
         {socials.map((s) => (
           <HomeSocial key={s.name} social={s} />

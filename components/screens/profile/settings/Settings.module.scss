@@ -2,7 +2,7 @@
 
 .settings {
   & h3 {
-    @apply font-bold text-gray-400;
+    @apply font-bold dark:text-gray-400;
     font-size: 32px;
     line-height: 130%;
     margin-bottom: 20px;
@@ -35,6 +35,9 @@
     @apply flex items-center;
     & div {
       margin-right: 10px;
+    }
+    & input {
+      @apply bg-transparent border-2 border-solid border-primary-400 text-black-400 dark:bg-black-300 dark:text-white-100 dark:border-transparent;
     }
   }
   @media (max-width: $breakpoint1450) {

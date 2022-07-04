@@ -27,14 +27,6 @@ a {
   text-decoration: none;
 }
 
-// toaster
-.toaster_success {
-  background: $green-100 !important;
-}
-.toaster_error {
-  background: $red-100 !important;
-}
-
 .page {
   padding-top: 122px;
   @media (max-width: $breakpoint1450) {
@@ -43,6 +35,23 @@ a {
   @media (max-width: $breakpoint1200) {
     padding-top: 86px;
   }
+}
+
+.page-preview {
+  padding-top: 230px;
+  @media (max-width: $breakpoint1200) {
+    padding-top: 130px;
+  }
+}
+
+.mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to bottom, rgb(24, 26, 32, 0.5), darken($black-500, 2%));
+  z-index: 10;
 }
 
 .container {
@@ -62,15 +71,17 @@ a {
 .container,
 .inner-container {
   width: 100%;
-  margin: 0 auto;
-  padding: 0 $containerSideSpacing + px;
-
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: $containerSideSpacing + px;
+  padding-right: $containerSideSpacing + px;
   @media (max-width: $breakpoint992) {
     max-width: 920px;
   }
   @media (max-width: $breakpoint768) {
     max-width: 740px;
-    padding: 0 10px;
+    padding-left: 10px;
+    padding-right: 10px;
   }
   @media (max-width: $breakpoint480) {
     max-width: none;
@@ -91,10 +102,6 @@ a {
 
 .blur_active {
   display: block;
-}
-
-.mb-0 {
-  margin-bottom: 0 !important;
 }
 
 .text-ellipsis {

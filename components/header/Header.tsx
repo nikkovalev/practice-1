@@ -148,7 +148,9 @@ export const Header = () => {
             </Link>
           )}
           <div
-            className={cn(styles.headerIcon, styles.headerNavButton)}
+            className={cn(styles.headerIcon, styles.headerNavButton, {
+              [styles.headerIconActive]: isShowMenu,
+            })}
             onClick={handleClickBurger}
           >
             {isShowMenu ? <CloseIcon pathClassName="dark:fill-white-100" /> : <HamburgerIcon />}
