@@ -1,10 +1,14 @@
-import React, { FC, useEffect } from "react";
+import React, { FC, useState } from "react";
+import cn from "classnames";
+
 import { ICategory } from "@/models/ICategory";
 
 import { useFetchOffersMutation } from "@/store/categories/categoriesApi";
 
 import { CategoryLayout } from "@/components/layouts/categoryLayout";
-import { CategoryFilters } from "./CategoryFilters";
+import { CategoryOffer } from "./CategoryOffer";
+import { Loader } from "@/components/loader/Loader";
+import { RotateIcon } from "@/components/icons";
 
 import styles from "./Category.module.scss";
 
@@ -14,19 +18,33 @@ interface ICategoryProps {
 
 export const Category: FC<ICategoryProps> = ({ category }) => {
   const [getOffers, { data: offers, isLoading }] = useFetchOffersMutation();
+  const [view, setView] = useState<"list" | "card">("card");
 
-  useEffect(() => {
-    getOffers({
-      categoryId: category.id,
-    });
-  }, []);
-
-  console.log(category, offers);
+  console.log(category);
 
   return (
-    <CategoryLayout title={category.name} category={category}>
-      <CategoryFilters category={category} />
-      <div className={styles.items}></div>
+    <CategoryLayout
+      title={category.name}
+      category={category}
+      view={view}
+      getOffers={getOffers}
+      setView={setView}
+    >
+      {isLoading && (
+        <div className="my-10 flex justify-center">
+          <Loader />
+        </div>
+      )}
+      <div className={styles.offers}>
+        {offers?.map((o) => (
+          <CategoryOffer key={o.id} offer={o} servers={category?.servers ?? []} view={view} />
+        ))}
+        <div className={cn(styles.more, { [styles.moreL]: view === "list" })}>
+          <RotateIcon />
+          <span>Загрузить еще</span>
+          <b>11 предложение</b>
+        </div>
+      </div>
     </CategoryLayout>
   );
 };

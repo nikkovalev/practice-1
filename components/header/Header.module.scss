@@ -1,10 +1,11 @@
 @import "../../assets/styles/_variables.scss";
 
 .header {
-  @apply fixed z-40 top-0 left-0 right-0 bg-white-100 bg-opacity-75 dark:bg-black-400 dark:bg-opacity-75;
+  @apply fixed top-0 left-0 right-0 bg-white-100 bg-opacity-75 dark:bg-black-400 dark:bg-opacity-75;
   height: 122px;
   backdrop-filter: blur(10px);
   transition: background-color 0.3s;
+  z-index: 70;
   @media (max-width: $breakpoint1450) {
     height: 97px;
   }
@@ -278,11 +279,12 @@
 }
 
 .headerSearch {
-  @apply absolute top-0 left-0 right-0 w-full bg-primary-400 z-20;
+  @apply absolute top-0 left-0 right-0 w-full bg-primary-400;
   height: 120px;
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.25s;
+  z-index: 100;
   & input {
     @apply w-full h-full outline-none border-none text-white-100 font-bold;
     background-color: transparent;
@@ -308,7 +310,7 @@
   right: 0;
   border: none;
   transform: translateY(-50%);
-  cursor: pointer;
+  pointer-events: none;
   & path {
     fill: #ffffff;
   }
@@ -458,4 +460,49 @@
 .headerNavButton {
   @apply hidden lg:flex;
   margin-left: 15px;
+}
+
+.headerSearchItems {
+  @apply bg-primary-400 bg-opacity-80;
+  backdrop-filter: blur(10px);
+  & > div {
+    @apply flex items-center justify-between flex-wrap overflow-y-auto;
+    max-height: calc(80vh);
+    margin-top: 120px;
+  }
+}
+.headerSearchWrapper {
+  @apply fixed top-0 left-0 right-0 bottom-0;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 50;
+}
+.headerSearchItem {
+  @apply flex items-center;
+  width: calc(25% - 10px);
+  padding: 25px 0;
+  border-bottom: 2px solid $primary-500;
+  &:nth-last-child(-n + 4) {
+    border-bottom-color: transparent;
+  }
+  & > div:first-child {
+    @apply bg-center bg-cover bg-no-repeat;
+    width: 60px;
+    height: 60px;
+    margin-right: 15px;
+  }
+  & a {
+    @apply text-white-100 text-2xl hover:text-secondary-400;
+    transition: color 0.25s;
+  }
+  & ul {
+    @apply flex flex-wrap;
+    width: 200px;
+    margin-top: 5px;
+    & li {
+      margin-right: 10px;
+      & a {
+        font-size: 17px;
+      }
+    }
+  }
 }

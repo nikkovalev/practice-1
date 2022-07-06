@@ -22,8 +22,18 @@ export const categoriesApi = createApi({
         };
       },
     }),
+    search: build.mutation<ICategory[], string>({
+      query: (query) => ({
+        url: `/categories/search?query=${query}`,
+        method: "GET",
+      }),
+    }),
   }),
 });
 
-export const { useFetchCategoriesQuery, useFetchLikedServicesQuery, useFetchOffersMutation } =
-  categoriesApi;
+export const {
+  useFetchCategoriesQuery,
+  useFetchLikedServicesQuery,
+  useFetchOffersMutation,
+  useSearchMutation,
+} = categoriesApi;

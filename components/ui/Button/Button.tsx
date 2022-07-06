@@ -24,10 +24,10 @@ export const Button: FC<IButton> = ({
 }) => (
   <button
     className={cn(styles.button, className, {
-      [styles.buttonContained]: variant === "contained",
-      [styles.buttonOutlined]: variant === "outlined",
+      [styles.buttonContained]: variant === "contained" || (isActive && variant === "outlined"),
+      [styles.buttonOutlined]: variant === "outlined" && !isActive,
       [styles.buttonSecondary]: color === "secondary",
-      [styles.buttonPrimaryActive]: isActive && color === "primary",
+      [styles.buttonPrimaryActive]: isActive && color === "primary" && variant !== "outlined",
       [styles.buttonSecondaryActive]: isActive && color === "secondary",
       [styles.buttonLarge]: size === "large",
       [styles.buttonSmall]: size === "small",

@@ -3,9 +3,17 @@ import { useEffect, useRef, useState } from "react";
 export const useOutside = (initialIsVisible: boolean) => {
   const [isShow, setIsShow] = useState<boolean>(initialIsVisible);
   const ref = useRef<any>(null);
+  const ref2 = useRef<any>(null);
 
-  const handleClickOutside = (event: Event) => {
-    if (ref.current && !ref.current.contains(event.target)) setIsShow(false);
+  const handleClickOutside = (event: any) => {
+    if (
+      event.target.tagName !== "HTML" &&
+      ref.current &&
+      !ref.current.contains(event.target) &&
+      !ref2.current?.contains(event.target)
+    ) {
+      setIsShow(false);
+    }
   };
 
   useEffect(() => {
@@ -13,5 +21,5 @@ export const useOutside = (initialIsVisible: boolean) => {
     return () => document.removeEventListener("mouseup", handleClickOutside);
   }, []);
 
-  return { ref, isShow, setIsShow };
+  return { ref, ref2, isShow, setIsShow };
 };

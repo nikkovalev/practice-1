@@ -9,16 +9,18 @@ import styles from "./Select.module.scss";
 interface ISelect {
   label: string;
   items: string[];
+  handleChange?: (val: string | null, idx?: number) => void;
 }
 
-export const Select: FC<ISelect> = ({ label, items }) => {
+export const Select: FC<ISelect> = ({ label, items, handleChange }) => {
   const { isShow, ref, setIsShow } = useOutside(false);
   const [val, setVal] = useState<string>(label);
 
   const handleToggle = () => setIsShow(!isShow);
-  const handleSelect = (val: string) => () => {
-    setVal(val);
+  const handleSelect = (val: string | null, idx?: number) => () => {
+    setVal(val ?? label);
     setIsShow(false);
+    handleChange && handleChange(val, idx);
   };
 
   return (
@@ -30,10 +32,15 @@ export const Select: FC<ISelect> = ({ label, items }) => {
         <div className="text-ellipsis">{val}</div>
         <ArrowIcon pathClassName="fill-primary-400 stroke-primary-400" />
       </div>
-      <div className={cn(styles.selectItems, { [styles.selectItemsActive]: isShow })}>
+      <div
+        className={cn("custom_scrollbar", styles.selectItems, {
+          [styles.selectItemsActive]: isShow,
+        })}
+      >
         <ul>
-          {items.map((i) => (
-            <li key={i} onClick={handleSelect(i)}>
+          <li onClick={handleSelect(null)}>{label}</li>
+          {items.map((i, idx) => (
+            <li key={i} onClick={handleSelect(i, idx)}>
               {i}
             </li>
           ))}

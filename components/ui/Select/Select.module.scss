@@ -1,3 +1,5 @@
+@import "../../../assets/styles/_variables.scss";
+
 .select {
   @apply relative;
   width: 270px;
@@ -19,9 +21,10 @@
   }
 }
 .selectItems {
-  @apply absolute left-0 w-full bg-black-400 hidden;
+  @apply absolute left-0 w-full bg-black-400 hidden z-50;
+  max-height: 300px;
+  overflow-y: auto;
   padding: 0 25px 20px;
-  bottom: -105px;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
   & ul {

@@ -3,9 +3,10 @@ import React, { FC } from "react";
 interface IListIcon {
   type?: "tile";
   isActive: boolean;
+  onClick?: () => void;
 }
 
-export const ListIcon: FC<IListIcon> = ({ type, isActive }) => {
+export const ListIcon: FC<IListIcon> = ({ type, isActive, onClick }) => {
   const rectClassName = isActive ? `stroke-primary-400` : "";
   if (type === "tile") {
     return (
@@ -15,6 +16,7 @@ export const ListIcon: FC<IListIcon> = ({ type, isActive }) => {
         viewBox="0 0 24 24"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
+        onClick={onClick}
       >
         <rect
           className={rectClassName}
@@ -60,7 +62,14 @@ export const ListIcon: FC<IListIcon> = ({ type, isActive }) => {
     );
   }
   return (
-    <svg width="28" height="24" viewBox="0 0 28 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg
+      width="28"
+      height="24"
+      viewBox="0 0 28 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      onClick={onClick}
+    >
       <rect
         className={rectClassName}
         x="1"

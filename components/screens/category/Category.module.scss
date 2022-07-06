@@ -16,7 +16,7 @@
   & input {
     @apply bg-black-400;
     max-width: 270px;
-    padding: 15px 25px;
+    padding: 15px 50px 15px 25px;
     min-height: 50px;
   }
   & svg {
@@ -64,6 +64,158 @@
     }
   }
 }
-.items {
-  @apply flex items-center;
+.offers {
+  @apply flex flex-wrap;
+  margin-top: 50px;
+}
+.offer {
+  @apply relative flex flex-col bg-black-300;
+  width: calc(25% - 10px);
+  padding: 30px 40px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  margin-right: 10px;
+  &:nth-child(4n) {
+    margin-right: 0;
+  }
+  & svg {
+    transition: transform 0.25s;
+    &:active {
+      transform: scale(0.9);
+    }
+  }
+  & b {
+    @apply block font-medium text-lg text-gray-400;
+  }
+  & span {
+    @apply block text-white-100 text-2xl font-bold;
+    margin-top: 10px;
+    margin-bottom: 25px;
+  }
+}
+.offerInfo {
+  @apply w-full flex flex-col items-center justify-center absolute top-0 left-0 right-0 bottom-0 bg-primary-400 z-30 bg-opacity-70;
+  border-radius: 10px;
+  visibility: hidden;
+  opacity: 0;
+  backdrop-filter: blur(10px);
+  transition: opacity 0.25s;
+  & b {
+    @apply inline-block text-white-100 font-bold text-2xl;
+    margin-bottom: 30px;
+  }
+  & div {
+    transition: transform 0.5s;
+    transform: scale(0.8) rotate(45deg);
+  }
+}
+.offerInfoActive {
+  opacity: 1;
+  visibility: visible;
+  & div {
+    transform: scale(1) rotate(0);
+  }
+}
+.offerL {
+  @apply w-full flex-row justify-between items-center;
+  margin-right: 0;
+  padding: 30px 112px 30px 60px;
+  & span {
+    margin-top: 10px;
+    margin-bottom: 0;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  & > div {
+    flex-shrink: 1;
+    &:nth-child(2) {
+      width: 20%;
+      & svg {
+        position: absolute;
+        top: 50%;
+        right: 60px;
+        transform: translateY(-50%);
+        &:active {
+          transform: translateY(-50%) scale(0.9);
+        }
+      }
+    }
+    &:nth-child(3) {
+      width: 40%;
+    }
+    &:last-child {
+      width: 20%;
+      & b {
+        margin-right: 50px;
+      }
+    }
+  }
+}
+.offerSeller {
+  @apply mt-auto;
+  margin-bottom: 25px;
+  & > b {
+    margin-bottom: 10px;
+  }
+  & > div {
+    & b {
+      @apply hover:text-secondary-400 cursor-pointer;
+      color: $primary-400;
+      font-weight: 700;
+      transition: color 0.25s;
+    }
+  }
+  & span {
+    @apply inline-block text-white-100 font-medium cursor-pointer hover:text-primary-400;
+    font-size: 17px;
+    margin: 0 10px;
+    transition: color 0.25s;
+  }
+}
+.offerSellerL {
+  width: 15%;
+}
+.offerFooter {
+  @apply flex items-center justify-between;
+  & b {
+    @apply font-bold text-gray-400;
+    font-size: 32px;
+  }
+  & > div {
+    @apply flex items-center justify-center bg-black-400 cursor-pointer;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+  }
+}
+.more {
+  @apply flex flex-col items-center justify-center bg-black-300 cursor-pointer;
+  width: calc(25% - 10px);
+  border-radius: 10px;
+  margin-bottom: 10px;
+  min-height: 300px;
+  & svg {
+    transition: transform 0.5s;
+  }
+  & span {
+    @apply inline-block text-white-100 font-bold text-2xl;
+    margin: 15px 0;
+  }
+  & b {
+    @apply text-primary-400 font-bold;
+    font-size: 32px;
+  }
+  &:hover {
+    & svg {
+      transform: rotate(250deg);
+    }
+  }
+}
+.moreL {
+  @apply w-full flex-row;
+  min-height: 100px;
+  & span {
+    margin: 0 15px;
+  }
 }

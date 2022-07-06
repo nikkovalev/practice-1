@@ -31,21 +31,24 @@ export const HomeCategory: FC<IHomeCategory> = ({ category, likedServices }) => 
         <ArrowIcon pathClassName="fill-primary-400 stroke-primary-400" />
       </div>
       <ul>
-        {category.services.map((s: IService) => (
-          <li
-            key={s.id}
-            className={cn({
-              [styles.serviceLiked]: likedServices.indexOf(s.id) !== -1,
-            })}
-          >
-            <span>
-              <Link href="/">
-                <a>{s.name}</a>
-              </Link>
-              <LikeIcon isSmall />
-            </span>
-          </li>
-        ))}
+        {category.services.map((s: IService) => {
+          const isLiked = likedServices.indexOf(s.id) !== -1;
+          return (
+            <li
+              key={s.id}
+              className={cn({
+                [styles.serviceLiked]: isLiked,
+              })}
+            >
+              <span>
+                <Link href={`/categories/${category.slug}?page=${s.id}`}>
+                  <a>{s.name}</a>
+                </Link>
+                <LikeIcon isSmall={true} isFill={isLiked} />
+              </span>
+            </li>
+          );
+        })}
       </ul>
     </div>
   );

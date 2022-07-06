@@ -48,6 +48,8 @@
   }
 }
 .button {
+  @apply bg-black-400;
   min-width: 120px;
   padding: 19px 40px;
+  margin-right: 20px;
 }

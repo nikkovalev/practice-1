@@ -109,3 +109,38 @@ a {
   overflow: hidden;
   white-space: nowrap;
 }
+
+.custom_scrollbar {
+  &::-webkit-scrollbar {
+    width: 3px;
+  }
+  &::-webkit-scrollbar-track {
+    background-color: $black-300;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: $secondary-400;
+    border-radius: 10px;
+  }
+}
+
+.avatar {
+  @apply relative bg-cover bg-center bg-no-repeat;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid $gray-400;
+  &::before {
+    content: "";
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: $gray-400;
+    box-shadow: 0 0 0 5px $black-300;
+  }
+  &.online::before {
+    background-color: $green-100;
+  }
+}

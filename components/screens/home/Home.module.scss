@@ -248,12 +248,7 @@
         opacity: 0;
         visibility: hidden;
         transition: opacity 0.5s;
-        fill: $primary-400;
-        stroke: $primary-400;
         cursor: pointer;
-        & path:first-child {
-          display: none;
-        }
       }
     }
   }
@@ -278,9 +273,6 @@
 .serviceLiked svg {
   opacity: 1 !important;
   visibility: visible !important;
-  & path:first-child {
-    display: block !important;
-  }
 }
 
 .categoryTop {

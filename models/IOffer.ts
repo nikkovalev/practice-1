@@ -1,3 +1,5 @@
+import { IUser } from "./IUser";
+
 export interface IGetOffer {
   categoryId: number;
   server?: number;
@@ -11,7 +13,7 @@ export interface IGetOffer {
 
 export interface IOffer {
   id: number;
-  seller: {};
+  seller: Partial<IUser>;
   filters: string[];
   categoryId: number;
   serviceId: number;

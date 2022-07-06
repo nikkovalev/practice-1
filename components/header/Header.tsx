@@ -8,12 +8,15 @@ import { useAppSelector } from "@/hooks/useTypedSelector";
 import { useActions } from "@/hooks/useActions";
 
 import { useGetMeQuery } from "@/store/auth/authApi";
+import { useSearchMutation } from "@/store/categories/categoriesApi";
 
 import { MenuBurger } from "./Menu";
 import { HeaderSearch } from "./HeaderSearch";
 import { HeaderSelect } from "./HeaderSelect";
 import { HeaderUser } from "./HeaderUser";
 import { Button } from "../ui";
+import { HeaderCategory } from "./HeaderCategory";
+
 import logoIcon from "@/assets/images/logo.svg";
 import logo2Icon from "@/assets/images/logo-2.svg";
 import {
@@ -64,7 +67,12 @@ const navList = [
 
 export const Header = () => {
   const router = useRouter();
-  const { ref: searchRef, isShow: isShowSearch, setIsShow: setIsShowSearch } = useOutside(false);
+  const {
+    ref: searchRef,
+    ref2: searchRef2,
+    isShow: isShowSearch,
+    setIsShow: setIsShowSearch,
+  } = useOutside(false);
   const { ref: menuRef, isShow: isShowMenu, setIsShow: setIsShowMenu } = useOutside(false);
   const { theme } = useAppSelector((state) => state.global);
   const { isAuth, user } = useAppSelector((state) => state.auth);
@@ -73,6 +81,7 @@ export const Header = () => {
     skip: !isAuth,
     refetchOnMountOrArgChange: true,
   });
+  const [search, { data: searchCategories }] = useSearchMutation();
 
   const changeMode = () => changeTheme();
   const goToAuth = () => setModalPrevUrl(router.asPath);
@@ -96,110 +105,128 @@ export const Header = () => {
   }, [userData]);
 
   return (
-    <header className={styles.header}>
-      <HeaderSearch ref={searchRef} isShow={isShowSearch} />
-      <div className={cn("inner-container", styles.headerContent)}>
-        <div className={styles.headerLeft}>
-          <Link href="/">
-            <a className={styles.headerLogo}>
-              <Image
-                className="flex-shrink-0"
-                width={window.screen.width > 1200 ? 270 : 124}
-                height={window.screen.width > 1200 ? 79 : 34}
-                src={window.screen.width > 1200 ? logoIcon : logo2Icon}
-                alt="YaonPay"
-                priority
-              />
-            </a>
-          </Link>
-          <MenuBurger navList={navList} />
-        </div>
-        <div className="flex items-center">
-          <div className={styles.headerIconButton} onClick={openSearch}>
-            <SearchIcon />
-          </div>
-          <Link href="/favorites">
-            <a className={cn("w-9", styles.headerIconButton, styles.headerLikeIcon)}>
-              <LikeIcon />
-              <span className={styles.headerIconButtonCount}>5</span>
-            </a>
-          </Link>
-          {!isAuth && (
-            <Link href="/auth">
-              <a className={cn(styles.headerIconButton, styles.headerUserIcon)} onClick={goToAuth}>
-                <UserIcon />
-              </a>
-            </Link>
-          )}
-          {isAuth && !user && (
-            <button
-              className={cn(styles.headerIconButton, styles.headerUserIcon)}
-              onClick={handleClickUser}
-            >
-              <UserIcon />
-            </button>
-          )}
-          {isAuth && user && (
-            <Link href="/messages">
-              <a className={cn("w-9", styles.mr0, styles.headerIconButton)}>
-                <MessageIcon />
-                <span className={styles.headerIconButtonCount}>2</span>
-              </a>
-            </Link>
-          )}
-          <div
-            className={cn(styles.headerIcon, styles.headerNavButton, {
-              [styles.headerIconActive]: isShowMenu,
-            })}
-            onClick={handleClickBurger}
-          >
-            {isShowMenu ? <CloseIcon pathClassName="dark:fill-white-100" /> : <HamburgerIcon />}
-          </div>
-          <div
-            ref={menuRef}
-            className={cn(styles.headerSelects, {
-              [styles.headerSelectsActive]: isShowMenu,
-            })}
-          >
-            {isAuth && user && <HeaderUser isShowMenu={isShowMenu} user={user} />}
-            <div className="flex items-center">
-              <HeaderSelect items={currencies} />
-              <HeaderSelect items={languages} />
-              <button
-                className={cn(styles.headerChangeMode, {
-                  [styles.headerChangeModeLight]: theme === "dark",
-                  [styles.headerChangeModeDark]: theme === "light",
-                })}
-                onClick={changeMode}
-              >
-                <span />
-                <span>
-                  <MoonIcon />
-                  <SunIcon />
-                </span>
-              </button>
+    <>
+      {isShowSearch && (
+        <div className={styles.headerSearchWrapper}>
+          {!!searchCategories && (
+            <div className={styles.headerSearchItems}>
+              <div ref={searchRef2} className="custom_scrollbar inner-container">
+                {searchCategories.map((c) => (
+                  <HeaderCategory key={c.id} category={c} />
+                ))}
+              </div>
             </div>
-            <ul
-              className={cn(styles.headerNav, {
-                [styles.headerNavAuth]: isAuth && user,
+          )}
+        </div>
+      )}
+      <header className={styles.header}>
+        <HeaderSearch ref={searchRef} isShow={isShowSearch} search={search} />
+        <div className={cn("inner-container", styles.headerContent)}>
+          <div className={styles.headerLeft}>
+            <Link href="/">
+              <a className={styles.headerLogo}>
+                <Image
+                  className="flex-shrink-0"
+                  width={window.screen.width > 1200 ? 270 : 124}
+                  height={window.screen.width > 1200 ? 79 : 34}
+                  src={window.screen.width > 1200 ? logoIcon : logo2Icon}
+                  alt="YaonPay"
+                  priority
+                />
+              </a>
+            </Link>
+            <MenuBurger navList={navList} />
+          </div>
+          <div className="flex items-center">
+            <div className={styles.headerIconButton} onClick={openSearch}>
+              <SearchIcon />
+            </div>
+            <Link href="/favorites">
+              <a className={cn("w-9", styles.headerIconButton, styles.headerLikeIcon)}>
+                <LikeIcon />
+                <span className={styles.headerIconButtonCount}>5</span>
+              </a>
+            </Link>
+            {!isAuth && (
+              <Link href="/auth">
+                <a
+                  className={cn(styles.headerIconButton, styles.headerUserIcon)}
+                  onClick={goToAuth}
+                >
+                  <UserIcon />
+                </a>
+              </Link>
+            )}
+            {isAuth && !user && (
+              <button
+                className={cn(styles.headerIconButton, styles.headerUserIcon)}
+                onClick={handleClickUser}
+              >
+                <UserIcon />
+              </button>
+            )}
+            {isAuth && user && (
+              <Link href="/messages">
+                <a className={cn("w-9", styles.mr0, styles.headerIconButton)}>
+                  <MessageIcon />
+                  <span className={styles.headerIconButtonCount}>2</span>
+                </a>
+              </Link>
+            )}
+            <div
+              className={cn(styles.headerIcon, styles.headerNavButton, {
+                [styles.headerIconActive]: isShowMenu,
+              })}
+              onClick={handleClickBurger}
+            >
+              {isShowMenu ? <CloseIcon pathClassName="dark:fill-white-100" /> : <HamburgerIcon />}
+            </div>
+            <div
+              ref={menuRef}
+              className={cn(styles.headerSelects, {
+                [styles.headerSelectsActive]: isShowMenu,
               })}
             >
-              {navList.map(({ name, path }) => (
-                <li key={path}>
-                  <Link href={path}>
-                    <a>{name}</a>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-            {isAuth && (
-              <Button className={styles.headerSell} variant="outlined" size="small">
-                Продать
-              </Button>
-            )}
+              {isAuth && user && <HeaderUser isShowMenu={isShowMenu} user={user} />}
+              <div className="flex items-center">
+                <HeaderSelect items={currencies} />
+                <HeaderSelect items={languages} />
+                <button
+                  className={cn(styles.headerChangeMode, {
+                    [styles.headerChangeModeLight]: theme === "dark",
+                    [styles.headerChangeModeDark]: theme === "light",
+                  })}
+                  onClick={changeMode}
+                >
+                  <span />
+                  <span>
+                    <MoonIcon />
+                    <SunIcon />
+                  </span>
+                </button>
+              </div>
+              <ul
+                className={cn(styles.headerNav, {
+                  [styles.headerNavAuth]: isAuth && user,
+                })}
+              >
+                {navList.map(({ name, path }) => (
+                  <li key={path}>
+                    <Link href={path}>
+                      <a>{name}</a>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+              {isAuth && (
+                <Button className={styles.headerSell} variant="outlined" size="small">
+                  Продать
+                </Button>
+              )}
+            </div>
           </div>
         </div>
-      </div>
-    </header>
+      </header>
+    </>
   );
 };

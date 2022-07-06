@@ -9,3 +9,5 @@ export * from "./MoonIcon";
 export * from "./EyeIcon";
 export * from "./ArrowIcon";
 export * from "./ListIcon";
+export * from "./InfoIcon";
+export * from "./RotateIcon";
