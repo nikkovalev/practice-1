@@ -11,3 +11,4 @@ export * from "./ArrowIcon";
 export * from "./ListIcon";
 export * from "./InfoIcon";
 export * from "./RotateIcon";
+export * from "./FilterIcon";

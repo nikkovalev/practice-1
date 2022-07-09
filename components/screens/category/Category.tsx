@@ -4,6 +4,7 @@ import cn from "classnames";
 import { ICategory } from "@/models/ICategory";
 
 import { useFetchOffersMutation } from "@/store/categories/categoriesApi";
+import { useAppSelector } from "@/hooks/useTypedSelector";
 
 import { CategoryLayout } from "@/components/layouts/categoryLayout";
 import { CategoryOffer } from "./CategoryOffer";
@@ -17,10 +18,9 @@ interface ICategoryProps {
 }
 
 export const Category: FC<ICategoryProps> = ({ category }) => {
+  const { isAuth, user } = useAppSelector((state) => state.auth);
   const [getOffers, { data: offers, isLoading }] = useFetchOffersMutation();
   const [view, setView] = useState<"list" | "card">("card");
-
-  console.log(category);
 
   return (
     <CategoryLayout
@@ -36,14 +36,21 @@ export const Category: FC<ICategoryProps> = ({ category }) => {
         </div>
       )}
       <div className={styles.offers}>
+        {!isLoading && !offers && (
+          <h3 className="text-center text-2xl text-primary-400 dark:text-secondary-400">
+            Нет предложений.
+          </h3>
+        )}
         {offers?.map((o) => (
           <CategoryOffer key={o.id} offer={o} servers={category?.servers ?? []} view={view} />
         ))}
-        <div className={cn(styles.more, { [styles.moreL]: view === "list" })}>
-          <RotateIcon />
-          <span>Загрузить еще</span>
-          <b>11 предложение</b>
-        </div>
+        {!!offers?.length && (
+          <div className={cn(styles.more, { [styles.moreL]: view === "list" })}>
+            <RotateIcon />
+            <span>Загрузить еще</span>
+            <b>11 предложение</b>
+          </div>
+        )}
       </div>
     </CategoryLayout>
   );

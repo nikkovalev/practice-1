@@ -6,7 +6,7 @@ import { Settings } from "@/components/screens/profile/settings/Settings";
 
 const SettingsPage: NextPage = () => {
   return (
-    <ProfileLayout title="Настройки" pageName="Настройки">
+    <ProfileLayout title="Настройки">
       <Settings />
     </ProfileLayout>
   );

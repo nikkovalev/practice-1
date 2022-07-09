@@ -2,7 +2,7 @@ export interface IServiceFilter {
   id: number;
   name: string;
   values: string[];
-  children: Partial<IServiceFilter>;
+  children: Partial<IServiceFilter>[];
 }
 
 export interface IService {

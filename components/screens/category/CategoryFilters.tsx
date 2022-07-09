@@ -1,8 +1,10 @@
-import React, { ChangeEvent, Dispatch, FC, SetStateAction } from "react";
+import React, { ChangeEvent, Dispatch, FC, SetStateAction, useEffect } from "react";
+import cn from "classnames";
+import { useOutside } from "@/hooks/useOutside";
 
 import { ICategory, IServiceFilter } from "@/models/ICategory";
 
-import { ArrowIcon, ListIcon, SearchIcon } from "@/components/icons";
+import { ArrowIcon, FilterIcon, ListIcon, SearchIcon } from "@/components/icons";
 import { Input } from "@/components/ui/Input/Input";
 import { Select } from "@/components/ui/Select/Select";
 import { Checkbox } from "@/components/ui/Checkbox/Checkbox";
@@ -32,40 +34,74 @@ export const CategoryFilters: FC<ICategoryFilters> = ({
   handleChangeQuery,
   setView,
 }) => {
+  const { ref, isShow, setIsShow } = useOutside(false);
+
   const handleChangeView = (v: "list" | "card") => () => setView(v);
+  const handleToggle = () => setIsShow(!isShow);
+
+  useEffect(() => {
+    const blurEl = document.querySelector(".blur");
+    if (blurEl) blurEl.className = `blur ${isShow ? "blur_active" : ""}`;
+  }, [isShow]);
 
   return (
     <div className={styles.filters}>
-      <div className={styles.filtersInput}>
-        <Input
-          name="category-search"
-          placeholder="Поиск по описанию"
-          onChange={handleChangeQuery}
-        />
-        <SearchIcon color="primary" />
-      </div>
-      {category.servers && (
-        <div className={styles.filterSelect}>
-          <Select label="Сервер" items={category.servers} handleChange={handleSelectServer} />
+      <div ref={ref} className={cn(styles.filtersLeft, { [styles.filtersLeftActive]: isShow })}>
+        <div className="hidden lg:flex items-center">
+          <div onClick={handleToggle}>
+            <ArrowIcon pathClassName="fill-primary-400 stroke-primary-400" />
+          </div>
+          <h3>Фильтр</h3>
         </div>
-      )}
-      {filters.map((f) => (
-        <CategoryFilter key={f.id} filter={f} />
-      ))}
-      <div className={styles.filterText}>
-        <ArrowIcon type="two" />
-        По популярности
+        <div className={styles.filtersInputs}>
+          <div className={styles.filtersInput}>
+            <Input
+              name="category-search"
+              placeholder="Поиск по описанию"
+              onChange={handleChangeQuery}
+            />
+            <SearchIcon color="primary" />
+          </div>
+          {category.servers && (
+            <Select
+              className={styles.filterSelect}
+              label="Сервер"
+              items={category.servers}
+              handleChange={handleSelectServer}
+            />
+          )}
+          {filters.map((f) => (
+            <CategoryFilter key={f.id} filter={f} />
+          ))}
+        </div>
+        <div className="flex items-center lg:flex-col lg:items-start">
+          <div className={styles.filterText}>
+            <ArrowIcon type="two" />
+            По популярности
+          </div>
+          <div className={styles.filterText} onClick={handleChangeOrder}>
+            <ArrowIcon type="two" />
+            По цене
+          </div>
+          <Checkbox
+            id="filter-id"
+            label="Только продавцы онлайн"
+            handleChange={handleChangeOnline}
+          />
+        </div>
       </div>
-      <div className={styles.filterText} onClick={handleChangeOrder}>
-        <ArrowIcon type="two" />
-        По цене
+      <div className="flex items-center xs:flex-wrap">
+        <Button className={styles.filterIcon} variant="outlined" onClick={handleToggle}>
+          <FilterIcon />
+        </Button>
+        <div className={styles.filterIcons}>
+          <ListIcon type="tile" isActive={view === "card"} onClick={handleChangeView("card")} />
+          <ListIcon isActive={view === "list"} onClick={handleChangeView("list")} />
+        </div>
+        <Button className={styles.filterBtn} color="secondary">
+          Продать буст
+        </Button>
       </div>
-      <Checkbox id="filter-id" label="Только продавцы онлайн" handleChange={handleChangeOnline} />
-      <div className={styles.filterIcons}>
-        <ListIcon type="tile" isActive={view === "card"} onClick={handleChangeView("card")} />
-        <ListIcon isActive={view === "list"} onClick={handleChangeView("list")} />
-      </div>
-      <Button color="secondary">Продать буст</Button>
     </div>
   );
 };

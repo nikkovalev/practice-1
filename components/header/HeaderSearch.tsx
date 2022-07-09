@@ -24,8 +24,10 @@ export const HeaderSearch = forwardRef<HTMLDivElement, IHeaderSearch>(
     }, [isShow]);
 
     useEffect(() => {
-      if (!!timerId.current) clearTimeout(timerId.current);
-      timerId.current = setTimeout(handleSearch, 1000);
+      if (q.length > 3) {
+        if (!!timerId.current) clearTimeout(timerId.current);
+        timerId.current = setTimeout(handleSearch, 1000);
+      }
     }, [q]);
 
     return (

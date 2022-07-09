@@ -3,7 +3,7 @@
 .top {
   @apply relative bg-center bg-cover bg-no-repeat bg-fixed;
   padding-bottom: 50px;
-  & > div {
+  & > div > div {
     & > a {
       margin-bottom: 15px;
       & b {
@@ -36,20 +36,37 @@
       width: 60%;
     }
   }
-}
-.buttons {
-  @apply flex items-center;
-  margin-top: 40px;
-  & a {
-    margin-right: 20px;
-    &:last-child {
-      margin-right: 0;
+  @media (max-width: $breakpoint992) {
+    padding-bottom: 20px;
+    & > div > div {
+      & > p {
+        width: 100%;
+        font-size: 17px;
+      }
+      & h1 {
+        font-size: 45px;
+        margin-bottom: 10px;
+      }
+    }
+  }
+  @media (max-width: $breakpoint480) {
+    & > div > div {
+      & h1 {
+        font-size: 30px;
+      }
     }
   }
 }
+.buttons {
+  @apply flex items-center overflow-x-auto;
+  margin-top: 40px;
+}
 .button {
-  @apply bg-black-400;
+  @apply bg-black-400 flex-shrink-0;
   min-width: 120px;
   padding: 19px 40px;
   margin-right: 20px;
+  &:last-child {
+    margin-right: 0;
+  }
 }

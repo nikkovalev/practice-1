@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 
 import { IServiceFilter } from "@/models/ICategory";
 import { Select } from "@/components/ui/Select/Select";
@@ -10,9 +10,25 @@ interface ICategoryFilter {
 }
 
 export const CategoryFilter: FC<ICategoryFilter> = ({ filter }) => {
+  const [isSelected, setIsSelected] = useState<boolean>(false);
+
   return (
-    <div className={styles.filterSelect}>
-      <Select label={filter.name} items={filter.values ?? []} />
-    </div>
+    <>
+      <Select
+        className={styles.filterSelect}
+        label={filter.name}
+        items={filter.values ?? []}
+        handleChange={() => setIsSelected(true)}
+      />
+      {isSelected &&
+        filter.children?.map((c) => (
+          <Select
+            key={c.id}
+            className={styles.filterSelect}
+            label={c.name ?? ""}
+            items={c?.values ?? []}
+          />
+        ))}
+    </>
   );
 };

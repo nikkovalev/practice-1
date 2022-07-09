@@ -1,4 +1,5 @@
 import React, { FC } from "react";
+import { useRouter } from "next/router";
 import cn from "classnames";
 import Link from "next/link";
 
@@ -8,28 +9,28 @@ import styles from "./ProfileLayout.module.scss";
 const buttons = [
   {
     title: "Предложения",
+    path: "/offers",
     count: 29,
-    path: "/",
   },
   {
     title: "Продажи",
+    path: "/sales",
     count: 4,
-    path: "/",
   },
   {
     title: "Покупки",
+    path: "/purchases",
     count: 2,
-    path: "/",
   },
   {
     title: "Финансы",
-    path: "/",
+    path: "/finance",
   },
   {
     title: "Отзывы",
+    path: "/reviews",
+    color: true,
     count: 14,
-    countColor: "#ffdb59",
-    path: "/",
   },
   {
     title: "Настройки",
@@ -38,33 +39,46 @@ const buttons = [
 ];
 
 interface IProfileLayoutButtons {
-  pageName: string;
+  title: string;
 }
 
-export const ProfileLayoutButtons: FC<IProfileLayoutButtons> = ({ pageName }) => {
+export const ProfileLayoutButtons: FC<IProfileLayoutButtons> = ({ title }) => {
+  const router = useRouter();
+
   return (
     <div className="inner-container">
       <div className={styles.buttons}>
-        {buttons.map((button) => (
-          <Link key={button.title} href={button.path}>
-            <a
-              className={cn(
-                styles.button,
-                buttonStyles.button,
-                buttonStyles.buttonOutlined,
-                buttonStyles.link,
-                {
-                  [buttonStyles.buttonContained]: button.title === pageName,
-                }
-              )}
-            >
-              {button.title}
-              {button.count && <b style={{ color: button.countColor }}>({button.count})</b>}
-            </a>
-          </Link>
-        ))}
+        {buttons.map((button) => {
+          const isSelected = button.path === router.pathname;
+          return (
+            <Link key={button.title} href={button.path}>
+              <a
+                className={cn(
+                  styles.button,
+                  buttonStyles.button,
+                  buttonStyles.buttonOutlined,
+                  buttonStyles.link,
+                  {
+                    [buttonStyles.buttonContained]: isSelected,
+                  }
+                )}
+              >
+                {button.title}
+                {button.count && (
+                  <b
+                    style={{
+                      color: isSelected || !!button.color ? "#ffdb59" : "",
+                    }}
+                  >
+                    ({button.count})
+                  </b>
+                )}
+              </a>
+            </Link>
+          );
+        })}
       </div>
-      {pageName && <h1 className={styles.title}>{pageName}</h1>}
+      {title && <h1 className={styles.title}>{title}</h1>}
     </div>
   );
 };

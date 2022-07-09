@@ -1,8 +1,8 @@
 @import "../../../assets/styles/_variables.scss";
 
 .checkbox {
-  @apply flex items-center text-white-100 font-medium cursor-pointer;
-  font-size: 17;
+  @apply flex items-center text-white-100 font-medium cursor-pointer flex-shrink-0;
+  font-size: 17px;
   & input {
     display: none;
   }

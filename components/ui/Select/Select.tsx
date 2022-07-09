@@ -7,12 +7,13 @@ import { ArrowIcon } from "@/components/icons";
 import styles from "./Select.module.scss";
 
 interface ISelect {
+  className?: any;
   label: string;
   items: string[];
   handleChange?: (val: string | null, idx?: number) => void;
 }
 
-export const Select: FC<ISelect> = ({ label, items, handleChange }) => {
+export const Select: FC<ISelect> = ({ className, label, items, handleChange }) => {
   const { isShow, ref, setIsShow } = useOutside(false);
   const [val, setVal] = useState<string>(label);
 
@@ -24,7 +25,7 @@ export const Select: FC<ISelect> = ({ label, items, handleChange }) => {
   };
 
   return (
-    <div ref={ref} className={styles.select}>
+    <div ref={ref} className={cn(className, styles.select)}>
       <div
         className={cn(styles.selectHeader, { [styles.selectHeaderActive]: isShow })}
         onClick={handleToggle}

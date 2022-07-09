@@ -1,11 +1,11 @@
 @import "../../../assets/styles/_variables.scss";
 
 .select {
-  @apply relative;
+  @apply relative flex-shrink;
   width: 270px;
 }
 .selectHeader {
-  @apply flex items-center justify-between bg-black-400 cursor-pointer rounded-full;
+  @apply w-full flex items-center justify-between bg-black-400 cursor-pointer rounded-full;
   padding: 15px 25px;
   min-height: 50px;
   & div {

@@ -9,7 +9,6 @@ interface ICategoryPage {
 }
 
 export const getServerSideProps = async (context: NextPageContext) => {
-  console.log(context.query.slug);
   const res = await fetch(`${process.env.API_URL}/categories/${context.query.slug}?full=true`);
   const category = await res.json();
   return {

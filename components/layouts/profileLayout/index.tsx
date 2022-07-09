@@ -19,11 +19,10 @@ import styles from "./ProfileLayout.module.scss";
 
 interface IProfileLayout {
   title: string;
-  pageName: string;
   children: ReactNode;
 }
 
-export const ProfileLayout: FC<IProfileLayout> = ({ children, title, pageName }) => {
+export const ProfileLayout: FC<IProfileLayout> = ({ children, title }) => {
   const { isAuth, user } = useAppSelector((state) => state.auth);
   const [updateProfileAvatar, { data: newAvatar }] = useUpdateProfileAvatarMutation();
   const { saveAvatar } = useActions();
@@ -49,14 +48,14 @@ export const ProfileLayout: FC<IProfileLayout> = ({ children, title, pageName })
         <title>YaonPay - {title}</title>
       </Head>
       <section
-        className={cn("page-preview", styles.layoutPreview)}
+        className={cn("page_preview", styles.layoutPreview)}
         style={{ backgroundImage: `url(${profileBg.src})` }}
       >
         <Header />
         <ProfileLayoutTop user={user} updateProfileAvatar={updateProfileAvatar} />
-        <ProfileLayoutButtons pageName={pageName} />
+        <ProfileLayoutButtons title={title} />
       </section>
-      <section className="flex-grow mb-44 inner-container sm:mb-28">{children}</section>
+      <section className="flex-grow inner-container page_content">{children}</section>
       <Footer />
     </div>
   );

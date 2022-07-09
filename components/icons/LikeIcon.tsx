@@ -3,11 +3,19 @@ import React, { FC } from "react";
 interface ILikeIcon {
   isSmall?: boolean;
   isFill?: boolean;
+  onClick?: () => void;
 }
 
-export const LikeIcon: FC<ILikeIcon> = ({ isSmall, isFill }) =>
+export const LikeIcon: FC<ILikeIcon> = ({ isSmall, isFill, onClick }) =>
   isSmall ? (
-    <svg width="22" height="19" viewBox="0 0 22 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg
+      width="22"
+      height="19"
+      viewBox="0 0 22 19"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      onClick={onClick}
+    >
       <path
         className={!isFill ? "hidden" : ""}
         d="M4.5 2H8.5L11 4L11.5 3L13.5 2H16.5L19.5 3L20 4.5V7.5L18.5 11.5L13.5 15.5L11.5 17L10 16.5L2.5 9.5L1.5 6.5L2.5 4L4.5 2Z"

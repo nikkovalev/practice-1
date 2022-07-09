@@ -16,7 +16,7 @@ export const Layout: FC<ILayout> = ({ children, title }) => {
         <title>YaonPay - {title}</title>
       </Head>
       <Header />
-      <div className="flex-grow mb-44 sm:mb-28">{children}</div>
+      <div className="flex-grow page_content">{children}</div>
       <Footer />
     </div>
   );

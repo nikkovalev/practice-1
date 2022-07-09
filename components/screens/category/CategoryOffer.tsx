@@ -31,7 +31,7 @@ export const CategoryOffer: FC<ICategoryOffer> = ({ offer, servers, view }) => {
         </div>
       </div>
       <div>
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between lg:pr-[15px]">
           <b>Сервер</b>
           <div className="cursor-pointer">
             <LikeIcon isSmall isFill={false} />

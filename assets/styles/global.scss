@@ -37,10 +37,20 @@ a {
   }
 }
 
-.page-preview {
+.page_preview {
   padding-top: 230px;
   @media (max-width: $breakpoint1200) {
     padding-top: 130px;
+  }
+  @media (max-width: $breakpoint350) {
+    padding-top: 150px;
+  }
+}
+
+.page_content {
+  @apply mb-44 sm:mb-28;
+  @media (max-width: $breakpoint350) {
+    margin-bottom: 50px;
   }
 }
 
@@ -50,7 +60,7 @@ a {
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(to bottom, rgb(24, 26, 32, 0.5), darken($black-500, 2%));
+  background: linear-gradient(to bottom, rgb(24, 26, 32, 0.6), darken($black-500, 2%));
   z-index: 10;
 }
 

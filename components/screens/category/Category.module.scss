@@ -1,21 +1,79 @@
 @import "../../../assets/styles/_variables.scss";
 
 .filters {
-  @apply flex items-center justify-between rounded-full bg-black-300;
+  @apply flex items-center justify-between bg-white-200 dark:bg-black-300;
   min-height: 100px;
   padding: 25px;
   margin-top: 50px;
-  & button {
-    min-width: 220px;
+  border-radius: 10px;
+  @media (max-width: $breakpoint480) {
+    padding: 0;
+    min-height: 0;
+    background-color: transparent !important;
+  }
+}
+.filterBtn {
+  min-width: 220px;
+  @media (max-width: $breakpoint480) {
+    margin-bottom: 10px;
+  }
+}
+.filtersLeft {
+  @media (max-width: $breakpoint1200) {
+    @apply fixed top-0 bottom-0 left-0 bg-black-300 w-fit h-screen;
+    z-index: 999;
+    padding: 30px 10px;
+    transform: translateX(-100%);
+    & > div {
+      &:first-child {
+        margin-bottom: 20px;
+        & h3 {
+          @apply text-white-100 font-bold;
+          font-size: 30px;
+          margin-left: 10px;
+        }
+        & div {
+          transform: rotate(90deg);
+        }
+      }
+      &:nth-child(3) {
+        margin-left: 25px;
+      }
+    }
+  }
+}
+.filtersLeftActive {
+  animation: transform 0.25s forwards;
+}
+.filtersInputs {
+  @apply flex items-center flex-wrap lg:flex-col;
+  margin-bottom: 5px;
+  @media (max-width: $breakpoint1200) {
+    margin-bottom: 10px;
+  }
+}
+.filterIcon {
+  @apply hidden lg:flex;
+  min-width: 112px;
+  margin-right: 10px;
+  & svg path {
+    transition: stroke 0.25s;
+  }
+  &:hover svg path {
+    stroke: $white-100;
+  }
+  @media (max-width: $breakpoint480) {
+    margin-bottom: 10px;
   }
 }
 .filtersInput {
-  @apply relative;
-  max-width: 270px;
+  @apply relative flex-shrink;
+  width: 270px;
   margin-right: 10px;
+  margin-bottom: 10px;
   & input {
     @apply bg-black-400;
-    max-width: 270px;
+    width: 100%;
     padding: 15px 50px 15px 25px;
     min-height: 50px;
   }
@@ -26,12 +84,15 @@
     transform: translateY(-50%);
     pointer-events: none;
   }
+  @media (max-width: $breakpoint1200) {
+    margin-right: 0;
+  }
 }
 .filterText {
-  @apply flex items-center text-white-100 font-medium cursor-pointer;
+  @apply flex items-center text-white-100 font-medium cursor-pointer flex-shrink-0;
   font-size: 17px;
   transition: color 0.25s;
-  margin-right: 10px;
+  margin-right: 20px;
   & svg {
     margin-right: 10px;
     & path {
@@ -44,13 +105,20 @@
       @apply fill-secondary-400;
     }
   }
+  @media (max-width: $breakpoint1200) {
+    margin-bottom: 20px;
+  }
 }
 .filterSelect {
   margin-right: 10px;
+  margin-bottom: 10px;
+  @media (max-width: $breakpoint1200) {
+    margin-right: 0;
+  }
 }
 .filterIcons {
-  @apply flex items-center;
-  margin: 0 10px;
+  @apply flex items-center lg:hidden;
+  margin-right: 40px;
   & svg:first-child {
     margin-right: 20px;
   }
@@ -67,10 +135,13 @@
 .offers {
   @apply flex flex-wrap;
   margin-top: 50px;
+  @media (max-width: $breakpoint1200) {
+    margin-top: 10px;
+  }
 }
 .offer {
-  @apply relative flex flex-col bg-black-300;
-  width: calc(25% - 10px);
+  @apply relative flex flex-col bg-white-200 dark:bg-black-300;
+  width: calc(25% - 7.5px);
   padding: 30px 40px;
   border-radius: 10px;
   margin-bottom: 10px;
@@ -88,9 +159,37 @@
     @apply block font-medium text-lg text-gray-400;
   }
   & span {
-    @apply block text-white-100 text-2xl font-bold;
+    @apply block dark:text-white-100 text-2xl font-bold;
     margin-top: 10px;
     margin-bottom: 25px;
+  }
+  @media (max-width: $breakpoint1450) {
+    width: calc(33.3% - 7.5px);
+    &:nth-child(3n) {
+      margin-right: 0;
+    }
+    &:nth-child(4n) {
+      margin-right: 10px;
+    }
+  }
+  @media (max-width: $breakpoint1200) {
+    width: calc(50% - 7.5px);
+    &:nth-child(2n) {
+      margin-right: 0;
+    }
+    &:nth-child(3n) {
+      margin-right: 10px;
+    }
+    & span {
+      font-size: 20px;
+    }
+  }
+  @media (max-width: $breakpoint768) {
+    width: 100%;
+    margin-right: 0 !important;
+    & b {
+      font-size: 17px;
+    }
   }
 }
 .offerInfo {
@@ -188,9 +287,14 @@
     height: 50px;
     border-radius: 50%;
   }
+  @media (max-width: $breakpoint768) {
+    & b {
+      font-size: 24px;
+    }
+  }
 }
 .more {
-  @apply flex flex-col items-center justify-center bg-black-300 cursor-pointer;
+  @apply flex flex-col items-center justify-center bg-white-200 dark:bg-black-300 cursor-pointer;
   width: calc(25% - 10px);
   border-radius: 10px;
   margin-bottom: 10px;
@@ -199,7 +303,7 @@
     transition: transform 0.5s;
   }
   & span {
-    @apply inline-block text-white-100 font-bold text-2xl;
+    @apply inline-block dark:text-white-100 font-bold text-2xl;
     margin: 15px 0;
   }
   & b {
@@ -209,6 +313,23 @@
   &:hover {
     & svg {
       transform: rotate(250deg);
+    }
+  }
+  @media (max-width: $breakpoint1450) {
+    width: calc(33.3% - 7.5px);
+  }
+  @media (max-width: $breakpoint1200) {
+    width: calc(50% - 7.5px);
+    min-height: 150px;
+    padding: 20px;
+  }
+  @media (max-width: $breakpoint768) {
+    width: 100%;
+    & span {
+      font-size: 20px;
+    }
+    & b {
+      font-size: 24px;
     }
   }
 }

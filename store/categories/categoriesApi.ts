@@ -7,12 +7,14 @@ import { IGetOffer, IOffer } from "@/models/IOffer";
 export const categoriesApi = createApi({
   reducerPath: "api/categories",
   baseQuery,
+  tagTypes: ["liked-services"],
   endpoints: (build) => ({
     fetchCategories: build.query<ICategory[], boolean>({
       query: (isFull) => `/categories?full=${isFull}`,
     }),
     fetchLikedServices: build.query<ICategory[] | number[], boolean>({
       query: (isPlain) => `/categories/liked-services?raw=${isPlain}`,
+      providesTags: ["liked-services"],
     }),
     fetchOffers: build.mutation<IOffer[], IGetOffer>({
       query: (params) => {
@@ -28,6 +30,13 @@ export const categoriesApi = createApi({
         method: "GET",
       }),
     }),
+    likeService: build.mutation<undefined, number>({
+      query: (id) => ({
+        url: `/categories/like-service/${id}`,
+        method: "PUT",
+      }),
+      invalidatesTags: ["liked-services"],
+    }),
   }),
 });
 
@@ -36,4 +45,5 @@ export const {
   useFetchLikedServicesQuery,
   useFetchOffersMutation,
   useSearchMutation,
+  useLikeServiceMutation,
 } = categoriesApi;

@@ -17,7 +17,7 @@ const list = [
   },
   {
     title: "Предложения",
-    path: "/proposal",
+    path: "/offers",
     count: 29,
   },
   {

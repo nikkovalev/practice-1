@@ -259,6 +259,10 @@
       display: none;
       column-count: 2;
       column-gap: 20px;
+      & li svg {
+        opacity: 1;
+        visibility: visible;
+      }
     }
   }
 }
@@ -338,7 +342,7 @@
 }
 
 .service {
-  @apply inline-block bg-white-100;
+  @apply bg-white-100;
   width: 100%;
   min-height: 180px;
   border-radius: 10px;
@@ -364,6 +368,9 @@
   @media (max-width: $breakpoint992) {
     padding: 20px;
   }
+  @media (max-width: $breakpoint350) {
+    @apply flex-col items-start;
+  }
 }
 
 .serviceImage {
@@ -372,6 +379,11 @@
   @media (max-width: $breakpoint992) {
     width: 70px;
     height: 70px;
+    margin-left: 20px;
+  }
+  @media (max-width: $breakpoint350) {
+    margin-top: 15px;
+    margin-left: 0;
   }
 }
 

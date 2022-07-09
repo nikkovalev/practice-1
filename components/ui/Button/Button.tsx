@@ -5,7 +5,7 @@ import styles from "./Button.module.scss";
 interface IButton {
   className?: any;
   size?: "large" | "small";
-  children: string;
+  children: any;
   isActive?: boolean;
   variant?: "contained" | "outlined";
   color?: "primary" | "secondary";

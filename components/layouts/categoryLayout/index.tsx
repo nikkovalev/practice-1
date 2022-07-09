@@ -86,23 +86,25 @@ export const CategoryLayout: FC<ICategoryLayout> = ({
         <title>YaonPay - {title}</title>
       </Head>
       <div
-        className={cn("page-preview", styles.top)}
+        className={cn("page_preview", styles.top)}
         style={{ backgroundImage: `url(${category.banner})` }}
       >
         <Header />
         <div className="mask" />
-        <div className="inner-container relative z-10">
-          <Link href="/">
-            <a className="flex items-center">
-              <ArrowIcon direction="left" />
-              <b>В каталог FIFA</b>
-            </a>
-          </Link>
-          <h1>
-            {s?.name} {category.name}
-          </h1>
-          <p>{s?.name}</p>
-          <div className={styles.buttons}>
+        <div className="relative z-10">
+          <div className="inner-container">
+            <Link href={`/?category=${category.slug}`}>
+              <a className="flex items-center">
+                <ArrowIcon direction="left" />
+                <b>В каталог FIFA</b>
+              </a>
+            </Link>
+            <h1>
+              {s?.name} {category.name}
+            </h1>
+            <p>{s?.description}</p>
+          </div>
+          <div className={cn("inner-container", styles.buttons)}>
             {category.services.map((i) => (
               <Button
                 key={i.id}
@@ -117,7 +119,7 @@ export const CategoryLayout: FC<ICategoryLayout> = ({
           </div>
         </div>
       </div>
-      <div className="flex-grow mb-44 container sm:mb-28">
+      <div className="flex-grow container page_content">
         <CategoryFilters
           category={category}
           filters={s?.filters ?? []}
