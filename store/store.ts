@@ -14,6 +14,7 @@ import { setupListeners } from "@reduxjs/toolkit/dist/query/react";
 
 import { authApi } from "./auth/authApi";
 import { categoriesApi } from "./categories/categoriesApi";
+import { chatApi } from "./chat/chatApi";
 
 import { authReducer } from "./auth/authSlice";
 import { globalReducer } from "./global/globalSlice";
@@ -23,6 +24,7 @@ const rootReducer = combineReducers({
   global: globalReducer,
   [authApi.reducerPath]: authApi.reducer,
   [categoriesApi.reducerPath]: categoriesApi.reducer,
+  [chatApi.reducerPath]: chatApi.reducer,
 });
 
 const persistConfig = {

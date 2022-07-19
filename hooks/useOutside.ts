@@ -7,7 +7,6 @@ export const useOutside = (initialIsVisible: boolean) => {
 
   const handleClickOutside = (event: any) => {
     if (
-      event.target.tagName !== "HTML" &&
       ref.current &&
       !ref.current.contains(event.target) &&
       !ref2.current?.contains(event.target)

@@ -19,38 +19,78 @@
   outline: none;
 }
 
-body {
-  overflow-x: hidden;
-}
-
 a {
   text-decoration: none;
 }
 
 .page {
   padding-top: 122px;
+  &__preview {
+    @apply relative bg-center bg-cover bg-no-repeat bg-fixed;
+    padding-top: 230px;
+  }
+  &__content {
+    @apply mb-44 sm:mb-28;
+    @media (max-width: $breakpoint350) {
+      margin-bottom: 50px;
+    }
+  }
   @media (max-width: $breakpoint1450) {
     padding-top: 97px;
   }
   @media (max-width: $breakpoint1200) {
     padding-top: 86px;
-  }
-}
-
-.page_preview {
-  padding-top: 230px;
-  @media (max-width: $breakpoint1200) {
-    padding-top: 130px;
+    &__preview {
+      padding-top: 130px;
+    }
   }
   @media (max-width: $breakpoint350) {
-    padding-top: 150px;
+    &__preview {
+      padding-top: 150px;
+    }
   }
 }
-
-.page_content {
-  @apply mb-44 sm:mb-28;
-  @media (max-width: $breakpoint350) {
-    margin-bottom: 50px;
+.page__title {
+  @apply text-white-100 font-bold;
+  font-size: 62px;
+  margin-bottom: 30px;
+  @media (max-width: $breakpoint992) {
+    font-size: 45px;
+    margin-bottom: 10px;
+  }
+  @media (max-width: $breakpoint480) {
+    font-size: 30px;
+  }
+}
+.page__desc {
+  @apply text-gray-400 font-normal;
+  font-size: 20px;
+  line-height: 34px;
+  width: 60%;
+  @media (max-width: $breakpoint992) {
+    width: 100%;
+    font-size: 17px;
+  }
+}
+.link_with_arrow {
+  @apply inline-flex items-center;
+  margin-bottom: 15px;
+  & b {
+    @apply inline-block font-bold text-gray-400;
+    font-size: 17px;
+    margin-left: 15px;
+    transition: color 0.25s;
+  }
+  & svg path {
+    transition: stroke 0.25s;
+  }
+  &:hover {
+    & b {
+      @apply text-secondary-400;
+    }
+    & svg path {
+      stroke: $secondary-400;
+    }
   }
 }
 
@@ -134,7 +174,7 @@ a {
 }
 
 .avatar {
-  @apply relative bg-cover bg-center bg-no-repeat;
+  @apply relative bg-cover bg-center bg-no-repeat flex-shrink-0;
   width: 40px;
   height: 40px;
   border-radius: 50%;

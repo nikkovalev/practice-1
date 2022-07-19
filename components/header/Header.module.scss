@@ -18,13 +18,16 @@
 }
 
 .headerContent {
-  @apply relative flex items-center justify-between;
+  @apply flex items-center justify-between;
   padding: 20px;
   @media (max-width: $breakpoint1450) {
     padding: 18px 10px;
   }
   @media (max-width: $breakpoint350) {
     @apply flex-col;
+  }
+  &Active {
+    @apply relative bg-black-300 z-50;
   }
 }
 
@@ -38,10 +41,19 @@
     display: none;
   }
   @media (max-width: $breakpoint1200) {
+    @apply fixed top-0 left-0 bottom-0 bg-black-400 flex flex-col items-start z-50;
+    width: 100%;
+    max-width: fit-content;
+    padding: 100px 10px 10px;
+    min-height: 100vh;
+    overflow-y: auto;
     transform: translateX(-100%);
     ul {
       display: block;
     }
+  }
+  @media (max-width: $breakpoint350) {
+    padding-top: 130px;
   }
 }
 
@@ -54,17 +66,7 @@
 
 .headerSelectsActive {
   @media (max-width: $breakpoint1200) {
-    @apply fixed top-0 left-0 bottom-0 bg-black-400 flex flex-col items-start;
-    width: 100%;
-    max-width: fit-content;
-    z-index: 2;
-    padding: 80px 10px 10px;
     animation: transform 0.25s forwards;
-    min-height: 100vh;
-    overflow-y: auto;
-  }
-  @media (max-width: $breakpoint350) {
-    padding-top: 120px;
   }
 }
 
@@ -433,10 +435,6 @@
           @apply text-gray-400 text-base font-medium;
           transition: color 0.25s;
         }
-        & span {
-          @apply w-6 h-6 flex items-center justify-center text-xs text-white-100 font-extrabold bg-primary-400 rounded-full;
-          margin-left: 10px;
-        }
       }
     }
   }
@@ -450,6 +448,16 @@
     & ul li {
       width: 140px;
     }
+  }
+}
+.headerUserCount {
+  @apply w-6 h-6 flex items-center justify-center text-xs text-white-100 font-extrabold bg-primary-400 rounded-full;
+  margin-left: 10px;
+  &Yellow {
+    @apply text-black-400 bg-secondary-400;
+  }
+  &Gray {
+    @apply bg-gray-400;
   }
 }
 .headerUserPopperActive {

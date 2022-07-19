@@ -8,11 +8,11 @@
   @apply w-full flex items-center justify-between bg-black-400 cursor-pointer rounded-full;
   padding: 15px 25px;
   min-height: 50px;
-  & div {
-    @apply text-white-100 font-medium;
-    width: 90%;
-    font-size: 17px;
-  }
+}
+.selectText {
+  @apply text-white-100 font-medium;
+  width: 90%;
+  font-size: 17px;
 }
 .selectHeaderActive {
   border-radius: 10px 10px 0 0;
@@ -40,4 +40,7 @@
 }
 .selectItemsActive {
   display: block;
+}
+.selectIcon {
+  margin-right: 15px;
 }

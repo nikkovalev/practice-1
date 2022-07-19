@@ -4,13 +4,13 @@ import { IUser } from "@/models/IUser";
 interface IAuthState {
   token: string;
   user: IUser | null;
-  userId: string;
+  userId: number | null;
   isAuth: boolean;
 }
 
 const initialState: IAuthState = {
   token: "",
-  userId: "",
+  userId: null,
   user: null,
   isAuth: false,
 };
@@ -24,7 +24,7 @@ export const authSlice = createSlice({
     },
     logout: (state: IAuthState) => {
       state.user = null;
-      state.userId = "";
+      state.userId = null;
       state.isAuth = false;
       state.token = "";
     },
@@ -32,7 +32,7 @@ export const authSlice = createSlice({
       state.token = action.payload;
       state.isAuth = true;
     },
-    saveUserId: (state: IAuthState, action: PayloadAction<string>) => {
+    saveUserId: (state: IAuthState, action: PayloadAction<number>) => {
       state.userId = action.payload;
     },
     saveAvatar: (state: IAuthState, action: PayloadAction<string>) => {

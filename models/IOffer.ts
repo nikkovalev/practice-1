@@ -13,7 +13,7 @@ export interface IGetOffer {
 
 export interface IOffer {
   id: number;
-  seller: Partial<IUser>;
+  seller: IUser;
   filters: string[];
   categoryId: number;
   serviceId: number;

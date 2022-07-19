@@ -1,4 +1,5 @@
 import React, { FC, ReactNode } from "react";
+import cn from "classnames";
 import Head from "next/head";
 
 import { Header } from "@/components/header/Header";
@@ -7,16 +8,22 @@ import { Footer } from "../footer/Footer";
 interface ILayout {
   title: string;
   children: ReactNode;
+  withImage?: boolean;
 }
 
-export const Layout: FC<ILayout> = ({ children, title }) => {
+export const Layout: FC<ILayout> = ({ children, title, withImage }) => {
   return (
-    <div className="page flex flex-col min-h-screen transition-colors duration-300 dark:bg-black-400 overflow-x-hidden">
+    <div
+      className={cn(
+        "flex flex-col min-h-screen transition-colors duration-300 dark:bg-black-400 overflow-x-hidden",
+        { page: !withImage }
+      )}
+    >
       <Head>
         <title>YaonPay - {title}</title>
       </Head>
       <Header />
-      <div className="flex-grow page_content">{children}</div>
+      <div className="flex-grow page__content">{children}</div>
       <Footer />
     </div>
   );

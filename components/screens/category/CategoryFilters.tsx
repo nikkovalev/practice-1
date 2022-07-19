@@ -76,11 +76,11 @@ export const CategoryFilters: FC<ICategoryFilters> = ({
         </div>
         <div className="flex items-center lg:flex-col lg:items-start">
           <div className={styles.filterText}>
-            <ArrowIcon type="two" />
-            По популярности
+            <ArrowIcon pathClassName="fill-black-400 dark:fill-white-100" type="two" />
+            По рейтингу
           </div>
           <div className={styles.filterText} onClick={handleChangeOrder}>
-            <ArrowIcon type="two" />
+            <ArrowIcon pathClassName="fill-black-400 dark:fill-white-100" type="two" />
             По цене
           </div>
           <Checkbox

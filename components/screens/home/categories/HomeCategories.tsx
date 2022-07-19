@@ -5,10 +5,7 @@ import { useRouter } from "next/router";
 
 import { ICategory } from "@/models/ICategory";
 
-import {
-  useFetchLikedServicesQuery,
-  useLikeServiceMutation,
-} from "@/store/categories/categoriesApi";
+import { useFetchLikedServicesQuery, useLikeServiceMutation } from "@/store/auth/authApi";
 
 import { HomeCategory } from "./HomeCategory";
 
@@ -28,10 +25,9 @@ export const HomeCategories: FC<IHomeCategories> = ({ categories }) => {
   const { query } = useRouter();
 
   useEffect(() => {
-    if (query.category)
-      document
-        .getElementById(query.category as string)
-        ?.scrollIntoView({ behavior: "smooth", block: "center" });
+    if (query.category) {
+      document.getElementById(query.category as string)?.scrollIntoView({ block: "center" });
+    }
   }, []);
 
   return (
@@ -48,6 +44,7 @@ export const HomeCategories: FC<IHomeCategories> = ({ categories }) => {
                 category={c}
                 likedServices={(likedServices as number[]) || []}
                 like={like}
+                isAuth={isAuth}
               />
             ))}
           </div>

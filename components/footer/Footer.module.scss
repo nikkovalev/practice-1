@@ -74,8 +74,19 @@
   @media (max-width: $breakpoint992) {
     width: 100%;
     justify-content: center;
+    margin-right: 0;
     & li {
       text-align: center;
+    }
+  }
+  @media (max-width: $breakpoint350) {
+    & li {
+      & b {
+        font-size: 17px;
+      }
+      & span {
+        font-size: 14px;
+      }
     }
   }
 }

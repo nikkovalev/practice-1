@@ -20,7 +20,7 @@ interface ICategoryProps {
 export const Category: FC<ICategoryProps> = ({ category }) => {
   const { isAuth, user } = useAppSelector((state) => state.auth);
   const [getOffers, { data: offers, isLoading }] = useFetchOffersMutation();
-  const [view, setView] = useState<"list" | "card">("card");
+  const [view, setView] = useState<"list" | "card">(window.screen.width >= 1200 ? "list" : "card");
 
   return (
     <CategoryLayout
@@ -36,8 +36,8 @@ export const Category: FC<ICategoryProps> = ({ category }) => {
         </div>
       )}
       <div className={styles.offers}>
-        {!isLoading && !offers && (
-          <h3 className="text-center text-2xl text-primary-400 dark:text-secondary-400">
+        {!isLoading && !offers?.length && (
+          <h3 className="mx-auto text-2xl text-primary-400 dark:text-secondary-400">
             Нет предложений.
           </h3>
         )}

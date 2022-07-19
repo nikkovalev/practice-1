@@ -12,28 +12,15 @@ import { useSearchMutation } from "@/store/categories/categoriesApi";
 
 import { MenuBurger } from "./Menu";
 import { HeaderSearch } from "./HeaderSearch";
-import { HeaderSelect } from "./HeaderSelect";
-import { HeaderUser } from "./HeaderUser";
-import { Button } from "../ui";
 import { HeaderCategory } from "./HeaderCategory";
+import { HeaderActions } from "./HeaderActions";
 
 import logoIcon from "@/assets/images/logo.svg";
 import logo2Icon from "@/assets/images/logo-2.svg";
-import {
-  SearchIcon,
-  LikeIcon,
-  UserIcon,
-  MessageIcon,
-  SunIcon,
-  MoonIcon,
-  CloseIcon,
-  HamburgerIcon,
-} from "../icons";
+import { SearchIcon, LikeIcon, UserIcon, MessageIcon, CloseIcon, HamburgerIcon } from "../icons";
 
 import styles from "./Header.module.scss";
 
-const currencies = ["₽", "$", "€"];
-const languages = ["Ru", "En"];
 const navList = [
   {
     name: "Игры",
@@ -73,7 +60,12 @@ export const Header = () => {
     isShow: isShowSearch,
     setIsShow: setIsShowSearch,
   } = useOutside(false);
-  const { ref: menuRef, isShow: isShowMenu, setIsShow: setIsShowMenu } = useOutside(false);
+  const {
+    ref: menuRef,
+    ref2: menuRef2,
+    isShow: isShowMenu,
+    setIsShow: setIsShowMenu,
+  } = useOutside(false);
   const { theme } = useAppSelector((state) => state.global);
   const { isAuth, user } = useAppSelector((state) => state.auth);
   const { setModalPrevUrl, changeTheme, saveUser } = useActions();
@@ -87,9 +79,7 @@ export const Header = () => {
   const goToAuth = () => setModalPrevUrl(router.asPath);
   const openSearch = () => setIsShowSearch(true);
   const handleClickUser = () => getMe();
-  const handleClickBurger = () => {
-    setIsShowMenu(!isShowMenu);
-  };
+  const handleClickBurger = () => setIsShowMenu(!isShowMenu);
 
   useEffect(() => {
     document.documentElement.classList[theme === "light" ? "remove" : "add"]("dark");
@@ -121,7 +111,11 @@ export const Header = () => {
       )}
       <header className={styles.header}>
         <HeaderSearch ref={searchRef} isShow={isShowSearch} search={search} />
-        <div className={cn("inner-container", styles.headerContent)}>
+        <div
+          className={cn("inner-container", styles.headerContent, {
+            [styles.headerContentActive]: isShowMenu,
+          })}
+        >
           <div className={styles.headerLeft}>
             <Link href="/">
               <a className={styles.headerLogo}>
@@ -131,7 +125,6 @@ export const Header = () => {
                   height={window.screen.width > 1200 ? 79 : 34}
                   src={window.screen.width > 1200 ? logoIcon : logo2Icon}
                   alt="YaonPay"
-                  priority
                 />
               </a>
             </Link>
@@ -142,9 +135,15 @@ export const Header = () => {
               <SearchIcon />
             </div>
             <Link href="/favorites">
-              <a className={cn("w-9", styles.headerIconButton, styles.headerLikeIcon)}>
+              <a
+                className={cn(styles.headerIconButton, styles.headerLikeIcon, {
+                  "w-9": !!user?.likedServices.length,
+                })}
+              >
                 <LikeIcon />
-                <span className={styles.headerIconButtonCount}>5</span>
+                {!!user?.likedServices?.length && (
+                  <span className={styles.headerIconButtonCount}>{user.likedServices.length}</span>
+                )}
               </a>
             </Link>
             {!isAuth && (
@@ -166,7 +165,7 @@ export const Header = () => {
               </button>
             )}
             {isAuth && user && (
-              <Link href="/messages">
+              <Link href="/chats">
                 <a className={cn("w-9", styles.mr0, styles.headerIconButton)}>
                   <MessageIcon />
                   <span className={styles.headerIconButtonCount}>2</span>
@@ -174,6 +173,7 @@ export const Header = () => {
               </Link>
             )}
             <div
+              ref={menuRef2}
               className={cn(styles.headerIcon, styles.headerNavButton, {
                 [styles.headerIconActive]: isShowMenu,
               })}
@@ -181,52 +181,31 @@ export const Header = () => {
             >
               {isShowMenu ? <CloseIcon pathClassName="dark:fill-white-100" /> : <HamburgerIcon />}
             </div>
-            <div
-              ref={menuRef}
-              className={cn(styles.headerSelects, {
-                [styles.headerSelectsActive]: isShowMenu,
-              })}
-            >
-              {isAuth && user && <HeaderUser isShowMenu={isShowMenu} user={user} />}
-              <div className="flex items-center">
-                <HeaderSelect items={currencies} />
-                <HeaderSelect items={languages} />
-                <button
-                  className={cn(styles.headerChangeMode, {
-                    [styles.headerChangeModeLight]: theme === "dark",
-                    [styles.headerChangeModeDark]: theme === "light",
-                  })}
-                  onClick={changeMode}
-                >
-                  <span />
-                  <span>
-                    <MoonIcon />
-                    <SunIcon />
-                  </span>
-                </button>
-              </div>
-              <ul
-                className={cn(styles.headerNav, {
-                  [styles.headerNavAuth]: isAuth && user,
-                })}
-              >
-                {navList.map(({ name, path }) => (
-                  <li key={path}>
-                    <Link href={path}>
-                      <a>{name}</a>
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-              {isAuth && (
-                <Button className={styles.headerSell} variant="outlined" size="small">
-                  Продать
-                </Button>
-              )}
-            </div>
+            {window.screen.width >= 1200 && (
+              <HeaderActions
+                menuRef={menuRef}
+                isShowMenu={isShowMenu}
+                isAuth={isAuth}
+                theme={theme}
+                user={user}
+                navList={navList}
+                changeMode={changeMode}
+              />
+            )}
           </div>
         </div>
       </header>
+      {window.screen.width < 1200 && (
+        <HeaderActions
+          menuRef={menuRef}
+          isShowMenu={isShowMenu}
+          isAuth={isAuth}
+          theme={theme}
+          user={user}
+          navList={navList}
+          changeMode={changeMode}
+        />
+      )}
     </>
   );
 };

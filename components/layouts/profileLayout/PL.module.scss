@@ -229,7 +229,6 @@
   @media (max-width: $breakpoint1200) {
     overflow-x: auto;
     margin-top: 50px;
-    padding-bottom: 30px;
     & a {
       @apply flex-shrink-0;
       margin-right: 10px;
@@ -245,7 +244,7 @@
     margin-right: 0;
   }
   & b {
-    @apply inline-block font-bold text-gray-400;
+    @apply inline-block font-bold;
     font-size: 18px;
     line-height: 21.6px;
     margin-left: 5px;
@@ -258,7 +257,7 @@
   font-size: 52px;
   line-height: 67.6px;
   @media (max-width: $breakpoint1200) {
-    margin-top: 0;
+    margin-top: 30;
   }
   @media (max-width: $breakpoint992) {
     font-size: 45px;

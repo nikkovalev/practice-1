@@ -1,0 +1,40 @@
+.top {
+  padding-bottom: 50px;
+}
+.topLeft {
+  width: 50%;
+  margin-right: 50px;
+  & > p {
+    width: 100%;
+    margin-bottom: 30px;
+  }
+  & > b {
+    @apply text-gray-400 font-bold;
+    font-size: 32px;
+    margin-bottom: 25px;
+  }
+}
+.topInfo {
+  @apply flex items-center flex-wrap;
+  margin-bottom: 20px;
+  & > div {
+    margin-right: 40px;
+    & > span {
+      @apply block text-lg font-medium text-gray-400;
+      margin-bottom: 2px;
+    }
+    & > b {
+      @apply text-white-100 text-lg font-bold;
+    }
+  }
+}
+.topActions {
+  @apply flex items-center justify-between;
+  margin-top: 25px;
+  & > button {
+    min-width: 140px;
+  }
+  & > div:nth-child(2) {
+    margin: 0 20px;
+  }
+}

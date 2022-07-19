@@ -21,6 +21,8 @@ module.exports = {
       "orange-100": "#ed6c02",
       "blue-100": "#7294C7",
       "blue-200": "#2F89CE",
+      dark: "#292d35",
+      light: "#dcdfff",
       transparent: "transparent",
     },
     fontFamily: {

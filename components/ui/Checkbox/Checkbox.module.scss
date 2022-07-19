@@ -1,7 +1,7 @@
 @import "../../../assets/styles/_variables.scss";
 
 .checkbox {
-  @apply flex items-center text-white-100 font-medium cursor-pointer flex-shrink-0;
+  @apply flex items-center dark:text-white-100 font-medium cursor-pointer flex-shrink-0;
   font-size: 17px;
   & input {
     display: none;
@@ -10,14 +10,13 @@
     opacity: 1;
   }
   & div {
-    @apply flex items-center justify-center;
+    @apply flex items-center justify-center border-2 border-solid border-secondary-400 dark:border-white-100;
     width: 24px;
     height: 24px;
     border-radius: 5px;
-    border: 2px solid $white-100;
     margin-right: 10px;
     &::before {
-      @apply text-white-100 font-medium;
+      @apply dark:text-white-100 font-medium;
       content: "\2713";
       display: block;
       font-size: 17px;

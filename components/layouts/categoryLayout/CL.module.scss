@@ -1,0 +1,23 @@
+@import "../../../assets/styles/_variables.scss";
+
+.top {
+}
+.buttons {
+  @apply flex items-center flex-wrap;
+  margin-top: 20px;
+  padding-bottom: 50px;
+  @media (max-width: $breakpoint992) {
+    @apply flex-nowrap overflow-x-auto;
+    padding-bottom: 20px;
+  }
+}
+.button {
+  @apply bg-black-400 flex-shrink-0 border-black-300 text-white-100;
+  min-width: 120px;
+  padding: 19px 40px;
+  margin-right: 20px;
+  margin-top: 20px;
+  &:last-child {
+    margin-right: 0;
+  }
+}

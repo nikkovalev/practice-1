@@ -121,10 +121,16 @@
     height: 1046px;
     background: url("../../../assets/images/blur.svg") no-repeat center / cover;
   }
+
   @media (max-width: $breakpoint1200) {
     margin-left: 20px;
     width: 450px;
     text-align: center;
+    @media (max-width: $breakpoint1450) {
+      &::before {
+        transform: translate(-10%, -10%);
+      }
+    }
   }
   @media (max-width: $breakpoint992) {
     margin-left: 0;
@@ -164,6 +170,15 @@
     }
     & span {
       margin: 0 10px;
+    }
+  }
+  @media (max-width: $breakpoint350) {
+    @apply flex-col;
+    & button {
+      @apply w-full;
+    }
+    & span {
+      margin: 5px 0;
     }
   }
 }
@@ -222,12 +237,12 @@
   padding: 30px 40px 15px;
   margin-bottom: 10px;
   & ul {
-    @apply flex items-center flex-wrap;
+    @apply flex items-center flex-wrap justify-between;
     & li {
-      @apply w-1/2;
+      min-width: calc(50% - 15px);
       margin-bottom: 15px;
-      & span {
-        @apply w-fit flex items-center cursor-pointer;
+      & > div {
+        @apply flex items-center w-fit;
         &:hover {
           & a {
             @apply text-primary-400 dark:text-secondary-400;
@@ -239,7 +254,7 @@
         }
       }
       & a {
-        @apply text-xl font-medium text-gray-400 cursor-pointer flex-shrink-0;
+        @apply inline-block text-xl font-medium text-gray-400 cursor-pointer flex-shrink-0;
         padding-right: 10px;
         transition: color 0.25s;
       }
@@ -257,8 +272,6 @@
     min-height: 90px;
     & ul {
       display: none;
-      column-count: 2;
-      column-gap: 20px;
       & li svg {
         opacity: 1;
         visibility: visible;
@@ -269,7 +282,7 @@
 
 .categoryActive {
   ul {
-    display: block;
+    display: flex;
     margin-top: 15px;
   }
 }
@@ -296,7 +309,12 @@
     position: relative;
     margin-bottom: 0;
     & a {
+      @apply inline-block;
       font-size: 24px;
+      max-width: 65%;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
     }
     & svg {
       @apply block flex-shrink-0 ml-auto;

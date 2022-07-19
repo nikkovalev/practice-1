@@ -2,8 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   env: {
-    // API_URL: "http://localhost:3000",
-    API_URL: process.env.API_URL
+    API_URL: process.env.API_URL,
   },
   webpack: (config) => {
     const rules = config.module.rules.find((r) => !!r.oneOf);

@@ -5,7 +5,7 @@
   min-width: 245px;
   height: 60px;
   padding: 19px 0;
-  transition: background-color 0.25s, color 0.25s, box-shadow 0.25s, transform 0.25s;
+  transition: background-color 0.25s, color 0.25s, box-shadow 0.25s, transform 0.25s, border-color 0.25s;
   &:active {
     transform: scale(0.95);
   }
@@ -15,7 +15,7 @@
   box-shadow: 0px 10px 20px rgba(127, 134, 232, 0.25) !important;
   border-color: transparent !important;
   &:hover {
-    background-color: $primary-300;
+    background-color: $primary-300 !important;
     box-shadow: none;
   }
 }
@@ -54,11 +54,10 @@
   box-shadow: none;
   opacity: 0.5;
 }
-.link {
-  @apply text-white-100 bg-black-400;
-  border-color: $black-300;
+.buttonOutlinedBlack {
+  @apply text-white-100 bg-black-400 border-black-300;
   padding: 19px 40px;
   &:hover {
-    border-color: transparent;
+    @apply bg-black-400 border-primary-400;
   }
 }

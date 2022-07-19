@@ -8,20 +8,19 @@ import React, {
   useState,
 } from "react";
 import cn from "classnames";
-import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { url } from "@/helpers/url";
 
 import { ICategory, IService } from "@/models/ICategory";
 import { IGetOffer } from "@/models/IOffer";
 
-import { Header } from "@/components/header/Header";
+import { Layout } from "../Layout";
 import { ArrowIcon } from "@/components/icons";
 import { CategoryFilters } from "@/components/screens/category/CategoryFilters";
 import { Button } from "@/components/ui";
-import { Footer } from "@/components/footer/Footer";
 
-import styles from "./CategoryLayout.module.scss";
+import styles from "./CL.module.scss";
 
 interface ICategoryLayout {
   children: ReactNode;
@@ -81,28 +80,24 @@ export const CategoryLayout: FC<ICategoryLayout> = ({
   }, [s, server, order, onlineOnly, query]);
 
   return (
-    <div className="flex flex-col min-h-screen transition-colors duration-300 dark:bg-black-400 overflow-x-hidden">
-      <Head>
-        <title>YaonPay - {title}</title>
-      </Head>
+    <Layout title={title} withImage={true}>
       <div
-        className={cn("page_preview", styles.top)}
-        style={{ backgroundImage: `url(${category.banner})` }}
+        className={cn("page__preview", styles.top)}
+        style={{ backgroundImage: url(category.banner) }}
       >
-        <Header />
         <div className="mask" />
         <div className="relative z-10">
           <div className="inner-container">
             <Link href={`/?category=${category.slug}`}>
-              <a className="flex items-center">
+              <a className="link_with_arrow">
                 <ArrowIcon direction="left" />
-                <b>В каталог FIFA</b>
+                <b>В каталог {category.name}</b>
               </a>
             </Link>
-            <h1>
+            <h1 className="page__title">
               {s?.name} {category.name}
             </h1>
-            <p>{s?.description}</p>
+            <p className="page__desc">{s?.description}</p>
           </div>
           <div className={cn("inner-container", styles.buttons)}>
             {category.services.map((i) => (
@@ -110,6 +105,7 @@ export const CategoryLayout: FC<ICategoryLayout> = ({
                 key={i.id}
                 className={styles.button}
                 variant="outlined"
+                color="black"
                 isActive={s?.id === i.id}
                 onClick={handleChangeS(i.id)}
               >
@@ -119,7 +115,7 @@ export const CategoryLayout: FC<ICategoryLayout> = ({
           </div>
         </div>
       </div>
-      <div className="flex-grow container page_content">
+      <div className="flex-grow container">
         <CategoryFilters
           category={category}
           filters={s?.filters ?? []}
@@ -132,7 +128,6 @@ export const CategoryLayout: FC<ICategoryLayout> = ({
         />
         {children}
       </div>
-      <Footer />
-    </div>
+    </Layout>
   );
 };

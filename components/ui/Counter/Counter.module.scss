@@ -1,0 +1,20 @@
+@import "../../../assets/styles/_variables.scss";
+
+.counter {
+  @apply flex items-center bg-black-400 rounded-full;
+  padding: 15px;
+  width: 150px;
+  & > span {
+    @apply inline-block flex-grow text-white-100 font-normal text-center;
+    font-size: 17px;
+    margin: 0 15px;
+  }
+  & > button {
+    & > svg path {
+      transition: fill 0.25s;
+    }
+    &:hover > svg path {
+      fill: $secondary-400;
+    }
+  }
+}

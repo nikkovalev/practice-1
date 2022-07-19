@@ -10,10 +10,11 @@ interface ISelect {
   className?: any;
   label: string;
   items: string[];
+  icon?: any;
   handleChange?: (val: string | null, idx?: number) => void;
 }
 
-export const Select: FC<ISelect> = ({ className, label, items, handleChange }) => {
+export const Select: FC<ISelect> = ({ className, label, items, icon, handleChange }) => {
   const { isShow, ref, setIsShow } = useOutside(false);
   const [val, setVal] = useState<string>(label);
 
@@ -30,7 +31,8 @@ export const Select: FC<ISelect> = ({ className, label, items, handleChange }) =
         className={cn(styles.selectHeader, { [styles.selectHeaderActive]: isShow })}
         onClick={handleToggle}
       >
-        <div className="text-ellipsis">{val}</div>
+        {!!icon && <div className={styles.selectIcon}>{icon}</div>}
+        <div className={cn("text-ellipsis", styles.selectText)}>{val}</div>
         <ArrowIcon pathClassName="fill-primary-400 stroke-primary-400" />
       </div>
       <div

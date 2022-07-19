@@ -8,5 +8,5 @@ export const BACK_IN_RIGHT: MotionProps = {
   },
   whileInView: { opacity: 1, x: 0, scale: 1 },
   transition: { type: "spring", duration: 1.1, damping: 5 },
-  viewport: { amount: "all", once: true },
+  viewport: { once: true },
 };

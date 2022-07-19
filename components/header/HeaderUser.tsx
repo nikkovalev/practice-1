@@ -2,6 +2,7 @@ import React, { FC } from "react";
 import cn from "classnames";
 import Link from "next/link";
 import { useOutside } from "@/hooks/useOutside";
+import { url } from "@/helpers/url";
 
 import { IUser } from "@/models/IUser";
 
@@ -29,7 +30,7 @@ const list = [
     title: "Покупки",
     path: "/purchases",
     count: 0,
-    style: "bg-gray-400",
+    color: "Gray",
   },
   {
     title: "Финансы",
@@ -39,7 +40,7 @@ const list = [
     title: "Отзывы",
     path: "/reviews",
     count: 14,
-    style: "bg-secondary-400 text-black-400",
+    color: "Yellow",
   },
   {
     title: "Настройки",
@@ -66,7 +67,7 @@ export const HeaderUser: FC<IHeaderUser> = ({ user, isShowMenu }) => {
         >
           <div
             className={styles.headerUserAvatar}
-            style={{ backgroundImage: `url(${anonymousImage.src})` }}
+            style={{ backgroundImage: url(!!user.photoUrl ? user.photoUrl : anonymousImage.src) }}
           />
           <div className={styles.headerUserInfo}>
             <div className="w-full flex items-center justify-between dark:text-white-100">
@@ -82,12 +83,20 @@ export const HeaderUser: FC<IHeaderUser> = ({ user, isShowMenu }) => {
         })}
       >
         <ul>
-          {list.map(({ title, path, count, style }) => (
+          {list.map(({ title, path, count, color }) => (
             <li key={path}>
               <Link href={path}>
                 <a>
                   <b>{title}</b>
-                  {count !== undefined && <span className={style}>{count}</span>}
+                  {count !== undefined && (
+                    <span
+                      className={cn(styles.headerUserCount, {
+                        [styles[`headerUserCount${color}`]]: !!color,
+                      })}
+                    >
+                      {count}
+                    </span>
+                  )}
                 </a>
               </Link>
             </li>

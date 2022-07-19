@@ -1,9 +1,12 @@
 import React, { FC, useState } from "react";
 import cn from "classnames";
+import Link from "next/link";
+import { url } from "@/helpers/url";
 
 import { IOffer } from "@/models/IOffer";
 
 import { ArrowIcon, InfoIcon, LikeIcon } from "@/components/icons";
+import anonymousImage from "@/assets/images/anonymous.jpg";
 
 import styles from "./Category.module.scss";
 
@@ -14,60 +17,55 @@ interface ICategoryOffer {
 }
 
 export const CategoryOffer: FC<ICategoryOffer> = ({ offer, servers, view }) => {
-  const [showInfo, setShowInfo] = useState<boolean>(false);
-
-  const handleShow = () => setShowInfo(true);
-  const handleHide = () => setShowInfo(false);
-
   return (
-    <div className={cn(styles.offer, { [styles.offerL]: view === "list" })}>
-      <div
-        className={cn(styles.offerInfo, { [styles.offerInfoActive]: showInfo })}
-        onClick={handleHide}
+    <Link href={`/offers/${offer.id}`}>
+      <a
+        className={cn(styles.offer, {
+          [styles.offerL]: view === "list",
+          [styles.offerC]: view === "card",
+        })}
       >
-        <b>Купить или узнать подробнее</b>
+        {typeof offer.server === "number" && servers.length > 0 && (
+          <div className={cn({ [styles.offerServerL]: view === "list" })}>
+            <b className={styles.offerText}>Сервер</b>
+            <span className={cn(styles.offerTitle, { [styles.offerTitleL]: view === "list" })}>
+              {servers[offer.server]}
+            </span>
+          </div>
+        )}
         <div>
-          <ArrowIcon type="long" />
+          <b className={styles.offerText}>Описание</b>
+          <span className={cn(styles.offerTitle, { [styles.offerTitleL]: view === "list" })}>
+            {offer.description}
+          </span>
         </div>
-      </div>
-      <div>
-        <div className="flex items-center justify-between lg:pr-[15px]">
-          <b>Сервер</b>
-          <div className="cursor-pointer">
-            <LikeIcon isSmall isFill={false} />
+        {offer.countable && (
+          <div className={cn({ [styles.offerQuantityL]: view === "list" })}>
+            <b className={styles.offerText}>Количество</b>
+            <span className={cn(styles.offerTitle, { [styles.offerTitleL]: view === "list" })}>
+              {offer.quantity} монет
+            </span>
+          </div>
+        )}
+        <div className={cn(styles.offerSeller, { [styles.offerSellerL]: view === "list" })}>
+          <b className={styles.offerText}>Продавец</b>
+          <div className={styles.offerSellerContent}>
+            <div
+              className="avatar"
+              style={{ backgroundImage: url(offer.seller?.photoUrl || anonymousImage.src) }}
+            />
+            <div
+              className={cn(styles.offerSellerInfo, { [styles.offerSellerInfoL]: view === "list" })}
+            >
+              <span className="text-ellipsis">{offer.seller.username}</span>
+              <b className="text-ellipsis">1554 отзыва</b>
+            </div>
           </div>
         </div>
-        <span>{servers[offer.server]}</span>
-      </div>
-      {offer.description && (
-        <div>
-          <b>Описание</b>
-          <span>{offer.description}</span>
-        </div>
-      )}
-      {offer.countable && (
-        <div>
-          <b>Количество</b>
-          <span>{offer.quantity} монет</span>
-        </div>
-      )}
-      <div className={cn(styles.offerSeller, { [styles.offerSellerL]: view === "list" })}>
-        <b>Продавец</b>
-        <div className="flex items-center">
-          <div
-            className={cn("avatar", { online: offer.seller.online })}
-            style={{ backgroundImage: `url(${offer.seller.photoUrl})` }}
-          />
-          <span>{offer.seller.username}</span>
-          <b>1554 отзыва</b>
-        </div>
-      </div>
-      <div className={styles.offerFooter}>
-        <b>от {offer.price}₽</b>
-        <div onClick={handleShow}>
-          <InfoIcon />
-        </div>
-      </div>
-    </div>
+        <b className={cn(styles.offerPrice, { [styles.offerPriceL]: view === "list" })}>
+          от {offer.price}₽
+        </b>
+      </a>
+    </Link>
   );
 };

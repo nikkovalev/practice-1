@@ -1,4 +1,7 @@
+import { IService } from "./ICategory";
+
 export interface IUser {
+  id: number;
   username: string;
   email: string;
   displayName: string;
@@ -8,4 +11,5 @@ export interface IUser {
   isBanned: boolean;
   isSuspended: boolean;
   emailVerified: boolean;
+  likedServices: IService[];
 }

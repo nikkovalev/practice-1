@@ -2,6 +2,7 @@ import React, { ChangeEvent, FC } from "react";
 import cn from "classnames";
 import { toast } from "react-toastify";
 import Image from "next/image";
+import { getDate } from "@/helpers/date";
 
 import { IUser } from "@/models/IUser";
 
@@ -9,7 +10,7 @@ import anonymousImage from "@/assets/images/anonymous.jpg";
 import starIcon from "@/assets/images/star.svg";
 import editIcon from "@/assets/images/edit.svg";
 
-import styles from "./ProfileLayout.module.scss";
+import styles from "./PL.module.scss";
 
 const MONTHS = [
   "января",
@@ -26,18 +27,13 @@ const MONTHS = [
   "декабря",
 ];
 
-interface IProfileLayoutTop {
+interface IPLTop {
   user: IUser | null;
   updateProfileAvatar: (data: FormData) => void;
 }
 
-export const ProfileLayoutTop: FC<IProfileLayoutTop> = ({ user, updateProfileAvatar }) => {
-  const date = new Date(user?.regDate || "");
-  const month = MONTHS[date.getDay()];
-  const day = date.getDate();
-  const year = date.getFullYear();
-  const hours = date.getHours();
-  const minutes = date.getMinutes();
+export const PLTop: FC<IPLTop> = ({ user, updateProfileAvatar }) => {
+  const formattedDate = getDate(user?.regDate ?? "", "dd MMMM yyyy, hh:mm");
 
   const handleUploadAvatar = (event: ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files && event.target.files[0];
@@ -79,9 +75,7 @@ export const ProfileLayoutTop: FC<IProfileLayoutTop> = ({ user, updateProfileAva
           <ul className={styles.userStatistics}>
             <li>
               <span>Зарегистрировался</span>
-              <b>
-                {("0" + day).slice(-2)} {month} {year}, {hours}:{minutes}
-              </b>
+              <b>{formattedDate}</b>
             </li>
             <li>
               <span>На сервисе уже</span>
