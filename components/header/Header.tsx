@@ -29,7 +29,7 @@ export const Header = () => {
   // store
   const { theme } = useAppSelector((state) => state.global);
   const { isAuth } = useAppSelector((state) => state.auth);
-  const { changeTheme } = useActions();
+  const { changeTheme, saveUser } = useActions();
   // Refs
   const {
     isShow: isShowSearch,
@@ -59,6 +59,10 @@ export const Header = () => {
     const blurEl = document.getElementById("blur");
     if (blurEl) blurEl.className = isShowMenu ? "active" : "";
   }, [isShowMenu]);
+
+  useEffect(() => {
+    if (!isMeError && me) saveUser(me);
+  }, [me, isMeError, saveUser]);
 
   return (
     <>

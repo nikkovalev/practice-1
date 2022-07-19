@@ -14,10 +14,10 @@ export const globalSlice = createSlice({
   name: "global",
   initialState: initialState,
   reducers: {
-    changeTheme: (state) => {
+    changeTheme: (state: GlobalState) => {
       state.theme = state.theme === "light" ? "dark" : "light";
     },
-    setModalPrevUrl: (state, action: PayloadAction<string>) => {
+    setModalPrevUrl: (state: GlobalState, action: PayloadAction<string>) => {
       state.modalPrevUrl = action.payload;
     },
   },

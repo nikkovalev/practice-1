@@ -12,28 +12,13 @@ import editIcon from "@/assets/images/edit.svg";
 
 import styles from "./PL.module.scss";
 
-const MONTHS = [
-  "января",
-  "февраля",
-  "марта",
-  "апреля",
-  "мая",
-  "июня",
-  "июля",
-  "августа",
-  "сентября",
-  "октября",
-  "ноября",
-  "декабря",
-];
-
 interface IPLTop {
   user: IUser | null;
   updateProfileAvatar: (data: FormData) => void;
 }
 
 export const PLTop: FC<IPLTop> = ({ user, updateProfileAvatar }) => {
-  const formattedDate = getDate(user?.regDate ?? "", "dd MMMM yyyy, hh:mm");
+  const formattedDate = getDate(user?.regDate, "dd MMMM yyyy, hh:mm");
 
   const handleUploadAvatar = (event: ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files && event.target.files[0];

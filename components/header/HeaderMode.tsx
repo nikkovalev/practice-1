@@ -11,6 +11,8 @@ interface IHeaderMode {
 }
 
 export const HeaderMode: FC<IHeaderMode> = ({ theme, handleChange }) => {
+  const handleClick = () => handleChange();
+
   useEffect(() => {
     document.body.className = theme === "dark" ? "dark" : "";
   }, [theme]);
@@ -21,7 +23,7 @@ export const HeaderMode: FC<IHeaderMode> = ({ theme, handleChange }) => {
         [styles.headerModeLight]: theme === "dark",
         [styles.headerModeDark]: theme === "light",
       })}
-      onClick={handleChange}
+      onClick={handleClick}
     >
       <span />
       <span>

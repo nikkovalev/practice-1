@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import cn from "classnames";
 import { toast } from "react-toastify";
 import { useForm } from "react-hook-form";
-import { useAppSelector } from "@/hooks/useTypedSelector";
 
 import { useGet2faCodeMutation, useUpdateProfileEmailMutation } from "@/store/auth/authApi";
 
@@ -24,7 +23,6 @@ export const Settings = () => {
     handleSubmit: handleSubmit2,
     formState: { errors: errors2 },
   } = useForm();
-  const { user } = useAppSelector((state) => state.auth);
   const [get2faCode, { isLoading: is2faCodeLoading, data: dataCode }] = useGet2faCodeMutation();
   const [updateProfileEmail, { isLoading: isEmailLoading, data: newEmail }] =
     useUpdateProfileEmailMutation();
