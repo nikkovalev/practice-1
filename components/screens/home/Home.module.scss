@@ -52,7 +52,7 @@
 
 .homeTop {
   @apply md:relative;
-  margin-top: 100px;
+  margin-top: 80px;
   padding-bottom: 332px;
   & h1 {
     @apply font-bold;
@@ -70,7 +70,7 @@
     margin-bottom: 40px;
   }
   @media (max-width: $breakpoint1450) {
-    margin-top: 50px;
+    margin-top: 40px;
     & h1 {
       font-size: 50px;
     }

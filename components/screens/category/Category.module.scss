@@ -24,6 +24,7 @@
     z-index: 999;
     padding: 30px 10px;
     transform: translateX(-100%);
+    transition: transform 0.25s;
     & > div {
       &:first-child {
         margin-bottom: 20px;
@@ -43,7 +44,7 @@
   }
 }
 .filtersLeftActive {
-  animation: transform 0.25s forwards;
+  transform: translateX(0);
 }
 .filtersInputs {
   @apply flex items-center flex-wrap lg:flex-col;

@@ -27,7 +27,7 @@ a {
   padding-top: 122px;
   &__preview {
     @apply relative bg-center bg-cover bg-no-repeat bg-fixed;
-    padding-top: 230px;
+    padding-top: 220px;
   }
   &__content {
     @apply mb-44 sm:mb-28;
@@ -36,17 +36,21 @@ a {
     }
   }
   @media (max-width: $breakpoint1450) {
-    padding-top: 97px;
+    padding-top: 108px;
   }
   @media (max-width: $breakpoint1200) {
-    padding-top: 86px;
+    padding-top: 90px;
     &__preview {
       padding-top: 130px;
     }
   }
+  @media (max-width: $breakpoint768) {
+    padding-top: 70px;
+  }
   @media (max-width: $breakpoint350) {
+    padding-top: 118px;
     &__preview {
-      padding-top: 150px;
+      padding-top: 180px;
     }
   }
 }
@@ -138,7 +142,7 @@ a {
   }
 }
 
-.blur {
+#blur {
   height: 100vh;
   position: fixed;
   left: 0;
@@ -146,12 +150,11 @@ a {
   top: 0;
   bottom: 0;
   backdrop-filter: blur(10px);
-  z-index: 40;
+  z-index: 20;
   display: none;
-}
-
-.blur_active {
-  display: block;
+  &.active {
+    display: block;
+  }
 }
 
 .text-ellipsis {

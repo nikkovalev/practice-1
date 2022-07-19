@@ -10,30 +10,32 @@ interface IHeaderSelect {
 
 export const HeaderSelect: FC<IHeaderSelect> = ({ items }) => {
   const [value, setValue] = useState<string>(items[0]);
-  const { ref, isShow, setIsShow } = useOutside(false);
+  const { isShow, ref, setIsShow } = useOutside(false);
 
-  const handleClickButton = () => setIsShow(true);
-  const handleSelect = (val: string) => () => {
-    setValue(val);
-    setIsShow(false);
+  const handleSelect = (value: string) => () => {
+    setValue(value);
+    setIsShow(!isShow);
   };
+  const handleClick = () => setIsShow(!isShow);
 
   return (
-    <div className={styles.headerSelect}>
-      <button className="dark:text-white-100" onClick={handleClickButton}>
-        {value}
-      </button>
+    <div className={styles.headerSelectWrapper}>
+      <div className={styles.headerSelect} onClick={handleClick}>
+        <span className={styles.headerSelectText}>{value}</span>
+      </div>
       <div
         ref={ref}
         className={cn(styles.headerSelectPopper, {
           [styles.headerSelectPopperActive]: isShow,
         })}
       >
-        {items.map((i: string) => (
-          <span key={i} onClick={handleSelect(i)}>
-            {i}
-          </span>
-        ))}
+        <ul>
+          {items.map((i) => (
+            <li key={i} onClick={handleSelect(i)}>
+              <span className={styles.headerSelectText}>{i}</span>
+            </li>
+          ))}
+        </ul>
       </div>
     </div>
   );

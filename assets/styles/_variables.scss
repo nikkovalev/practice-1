@@ -31,13 +31,3 @@ $breakpoint992: 991.98px;
 $breakpoint768: 767.98px;
 $breakpoint480: 479.98px;
 $breakpoint350: 349.98px;
-
-// animations
-@keyframes transform {
-  0% {
-    transform: translateX(-100%);
-  }
-  100% {
-    transform: translateX(0%);
-  }
-}

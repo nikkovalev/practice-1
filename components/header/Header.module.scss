@@ -1,251 +1,107 @@
 @import "../../assets/styles/_variables.scss";
 
 .header {
-  @apply fixed top-0 left-0 right-0 bg-white-100 bg-opacity-75 dark:bg-black-400 dark:bg-opacity-75;
+  @apply fixed top-0 left-0 right-0 bg-white-100 dark:bg-black-400 dark:bg-opacity-75 z-20 bg-opacity-75;
   height: 122px;
+  padding: 20px 0;
   backdrop-filter: blur(10px);
-  transition: background-color 0.3s;
-  z-index: 70;
   @media (max-width: $breakpoint1450) {
-    height: 97px;
+    height: 108px;
   }
   @media (max-width: $breakpoint1200) {
-    height: 86px;
-  }
-  @media (max-width: $breakpoint350) {
-    height: 120px;
-  }
-}
-
-.headerContent {
-  @apply flex items-center justify-between;
-  padding: 20px;
-  @media (max-width: $breakpoint1450) {
-    padding: 18px 10px;
-  }
-  @media (max-width: $breakpoint350) {
-    @apply flex-col;
-  }
-  &Active {
-    @apply relative bg-black-300 z-50;
-  }
-}
-
-.headerLeft {
-  @apply flex items-center lg:justify-between;
-}
-
-.headerSelects {
-  @apply flex items-center lg:hidden;
-  ul {
-    display: none;
-  }
-  @media (max-width: $breakpoint1200) {
-    @apply fixed top-0 left-0 bottom-0 bg-black-400 flex flex-col items-start z-50;
-    width: 100%;
-    max-width: fit-content;
-    padding: 100px 10px 10px;
-    min-height: 100vh;
-    overflow-y: auto;
-    transform: translateX(-100%);
-    ul {
-      display: block;
-    }
-  }
-  @media (max-width: $breakpoint350) {
-    padding-top: 130px;
-  }
-}
-
-.headerMenu {
-  @apply relative;
-  @media (max-width: $breakpoint1200) {
-    display: none;
-  }
-}
-
-.headerSelectsActive {
-  @media (max-width: $breakpoint1200) {
-    animation: transform 0.25s forwards;
-  }
-}
-
-.headerLogo {
-  @apply mr-10 flex-shrink-0;
-  @media (max-width: $breakpoint1450) {
-    max-width: 200px;
-  }
-  @media (max-width: $breakpoint1200) {
-    @apply relative z-10 flex items-center;
-  }
-  @media (max-width: $breakpoint350) {
-    margin-right: 0;
-  }
-}
-
-.headerPopper {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 273px;
-  border-radius: 10px;
-  padding: 12.5px 30px;
-  background-color: $black-300;
-  transform: translateY(30px);
-  visibility: hidden;
-  opacity: 0;
-  transition: opacity 0.25s, transform 0.25s;
-  z-index: 40;
-}
-
-.headerNav {
-  @apply flex items-center justify-between flex-wrap;
-  & > li {
-    width: 50%;
-    margin: 7.5px 0;
-    & > a {
-      color: $gray-400;
-      transition: color 0.25s;
-      &:hover {
-        color: $secondary-400;
-      }
-    }
-  }
-  @media (max-width: $breakpoint1200) {
-    padding-left: 25px;
-    margin-top: 20px;
-    & li {
-      width: 100%;
-      font-size: 18px;
-      margin: 0 0 20px 0;
-    }
-  }
-}
-
-.headerNavAuth {
-  @media (max-width: $breakpoint1200) {
-    order: 3;
-    transform: translateY(-20%);
-  }
-}
-
-.headerPopperActive {
-  visibility: visible;
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.headerIconButton {
-  @apply relative flex items-center z-10;
-  height: 40px;
-  margin-right: 26px;
-  cursor: pointer;
-  & svg {
-    & path {
-      transition: fill 0.25s, stroke 0.25s;
-    }
-  }
-  &:hover svg path {
-    fill: $secondary-400;
-  }
-  @media (max-width: $breakpoint480) {
-    margin-right: 16px;
-  }
-}
-
-.headerLikeIcon:hover svg path {
-  stroke: $secondary-400;
-}
-
-.headerIconButtonCount {
-  @apply absolute flex items-center justify-center w-5 h-5 bg-primary-400 rounded-full font-extrabold text-white-100;
-  font-size: 13px;
-  top: 3px;
-  right: 1px;
-}
-
-.headerSelect {
-  @apply relative font-medium text-lg lg:inline-block;
-  width: 60px;
-  height: 40px;
-  margin-right: 15px;
-  &:hover button {
-    border-color: $secondary-400;
-    color: $secondary-400;
-  }
-  button {
-    @apply relative w-full h-full flex items-center justify-center rounded-full;
-    border: 2px solid $gray-400;
-    transition: color 0.25s, border-color 0.25s;
-    @media (max-width: $breakpoint1200) {
-      color: #ffffff !important;
-    }
-  }
-}
-
-.headerSelectPopper {
-  @apply flex flex-col w-full rounded-full bg-black-400 py-2;
-  position: absolute;
-  left: 0;
-  top: 0;
-  border: 2px solid $gray-400;
-  transform: translateY(20%);
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.25s, transform 0.25s;
-  & span {
-    @apply w-full text-center text-white-100 cursor-pointer;
-    transition: color 0.25s;
-    &:hover {
-      color: $secondary-400;
-    }
-  }
-}
-
-.headerSelectPopperActive {
-  transform: translateY(-10%);
-  opacity: 1;
-  visibility: visible;
-}
-
-.headerIcon {
-  @apply relative flex items-center justify-center z-10;
-  width: 50px;
-  height: 50px;
-  border: 2px solid $gray-400;
-  border-radius: 50%;
-  transition: border-color 0.25s;
-  cursor: pointer;
-  &:hover {
-    border-color: $secondary-400;
-    & svg path {
-      fill: $secondary-400;
-      stroke: $secondary-400;
-    }
-  }
-  & svg path {
-    transition: fill 0.25s, stroke 0.25s;
+    height: 90px;
   }
   @media (max-width: $breakpoint768) {
-    transition: none;
-    &:hover {
-      @apply border-gray-400;
+    padding: 10px 0;
+    height: 70px;
+  }
+  @media (max-width: $breakpoint350) {
+    height: 118px;
+  }
+}
+
+.headerContainer {
+  @apply flex items-center justify-between;
+}
+
+//Header logo
+.headerLogo {
+  @apply xl:w-[200px] lg:w-auto sm:mr-[10px] xxs:mb-[10px];
+}
+
+// Header navigation
+.headerNavBtn {
+  @apply flex items-center justify-center;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-left: 40px;
+  border: 2px solid $gray-400;
+  transition: border-color 0.25s;
+  & > svg > path {
+    transition: fill 0.25s;
+  }
+  &:hover {
+    border-color: $secondary-400;
+    & > svg > path {
+      fill: $secondary-400;
     }
-    & svg path {
-      @apply fill-gray-400 stroke-gray-400 dark:fill-white-100 dark:stroke-white-100;
+  }
+  @media (max-width: $breakpoint1200) {
+    margin-left: 0;
+  }
+}
+
+.headerNavPopper {
+  @apply bg-black-300;
+  position: absolute;
+  top: 0;
+  left: 40px;
+  width: 275px;
+  border-radius: 10px;
+  padding: 20px 30px;
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(20%);
+  &Active {
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.headerNavPopperList {
+  @apply flex flex-wrap;
+  & > li {
+    margin-bottom: 15px;
+    text-align: start;
+    & > a {
+      @apply text-gray-400 font-medium;
+      transition: color 0.25s;
+      font-size: 18px;
+      &:hover {
+        @apply text-secondary-400;
+      }
+    }
+    &:nth-child(2n + 1) {
+      width: 74px;
+      margin-right: 30px;
+    }
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+  @media (max-width: $breakpoint1200) {
+    @apply flex-col;
+    padding: 20px 35px;
+    & > li {
+      margin-bottom: 20px;
     }
   }
 }
 
-.headerIconActive {
-  border-color: $secondary-400 !important;
-  & svg path {
-    fill: $secondary-400 !important;
-    stroke: $secondary-400 !important;
-  }
-}
-
-.headerChangeMode {
+// Global change theme
+.headerMode {
   @apply relative rounded-full w-20 h-10 p-2;
   border: 2px solid $gray-400;
   & span:first-child {
@@ -270,34 +126,287 @@
       transition: fill 0.25s, stroke 0.25s;
     }
   }
-}
-
-.headerChangeModeLight {
-  & span:first-child {
-    transform: translateX(0);
+  &Light {
+    & span:first-child {
+      transform: translateX(0);
+    }
+    & svg:first-child path {
+      fill: $white-100;
+      stroke: $white-100;
+    }
   }
-  & svg:first-child path {
-    fill: $white-100;
-    stroke: $white-100;
-  }
-}
-
-.headerChangeModeDark {
-  & span:first-child {
-    transform: translateX(102%);
-  }
-  & svg:last-child path {
-    fill: $white-100;
-    stroke: $white-100;
+  &Dark {
+    & span:first-child {
+      transform: translateX(102%);
+    }
+    & svg:last-child path {
+      fill: $white-100;
+      stroke: $white-100;
+    }
   }
 }
 
+// Header icon
+
+.headerLinkIcon {
+  @apply relative mr-[25px] sm:mr-[15px];
+  & > svg > path {
+    transition: stroke 0.25s, fill 0.25s;
+  }
+  &:hover > svg > path {
+    fill: $secondary-400;
+  }
+  & > b {
+    @apply flex items-center justify-center absolute -top-[7px] -right-[9px] bg-primary-400 text-white-100 font-extrabold;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    font-size: 13px;
+  }
+  &LargeMargin {
+    @apply mr-[34px] sm:mr-[20px];
+  }
+}
+.headerLike {
+  &:hover > svg > path {
+    stroke: $secondary-400;
+  }
+}
+
+// Header user
+
+.headerUserWrapper {
+  @apply relative lg:order-2;
+  margin-right: 12px;
+  @media (max-width: $breakpoint1200) {
+    @apply bg-black-300;
+    width: 100%;
+    margin-top: 20px;
+    margin-right: 0;
+    margin-bottom: 20px;
+  }
+}
+
+.headerUser {
+  @apply flex items-center bg-black-300 cursor-pointer;
+  min-width: 170px;
+  padding: 12px;
+  border-radius: 10px 10px 0 0;
+  @media (max-width: $breakpoint1200) {
+    width: 100%;
+    border-radius: 0;
+    padding: 20px 10px 10px;
+  }
+}
+
+.headerUserAvatar {
+  @apply bg-cover bg-center bg-no-repeat flex-shrink-0;
+  width: 40px;
+  height: 40px;
+  border: 2px solid $gray-400;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.headerUserInfo {
+  @apply flex-grow;
+  & > div {
+    @apply flex items-center justify-between;
+    & > span {
+      @apply inline-block text-white-100 font-medium;
+      font-size: 17px;
+      margin-right: 7px;
+    }
+  }
+  & > b {
+    @apply inline-block font-bold text-secondary-400;
+    margin-top: 5px;
+    font-size: 17px;
+  }
+  @media (max-width: $breakpoint1200) {
+    @apply flex items-center;
+    & > div {
+      & svg {
+        display: none;
+      }
+    }
+    & > b {
+      margin-top: 0;
+    }
+  }
+}
+
+.headerUserPopper {
+  @apply absolute w-full bg-black-300;
+  border-top: 2px solid $gray-500;
+  padding: 20px 10px 20px 20px;
+  visibility: hidden;
+  opacity: 0;
+  border-radius: 0 0 10px 10px;
+  transition: opacity 0.25s;
+  &Active {
+    visibility: visible;
+    opacity: 1;
+  }
+  @media (max-width: $breakpoint1200) {
+    @apply static;
+    visibility: visible;
+    opacity: 1;
+    padding: 0 50px 90px 60px;
+    border-top: none;
+  }
+}
+
+.headerUserPopperList {
+  & > li {
+    margin-bottom: 15px;
+    &:last-child {
+      margin-bottom: 0;
+    }
+    & > a {
+      @apply flex items-center justify-between text-gray-400 hover:text-secondary-400 font-medium;
+      transition: color 0.25s;
+      & > b {
+        @apply flex items-center justify-center font-extrabold;
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        font-size: 12px;
+      }
+    }
+  }
+}
+
+// Header button
+.headerButton {
+  @apply lg:order-3;
+  margin-left: 15px;
+  @media (max-width: $breakpoint1200) {
+    margin-left: auto;
+    margin-right: auto;
+    min-width: 230px !important;
+    order: 5;
+    &Translated {
+      order: 3;
+      transform: translateY(-90px);
+      &:active {
+        transform: translateY(-90px) scale(0.9) !important;
+      }
+    }
+  }
+}
+
+// Header select
+.headerSelectWrapper {
+  position: relative;
+  margin-right: 15px;
+}
+
+.headerSelect {
+  @apply flex items-center justify-center rounded-full cursor-pointer hover:border-secondary-400 hover:text-secondary-400;
+  min-width: 60px;
+  border: 2px solid $gray-400;
+  padding: 9px 19px;
+  transition: border-color 0.25s, color 0.25s;
+}
+
+.headerSelectPopper {
+  @apply absolute -top-[10px] w-full rounded-full bg-black-400 z-10;
+  border: 2px solid $gray-400;
+  padding: 9px 19px;
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(20%);
+  transition: transform 0.25s;
+  & > ul {
+    @apply flex flex-col items-center justify-between w-full;
+    & > li {
+      font-size: 18px;
+      margin-bottom: 10px;
+      cursor: pointer;
+      &:hover > span {
+        @apply text-secondary-400;
+      }
+      & > span {
+        @apply text-white-100;
+      }
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+  &Active {
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.headerSelectText {
+  @apply dark:text-white-100 font-medium lg:text-white-100;
+  font-size: 18px;
+}
+
+// Header menu
+.headerMenu {
+  @apply flex items-center;
+  @media (max-width: $breakpoint1200) {
+    @apply fixed left-0 top-0 bottom-0 w-fit h-screen flex-col items-start bg-black-400 overflow-y-auto;
+    padding: 90px 0 0 0;
+    transform: translateX(-100%);
+    transition: transform 0.25s;
+    &Active {
+      transform: translate(0);
+    }
+  }
+  @media (max-width: $breakpoint768) {
+    padding-top: 80px;
+  }
+  @media (max-width: $breakpoint350) {
+    @apply w-full;
+    padding-top: 118px;
+  }
+}
+
+.headerMenuBtn {
+  display: none;
+  @media (max-width: $breakpoint1200) {
+    @apply flex relative z-50;
+  }
+}
+
+// Header left
+.headerLeft {
+  @apply flex items-center flex-grow;
+  @media (max-width: $breakpoint1200) {
+    position: relative;
+    z-index: 40;
+    &::before {
+      @apply fixed top-0 left-0 right-0 bottom-0 h-full bg-black-400 hidden;
+      content: "";
+    }
+    &Active::before {
+      display: block;
+    }
+  }
+  @media (max-width: $breakpoint350) {
+    @apply flex-col justify-center;
+  }
+}
+
+// Header actions
+.headerActions {
+  @apply flex items-center lg:order-1;
+  @media (max-width: $breakpoint1200) {
+    margin: 0 10px;
+  }
+}
+
+// Header search
 .headerSearch {
   @apply absolute top-0 left-0 right-0 w-full bg-primary-400;
   height: 120px;
-  opacity: 0;
   visibility: hidden;
-  transition: opacity 0.25s;
   z-index: 100;
   & input {
     @apply w-full h-full outline-none border-none text-white-100 font-bold;
@@ -313,6 +422,9 @@
       font-size: 24px;
     }
   }
+  &Active {
+    visibility: visible;
+  }
 }
 
 .headerSearchIcon {
@@ -327,156 +439,10 @@
   }
 }
 
-.headerSearchActive {
-  opacity: 1;
-  visibility: visible;
-}
-
-.headerSell {
-  @apply lg:w-full lg:flex;
-  margin-left: 15px;
-  @media (max-width: $breakpoint1200) {
-    margin-left: 0;
-    order: 2;
-    transform: translateY(-120%);
-    &:active {
-      transform: translateY(-120%) scale(0.95) !important;
-    }
-  }
-}
-.headerUser {
-  @apply relative;
-  margin: 0 13px;
-}
-.headerUserActive {
-  @media (max-width: $breakpoint1200) {
-    @apply order-1;
-    width: 250px;
-    margin: 0 -10px;
-  }
-}
-.headerUserTop {
-  @apply flex items-start bg-white-100 p-3 cursor-pointer;
-  width: 170px;
-  height: 64px;
-  border-radius: 10px 10px 0 0;
-  border: 2px solid $gray-400;
-  transition: background-color 0.25s;
-  @media (max-width: $breakpoint1200) {
-    @apply w-full border-none;
-    background-color: $black-300;
-    border-radius: 0;
-    min-height: 423px;
-    margin-top: 20px;
-  }
-}
-.headerUserAvatar {
-  @apply bg-cover bg-no-repeat bg-center bg-white-100 rounded-full;
-  width: 40px;
-  height: 40px;
-  border: 2px solid $gray-400;
-  margin-right: 10px;
-  flex-shrink: 0;
-}
-.headerUserInfo {
-  @apply w-full;
-  font-size: 17px;
-  line-height: 20px;
-  & div {
-    @apply flex items-center;
-    cursor: pointer;
-    transition: color 0.25s;
-    & svg {
-      margin-left: 7px;
-    }
-  }
-  & b {
-    @apply text-secondary-400;
-  }
-  @media (max-width: $breakpoint1200) {
-    @apply flex items-center;
-    margin-top: 8px;
-    & div {
-      width: fit-content;
-      color: #ffffff;
-      margin-right: 10px;
-    }
-    & svg {
-      display: none;
-    }
-  }
-}
-
-.headerUserPopper {
-  @apply w-full bg-black-300;
-  position: absolute;
-  left: 0;
-  top: 0;
-  border-top: 2px solid #23272e;
-  padding: 20px 10px 20px 20px;
-  border-radius: 0 0 10px 10px;
-  transform: translateY(21%);
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.25s;
-  & ul {
-    @apply flex flex-col;
-    & li {
-      margin-bottom: 15px;
-      &:last-child {
-        margin-bottom: 0;
-      }
-      a {
-        @apply w-full flex items-center justify-between;
-        &:hover b {
-          color: $secondary-400;
-        }
-        & b {
-          @apply text-gray-400 text-base font-medium;
-          transition: color 0.25s;
-        }
-      }
-    }
-  }
-  @media (max-width: $breakpoint1200) {
-    opacity: 1;
-    visibility: visible;
-    border-top: none;
-    padding-left: 60px;
-    background-color: transparent;
-    transform: translateY(25%);
-    & ul li {
-      width: 140px;
-    }
-  }
-}
-.headerUserCount {
-  @apply w-6 h-6 flex items-center justify-center text-xs text-white-100 font-extrabold bg-primary-400 rounded-full;
-  margin-left: 10px;
-  &Yellow {
-    @apply text-black-400 bg-secondary-400;
-  }
-  &Gray {
-    @apply bg-gray-400;
-  }
-}
-.headerUserPopperActive {
-  opacity: 1;
-  visibility: visible;
-}
-.mr0 {
-  margin-right: 0;
-}
-
-.headerUserIcon {
-  @media (max-width: $breakpoint1200) {
-    margin-right: 0;
-  }
-}
-
-.headerNavButton {
-  @apply hidden lg:flex;
-  margin-left: 15px;
+.headerSearchWrapper {
+  @apply fixed top-0 left-0 right-0 bottom-0;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 20;
 }
 
 .headerSearchItems {
@@ -488,19 +454,12 @@
     margin-top: 120px;
   }
 }
-.headerSearchWrapper {
-  @apply fixed top-0 left-0 right-0 bottom-0;
-  background-color: rgba(0, 0, 0, 0.8);
-  z-index: 50;
-}
+
 .headerSearchItem {
   @apply flex items-center;
   width: calc(25% - 10px);
   padding: 25px 0;
   border-bottom: 2px solid $primary-500;
-  &:nth-last-child(-n + 4) {
-    border-bottom-color: transparent;
-  }
   & > div:first-child {
     @apply bg-center bg-cover bg-no-repeat flex-shrink-0;
     width: 60px;

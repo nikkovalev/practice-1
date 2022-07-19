@@ -12,7 +12,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
     <Provider store={store}>
       <PersistGate persistor={persistor}>
-        <div className="blur"></div>
+        <div id="blur" />
         <ToastContainer
           bodyClassName="cursor-auto"
           toastClassName="cursor-auto"

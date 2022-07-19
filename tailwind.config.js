@@ -34,6 +34,7 @@ module.exports = {
       md: { max: "991.98px" },
       sm: { max: "767.98px" },
       xs: { max: "479.98px" },
+      xxs: { max: "349.98px" },
     },
   },
   plugins: [],

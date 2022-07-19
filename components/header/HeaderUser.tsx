@@ -1,103 +1,100 @@
-import React, { FC } from "react";
+import React, { FC, useMemo } from "react";
 import cn from "classnames";
-import Link from "next/link";
-import { useOutside } from "@/hooks/useOutside";
 import { url } from "@/helpers/url";
+import { useOutside } from "@/hooks/useOutside";
 
 import { IUser } from "@/models/IUser";
 
+import { Link } from "@/components/link";
+
 import { ArrowIcon } from "../icons";
-import anonymousImage from "@/assets/images/anonymous.jpg";
+import anonymous from "@/assets/images/anonymous.jpg";
 
 import styles from "./Header.module.scss";
 
-const list = [
-  {
-    title: "Профиль",
-    path: "/profile",
-  },
-  {
-    title: "Предложения",
-    path: "/offers",
-    count: 29,
-  },
-  {
-    title: "Продажи",
-    path: "/sales",
-    count: 0,
-  },
-  {
-    title: "Покупки",
-    path: "/purchases",
-    count: 0,
-    color: "Gray",
-  },
-  {
-    title: "Финансы",
-    path: "/finance",
-  },
-  {
-    title: "Отзывы",
-    path: "/reviews",
-    count: 14,
-    color: "Yellow",
-  },
-  {
-    title: "Настройки",
-    path: "/settings",
-  },
-];
-
 interface IHeaderUser {
-  user: IUser | null;
-  isShowMenu: boolean;
+  me: IUser;
 }
 
-export const HeaderUser: FC<IHeaderUser> = ({ user, isShowMenu }) => {
-  const { ref, isShow, setIsShow } = useOutside(false);
+export const HeaderUser: FC<IHeaderUser> = ({ me }) => {
+  const { isShow, ref, setIsShow } = useOutside(false);
+  const list = useMemo<{ title: string; href: string; count?: number; color?: string }[]>(
+    () => [
+      {
+        title: "Профиль",
+        href: "/profile",
+      },
+      {
+        title: "Предложения",
+        href: "/offers",
+        count: 29,
+      },
+      {
+        title: "Продажи",
+        href: "/sales",
+        count: 4,
+      },
+      {
+        title: "Покупки",
+        href: "/purchases",
+        count: 0,
+        color: "bg-gray-400 text-white-100",
+      },
+      {
+        title: "Финансы",
+        href: "/finance",
+      },
+      {
+        title: "Отзывы",
+        href: "/reviews",
+        count: 14,
+        color: "bg-secondary-400 text-black-400",
+      },
+      {
+        title: "Настройки",
+        href: "/settings",
+      },
+    ],
+    []
+  );
 
-  const handleClick = () => setIsShow(!isShow);
+  const handleClick = () => setIsShow((prev) => !prev);
 
   return (
-    <div ref={ref} className={cn(styles.headerUser, { [styles.headerUserActive]: isShowMenu })}>
-      {user && (
+    <div ref={ref} className={styles.headerUserWrapper}>
+      <div className={styles.headerUser} onClick={handleClick}>
         <div
-          className={cn("dark:bg-black-300 dark:border-transparent", styles.headerUserTop)}
-          onClick={handleClick}
-        >
-          <div
-            className={styles.headerUserAvatar}
-            style={{ backgroundImage: url(!!user.photoUrl ? user.photoUrl : anonymousImage.src) }}
-          />
-          <div className={styles.headerUserInfo}>
-            <div className="w-full flex items-center justify-between dark:text-white-100">
-              {user.username || "Anonimus"} <ArrowIcon />
-            </div>
-            <b>1500₽</b>
+          className={styles.headerUserAvatar}
+          style={{ backgroundImage: url(me.photoUrl || anonymous.src) }}
+        />
+        <div className={styles.headerUserInfo}>
+          <div>
+            <span>{me.username}</span>
+            <ArrowIcon />
           </div>
+          <b>1500₽</b>
         </div>
-      )}
+      </div>
       <div
         className={cn(styles.headerUserPopper, {
           [styles.headerUserPopperActive]: isShow,
         })}
       >
-        <ul>
-          {list.map(({ title, path, count, color }) => (
-            <li key={path}>
-              <Link href={path}>
-                <a>
-                  <b>{title}</b>
-                  {count !== undefined && (
-                    <span
-                      className={cn(styles.headerUserCount, {
-                        [styles[`headerUserCount${color}`]]: !!color,
-                      })}
-                    >
-                      {count}
-                    </span>
-                  )}
-                </a>
+        <ul className={styles.headerUserPopperList}>
+          {list.map((i) => (
+            <li key={i.href}>
+              <Link href={i.href}>
+                {i.title}
+                {i.count !== undefined && (
+                  <b
+                    className={cn({
+                      "bg-primary-400 text-white-100": !i.color,
+                      [i.color as string]: !!i.color,
+                    })}
+                  >
+                    {i.count}
+                  </b>
+                )}
               </Link>
             </li>
           ))}

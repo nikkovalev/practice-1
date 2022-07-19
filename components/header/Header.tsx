@@ -1,63 +1,40 @@
 import React, { useEffect } from "react";
-import cn from "classnames";
 import Image from "next/image";
-import Link from "next/link";
-import { useRouter } from "next/router";
-import { useOutside } from "@/hooks/useOutside";
+import cn from "classnames";
 import { useAppSelector } from "@/hooks/useTypedSelector";
 import { useActions } from "@/hooks/useActions";
+import { useOutside } from "@/hooks/useOutside";
 
-import { useGetMeQuery } from "@/store/auth/authApi";
+import { navList } from "./header.data";
+
 import { useSearchMutation } from "@/store/categories/categoriesApi";
+import { useFetchLikedServicesQuery, useGetMeQuery } from "@/store/auth/authApi";
 
-import { MenuBurger } from "./Menu";
+import { HeaderNavButton } from "./HeaderNavButton";
+import { HeaderMode } from "./HeaderMode";
 import { HeaderSearch } from "./HeaderSearch";
 import { HeaderCategory } from "./HeaderCategory";
-import { HeaderActions } from "./HeaderActions";
+import { Link } from "@/components/link";
+import { HeaderUser } from "./HeaderUser";
+import { Button } from "@/components/ui";
+import { HeaderSelect } from "./HeaderSelect";
 
+import { CloseIcon, HamburgerIcon, LikeIcon, MessageIcon, SearchIcon, UserIcon } from "../icons";
 import logoIcon from "@/assets/images/logo.svg";
 import logo2Icon from "@/assets/images/logo-2.svg";
-import { SearchIcon, LikeIcon, UserIcon, MessageIcon, CloseIcon, HamburgerIcon } from "../icons";
 
 import styles from "./Header.module.scss";
 
-const navList = [
-  {
-    name: "Игры",
-    path: "/games",
-  },
-  {
-    name: "Наши плюсы",
-    path: "/our-advantages",
-  },
-  {
-    name: "Cервисы",
-    path: "/services",
-  },
-  {
-    name: "О нас",
-    path: "/about-us",
-  },
-  {
-    name: "Соц сети",
-    path: "/socials",
-  },
-  {
-    name: "Поддержка",
-    path: "/support",
-  },
-  {
-    name: "Помощь",
-    path: "/help",
-  },
-];
-
 export const Header = () => {
-  const router = useRouter();
+  // store
+  const { theme } = useAppSelector((state) => state.global);
+  const { isAuth } = useAppSelector((state) => state.auth);
+  const { changeTheme } = useActions();
+  // Refs
   const {
+    isShow: isShowSearch,
     ref: searchRef,
     ref2: searchRef2,
-    isShow: isShowSearch,
     setIsShow: setIsShowSearch,
   } = useOutside(false);
   const {
@@ -66,36 +43,30 @@ export const Header = () => {
     isShow: isShowMenu,
     setIsShow: setIsShowMenu,
   } = useOutside(false);
-  const { theme } = useAppSelector((state) => state.global);
-  const { isAuth, user } = useAppSelector((state) => state.auth);
-  const { setModalPrevUrl, changeTheme, saveUser } = useActions();
-  const { data: userData, refetch: getMe } = useGetMeQuery("", {
-    skip: !isAuth,
-    refetchOnMountOrArgChange: true,
-  });
+  // Requests
   const [search, { data: searchCategories }] = useSearchMutation();
+  const { data: likedServices } = useFetchLikedServicesQuery(true, { skip: !isAuth });
+  const { data: me, refetch: getMe, isError: isMeError } = useGetMeQuery("", { skip: !isAuth });
+  // variables
+  const isLikedServices = !!likedServices?.length && likedServices.length > 0;
+  const currencies = ["₽", "$", "€"];
+  const languages = ["Ru", "En"];
 
-  const changeMode = () => changeTheme();
-  const goToAuth = () => setModalPrevUrl(router.asPath);
-  const openSearch = () => setIsShowSearch(true);
-  const handleClickUser = () => getMe();
-  const handleClickBurger = () => setIsShowMenu(!isShowMenu);
+  const handleShowSearch = () => setIsShowSearch(true);
+  const handleClickMenuBtn = () => setIsShowMenu(!isShowMenu);
 
   useEffect(() => {
-    document.documentElement.classList[theme === "light" ? "remove" : "add"]("dark");
-  }, [theme]);
-
-  useEffect(() => {
-    const blurEl = document.querySelector(".blur");
-    if (blurEl) blurEl.className = `blur ${isShowMenu ? "blur_active" : ""}`;
+    const blurEl = document.getElementById("blur");
+    if (blurEl) blurEl.className = isShowMenu ? "active" : "";
   }, [isShowMenu]);
-
-  useEffect(() => {
-    if (userData) saveUser(userData);
-  }, [userData]);
 
   return (
     <>
+      {isAuth && isMeError && (
+        <div className="fixed top-[108px] left-0 right-0 bg-secondary-400 z-20 pt-[10px] pb-[10px]">
+          <div className="inner-container font-medium">Подтвердите электронную почту</div>
+        </div>
+      )}
       {isShowSearch && (
         <div className={styles.headerSearchWrapper}>
           {!!searchCategories && (
@@ -111,101 +82,99 @@ export const Header = () => {
       )}
       <header className={styles.header}>
         <HeaderSearch ref={searchRef} isShow={isShowSearch} search={search} />
-        <div
-          className={cn("inner-container", styles.headerContent, {
-            [styles.headerContentActive]: isShowMenu,
-          })}
-        >
-          <div className={styles.headerLeft}>
-            <Link href="/">
-              <a className={styles.headerLogo}>
-                <Image
-                  className="flex-shrink-0"
-                  width={window.screen.width > 1200 ? 270 : 124}
-                  height={window.screen.width > 1200 ? 79 : 34}
-                  src={window.screen.width > 1200 ? logoIcon : logo2Icon}
-                  alt="YaonPay"
-                />
-              </a>
+        <div className={cn("inner-container", styles.headerContainer)}>
+          <div
+            className={cn(styles.headerLeft, {
+              [styles.headerLeftActive]: isShowMenu,
+            })}
+          >
+            <Link className={styles.headerLogo} href="/">
+              <Image
+                width={window.screen.width > 1200 ? 270 : 124}
+                height={window.screen.width > 1200 ? 79 : 34}
+                src={window.screen.width > 1200 ? logoIcon : logo2Icon}
+                alt="YaonPay"
+              />
             </Link>
-            <MenuBurger navList={navList} />
-          </div>
-          <div className="flex items-center">
-            <div className={styles.headerIconButton} onClick={openSearch}>
-              <SearchIcon />
-            </div>
-            <Link href="/favorites">
-              <a
-                className={cn(styles.headerIconButton, styles.headerLikeIcon, {
-                  "w-9": !!user?.likedServices.length,
+            <HeaderNavButton />
+            <div className="flex items-center ml-auto xxs:ml-0">
+              <button className={styles.headerLinkIcon} onClick={handleShowSearch}>
+                <SearchIcon />
+              </button>
+              <Link
+                href="/favorites"
+                className={cn(styles.headerLinkIcon, styles.headerLike, {
+                  [styles.headerLinkIconLargeMargin]: isLikedServices,
                 })}
               >
                 <LikeIcon />
-                {!!user?.likedServices?.length && (
-                  <span className={styles.headerIconButtonCount}>{user.likedServices.length}</span>
-                )}
-              </a>
-            </Link>
-            {!isAuth && (
-              <Link href="/auth">
-                <a
-                  className={cn(styles.headerIconButton, styles.headerUserIcon)}
-                  onClick={goToAuth}
-                >
+                {isLikedServices && <b>{likedServices?.length}</b>}
+              </Link>
+              {!isAuth && (
+                <Link className={styles.headerLinkIcon} href="/auth">
                   <UserIcon />
-                </a>
-              </Link>
-            )}
-            {isAuth && !user && (
-              <button
-                className={cn(styles.headerIconButton, styles.headerUserIcon)}
-                onClick={handleClickUser}
-              >
-                <UserIcon />
-              </button>
-            )}
-            {isAuth && user && (
-              <Link href="/chats">
-                <a className={cn("w-9", styles.mr0, styles.headerIconButton)}>
+                </Link>
+              )}
+              {isAuth && !!me && (
+                <Link
+                  className={cn(styles.headerLinkIcon, styles.headerLinkIconLargeMargin)}
+                  href="/chat"
+                >
                   <MessageIcon />
-                  <span className={styles.headerIconButtonCount}>2</span>
-                </a>
-              </Link>
-            )}
-            <div
-              ref={menuRef2}
-              className={cn(styles.headerIcon, styles.headerNavButton, {
-                [styles.headerIconActive]: isShowMenu,
-              })}
-              onClick={handleClickBurger}
-            >
-              {isShowMenu ? <CloseIcon pathClassName="dark:fill-white-100" /> : <HamburgerIcon />}
+                  <b>2</b>
+                </Link>
+              )}
+              {isAuth && !me && (
+                <button className={styles.headerLinkIcon} onClick={getMe}>
+                  <UserIcon />
+                </button>
+              )}
+              <button
+                ref={menuRef2}
+                className={cn(styles.headerNavBtn, styles.headerMenuBtn)}
+                onClick={handleClickMenuBtn}
+              >
+                {isShowMenu ? <CloseIcon pathClassName="fill-white-100" /> : <HamburgerIcon />}
+              </button>
             </div>
-            {window.screen.width >= 1200 && (
-              <HeaderActions
-                menuRef={menuRef}
-                isShowMenu={isShowMenu}
-                isAuth={isAuth}
-                theme={theme}
-                user={user}
-                navList={navList}
-                changeMode={changeMode}
-              />
-            )}
+          </div>
+          <div
+            ref={menuRef}
+            className={cn(styles.headerMenu, {
+              [styles.headerMenuActive]: isShowMenu,
+            })}
+          >
+            {isAuth && !!me && <HeaderUser me={me} />}
+            <div className={styles.headerActions}>
+              <HeaderSelect items={currencies} />
+              <HeaderSelect items={languages} />
+              <HeaderMode theme={theme} handleChange={changeTheme} />
+            </div>
+            <Button
+              className={cn(styles.headerButton, {
+                [styles.headerButtonTranslated]: isAuth && !!me,
+              })}
+              variant="outlined"
+              size="small"
+            >
+              Продать
+            </Button>
+            <div className="hidden lg:block lg:order-3">
+              <ul
+                className={cn(styles.headerNavPopperList, {
+                  "-mt-[80px] pl-[60px] pr-[60px]": isAuth && !!me,
+                })}
+              >
+                {navList.map((i) => (
+                  <li key={i.href}>
+                    <Link href={i.href}>{i.title}</Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
       </header>
-      {window.screen.width < 1200 && (
-        <HeaderActions
-          menuRef={menuRef}
-          isShowMenu={isShowMenu}
-          isAuth={isAuth}
-          theme={theme}
-          user={user}
-          navList={navList}
-          changeMode={changeMode}
-        />
-      )}
     </>
   );
 };
