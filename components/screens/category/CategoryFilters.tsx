@@ -40,14 +40,14 @@ export const CategoryFilters: FC<ICategoryFilters> = ({
   const handleToggle = () => setIsShow(!isShow);
 
   useEffect(() => {
-    const blurEl = document.querySelector(".blur");
-    if (blurEl) blurEl.className = `blur ${isShow ? "blur_active" : ""}`;
+    const blurEl = document.getElementById("blur");
+    if (blurEl) blurEl.className = isShow ? "active" : "";
   }, [isShow]);
 
   return (
     <div className={styles.filters}>
       <div ref={ref} className={cn(styles.filtersLeft, { [styles.filtersLeftActive]: isShow })}>
-        <div className="hidden lg:flex items-center">
+        <div className="filter_menu_top hidden lg:flex items-center">
           <div onClick={handleToggle}>
             <ArrowIcon pathClassName="fill-primary-400 stroke-primary-400" />
           </div>
@@ -75,12 +75,18 @@ export const CategoryFilters: FC<ICategoryFilters> = ({
           ))}
         </div>
         <div className="flex items-center lg:flex-col lg:items-start">
-          <div className={styles.filterText}>
-            <ArrowIcon pathClassName="fill-black-400 dark:fill-white-100" type="two" />
+          <div className={cn("text_with_icon", styles.filterText)}>
+            <ArrowIcon
+              pathClassName="fill-black-400 dark:fill-white-100 lg:fill-white-100"
+              type="two"
+            />
             По рейтингу
           </div>
-          <div className={styles.filterText} onClick={handleChangeOrder}>
-            <ArrowIcon pathClassName="fill-black-400 dark:fill-white-100" type="two" />
+          <div className={cn("text_with_icon", styles.filterText)} onClick={handleChangeOrder}>
+            <ArrowIcon
+              pathClassName="fill-black-400 dark:fill-white-100 lg:fill-white-100"
+              type="two"
+            />
             По цене
           </div>
           <Checkbox

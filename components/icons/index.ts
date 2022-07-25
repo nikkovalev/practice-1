@@ -13,3 +13,7 @@ export * from "./InfoIcon";
 export * from "./RotateIcon";
 export * from "./FilterIcon";
 export * from "./CounterIcons";
+export * from "./AttentionIcon";
+export * from "./BellIcon";
+export * from "./ChatIcon";
+export * from "./MoreIcon";

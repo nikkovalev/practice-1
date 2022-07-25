@@ -1,7 +1,7 @@
 @import "../../../assets/styles/_variables.scss";
 
 .checkbox {
-  @apply flex items-center dark:text-white-100 font-medium cursor-pointer flex-shrink-0;
+  @apply flex items-center dark:text-white-100 font-medium cursor-pointer flex-shrink-0 lg:text-white-100;
   font-size: 17px;
   & input {
     display: none;
@@ -16,7 +16,7 @@
     border-radius: 5px;
     margin-right: 10px;
     &::before {
-      @apply dark:text-white-100 font-medium;
+      @apply dark:text-white-100 font-medium lg:text-white-100;
       content: "\2713";
       display: block;
       font-size: 17px;

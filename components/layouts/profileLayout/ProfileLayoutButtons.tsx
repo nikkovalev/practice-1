@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 
 import { Button } from "@/components/ui";
 
-import styles from "./PL.module.scss";
+import styles from "./ProfileLayout.module.scss";
 
 const buttons = [
   {
@@ -37,11 +37,11 @@ const buttons = [
   },
 ];
 
-interface IPLButtons {
+interface IProfileLayoutButtons {
   title: string;
 }
 
-export const PLButtons: FC<IPLButtons> = ({ title }) => {
+export const ProfileLayoutButtons: FC<IProfileLayoutButtons> = ({ title }) => {
   const router = useRouter();
 
   return (

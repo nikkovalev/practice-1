@@ -33,7 +33,7 @@
   margin-bottom: 40px;
   & form {
     @apply flex items-center;
-    & div {
+    & > div {
       margin-right: 10px;
     }
     & input {
@@ -41,7 +41,7 @@
     }
   }
   @media (max-width: $breakpoint1450) {
-    & form input {
+    & form > div {
       width: auto;
     }
   }
@@ -51,9 +51,6 @@
       & div {
         width: calc(33.3% - 10px);
       }
-      & input {
-        width: 100%;
-      }
     }
   }
   @media (max-width: $breakpoint768) {
@@ -61,6 +58,7 @@
       & div {
         width: 100%;
         margin-bottom: 15px;
+        margin-right: 0;
       }
     }
   }

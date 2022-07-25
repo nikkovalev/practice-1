@@ -4,7 +4,6 @@ import cn from "classnames";
 import { ICategory } from "@/models/ICategory";
 
 import { useFetchOffersMutation } from "@/store/categories/categoriesApi";
-import { useAppSelector } from "@/hooks/useTypedSelector";
 
 import { CategoryLayout } from "@/components/layouts/categoryLayout";
 import { CategoryOffer } from "./CategoryOffer";
@@ -18,7 +17,6 @@ interface ICategoryProps {
 }
 
 export const Category: FC<ICategoryProps> = ({ category }) => {
-  const { isAuth, user } = useAppSelector((state) => state.auth);
   const [getOffers, { data: offers, isLoading }] = useFetchOffersMutation();
   const [view, setView] = useState<"list" | "card">(window.screen.width >= 1200 ? "list" : "card");
 

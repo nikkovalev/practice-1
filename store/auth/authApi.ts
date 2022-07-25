@@ -10,7 +10,7 @@ export const authApi = createApi({
   baseQuery,
   tagTypes: ["liked-services"],
   endpoints: (build) => ({
-    registerUser: build.mutation<{ id: string }, IAuthReg>({
+    registerUser: build.mutation<{ id: number }, IAuthReg>({
       query: (data) => ({
         url: "/auth/reg",
         method: "POST",

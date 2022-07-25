@@ -1,17 +1,13 @@
+@import "../../../assets/styles/_variables.scss";
+
 .top {
-  padding-bottom: 50px;
+  @apply pb-[50px] lg:pb-[180px] sm:pb-[255px] xxs:pb-[320px];
 }
 .topLeft {
-  width: 50%;
-  margin-right: 50px;
+  @apply w-1/2 mr-[50px] lg:w-full lg:mr-0;
   & > p {
     width: 100%;
     margin-bottom: 30px;
-  }
-  & > b {
-    @apply text-gray-400 font-bold;
-    font-size: 32px;
-    margin-bottom: 25px;
   }
 }
 .topInfo {
@@ -29,12 +25,40 @@
   }
 }
 .topActions {
-  @apply flex items-center justify-between;
-  margin-top: 25px;
+  @apply flex items-center justify-between flex-wrap;
+  & > div:nth-child(3) {
+    margin: 0 20px;
+  }
   & > button {
     min-width: 140px;
   }
-  & > div:nth-child(2) {
-    margin: 0 20px;
+  @media (max-width: $breakpoint1200) {
+    width: fit-content;
+    position: absolute;
+    bottom: -150px;
+    left: 20px;
   }
+  @media (max-width: $breakpoint768) {
+    @apply justify-start left-[10px];
+    width: calc(100% - 20px);
+    bottom: -225px;
+    & > div:nth-child(3) {
+      width: 100%;
+      margin: 20px 0 0 0;
+    }
+    & > button {
+      width: 100%;
+      margin-top: 20px;
+    }
+  }
+  @media (max-width: $breakpoint350) {
+    bottom: -290px;
+  }
+}
+.topContent {
+  @apply relative z-10 flex items-center lg:flex-col;
+}
+.topPrice {
+  @apply w-full inline-block mb-[25px] text-gray-400 font-bold sm:w-auto sm:mb-0 sm:mr-[20px] xxs:w-full xxs:mb-[20px];
+  font-size: 32px;
 }

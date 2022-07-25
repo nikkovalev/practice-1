@@ -23,7 +23,7 @@ export const Layout: FC<ILayout> = ({ children, title, withImage }) => {
         <title>YaonPay - {title}</title>
       </Head>
       <Header />
-      <div className="flex-grow page__content">{children}</div>
+      <main className="flex-grow page__content">{children}</main>
       <Footer />
     </div>
   );

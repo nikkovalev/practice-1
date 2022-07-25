@@ -10,11 +10,10 @@ import { useActions } from "@/hooks/useActions";
 import { useRegisterUserMutation } from "@/store/auth/authApi";
 import { toast } from "react-toastify";
 
-import { Modal } from "@/components/modal/Modal";
+import { Modal, styles as modalStyles } from "@/components/modal/Modal";
 import { Button } from "@/components/ui";
 import { Input } from "@/components/ui/Input/Input";
-
-import modalStyles from "@/components/modal/Modal.module.scss";
+import { Checkbox } from "@/components/ui/Checkbox/Checkbox";
 
 const AuthPage: NextPage = () => {
   const {
@@ -75,42 +74,36 @@ const AuthPage: NextPage = () => {
               <h3 className="text-primary-400 font-bold">Войти</h3>
             </a>
           </Link>
-          <h1 className={modalStyles.ml50}>Зарегистрироваться</h1>
+          <h1 className="ml-[50px] sm:ml-[25px]">Зарегистрироваться</h1>
         </div>
         <div className={modalStyles.registerInputs}>
-          <div className="mb-5">
-            <Input
-              {...register("login", { required: true })}
-              placeholder="Имя учётной записи YaonPay"
-              isError={!!errors.login}
-            />
-          </div>
-          <div className="mb-5">
-            <Input
-              {...register("email", { required: true })}
-              placeholder="Электронная почта"
-              isError={!!errors.email}
-            />
-          </div>
-          <div>
-            <Input
-              {...register("password", { required: true })}
-              type="password"
-              placeholder="Пароль"
-              isError={!!errors.password}
-            />
-          </div>
-          <div>
-            <Input
-              {...register("confirm_password", {
-                required: true,
-                validate: validatePassword,
-              })}
-              type="password"
-              placeholder="Подтвердить пароль"
-              isError={!!errors.confirm_password}
-            />
-          </div>
+          <Input
+            {...register("login", { required: true })}
+            className="mb-5"
+            placeholder="Имя учётной записи YaonPay"
+            isError={!!errors.login}
+          />
+          <Input
+            {...register("email", { required: true })}
+            className="mb-5"
+            placeholder="Электронная почта"
+            isError={!!errors.email}
+          />
+          <Input
+            {...register("password", { required: true })}
+            type="password"
+            placeholder="Пароль"
+            isError={!!errors.password}
+          />
+          <Input
+            {...register("confirm_password", {
+              required: true,
+              validate: validatePassword,
+            })}
+            type="password"
+            placeholder="Подтвердить пароль"
+            isError={!!errors.confirm_password}
+          />
           {errors.confirm_password && (
             <div className="text-red-100 mt-4 text-center w-full">
               {errors.confirm_password.message}
@@ -128,8 +121,8 @@ const AuthPage: NextPage = () => {
             type="checkbox"
           />
           <label htmlFor="register_checkbox">
-            С<span> лицензионным соглашением</span>, включая
-            <span> агентский договор правилами сайта </span>
+            С<a href="#"> лицензионным соглашением</a>, включая
+            <a href="#"> агентский договор правилами сайта </a>
             ознакомился, принимаю в полном объеме
           </label>
         </div>

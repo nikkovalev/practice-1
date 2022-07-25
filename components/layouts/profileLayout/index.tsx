@@ -8,12 +8,12 @@ import { useActions } from "@/hooks/useActions";
 import { useUpdateProfileAvatarMutation } from "@/store/auth/authApi";
 
 import { Layout } from "@/components/layouts/Layout";
-import { PLButtons } from "./PLButtons";
-import { PLTop } from "./PLTop";
+import { UserPreview } from "@/components/userPreview/UserPreview";
+import { ProfileLayoutButtons } from "./ProfileLayoutButtons";
 
 import profileBg from "@/assets/images/profile_bg.png";
 
-import styles from "./PL.module.scss";
+import styles from "./ProfileLayout.module.scss";
 
 interface IProfileLayout {
   title: string;
@@ -27,29 +27,29 @@ export const ProfileLayout: FC<IProfileLayout> = ({ children, title }) => {
   const router = useRouter();
 
   useEffect(() => {
-    if (!isAuth) {
-      toast.error("Авторизуйтесь", { toastId: "profile_error" });
-      router.push("/auth");
-    }
-  }, []);
-
-  useEffect(() => {
     if (newAvatar) {
       toast.success("Аватар успешно изменен!");
       saveAvatar(newAvatar.avatarURL);
     }
+    // eslint-disable-next-line
   }, [newAvatar]);
+
+  if (!isAuth) {
+    router.replace("/auth");
+    toast.error("Авторизуйтесь", { toastId: "auth_error" });
+    return null;
+  }
 
   return (
     <Layout title={title} withImage={true}>
-      <section
-        className={cn("page__preview", styles.layoutPreview)}
+      <div
+        className={cn("page__preview", styles.preview)}
         style={{ backgroundImage: `url(${profileBg.src})` }}
       >
-        <PLTop user={user} updateProfileAvatar={updateProfileAvatar} />
-        <PLButtons title={title} />
-      </section>
-      <section className="inner-container">{children}</section>
+        <UserPreview user={user} updateProfileAvatar={updateProfileAvatar} isOwner={true} />
+        <ProfileLayoutButtons title={title} />
+      </div>
+      <div className="inner-container">{children}</div>
     </Layout>
   );
 };

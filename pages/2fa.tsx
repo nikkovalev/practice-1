@@ -9,9 +9,7 @@ import { useLogin2faMutation } from "@/store/auth/authApi";
 
 import { Input } from "@/components/ui/Input/Input";
 import { Button } from "@/components/ui";
-import { Modal } from "@/components/modal/Modal";
-
-import modalStyles from "@/components/modal/Modal.module.scss";
+import { Modal, styles as modalStyles } from "@/components/modal/Modal";
 
 export const CodeEntryPage = () => {
   const { register, handleSubmit } = useForm();

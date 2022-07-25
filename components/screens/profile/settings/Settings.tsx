@@ -108,7 +108,7 @@ export const Settings = () => {
           {is2faCodeLoading ? (
             <Loader />
           ) : (
-            dataCode?.token.split("").map((l) => <span key={l}>{l}</span>)
+            dataCode?.token.split("").map((l, idx) => <span key={`${l}_${idx}`}>{l}</span>)
           )}
         </div>
       )}

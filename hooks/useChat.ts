@@ -8,7 +8,7 @@ import { IMessage } from "@/models/IChat";
 import { IUser } from "@/models/IUser";
 
 export const useChat = (
-  to: "GLOBAL" | number | string | undefined = 3,
+  to: "GLOBAL" | number | string | undefined,
   token: string,
   me: IUser,
   setOnline: Dispatch<SetStateAction<boolean>>
@@ -20,8 +20,8 @@ export const useChat = (
 
   const sendMessage = (message: string) => {
     setCurrentMessages((prev) => [
-      { id: Date.now(), type: 0, from: me.id, sentDate: new Date().toISOString(), text: message },
       ...prev,
+      { id: Date.now(), type: 0, from: me.id, sentDate: new Date().toISOString(), text: message },
     ]);
     socketRef.current?.emit("send", {
       chat: chatId,
@@ -30,12 +30,13 @@ export const useChat = (
   };
 
   useEffect(() => {
+    if (!to) return;
     socketRef.current = io(process.env.API_URL as string, {
       extraHeaders: {
         Authorization: `Bearer ${token}`,
       },
     });
-  }, [token]);
+  }, [token, to]);
 
   useEffect(() => {
     if (!to || !socketRef.current) return;
@@ -44,18 +45,18 @@ export const useChat = (
       to,
     });
     socket.on("join_info", (data: { chat: number }) => setChatId(data.chat));
-    socket.on("message", (message: IMessage) =>
+    socket.on("message", (message: IMessage) => {
       setCurrentMessages((prev) => [
-        { ...message, id: Date.now(), type: 0, sentDate: new Date().toISOString() },
         ...prev,
-      ])
-    );
+        { ...message, id: Date.now(), type: 0, sentDate: new Date().toISOString() },
+      ]);
+    });
     socket.on("online", (data) => setOnline(data.online));
 
     return () => {
       socket.emit("leave", me.id);
     };
-  }, [to, socketRef, setOnline]);
+  }, [to, socketRef]);
 
   useEffect(() => {
     if (chatId) fetchMessages({ chatId, page: 1 });

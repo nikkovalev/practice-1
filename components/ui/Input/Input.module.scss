@@ -1,7 +1,11 @@
 @import "../../../assets/styles/variables.scss";
 
+.inputWrapper {
+  @apply relative w-[320px];
+}
+
 .input {
-  width: 320px;
+  width: 100%;
   padding: 20px 25px;
   font-size: 17px;
   font-weight: 500;

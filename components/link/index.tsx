@@ -3,14 +3,17 @@ import AppLink from "next/link";
 
 interface ILink {
   href: string;
-  children: ReactNode | string;
+  children?: ReactNode | string;
   className?: any;
+  style?: any;
 }
 
-export const Link: FC<ILink> = ({ className, href, children }) => {
+export const Link: FC<ILink> = ({ className, style, href, children }) => {
   return (
     <AppLink href={href}>
-      <a className={className}>{children}</a>
+      <a className={className} style={style}>
+        {children}
+      </a>
     </AppLink>
   );
 };

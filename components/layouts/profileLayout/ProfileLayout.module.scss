@@ -1,0 +1,43 @@
+@import "../../../assets/styles/_variables.scss";
+
+.preview {
+  padding-bottom: 30px;
+  margin-bottom: 30px;
+}
+
+.buttons {
+  @apply flex items-center justify-between mb-[50px] lg:mb-[30px];
+  @media (max-width: $breakpoint1200) {
+    overflow-x: auto;
+    & a {
+      @apply flex-shrink-0;
+      margin-right: 10px;
+    }
+  }
+}
+
+.button {
+  @apply flex-grow;
+  min-width: 160px;
+  margin-right: 20px;
+  &:last-child {
+    margin-right: 0;
+  }
+}
+
+.title {
+  @apply font-bold text-white-100;
+  font-size: 52px;
+  line-height: 67.6px;
+  @media (max-width: $breakpoint1200) {
+    margin-top: 30;
+  }
+  @media (max-width: $breakpoint992) {
+    font-size: 45px;
+    line-height: 55px;
+  }
+  @media (max-width: $breakpoint480) {
+    font-size: 30px;
+    line-height: 39px;
+  }
+}

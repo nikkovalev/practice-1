@@ -122,7 +122,7 @@ export const Header = () => {
               {isAuth && !!me && (
                 <Link
                   className={cn(styles.headerLinkIcon, styles.headerLinkIconLargeMargin)}
-                  href="/chat"
+                  href="/chats"
                 >
                   <MessageIcon />
                   <b>2</b>

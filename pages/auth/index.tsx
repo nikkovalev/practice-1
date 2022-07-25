@@ -11,11 +11,9 @@ import { IAuthLogin } from "@/models/IAuth";
 import { useLoginUserMutation } from "@/store/auth/authApi";
 import { useActions } from "@/hooks/useActions";
 
-import { Modal } from "@/components/modal/Modal";
+import { Modal, styles as modalStyles } from "@/components/modal/Modal";
 import { Button } from "@/components/ui";
 import { Input } from "@/components/ui/Input/Input";
-
-import modalStyles from "@/components/modal/Modal.module.scss";
 
 const AuthPage: NextPage = () => {
   const {
@@ -53,9 +51,9 @@ const AuthPage: NextPage = () => {
 
   return (
     <Modal title="Войти" handleClose={handleClose}>
-      <div className="flex flex-col items-center">
+      <div className="flex flex-col items-center w-full">
         <div className={modalStyles.modalTop}>
-          <h1 className={modalStyles.mr50}>Войти</h1>
+          <h1 className="mr-[50px] sm:mr-[25px]">Войти</h1>
           <Link href="/register">
             <a>
               <h3 className="text-primary-400 font-bold">Зарегистрироваться</h3>
@@ -63,21 +61,18 @@ const AuthPage: NextPage = () => {
           </Link>
         </div>
         <form onSubmit={handleSubmit(handleLogin)}>
-          <div className="mb-5">
-            <Input
-              {...register("login", { required: true })}
-              placeholder="Имя или почта"
-              isError={!!errors.login}
-            />
-          </div>
-          <div>
-            <Input
-              {...register("password", { required: true })}
-              placeholder="Пароль"
-              type="password"
-              isError={!!errors.password}
-            />
-          </div>
+          <Input
+            {...register("login", { required: true })}
+            className="mb-5"
+            placeholder="Имя или почта"
+            isError={!!errors.login}
+          />
+          <Input
+            {...register("password", { required: true })}
+            placeholder="Пароль"
+            type="password"
+            isError={!!errors.password}
+          />
           <Button
             className={modalStyles.authButton}
             color="secondary"

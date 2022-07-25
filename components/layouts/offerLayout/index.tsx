@@ -27,8 +27,8 @@ interface IOfferLayout {
 
 export const OfferLayout: FC<IOfferLayout> = ({ children, offer, category }) => {
   const service = category.services.find((s) => s.id === offer.serviceId);
-  const filters = service?.filters?.filter((f) => offer.filters.indexOf(f.id as any) !== -1);
-  const { user } = useAppSelector((state) => state.auth);
+  const filters = service?.filters?.filter((f) => offer.filters.includes(f.id + ""));
+  const { user, isAuth } = useAppSelector((state) => state.auth);
 
   return (
     <Layout title={category.name} withImage={true}>
@@ -37,7 +37,7 @@ export const OfferLayout: FC<IOfferLayout> = ({ children, offer, category }) => 
         style={{ backgroundImage: url(category.banner) }}
       >
         <div className="mask" />
-        <div className="relative z-10 inner-container flex items-center">
+        <div className={cn("inner-container", styles.topContent)}>
           <div className={styles.topLeft}>
             <Link href={`/categories/${category.slug}?page=${service?.id}`}>
               <a className="link_with_arrow">
@@ -49,7 +49,7 @@ export const OfferLayout: FC<IOfferLayout> = ({ children, offer, category }) => 
             </Link>
             <h1 className="page__title">FUT Champions</h1>
             <div className={styles.topInfo}>
-              {offer.server && (
+              {offer.server !== undefined && (
                 <div>
                   <span>Сервер</span>
                   {category.servers && <b>{category.servers[offer.server]}</b>}
@@ -58,13 +58,13 @@ export const OfferLayout: FC<IOfferLayout> = ({ children, offer, category }) => 
               {filters?.map((f) => (
                 <div key={f.id}>
                   <span>{f.name}</span>
-                  <b>{f.values[1]}</b>
+                  <b>{f.values[0]}</b>
                 </div>
               ))}
             </div>
             <p className="page__desc">{offer.description}</p>
-            <b>{offer.price}₽</b>
             <div className={styles.topActions}>
+              <b className={styles.topPrice}>{offer.price}₽</b>
               <Counter initial={offer.quantity} />
               <Select
                 label="Банковская карта"
@@ -74,10 +74,10 @@ export const OfferLayout: FC<IOfferLayout> = ({ children, offer, category }) => 
               <Button color="secondary">Купить</Button>
             </div>
           </div>
-          <div>{offer.seller.id !== user?.id && <Chat variant="user" to={offer.seller.id} />}</div>
+          {isAuth && offer.seller.id !== user?.id && <Chat variant="normal" />}
         </div>
       </div>
-      <div className="flex-grow container">{children}</div>
+      <div className="flex-grow inner-container">{children}</div>
     </Layout>
   );
 };

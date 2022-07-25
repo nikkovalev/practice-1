@@ -1,0 +1,106 @@
+@import "../../assets/styles/_variables.scss";
+
+.reviewsHeader {
+  @apply flex items-center mb-[50px] sm:items-start sm:flex-col sm:mb-[20px];
+}
+.reviewHeaderLeft {
+  @apply flex items-center mr-[50px] sm:mr-0;
+  & > b,
+  & > span {
+    @apply text-secondary-400 dark:text-primary-400 font-bold;
+    font-size: 52px;
+    line-height: 130%;
+  }
+  & > span {
+    @apply inline-block text-black-400 dark:text-white-100 ml-[10px];
+  }
+  @media (max-width: $breakpoint480) {
+    & > b,
+    & > span {
+      font-size: 30px;
+    }
+  }
+}
+.reviewHeaderRight {
+  @apply flex items-center mt-[15px] sm:mt-[10px];
+  & > b {
+    @apply inline-block font-bold text-gray-400 mr-[10px];
+    font-size: 32px;
+  }
+}
+.reviewsList {
+  &_normal {
+    @apply flex items-center flex-wrap justify-between;
+  }
+}
+
+// Review
+.review {
+  @apply flex items-start bg-white-200 dark:bg-black-300 p-[30px] mb-[10px] sm:p-[20px] sm:relative;
+  border-radius: 10px;
+  &_short {
+    @apply w-full;
+  }
+  &_normal {
+    width: calc(50% - 10px);
+  }
+}
+.reviewAvatar {
+  @media (max-width: $breakpoint768) {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+  }
+  @media (max-width: $breakpoint480) {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+.reviewRight {
+  @apply ml-[15px] pt-[10px] sm:pt-0 sm:ml-0;
+  & > p {
+    @apply font-medium dark:text-white-100;
+    font-size: 17px;
+    line-height: 150%;
+  }
+}
+.reviewInfo {
+  @apply flex items-center sm:flex-col;
+  & > time {
+    @apply font-medium text-gray-400;
+    font-size: 15px;
+  }
+}
+.reviewHeader {
+  @apply flex items-center justify-between mb-[20px] sm:mb-[10px] sm:pl-[55px] xs:pl-0 xs:pt-[50px];
+  & > b {
+    @apply font-bold text-primary-400;
+    font-size: 20px;
+  }
+  @media (max-width: $breakpoint768) {
+    & > b {
+      font-size: 18px;
+    }
+  }
+  @media (max-width: $breakpoint480) {
+    @apply flex-col;
+  }
+}
+
+// Reviews more
+.reviewsMore {
+  @apply flex items-center justify-center cursor-pointer bg-white-200 dark:bg-black-300 min-h-[100px] sm:min-h-[70px];
+  border-radius: 10px;
+  & > span {
+    @apply inline-block text-[24px] font-bold dark:text-white-100 ml-[15px] mr-[5px] sm:text-[20px];
+  }
+  & > b {
+    @apply text-[24px] font-bold text-primary-400 dark:text-secondary-400 sm:text-[20px];
+  }
+  & > svg {
+    transition: transform 0.5s;
+  }
+  &:hover > svg {
+    transform: rotate(250deg);
+  }
+}

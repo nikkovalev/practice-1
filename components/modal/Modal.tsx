@@ -5,17 +5,17 @@ import { CloseIcon } from "../icons";
 import styles from "./Modal.module.scss";
 
 interface IModal {
-  title: string;
+  title?: string;
   children: ReactNode;
   hideClose?: boolean;
   handleClose?: () => void;
 }
 
-export const Modal: FC<IModal> = ({ title, children, hideClose, handleClose }) => {
+const Modal: FC<IModal> = ({ title, children, hideClose, handleClose }) => {
   return (
     <div className={styles.modal}>
       <Head>
-        <title>YaonPay - {title}</title>
+        <title>YaonPay {title && "- " + title}</title>
       </Head>
       {!hideClose && (
         <div className={styles.modalClose} onClick={handleClose}>
@@ -26,3 +26,5 @@ export const Modal: FC<IModal> = ({ title, children, hideClose, handleClose }) =
     </div>
   );
 };
+
+export { Modal, styles };

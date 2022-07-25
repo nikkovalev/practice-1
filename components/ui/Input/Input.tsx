@@ -6,6 +6,7 @@ import { EyeIcon } from "@/components/icons";
 import styles from "./Input.module.scss";
 
 interface IInput {
+  className?: string;
   type?: "password" | "text";
   name: string;
   placeholder: string;
@@ -15,12 +16,15 @@ interface IInput {
 }
 
 export const Input = forwardRef<HTMLInputElement, IInput>(
-  ({ name, placeholder, type, isError, onBlur, onChange }, ref: ForwardedRef<HTMLInputElement>) => {
+  (
+    { className, name, placeholder, type, isError, onBlur, onChange },
+    ref: ForwardedRef<HTMLInputElement>
+  ) => {
     const [inputType, setInputType] = useState<"password" | "text">(type || "text");
     const handleClickIcon = () => setInputType((t) => (t === "text" ? "password" : "text"));
 
     return (
-      <div className="relative">
+      <div className={cn(className, styles.inputWrapper)}>
         <input
           ref={ref}
           type={inputType}

@@ -26,17 +26,6 @@
     transform: translateX(-100%);
     transition: transform 0.25s;
     & > div {
-      &:first-child {
-        margin-bottom: 20px;
-        & h3 {
-          @apply text-white-100 font-bold;
-          font-size: 30px;
-          margin-left: 10px;
-        }
-        & div {
-          transform: rotate(90deg);
-        }
-      }
       &:nth-child(3) {
         margin-left: 25px;
       }
@@ -69,7 +58,6 @@
 }
 .filtersInput {
   @apply relative flex-shrink;
-  width: 270px;
   margin-right: 10px;
   margin-bottom: 10px;
   & input {
@@ -85,30 +73,16 @@
     transform: translateY(-50%);
     pointer-events: none;
   }
+  & > div {
+    width: 270px;
+  }
   @media (max-width: $breakpoint1200) {
     margin-right: 0;
   }
 }
 .filterText {
-  @apply flex items-center dark:text-white-100 font-medium cursor-pointer flex-shrink-0;
-  font-size: 17px;
-  transition: color 0.25s;
+  @apply mr-[20px] lg:mb-[20px];
   margin-right: 20px;
-  & svg {
-    margin-right: 10px;
-    & path {
-      transition: fill 0.25s;
-    }
-  }
-  &:hover {
-    @apply text-secondary-400;
-    & svg path {
-      @apply fill-secondary-400;
-    }
-  }
-  @media (max-width: $breakpoint1200) {
-    margin-bottom: 20px;
-  }
 }
 .filterSelect {
   margin-right: 10px;
@@ -163,10 +137,10 @@
     }
   }
   @media (max-width: $breakpoint1450) {
-    width: calc(33.3% - 7.5px);
+    width: calc(33.3% - 6.6px);
   }
   @media (max-width: $breakpoint1200) {
-    width: calc(50% - 7.5px);
+    width: calc(50% - 5px);
     min-height: 150px;
     padding: 20px;
     & > span {
@@ -274,10 +248,11 @@
   @apply flex flex-row;
   width: 70%;
   margin-left: 10px;
-  & > span {
+  & > a {
     @apply inline-block font-medium dark:text-white-100;
     font-size: 17px;
     transition: color 0.25s;
+    margin-right: 10px;
     &:hover {
       @apply text-primary-400;
     }
@@ -292,7 +267,8 @@
   }
   &L {
     @apply flex-col;
-    & > span {
+    & > a {
+      margin-right: 0;
       margin-bottom: 5px;
     }
   }

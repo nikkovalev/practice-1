@@ -1,0 +1,148 @@
+@import "../../assets/styles/_variables.scss";
+
+// Wrapper
+.wrapper {
+  @apply flex justify-center mb-[90px] lg:flex-col-reverse lg:max-w-full px-[10px] lg:bg-black-300 lg:bg-opacity-60 lg:relative lg:mb-[50px];
+  @media (max-width: $breakpoint1200) {
+    backdrop-filter: blur(10px);
+  }
+}
+
+// Left
+.left {
+  @apply relative flex items-center w-[970px] bg-black-300 bg-opacity-60 lg:w-full lg:bg-transparent;
+  backdrop-filter: blur(10px);
+  padding: 35px 35px 35px 0;
+  margin-right: 10px;
+  border-radius: 10px;
+  @media (max-width: $breakpoint1200) {
+    @apply static justify-center;
+    backdrop-filter: blur(0);
+    padding: 0 0 20px 0;
+    margin-right: 0;
+  }
+  @media (max-width: $breakpoint768) {
+    padding-bottom: 70px;
+  }
+  @media (max-width: $breakpoint350) {
+    padding-bottom: 130px;
+  }
+}
+.leftAvatar {
+  @apply flex-shrink-0 absolute top-1/2 left-[145px] -translate-y-1/2 bg-center bg-no-repeat bg-cover rounded-full;
+  width: 250px;
+  height: 250px;
+  border: 6px solid $black-300;
+  & > div {
+    @apply relative;
+    & > input {
+      display: none;
+    }
+  }
+  &_owner {
+    @apply cursor-pointer;
+  }
+  @media (max-width: $breakpoint1450) {
+    @apply w-[200px] h-[200px];
+  }
+  @media (max-width: $breakpoint1200) {
+    @apply static translate-y-0 mr-[20px];
+  }
+  @media (max-width: $breakpoint768) {
+    @apply w-[80px] h-[80px] mr-[10px];
+  }
+}
+.leftAvatarButton {
+  @apply flex items-center justify-center w-[50px] h-[50px] absolute left-[12px] top-[5px] rounded-full bg-gray-400 sm:w-[30px] sm:h-[30px];
+  transition: transform 0.25s;
+  &:active {
+    transform: scale(0.9);
+  }
+  @media (max-width: $breakpoint768) {
+    @apply -left-[5px] top-0;
+    & img {
+      max-width: 14px;
+      max-height: 14px;
+    }
+  }
+}
+.leftInfo {
+  @apply flex flex-col pl-[445px] xl:pl-[395px];
+  @media (max-width: $breakpoint1200) {
+    @apply pl-0;
+  }
+}
+.leftInfoList {
+  @apply flex items-center;
+  @media (max-width: $breakpoint768) {
+    @apply absolute justify-center left-[20px] bottom-[20px];
+    width: calc(100% - 40px);
+  }
+  @media (max-width: $breakpoint350) {
+    @apply flex-col;
+  }
+}
+.leftInfoItem {
+  @apply flex flex-col items-center first:mr-[50px] sm:first:mr-[25px] xxs:first:mb-[15px] xxs:first:mr-0;
+}
+.leftBack {
+  @apply absolute left-[35px] top-1/2 -translate-y-1/2 sm:hidden;
+  margin-bottom: 0;
+  @media (max-width: $breakpoint1200) {
+    @apply left-[45px] top-[-40px];
+  }
+}
+
+// Text
+.title {
+  @apply text-[32px] font-bold text-white-100 mb-[10px] sm:text-[28px];
+}
+.text {
+  @apply text-[18px] font-medium text-gray-400 mb-[10px] sm:text-[15px] sm:mb-[5px];
+  &_white {
+    @apply text-white-100 font-bold mb-0;
+  }
+}
+.status {
+  @apply text-[17px] font-medium text-gray-400 mb-[20px] sm:text-[15px] sm:mb-0;
+  &_online {
+    @apply text-green-100;
+  }
+}
+
+// Right
+.right {
+  @apply flex flex-col items-center justify-center w-[310px] py-[66px] px-[62px] lg:w-full;
+  border: 2px solid $secondary-400;
+  border-radius: 10px;
+  & > div {
+    @apply flex items-center;
+    &:first-child {
+      & > b {
+        @apply inline-block text-[32px] font-bold text-white-100 mr-[10px] sm:text-[24px];
+      }
+    }
+    &:last-child {
+      margin-top: 15px;
+      & > b,
+      & > span {
+        @apply text-[24px] font-bold text-secondary-400 sm:text-[18px];
+      }
+      & > span {
+        @apply inline-block text-white-100;
+        margin-left: 5px;
+      }
+    }
+  }
+  @media (max-width: $breakpoint1200) {
+    @apply flex-row border-none;
+    padding: 20px 0;
+    & > div:last-child {
+      margin-top: 5px;
+      margin-left: 15px;
+    }
+  }
+  @media (max-width: $breakpoint350) {
+    @apply flex-col;
+  }
+}

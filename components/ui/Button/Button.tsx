@@ -13,13 +13,17 @@ interface IButton {
   isDisabled?: boolean;
   component?: "link";
   href?: string;
+  width?: number | string;
+  isActiveOutlined?: boolean;
   onClick?: (e: MouseEvent<HTMLButtonElement>) => void;
 }
 export const Button: FC<IButton> = ({
+  width,
   className,
   size,
   children,
   isActive = false,
+  isActiveOutlined,
   color = "primary",
   variant = "contained",
   isDisabled,
@@ -37,6 +41,7 @@ export const Button: FC<IButton> = ({
     [styles.buttonSmall]: size === "small",
     [styles.buttonDisabled]: isDisabled,
     [styles.buttonOutlinedBlack]: color === "black" && variant === "outlined",
+    [styles.buttonActiveOutlined]: isActiveOutlined,
   });
 
   if (component === "link" && !!href) {
@@ -48,7 +53,12 @@ export const Button: FC<IButton> = ({
   }
 
   return (
-    <button className={CN} disabled={isDisabled} onClick={onClick}>
+    <button
+      className={CN}
+      disabled={isDisabled}
+      onClick={onClick}
+      style={width ? { minWidth: width } : undefined}
+    >
       {children}
     </button>
   );

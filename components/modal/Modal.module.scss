@@ -2,6 +2,18 @@
 
 .modal {
   @apply w-screen min-h-screen relative flex items-center justify-center bg-black-400;
+  @media (max-width: $breakpoint768) {
+    padding: 70px 10px;
+    & form {
+      @apply flex flex-col items-center min-w-full;
+      & > div {
+        @apply w-full;
+      }
+      & > button {
+        @apply w-full;
+      }
+    }
+  }
 }
 
 .modalClose {
@@ -27,19 +39,23 @@
       }
     }
   }
+  @media (max-width: $breakpoint768) {
+    transform: scale(0.7);
+  }
 }
 
 .modalTop {
-  @apply flex items-end;
+  @apply flex items-end xs:flex-col xs:items-center;
   margin-bottom: 50px;
   & h1 {
-    @apply font-bold text-white-100;
-    font-size: 52px;
+    @apply font-bold text-white-100 text-[52px] sm:text-[30px] xs:mr-0 xs:ml-0 xs:mb-[10px];
     line-height: 57px;
+    @media (max-width: $breakpoint768) {
+      line-height: 1.1;
+    }
   }
   a {
-    @apply text-primary-400 font-bold;
-    font-size: 32px;
+    @apply text-primary-400 font-bold text-[32px] sm:text-[24px];
     & h3 {
       transition: color 0.25s;
       &:hover {
@@ -54,8 +70,18 @@
 }
 
 .registerInputs {
-  @apply flex justify-between flex-wrap;
-  width: 650px;
+  @apply flex justify-between flex-wrap w-[650px] sm:flex-col sm:items-center sm:w-full;
+  & > div {
+    @apply mb-[10px];
+  }
+  @media (max-width: $breakpoint768) {
+    & > div {
+      @apply w-full;
+    }
+    & > button {
+      @apply w-full;
+    }
+  }
 }
 
 .checkbox {
@@ -70,16 +96,9 @@
     color: $white-100;
   }
   & label {
-    @apply block font-medium cursor-pointer relative;
-    width: 550px;
-    padding-left: 34px;
-    color: $gray-400;
-    font-size: 17px;
-    & span {
-      color: $primary-400;
-      &:hover {
-        text-decoration: underline;
-      }
+    @apply w-[550px] block font-medium cursor-pointer relative pl-[34px] text-gray-400 text-[17px] sm:w-auto;
+    & > a {
+      @apply text-primary-400 hover:underline;
     }
     &::before {
       content: "\2713";
@@ -95,12 +114,4 @@
 
 .checkboxError label::before {
   border-color: $red-100;
-}
-
-.mr50 {
-  margin-right: 50px;
-}
-
-.ml50 {
-  margin-left: 50px;
 }

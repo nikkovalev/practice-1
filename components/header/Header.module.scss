@@ -468,7 +468,7 @@
     margin-right: 15px;
   }
   & a {
-    @apply text-white-100 text-2xl hover:text-secondary-400;
+    @apply text-white-100 text-[24px] hover:text-secondary-400 md:text-[18px];
     transition: color 0.25s;
   }
   & ul {

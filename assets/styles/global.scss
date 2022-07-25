@@ -26,14 +26,11 @@ a {
 .page {
   padding-top: 122px;
   &__preview {
-    @apply relative bg-center bg-cover bg-no-repeat bg-fixed;
-    padding-top: 220px;
+    @apply relative bg-center bg-cover bg-no-repeat bg-fixed bg-black-400;
+    padding-top: 240px;
   }
   &__content {
-    @apply mb-44 sm:mb-28;
-    @media (max-width: $breakpoint350) {
-      margin-bottom: 50px;
-    }
+    @apply mb-[175px] sm:mb-[120px] xxs:mb-[50px];
   }
   @media (max-width: $breakpoint1450) {
     padding-top: 108px;
@@ -55,26 +52,11 @@ a {
   }
 }
 .page__title {
-  @apply text-white-100 font-bold;
-  font-size: 62px;
-  margin-bottom: 30px;
-  @media (max-width: $breakpoint992) {
-    font-size: 45px;
-    margin-bottom: 10px;
-  }
-  @media (max-width: $breakpoint480) {
-    font-size: 30px;
-  }
+  @apply text-white-100 font-bold text-[62px] mb-[30px] md:text-[45px] md:mb-[10px] xs:text-[30px];
 }
 .page__desc {
-  @apply text-gray-400 font-normal;
-  font-size: 20px;
+  @apply text-gray-400 font-normal text-[20px] w-[60%] md:w-full md:text-[17px];
   line-height: 34px;
-  width: 60%;
-  @media (max-width: $breakpoint992) {
-    width: 100%;
-    font-size: 17px;
-  }
 }
 .link_with_arrow {
   @apply inline-flex items-center;
@@ -165,7 +147,7 @@ a {
 
 .custom_scrollbar {
   &::-webkit-scrollbar {
-    width: 3px;
+    width: 2px;
   }
   &::-webkit-scrollbar-track {
     background-color: $black-300;
@@ -182,6 +164,9 @@ a {
   height: 40px;
   border-radius: 50%;
   border: 2px solid $gray-400;
+}
+
+.avatarWithStatus {
   &::before {
     content: "";
     position: absolute;
@@ -195,5 +180,33 @@ a {
   }
   &.online::before {
     background-color: $green-100;
+  }
+}
+
+.text_with_icon {
+  @apply flex items-center dark:text-white-100 font-medium cursor-pointer flex-shrink-0 text-[17px] lg:text-white-100;
+  transition: color 0.25s;
+  & > svg {
+    margin-right: 10px;
+    & > path {
+      transition: fill 0.25s;
+    }
+  }
+  &:hover {
+    @apply text-secondary-400;
+    & > svg path {
+      @apply fill-secondary-400;
+    }
+  }
+}
+.filter_menu_top {
+  margin-bottom: 20px;
+  & h3 {
+    @apply text-white-100 font-bold;
+    font-size: 30px;
+    margin-left: 10px;
+  }
+  & div {
+    transform: rotate(90deg);
   }
 }

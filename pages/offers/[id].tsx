@@ -3,8 +3,9 @@ import { NextPage, NextPageContext } from "next";
 
 import { IOffer } from "@/models/IOffer";
 import { ICategory } from "@/models/ICategory";
-import { Offer } from "@/components/screens/offer/Offer";
+
 import { OfferLayout } from "@/components/layouts/offerLayout";
+import { Reviews } from "@/components/reviews/Reviews";
 
 interface IOfferPage {
   offer: IOffer;
@@ -23,7 +24,9 @@ export const getServerSideProps = async (context: NextPageContext) => {
 
 const OfferPage: NextPage<IOfferPage> = ({ offer, category }) => (
   <OfferLayout offer={offer} category={category}>
-    <Offer />
+    <div className="w-1/2 lg:w-full pt-[30px]">
+      <Reviews size="short" />
+    </div>
   </OfferLayout>
 );
 
