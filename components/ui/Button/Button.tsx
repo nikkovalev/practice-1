@@ -5,7 +5,7 @@ import styles from "./Button.module.scss";
 
 interface IButton {
   className?: any;
-  size?: "large" | "small";
+  size?: "large" | "small" | "fit" | "extra-small";
   children: any;
   isActive?: boolean;
   variant?: "contained" | "outlined";
@@ -13,12 +13,10 @@ interface IButton {
   isDisabled?: boolean;
   component?: "link";
   href?: string;
-  width?: number | string;
   isActiveOutlined?: boolean;
   onClick?: (e: MouseEvent<HTMLButtonElement>) => void;
 }
 export const Button: FC<IButton> = ({
-  width,
   className,
   size,
   children,
@@ -35,13 +33,12 @@ export const Button: FC<IButton> = ({
     [styles.buttonContained]: variant === "contained" || (isActive && variant === "outlined"),
     [styles.buttonOutlined]: variant === "outlined" && !isActive,
     [styles.buttonSecondary]: color === "secondary",
-    [styles.buttonPrimaryActive]: isActive && color === "primary" && variant !== "outlined",
-    [styles.buttonSecondaryActive]: isActive && color === "secondary",
-    [styles.buttonLarge]: size === "large",
-    [styles.buttonSmall]: size === "small",
-    [styles.buttonDisabled]: isDisabled,
+    [styles.buttonSecondary_active]: isActive && color === "secondary",
+    [styles.buttonPrimary_active]: isActive && color === "primary" && variant !== "outlined",
+    [styles[`button_${size}`]]: !!size,
     [styles.buttonOutlinedBlack]: color === "black" && variant === "outlined",
-    [styles.buttonActiveOutlined]: isActiveOutlined,
+    [styles.buttonOutlinedBlack_active]: isActiveOutlined,
+    [styles.buttonDisabled]: isDisabled,
   });
 
   if (component === "link" && !!href) {
@@ -53,12 +50,7 @@ export const Button: FC<IButton> = ({
   }
 
   return (
-    <button
-      className={CN}
-      disabled={isDisabled}
-      onClick={onClick}
-      style={width ? { minWidth: width } : undefined}
-    >
+    <button className={CN} disabled={isDisabled} onClick={onClick}>
       {children}
     </button>
   );

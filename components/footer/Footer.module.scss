@@ -6,6 +6,9 @@
     @apply font-medium text-gray-400 hover:text-secondary-400;
     transition: color 0.25s;
   }
+  &_gray {
+    @apply dark:bg-black-300;
+  }
 }
 
 .footerContainer {
@@ -154,6 +157,9 @@
   padding: 56px 0;
   left: 50%;
   transform: translate(-50%, -50%);
+  &_gray {
+    @apply dark:bg-black-300;
+  }
   & a {
     margin-right: 120px;
     &:last-child {

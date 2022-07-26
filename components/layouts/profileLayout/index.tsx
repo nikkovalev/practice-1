@@ -10,6 +10,7 @@ import { useUpdateProfileAvatarMutation } from "@/store/auth/authApi";
 import { Layout } from "@/components/layouts/Layout";
 import { UserPreview } from "@/components/userPreview/UserPreview";
 import { ProfileLayoutButtons } from "./ProfileLayoutButtons";
+import { Preview } from "../previewLayout";
 
 import profileBg from "@/assets/images/profile_bg.png";
 
@@ -42,14 +43,14 @@ export const ProfileLayout: FC<IProfileLayout> = ({ children, title }) => {
 
   return (
     <Layout title={title} withImage={true}>
-      <div
-        className={cn("page__preview", styles.preview)}
-        style={{ backgroundImage: `url(${profileBg.src})` }}
-      >
+      <Preview className={styles.preview} bg={profileBg.src}>
         <UserPreview user={user} updateProfileAvatar={updateProfileAvatar} isOwner={true} />
-        <ProfileLayoutButtons title={title} />
+        <ProfileLayoutButtons />
+      </Preview>
+      <div className="inner-container">
+        <h1 className={styles.title}>{title}</h1>
+        {children}
       </div>
-      <div className="inner-container">{children}</div>
     </Layout>
   );
 };

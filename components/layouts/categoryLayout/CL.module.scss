@@ -1,7 +1,5 @@
 @import "../../../assets/styles/_variables.scss";
 
-.top {
-}
 .buttons {
   @apply flex items-center flex-wrap;
   margin-top: 20px;
@@ -13,8 +11,6 @@
 }
 .button {
   @apply bg-black-400 flex-shrink-0 border-black-300 text-white-100;
-  min-width: 120px;
-  padding: 19px 40px;
   margin-right: 20px;
   margin-top: 20px;
   &:last-child {

@@ -268,7 +268,7 @@
       @apply flex items-center justify-between text-gray-400 hover:text-secondary-400 font-medium;
       transition: color 0.25s;
       & > b {
-        @apply flex items-center justify-center font-extrabold;
+        @apply flex items-center justify-center font-extrabold xxs:flex-shrink-0;
         width: 24px;
         height: 24px;
         border-radius: 50%;
@@ -294,6 +294,9 @@
         transform: translateY(-90px) scale(0.9) !important;
       }
     }
+  }
+  @media (max-width: $breakpoint350) {
+    min-width: calc(100% - 20px) !important;
   }
 }
 
@@ -397,10 +400,7 @@
 
 // Header actions
 .headerActions {
-  @apply flex items-center lg:order-1;
-  @media (max-width: $breakpoint1200) {
-    margin: 0 10px;
-  }
+  @apply flex items-center lg:order-1 lg:mx-[10px];
 }
 
 // Header search

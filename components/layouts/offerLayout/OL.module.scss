@@ -25,18 +25,23 @@
   }
 }
 .topActions {
-  @apply flex items-center justify-between flex-wrap;
+  @apply flex items-center flex-wrap;
   & > div:nth-child(3) {
     margin: 0 20px;
   }
-  & > button {
-    min-width: 140px;
+  @media (max-width: $breakpoint1450) {
+    & > button {
+      @apply mt-[10px];
+    }
   }
   @media (max-width: $breakpoint1200) {
     width: fit-content;
     position: absolute;
     bottom: -150px;
     left: 20px;
+    & > button {
+      @apply mt-0;
+    }
   }
   @media (max-width: $breakpoint768) {
     @apply justify-start left-[10px];

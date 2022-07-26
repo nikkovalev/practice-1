@@ -2,7 +2,7 @@
 
 // Wrapper
 .wrapper {
-  @apply flex justify-center mb-[90px] lg:flex-col-reverse lg:max-w-full px-[10px] lg:bg-black-300 lg:bg-opacity-60 lg:relative lg:mb-[50px];
+  @apply flex justify-center pb-[90px] lg:flex-col-reverse lg:max-w-full px-[10px] lg:bg-black-300 lg:bg-opacity-60 lg:relative lg:pb-0 lg:mb-[50px];
   @media (max-width: $breakpoint1200) {
     backdrop-filter: blur(10px);
   }
@@ -10,22 +10,12 @@
 
 // Left
 .left {
-  @apply relative flex items-center w-[970px] bg-black-300 bg-opacity-60 lg:w-full lg:bg-transparent;
+  @apply relative flex items-center w-[970px] bg-black-300 bg-opacity-60 lg:w-full lg:bg-transparent py-[35px] pr-[35px] mr-[10px] lg:pr-0 lg:pt-0 lg:pb-[20px] sm:pb-[70px] xxs:pb-[130px];
   backdrop-filter: blur(10px);
-  padding: 35px 35px 35px 0;
-  margin-right: 10px;
   border-radius: 10px;
   @media (max-width: $breakpoint1200) {
-    @apply static justify-center;
+    @apply static justify-center mr-0;
     backdrop-filter: blur(0);
-    padding: 0 0 20px 0;
-    margin-right: 0;
-  }
-  @media (max-width: $breakpoint768) {
-    padding-bottom: 70px;
-  }
-  @media (max-width: $breakpoint350) {
-    padding-bottom: 130px;
   }
 }
 .leftAvatar {
@@ -60,9 +50,9 @@
   }
   @media (max-width: $breakpoint768) {
     @apply -left-[5px] top-0;
-    & img {
-      max-width: 14px;
-      max-height: 14px;
+    & svg {
+      width: 14px;
+      height: 14px;
     }
   }
 }
@@ -135,8 +125,8 @@
     }
   }
   @media (max-width: $breakpoint1200) {
-    @apply flex-row border-none;
-    padding: 20px 0;
+    @apply flex-row border-none py-[20px] px-0;
+    padding: 20px 45px;
     & > div:last-child {
       margin-top: 5px;
       margin-left: 15px;

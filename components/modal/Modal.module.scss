@@ -9,9 +9,6 @@
       & > div {
         @apply w-full;
       }
-      & > button {
-        @apply w-full;
-      }
     }
   }
 }
@@ -45,8 +42,7 @@
 }
 
 .modalTop {
-  @apply flex items-end xs:flex-col xs:items-center;
-  margin-bottom: 50px;
+  @apply flex items-end mb-[50px] xs:flex-col xs:items-center sm:mb-[30px];
   & h1 {
     @apply font-bold text-white-100 text-[52px] sm:text-[30px] xs:mr-0 xs:ml-0 xs:mb-[10px];
     line-height: 57px;

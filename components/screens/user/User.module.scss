@@ -1,11 +1,7 @@
 @import "../../../assets/styles/_variables.scss";
 
 .preview {
-  @apply mb-[30px] pb-[90px] lg:pb-0 lg:mb-[50px];
-  background-position-y: -50%;
-  & > div {
-    @apply mb-0;
-  }
+  @apply mb-[30px] lg:mb-0;
 }
 
 .wrapper {
@@ -18,8 +14,8 @@
 
 .buttons {
   @apply flex items-center pb-[50px] sm:overflow-x-auto sm:pb-[30px] sm:px-[10px] sm:-mx-[10px];
-  & > button:first-child {
-    margin-right: 20px;
+  & > button {
+    @apply first:mr-[20px] sm:first:mr-[10px];
   }
 }
 
@@ -32,8 +28,7 @@
 .offersButtons {
   @apply flex items-center flex-wrap md:overflow-x-auto md:flex-nowrap;
   & > button {
-    margin-right: 20px;
-    margin-bottom: 20px;
+    @apply mr-[20px] mb-[20px] sm:mr-[10px] last:mr-0;
   }
 }
 
@@ -79,53 +74,6 @@
   @apply hidden sm:flex sm:w-full sm:text-white-100;
   & > svg {
     margin-right: 15px;
-  }
-}
-
-.itemTitle {
-  @apply text-[32px] dark:text-white-100 font-bold mb-[20px] mt-[40px] sm:mt-[30px] sm:text-[24px] sm:mb-[15px];
-}
-
-.item {
-  @apply bg-white-200 mb-[10px] dark:bg-black-300;
-  padding: 20px 30px;
-  border-radius: 10px;
-}
-
-.itemList {
-  @apply flex items-start mb-[20px] sm:flex-col;
-  & > div {
-    @apply first:mr-[30px] sm:first:mr-0 sm:mb-[20px] sm:last:mb-0;
-  }
-}
-
-.itemText {
-  @apply text-[18px] font-medium text-gray-400;
-  &_white {
-    @apply inline-block dark:text-white-100 font-bold mt-[10px];
-  }
-}
-
-.itemPrice {
-  @apply text-gray-400 font-bold text-[32px] sm:text-[24px];
-  & > span {
-    color: inherit;
-    font-weight: inherit;
-  }
-}
-
-.itemFooter {
-  @apply flex items-center justify-between sm:flex-wrap;
-}
-
-.itemIcons {
-  @apply flex items-center xxs:w-full xxs:mt-[15px];
-  & > button {
-    @apply first:mr-[15px];
-    transition: transform 0.25s;
-    &:active {
-      transform: scale(0.9);
-    }
   }
 }
 

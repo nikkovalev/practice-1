@@ -39,7 +39,7 @@ const advantages = [
 
 export const HomeAdvantages = () => {
   return (
-    <section className="bg-white-200 dark:bg-black-500">
+    <section className="dark:bg-black-400">
       <div className="inner-container">
         <div className={styles.advList}>
           {advantages.map((adv, idx: number) => (

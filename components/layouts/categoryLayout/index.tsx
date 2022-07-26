@@ -10,7 +10,6 @@ import React, {
 import cn from "classnames";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { url } from "@/helpers/url";
 
 import { ICategory, IService } from "@/models/ICategory";
 import { IGetOffer } from "@/models/IOffer";
@@ -19,6 +18,7 @@ import { Layout } from "../Layout";
 import { ArrowIcon } from "@/components/icons";
 import { CategoryFilters } from "@/components/screens/category/CategoryFilters";
 import { Button } from "@/components/ui";
+import { Preview } from "../previewLayout";
 
 import styles from "./CL.module.scss";
 
@@ -81,40 +81,35 @@ export const CategoryLayout: FC<ICategoryLayout> = ({
 
   return (
     <Layout title={title} withImage={true}>
-      <div
-        className={cn("page__preview", styles.top)}
-        style={{ backgroundImage: url(category.banner) }}
-      >
-        <div className="mask" />
-        <div className="relative z-10">
-          <div className="inner-container">
-            <Link href={`/?category=${category.slug}`}>
-              <a className="link_with_arrow">
-                <ArrowIcon direction="left" />
-                <b>В каталог {category.name}</b>
-              </a>
-            </Link>
-            <h1 className="page__title">
-              {s?.name} {category.name}
-            </h1>
-            <p className="page__desc">{s?.description}</p>
-          </div>
-          <div className={cn("inner-container", styles.buttons)}>
-            {category.services.map((i) => (
-              <Button
-                key={i.id}
-                className={styles.button}
-                variant="outlined"
-                color="black"
-                isActive={s?.id === i.id}
-                onClick={handleChangeS(i.id)}
-              >
-                {i.name}
-              </Button>
-            ))}
-          </div>
+      <Preview withMask={true} bg={category.banner ?? ""}>
+        <div className="inner-container">
+          <Link href={`/?category=${category.slug}`}>
+            <a className="link_with_arrow">
+              <ArrowIcon direction="left" />
+              <b>В каталог {category.name}</b>
+            </a>
+          </Link>
+          <h1 className="page__title">
+            {s?.name} {category.name}
+          </h1>
+          <p className="page__desc">{s?.description}</p>
         </div>
-      </div>
+        <div className={cn("inner-container", styles.buttons)}>
+          {category.services.map((i) => (
+            <Button
+              key={i.id}
+              className={styles.button}
+              variant="outlined"
+              color="black"
+              size="fit"
+              isActive={s?.id === i.id}
+              onClick={handleChangeS(i.id)}
+            >
+              {i.name}
+            </Button>
+          ))}
+        </div>
+      </Preview>
       <div className="flex-grow container">
         <CategoryFilters
           category={category}

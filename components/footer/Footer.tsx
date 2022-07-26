@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FC } from "react";
 import cn from "classnames";
 import Link from "next/link";
 import Image from "next/image";
@@ -73,11 +73,11 @@ const socials = [
   },
 ];
 
-export const Footer = () => {
+export const Footer: FC<{ isGray: boolean }> = ({ isGray }) => {
   return (
-    <footer className={styles.footer}>
+    <footer className={cn(styles.footer, { [styles.footer_gray]: isGray })}>
       <div className={cn("inner-container", styles.footerContainer)}>
-        <div className={styles.footerTop}>
+        <div className={cn(styles.footerTop, { [styles.footerTop_gray]: isGray })}>
           {socials.map((s, idx: number) => (
             <a key={`${s.name}_${idx}`} href={s.href} className="flex items-center">
               <Image src={s.icon} width={50} height={50} alt={s.name} />

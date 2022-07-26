@@ -153,6 +153,7 @@
     background-color: $gray-400;
     &::placeholder {
       color: $white-100;
+      opacity: 0.5;
     }
   }
 }

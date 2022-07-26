@@ -9,9 +9,10 @@ interface ILayout {
   title: string;
   children: ReactNode;
   withImage?: boolean;
+  hideMargin?: boolean;
 }
 
-export const Layout: FC<ILayout> = ({ children, title, withImage }) => {
+export const Layout: FC<ILayout> = ({ children, title, withImage, hideMargin }) => {
   return (
     <div
       className={cn(
@@ -23,8 +24,14 @@ export const Layout: FC<ILayout> = ({ children, title, withImage }) => {
         <title>YaonPay - {title}</title>
       </Head>
       <Header />
-      <main className="flex-grow page__content">{children}</main>
-      <Footer />
+      <main
+        className={cn("flex-grow page__content", {
+          page__content_m0: hideMargin,
+        })}
+      >
+        {children}
+      </main>
+      <Footer isGray={!!hideMargin} />
     </div>
   );
 };

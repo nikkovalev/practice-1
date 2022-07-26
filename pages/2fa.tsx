@@ -35,7 +35,12 @@ export const CodeEntryPage = () => {
         </div>
         <form className="flex items-center justify-between" onSubmit={handleSubmit(handleSend)}>
           <Input {...register("code")} placeholder="Код" />
-          <Button className="ml-3" color="secondary" size="large" isDisabled={isLoading}>
+          <Button
+            className="ml-3 sm:ml-0 sm:mt-[20px]"
+            color="secondary"
+            size="large"
+            isDisabled={isLoading}
+          >
             Отправить
           </Button>
         </form>

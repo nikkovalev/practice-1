@@ -25,30 +25,23 @@ a {
 
 .page {
   padding-top: 122px;
-  &__preview {
-    @apply relative bg-center bg-cover bg-no-repeat bg-fixed bg-black-400;
-    padding-top: 240px;
-  }
   &__content {
     @apply mb-[175px] sm:mb-[120px] xxs:mb-[50px];
+    &_m0 {
+      @apply mb-0;
+    }
   }
   @media (max-width: $breakpoint1450) {
     padding-top: 108px;
   }
   @media (max-width: $breakpoint1200) {
     padding-top: 90px;
-    &__preview {
-      padding-top: 130px;
-    }
   }
   @media (max-width: $breakpoint768) {
     padding-top: 70px;
   }
   @media (max-width: $breakpoint350) {
     padding-top: 118px;
-    &__preview {
-      padding-top: 180px;
-    }
   }
 }
 .page__title {
@@ -78,16 +71,6 @@ a {
       stroke: $secondary-400;
     }
   }
-}
-
-.mask {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(to bottom, rgb(24, 26, 32, 0.6), darken($black-500, 2%));
-  z-index: 10;
 }
 
 .container {

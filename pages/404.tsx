@@ -6,7 +6,7 @@ const NotFound: NextPage = () => {
   return (
     <Modal hideClose>
       <div>
-        <h3 className="text-white-100 text-4xl font-bold">Произошла ошибка!</h3>
+        <h3 className="text-white-100 text-4xl font-bold sm:text-xl">Произошла ошибка!</h3>
         <div className="text-center mt-5">
           <Link href="/">
             <a className="text-secondary-400 hover:underline">Вернуться на главную</a>

@@ -1,6 +1,5 @@
 import React, { FC, ReactNode } from "react";
 import cn from "classnames";
-import { url } from "@/helpers/url";
 import Link from "next/link";
 import Image from "next/image";
 import { useAppSelector } from "@/hooks/useTypedSelector";
@@ -11,6 +10,7 @@ import { Button } from "@/components/ui";
 import { Select } from "@/components/ui/Select/Select";
 import { Counter } from "@/components/ui/Counter/Counter";
 import { Chat } from "@/components/Chat/Chat";
+import { Preview } from "../previewLayout";
 
 import cardsIcon from "@/assets/images/cards.svg";
 
@@ -32,11 +32,7 @@ export const OfferLayout: FC<IOfferLayout> = ({ children, offer, category }) => 
 
   return (
     <Layout title={category.name} withImage={true}>
-      <div
-        className={cn("page__preview", styles.top)}
-        style={{ backgroundImage: url(category.banner) }}
-      >
-        <div className="mask" />
+      <Preview className={styles.top} withMask={true} bg={category.banner ?? ""}>
         <div className={cn("inner-container", styles.topContent)}>
           <div className={styles.topLeft}>
             <Link href={`/categories/${category.slug}?page=${service?.id}`}>
@@ -71,12 +67,14 @@ export const OfferLayout: FC<IOfferLayout> = ({ children, offer, category }) => 
                 items={[]}
                 icon={<Image src={cardsIcon} width={20} height={20} alt="Cards icon" />}
               />
-              <Button color="secondary">Купить</Button>
+              <Button color="secondary" size="fit">
+                Купить
+              </Button>
             </div>
           </div>
           {isAuth && offer.seller.id !== user?.id && <Chat variant="normal" />}
         </div>
-      </div>
+      </Preview>
       <div className="flex-grow inner-container">{children}</div>
     </Layout>
   );

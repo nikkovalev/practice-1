@@ -45,6 +45,7 @@ export const User: FC<IUserPage> = ({ profile }) => {
             <Button
               variant="outlined"
               color="black"
+              size="fit"
               isActive={activeTab === "offers"}
               onClick={handleChangeTab("offers")}
             >
@@ -53,6 +54,7 @@ export const User: FC<IUserPage> = ({ profile }) => {
             <Button
               variant="outlined"
               color="black"
+              size="fit"
               isActive={activeTab === "reviews"}
               onClick={handleChangeTab("reviews")}
             >

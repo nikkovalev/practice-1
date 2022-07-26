@@ -1,0 +1,101 @@
+@import "../../../../assets/styles/_variables.scss";
+
+.buttons {
+  @apply flex items-center pb-[40px] sm:pb-[30px] sm:overflow-x-auto;
+  & > button {
+    @apply mr-[20px] sm:mr-[10px];
+  }
+}
+.offerTitle {
+  @apply text-[32px] font-bold mb-[20px] sm:text-[24px];
+}
+
+.itemTitle {
+  @apply text-[32px] dark:text-white-100 font-bold mb-[20px] mt-[40px] sm:mt-[30px] sm:text-[24px] sm:mb-[15px];
+}
+
+.item {
+  @apply bg-white-200 mb-[10px] dark:bg-black-300;
+  padding: 20px 30px;
+  border-radius: 10px;
+  &_limit {
+    position: relative;
+    width: calc(50% - 5px);
+    @media (max-width: $breakpoint992) {
+      width: 100%;
+    }
+  }
+}
+
+.itemList {
+  @apply flex items-start mb-[20px] sm:flex-col;
+  & > div {
+    @apply first:mr-[30px] sm:first:mr-0 sm:mb-[20px] sm:last:mb-0;
+  }
+  &_short {
+    @apply lg:flex-col;
+    & > div {
+      @apply lg:mb-[20px] lg:last:mb-0;
+    }
+  }
+}
+
+.itemText {
+  @apply text-[18px] font-medium text-gray-400;
+  &_white {
+    @apply inline-block dark:text-white-100 font-bold mt-[10px];
+  }
+}
+
+.itemPrice {
+  @apply text-gray-400 font-bold text-[32px] sm:text-[24px];
+  & span {
+    font-size: 15px;
+    color: inherit;
+    font-weight: inherit;
+  }
+}
+
+.itemFooter {
+  @apply flex items-center justify-between xs:flex-wrap;
+}
+
+.itemIcons {
+  @apply flex items-center xxs:w-full xxs:mt-[15px];
+  & > button {
+    @apply mr-[15px] last:mr-0;
+    transition: transform 0.25s, background-color 0.25s, box-shadow 0.25s;
+    &:active {
+      transform: scale(0.9);
+    }
+  }
+  &_short {
+    @apply xs:w-full xs:mt-[15px];
+    & > button {
+      @apply sm:mr-[10px];
+    }
+  }
+}
+
+.itemStatus {
+  @apply absolute top-0 right-0 w-[14px] h-[14px] rounded-full bg-gray-400;
+  &_online {
+    @apply bg-green-100;
+  }
+}
+
+.itemIconButton {
+  @apply flex items-center justify-center w-[40px] h-[40px] rounded-full bg-gray-400 hover:bg-black-400 hover:shadow-none;
+  &_yellow {
+    @apply bg-secondary-400 hover:bg-secondary-300;
+    box-shadow: 0px 5px 15px rgba(255, 219, 89, 0.25);
+  }
+  &_purple {
+    @apply bg-primary-400 hover:bg-primary-300;
+    box-shadow: 0px 10px 20px rgba(127, 134, 232, 0.25);
+  }
+}
+
+.items {
+  @apply flex items-center justify-between;
+}

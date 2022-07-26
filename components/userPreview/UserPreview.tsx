@@ -11,10 +11,10 @@ import { IUser } from "@/models/IUser";
 import { Stars } from "../stars/Stars";
 
 import anonymousImage from "@/assets/images/anonymous.jpg";
-import editIcon from "@/assets/images/edit.svg";
+import { ArrowIcon } from "../icons";
+import { EditIcon } from "../icons/EditIcon";
 
 import styles from "./UserPreview.module.scss";
-import { ArrowIcon } from "../icons";
 
 interface IUserPreview {
   user: IUser | null;
@@ -35,7 +35,7 @@ export const UserPreview: FC<IUserPreview> = ({ user, isOwner, updateProfileAvat
       if (file.size > 10000000) toast.error("Файл должен быть не более 10 мегабайт");
       const formData = new FormData();
       formData.append("avatar", file);
-      // updateProfileAvatar(formData);
+      updateProfileAvatar && updateProfileAvatar(formData);
     }
   };
 
@@ -61,7 +61,7 @@ export const UserPreview: FC<IUserPreview> = ({ user, isOwner, updateProfileAvat
           >
             <div>
               <div className={styles.leftAvatarButton}>
-                <Image src={editIcon} width={20} height={20} alt="Edit avatar" />
+                <EditIcon />
               </div>
               <input
                 id={`edit-avatar-${user?.id}`}

@@ -13,10 +13,7 @@
   }
 }
 .filterBtn {
-  min-width: 220px;
-  @media (max-width: $breakpoint480) {
-    margin-bottom: 10px;
-  }
+  @apply min-w-[220px] xs:mb-[10px];
 }
 .filtersLeft {
   @media (max-width: $breakpoint1200) {

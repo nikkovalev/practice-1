@@ -518,7 +518,7 @@
 /* about */
 
 .about {
-  @apply bg-white-100 dark:bg-black-400;
+  @apply bg-white-200 dark:bg-black-500 pb-[175px] sm:pb-[120px] xxs:pb-[50px];
   padding-top: 100px;
   & h2 {
     @apply font-bold text-primary-400 dark:text-black-300 dark:opacity-100;

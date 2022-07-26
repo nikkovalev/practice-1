@@ -6,6 +6,7 @@ import { Button } from "@/components/ui";
 import { ArrowIcon, FilterIcon, InfoIcon, LikeIcon, SearchIcon } from "@/components/icons";
 import { Select } from "@/components/ui/Select/Select";
 
+import { styles as offersStyles } from "@/components/screens/profile/offers";
 import styles from "./User.module.scss";
 
 const buttons = [
@@ -30,6 +31,7 @@ export const UserOffers = () => {
     setIsShowFilter(false);
   };
 
+  //eslint-disable-next-line
   useEffect(() => inputRef.current?.focus(), [isShowInput]);
   useEffect(() => {
     const blurEl = document.getElementById("blur");
@@ -42,9 +44,9 @@ export const UserOffers = () => {
         {buttons.map(({ title, count, active }) => (
           <Button
             key={title}
-            variant="outlined"
             color="black"
-            width="fit-content"
+            variant="outlined"
+            size="extra-small"
             isActiveOutlined={active}
           >
             {title}
@@ -88,25 +90,25 @@ export const UserOffers = () => {
         Фильтр
       </Button>
       <div>
-        <h3 className={styles.itemTitle}>Буст</h3>
-        <div className={styles.item}>
-          <div className={styles.itemList}>
+        <h3 className={offersStyles.itemTitle}>Буст</h3>
+        <div className={offersStyles.item}>
+          <div className={offersStyles.itemList}>
             <div>
-              <div className={styles.itemText}>Сервер</div>
-              <div className={cn(styles.itemText, styles.itemText_white)}>
+              <div className={offersStyles.itemText}>Сервер</div>
+              <div className={cn(offersStyles.itemText, offersStyles.itemText_white)}>
                 FIFA 22 Ultimate Team (PS)
               </div>
             </div>
             <div>
-              <div className={styles.itemText}>Описание</div>
-              <div className={cn(styles.itemText, styles.itemText_white)}>
+              <div className={offersStyles.itemText}>Описание</div>
+              <div className={cn(offersStyles.itemText, offersStyles.itemText_white)}>
                 Сыграю вл за вас на 5 ранг, пишите в любое время как буду онлайн отвечу
               </div>
             </div>
           </div>
-          <div className={styles.itemFooter}>
-            <b className={styles.itemPrice}>от 500₽</b>
-            <div className={styles.itemIcons}>
+          <div className={offersStyles.itemFooter}>
+            <b className={offersStyles.itemPrice}>от 500₽</b>
+            <div className={offersStyles.itemIcons}>
               <button>
                 <InfoIcon />
               </button>
@@ -118,25 +120,27 @@ export const UserOffers = () => {
         </div>
       </div>
       <div>
-        <h3 className={styles.itemTitle}>Монеты</h3>
-        <div className={styles.item}>
-          <div className={styles.itemList}>
+        <h3 className={offersStyles.itemTitle}>Монеты</h3>
+        <div className={offersStyles.item}>
+          <div className={offersStyles.itemList}>
             <div>
-              <div className={styles.itemText}>Сервер</div>
-              <div className={cn(styles.itemText, styles.itemText_white)}>
+              <div className={offersStyles.itemText}>Сервер</div>
+              <div className={cn(offersStyles.itemText, offersStyles.itemText_white)}>
                 FIFA 22 Ultimate Team (PS)
               </div>
             </div>
             <div>
-              <div className={styles.itemText}>Наличие</div>
-              <div className={cn(styles.itemText, styles.itemText_white)}>1 000 000 000 монет</div>
+              <div className={offersStyles.itemText}>Наличие</div>
+              <div className={cn(offersStyles.itemText, offersStyles.itemText_white)}>
+                1 000 000 000 монет
+              </div>
             </div>
           </div>
-          <div className={styles.itemFooter}>
-            <b className={styles.itemPrice}>
-              1000 <span className="text-[15px]">монет</span> / 50₽
+          <div className={offersStyles.itemFooter}>
+            <b className={offersStyles.itemPrice}>
+              1000 <span>монет</span> / 50₽
             </b>
-            <div className={styles.itemIcons}>
+            <div className={offersStyles.itemIcons}>
               <button>
                 <InfoIcon />
               </button>

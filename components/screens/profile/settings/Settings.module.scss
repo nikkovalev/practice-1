@@ -17,14 +17,15 @@
       font-size: 28px;
     }
   }
+  @media (max-width: $breakpoint768) {
+    & button {
+      min-width: 100%;
+    }
+  }
   @media (max-width: $breakpoint480) {
     & h3 {
       font-size: 24px;
       margin-bottom: 15px;
-    }
-    & button {
-      min-width: 100%;
-      width: auto;
     }
   }
 }
@@ -53,7 +54,7 @@
       }
     }
   }
-  @media (max-width: $breakpoint768) {
+  @media (max-width: $breakpoint992) {
     & form {
       & div {
         width: 100%;

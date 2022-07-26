@@ -1,4 +1,5 @@
 import React, { FC } from "react";
+import cn from "classnames";
 import { useRouter } from "next/router";
 
 import { Button } from "@/components/ui";
@@ -37,11 +38,7 @@ const buttons = [
   },
 ];
 
-interface IProfileLayoutButtons {
-  title: string;
-}
-
-export const ProfileLayoutButtons: FC<IProfileLayoutButtons> = ({ title }) => {
+export const ProfileLayoutButtons: FC = () => {
   const router = useRouter();
 
   return (
@@ -54,6 +51,7 @@ export const ProfileLayoutButtons: FC<IProfileLayoutButtons> = ({ title }) => {
               key={btn.title}
               className={styles.button}
               variant="outlined"
+              size="fit"
               color="black"
               component="link"
               href={btn.path}
@@ -69,7 +67,6 @@ export const ProfileLayoutButtons: FC<IProfileLayoutButtons> = ({ title }) => {
           );
         })}
       </div>
-      {title && <h1 className={styles.title}>{title}</h1>}
     </div>
   );
 };

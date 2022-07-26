@@ -36,6 +36,10 @@ module.exports = {
       xs: { max: "479.98px" },
       xxs: { max: "349.98px" },
     },
+    gradientColorStops: () => ({
+      "black-400": "rgba(24, 26, 32, 0.6)",
+      "black-500": "#14161B",
+    }),
   },
   plugins: [],
 };
