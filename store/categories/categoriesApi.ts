@@ -25,7 +25,19 @@ export const categoriesApi = createApi({
         method: "GET",
       }),
     }),
+    createEditOffer: build.mutation<undefined, Partial<IOffer>>({
+      query: (data) => ({
+        url: `/offers${data.id ? `/${data.id}` : ""}`,
+        method: data.id ? "PATCH" : "POST",
+        body: data,
+      }),
+    }),
   }),
 });
 
-export const { useFetchCategoriesQuery, useFetchOffersMutation, useSearchMutation } = categoriesApi;
+export const {
+  useFetchCategoriesQuery,
+  useFetchOffersMutation,
+  useSearchMutation,
+  useCreateEditOfferMutation,
+} = categoriesApi;

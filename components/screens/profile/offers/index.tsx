@@ -3,7 +3,7 @@ import cn from "classnames";
 import Image from "next/image";
 
 import { ProfileLayout } from "@/components/layouts/profileLayout";
-import { Button } from "@/components/ui";
+import { Button, Text } from "@/components/ui";
 
 import { EditIcon } from "@/components/icons/EditIcon";
 import stopIcon from "@/assets/images/stop.svg";
@@ -28,6 +28,7 @@ const Offers = () => {
             key={button.title}
             variant="outlined"
             color="black"
+            size="extra-small"
             isActiveOutlined={button.active}
           >
             {button.title}
@@ -36,7 +37,19 @@ const Offers = () => {
         ))}
       </div>
       <div>
-        <div>
+        <Button
+          className={styles.button}
+          size="fit"
+          variant="outlined"
+          component="link"
+          href="/edit-offer"
+        >
+          Добавить предложение
+        </Button>
+        <Text size="xl" className="dark:text-secondary-400">
+          Здесь пока ничего нет
+        </Text>
+        {/*  <div>
           <h3 className={styles.itemTitle}>Буст</h3>
           <div className={styles.items}>
             <div className={cn(styles.item, styles.item_limit)}>
@@ -73,7 +86,7 @@ const Offers = () => {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </ProfileLayout>
   );

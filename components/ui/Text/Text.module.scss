@@ -1,0 +1,68 @@
+.color_ {
+  &white {
+    @apply text-white-100;
+  }
+  &primary {
+    @apply text-primary-400;
+  }
+  &secondary {
+    @apply text-secondary-400;
+  }
+  &gray {
+    @apply text-gray-400;
+  }
+  &black {
+    @apply text-black-400;
+  }
+}
+
+.weight_ {
+  &400 {
+    font-weight: 400;
+  }
+  &500 {
+    font-weight: 500;
+  }
+  &600 {
+    font-weight: 600;
+  }
+  &700 {
+    font-weight: 700;
+  }
+}
+
+.size_ {
+  &xxs {
+    font-size: 15px;
+  }
+  &xs {
+    font-size: 16px;
+  }
+  &s {
+    font-size: 17px;
+  }
+  &m {
+    font-size: 18px;
+  }
+  &l {
+    font-size: 20px;
+  }
+  &xl {
+    @apply text-[32px] sm:text-[24px];
+  }
+  &xxl {
+    @apply text-[52px] sm:text-[32px];
+  }
+}
+
+.align_ {
+  &center {
+    text-align: center;
+  }
+  &left {
+    text-align: left;
+  }
+  &right {
+    text-align: right;
+  }
+}

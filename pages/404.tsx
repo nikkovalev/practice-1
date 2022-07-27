@@ -1,5 +1,5 @@
 import { NextPage } from "next";
-import { Modal } from "@/components/modal/Modal";
+import { Modal } from "@/components/layouts/modalLayout";
 import { Link } from "@/components/link";
 
 const NotFound: NextPage = () => {

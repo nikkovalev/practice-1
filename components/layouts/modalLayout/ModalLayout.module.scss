@@ -1,9 +1,9 @@
-@import "../../assets/styles/variables";
+@import "../../../assets/styles/variables";
 
 .modal {
-  @apply w-screen min-h-screen relative flex items-center justify-center bg-black-400;
+  @apply w-full min-h-screen relative px-[20px] flex items-center justify-center bg-black-400;
   @media (max-width: $breakpoint768) {
-    padding: 70px 10px;
+    @apply py-[70px];
     & form {
       @apply flex flex-col items-center min-w-full;
       & > div {
@@ -41,18 +41,20 @@
   }
 }
 
-.modalTop {
-  @apply flex items-end mb-[50px] xs:flex-col xs:items-center sm:mb-[30px];
-  & h1 {
-    @apply font-bold text-white-100 text-[52px] sm:text-[30px] xs:mr-0 xs:ml-0 xs:mb-[10px];
+.top {
+  @apply mb-[50px] sm:mb-[30px];
+  & > h1 {
     line-height: 57px;
     @media (max-width: $breakpoint768) {
       line-height: 1.1;
     }
+    @media (max-width: $breakpoint350) {
+      font-size: 24px;
+    }
   }
-  a {
-    @apply text-primary-400 font-bold text-[32px] sm:text-[24px];
-    & h3 {
+  &_flex {
+    @apply flex items-end justify-center xs:flex-col xs:items-center;
+    & > a {
       transition: color 0.25s;
       &:hover {
         color: darken($primary-400, 5);
@@ -68,7 +70,7 @@
 .registerInputs {
   @apply flex justify-between flex-wrap w-[650px] sm:flex-col sm:items-center sm:w-full;
   & > div {
-    @apply mb-[10px];
+    @apply mb-[20px];
   }
   @media (max-width: $breakpoint768) {
     & > div {
@@ -81,7 +83,7 @@
 }
 
 .checkbox {
-  margin-top: 30px;
+  margin-top: 10px;
   & input {
     width: 0;
     height: 0;

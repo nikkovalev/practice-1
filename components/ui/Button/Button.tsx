@@ -39,6 +39,7 @@ export const Button: FC<IButton> = ({
     [styles.buttonOutlinedBlack]: color === "black" && variant === "outlined",
     [styles.buttonOutlinedBlack_active]: isActiveOutlined,
     [styles.buttonDisabled]: isDisabled,
+    "text-center": component === "link",
   });
 
   if (component === "link" && !!href) {

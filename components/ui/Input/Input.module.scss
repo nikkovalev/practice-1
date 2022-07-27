@@ -14,11 +14,10 @@
   color: $white-100;
   &::placeholder {
     color: $gray-400;
-    opacity: 0.8;
   }
 }
 
-.inputPassword {
+.inputWithIcon {
   padding-right: 50px;
 }
 

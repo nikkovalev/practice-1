@@ -65,6 +65,7 @@ export const OfferLayout: FC<IOfferLayout> = ({ children, offer, category }) => 
               <Select
                 label="Банковская карта"
                 items={[]}
+                iconCN="mr-[15px]"
                 icon={<Image src={cardsIcon} width={20} height={20} alt="Cards icon" />}
               />
               <Button color="secondary" size="fit">

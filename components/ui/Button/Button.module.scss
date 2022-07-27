@@ -9,6 +9,7 @@
   }
   & > b {
     @apply inline-block font-bold text-[18px] ml-[5px];
+    transition: color 0.25s;
     line-height: 21.6px;
   }
   &_large {
@@ -18,7 +19,7 @@
     @apply min-w-[180px];
   }
   &_fit {
-    @apply min-w-fit;
+    @apply min-w-fit max-w-fit;
   }
   &_extra-small {
     @apply px-[25px] min-w-fit;
@@ -69,11 +70,17 @@
   }
 }
 .buttonOutlinedBlack {
-  @apply text-white-100 bg-black-400 border-black-300;
+  @apply dark:text-white-100 dark:bg-black-400 dark:border-black-300;
   &:hover {
-    @apply bg-black-400 border-primary-400;
+    @apply dark:bg-black-400 border-primary-400;
+    & > b {
+      @apply text-secondary-400;
+    }
   }
   &_active {
-    @apply border-primary-400;
+    @apply text-black-400 dark:text-white-100 border-secondary-400 dark:border-primary-400;
+    & > b {
+      @apply text-secondary-400 dark:text-primary-400;
+    }
   }
 }

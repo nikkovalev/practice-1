@@ -10,8 +10,8 @@ import { useActions } from "@/hooks/useActions";
 import { useRegisterUserMutation } from "@/store/auth/authApi";
 import { toast } from "react-toastify";
 
-import { Modal, styles as modalStyles } from "@/components/modal/Modal";
-import { Button } from "@/components/ui";
+import { Modal, styles as modalStyles } from "@/components/layouts/modalLayout";
+import { Button, Text } from "@/components/ui";
 import { Input } from "@/components/ui/Input/Input";
 import { Checkbox } from "@/components/ui/Checkbox/Checkbox";
 
@@ -68,13 +68,18 @@ const AuthPage: NextPage = () => {
   return (
     <Modal title="Зарегистрироваться" handleClose={handleClose}>
       <form className="flex flex-col items-center" onSubmit={handleSubmit(onRegister)}>
-        <div className={modalStyles.modalTop}>
-          <Link href="/auth">
-            <a>
-              <h3 className="text-primary-400 font-bold">Войти</h3>
-            </a>
-          </Link>
-          <h1 className="ml-[50px] sm:ml-[25px]">Зарегистрироваться</h1>
+        <div className={cn(modalStyles.top, modalStyles.top_flex)}>
+          <Text as="a" href="/auth" color="primary" size="xl" weight={700}>
+            Войти
+          </Text>
+          <Text
+            className="ml-[50px] sm:ml-[25px] xs:ml-0 xs:mb-[10px]"
+            as="h1"
+            size="xxl"
+            weight={700}
+          >
+            Зарегистрироваться
+          </Text>
         </div>
         <div className={modalStyles.registerInputs}>
           <Input

@@ -39,9 +39,16 @@ export const ChatTop: FC<IChatTop> = ({ variant }) => {
         className="avatar avatarWithStatus"
         style={{ backgroundImage: url(anonymousImage.src) }}
       />
-      <div className={styles.chatTopText}>
+      <div
+        className={cn(styles.chatTopText, {
+          [styles.chatTopText_full]: variant === "global",
+        })}
+      >
         <span className={styles.chatTitle}>PetubakasTwitch</span>
-        <b className={styles.chatTextPurple}>1554 отзыва</b>
+        {variant !== "global" && <b className={styles.chatTextPurple}>1554 отзыва</b>}
+        {variant === "global" && (
+          <b className={cn(styles.chatTitle, styles.chatTitle_gray)}>(Вы)</b>
+        )}
       </div>
       <div className="relative ml-auto">
         <button className={styles.chatTopButton} onClick={handleShow}>

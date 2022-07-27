@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import React, { FC, forwardRef, useImperativeHandle, useState } from "react";
 import cn from "classnames";
 import { useOutside } from "@/hooks/useOutside";
 
@@ -11,44 +11,71 @@ interface ISelect {
   label: string;
   items: string[];
   icon?: any;
+  color?: "light";
+  size?: "large";
+  iconCN?: string;
+  isError?: boolean;
   handleChange?: (val: string | null, idx?: number) => void;
 }
 
-export const Select: FC<ISelect> = ({ className, label, items, icon, handleChange }) => {
-  const { isShow, ref, setIsShow } = useOutside(false);
-  const [val, setVal] = useState<string>(label);
+export interface SelectHandle {
+  reset: () => undefined;
+}
 
-  const handleToggle = () => setIsShow(!isShow);
-  const handleSelect = (val: string | null, idx?: number) => () => {
-    setVal(val ?? label);
-    setIsShow(false);
-    handleChange && handleChange(val, idx);
-  };
+export const Select = forwardRef<SelectHandle, ISelect>(
+  ({ className, label, color, size, items, icon, iconCN, isError, handleChange }, ref: any) => {
+    const { isShow, ref: rootRef, setIsShow } = useOutside(false);
+    const [val, setVal] = useState<string>(label);
 
-  return (
-    <div ref={ref} className={cn(className, styles.select)}>
+    const handleToggle = () => setIsShow(!isShow);
+    const handleSelect = (val: string | null, idx?: number) => () => {
+      setVal(val ?? label);
+      setIsShow(false);
+      handleChange && handleChange(val, idx);
+    };
+
+    useImperativeHandle(ref, () => ({
+      reset: () => setVal(label),
+    }));
+
+    return (
       <div
-        className={cn(styles.selectHeader, { [styles.selectHeaderActive]: isShow })}
-        onClick={handleToggle}
-      >
-        {!!icon && <div className={styles.selectIcon}>{icon}</div>}
-        <div className={cn("text-ellipsis", styles.selectText)}>{val}</div>
-        <ArrowIcon pathClassName="fill-primary-400 stroke-primary-400" />
-      </div>
-      <div
-        className={cn("custom_scrollbar", styles.selectItems, {
-          [styles.selectItemsActive]: isShow,
+        ref={rootRef}
+        className={cn(className, styles.select, {
+          [styles[`select_${size}`]]: !!size,
         })}
       >
-        <ul>
-          <li onClick={handleSelect(null)}>{label}</li>
-          {items.map((i, idx) => (
-            <li key={i} onClick={handleSelect(i, idx)}>
-              {i}
-            </li>
-          ))}
-        </ul>
+        <div
+          className={cn(styles.selectHeader, {
+            [styles.selectHeaderActive]: isShow,
+            [styles[`selectHeader_${color}`]]: !!color,
+            [styles[`selectHeader_${size}`]]: !!size,
+            [styles.selectHeader_error]: isError,
+          })}
+          onClick={handleToggle}
+        >
+          {!!icon && <div className={cn(iconCN, "flex items-center")}>{icon}</div>}
+          <div className={cn("text-ellipsis", styles.selectText)}>{val}</div>
+          <ArrowIcon pathClassName="fill-primary-400 stroke-primary-400" />
+        </div>
+        <div
+          className={cn("custom_scrollbar", styles.selectItems, {
+            [styles.selectItemsActive]: isShow,
+            [styles[`selectItems_${color}`]]: !!color,
+          })}
+        >
+          <ul>
+            <li onClick={handleSelect(null)}>{label}</li>
+            {items.map((i, idx) => (
+              <li key={i} onClick={handleSelect(i, idx)}>
+                {i}
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
-    </div>
-  );
-};
+    );
+  }
+);
+
+Select.displayName = "Select";

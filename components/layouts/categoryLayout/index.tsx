@@ -20,7 +20,7 @@ import { CategoryFilters } from "@/components/screens/category/CategoryFilters";
 import { Button } from "@/components/ui";
 import { Preview } from "../previewLayout";
 
-import styles from "./CL.module.scss";
+import styles from "./CategoryLayout.module.scss";
 
 interface ICategoryLayout {
   children: ReactNode;
@@ -62,6 +62,7 @@ export const CategoryLayout: FC<ICategoryLayout> = ({
       ? getS(parseInt(router.query.page as string))
       : category.services[0] ?? null;
     setS(s);
+    // eslint-disable-next-line
   }, [category]);
 
   useEffect(() => {
@@ -77,6 +78,7 @@ export const CategoryLayout: FC<ICategoryLayout> = ({
         ...data,
       });
     }
+    // eslint-disable-next-line
   }, [s, server, order, onlineOnly, query]);
 
   return (

@@ -8,8 +8,8 @@ import { useActions } from "@/hooks/useActions";
 import { useLogin2faMutation } from "@/store/auth/authApi";
 
 import { Input } from "@/components/ui/Input/Input";
-import { Button } from "@/components/ui";
-import { Modal, styles as modalStyles } from "@/components/modal/Modal";
+import { Button, Text } from "@/components/ui";
+import { Modal, styles as modalStyles } from "@/components/layouts/modalLayout";
 
 export const CodeEntryPage = () => {
   const { register, handleSubmit } = useForm();
@@ -30,8 +30,10 @@ export const CodeEntryPage = () => {
   return (
     <Modal title="Подтверждение аккаунта" hideClose>
       <div>
-        <div className={modalStyles.modalTop}>
-          <h1 className="text-white text-center">Подтверждение аккаунта</h1>
+        <div className={modalStyles.top}>
+          <Text as="h1" size="xxl" align="center" weight={700}>
+            Подтверждение аккаунта
+          </Text>
         </div>
         <form className="flex items-center justify-between" onSubmit={handleSubmit(handleSend)}>
           <Input {...register("code")} placeholder="Код" />

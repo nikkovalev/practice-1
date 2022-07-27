@@ -24,7 +24,7 @@ export const Chat: FC<IChat> = ({ className, variant, inputColor }) => {
         })}
       >
         <ChatTop variant={variant} />
-        <ChatMiddle />
+        <ChatMiddle variant={variant} />
         <ChatBottom variant={variant} inputColor={inputColor} />
       </div>
     </div>

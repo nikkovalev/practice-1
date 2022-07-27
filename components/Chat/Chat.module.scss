@@ -41,6 +41,9 @@
   & > span {
     @apply inline-block mr-[10px] xs:mr-0;
   }
+  &_full > span {
+    @apply mr-[5px];
+  }
 }
 
 .chatTopIcons {
@@ -82,6 +85,9 @@
 // text
 .chatTitle {
   @apply inline-block font-medium text-[17px] text-white-100;
+  &_gray {
+    @apply text-gray-400;
+  }
 }
 .chatText {
   @apply font-medium text-[15px] text-gray-400;
@@ -113,15 +119,27 @@
 
 // Chat message
 .chatMessage {
-  @apply w-1/2 sm:w-full;
+  @apply w-1/2 sm:w-full mb-[10px] last:mb-0;
   margin-right: auto;
   &_me {
     margin-left: auto;
+  }
+  &_full {
+    @apply w-full flex mb-[22px];
+    & > div:last-child {
+      @apply flex-grow;
+    }
   }
 }
 .chatMessageTop {
   @apply flex items-center justify-between;
   margin: 0 15px 10px;
+  &_full {
+    margin: 0 0 5px 0;
+    & > span:first-child {
+      @apply font-bold;
+    }
+  }
 }
 .chatMessageContent {
   @apply bg-primary-400 font-medium text-[15px] text-white-100;
@@ -130,6 +148,11 @@
   border-radius: 10px;
   &_me {
     @apply bg-gray-500;
+  }
+  &_full {
+    @apply bg-transparent;
+    padding: 0;
+    border-radius: 0;
   }
 }
 

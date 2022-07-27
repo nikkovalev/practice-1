@@ -1,19 +1,22 @@
 import React, { FC, ReactNode } from "react";
 import Head from "next/head";
-import { CloseIcon } from "../icons";
+import cn from "classnames";
 
-import styles from "./Modal.module.scss";
+import { CloseIcon } from "../../icons";
+
+import styles from "./ModalLayout.module.scss";
 
 interface IModal {
+  className?: string;
   title?: string;
   children: ReactNode;
   hideClose?: boolean;
   handleClose?: () => void;
 }
 
-const Modal: FC<IModal> = ({ title, children, hideClose, handleClose }) => {
+const Modal: FC<IModal> = ({ className, title, children, hideClose, handleClose }) => {
   return (
-    <div className={styles.modal}>
+    <div className={cn(styles.modal, className)}>
       <Head>
         <title>YaonPay {title && "- " + title}</title>
       </Head>
@@ -22,7 +25,7 @@ const Modal: FC<IModal> = ({ title, children, hideClose, handleClose }) => {
           <CloseIcon />
         </div>
       )}
-      {children}
+      <div>{children}</div>
     </div>
   );
 };

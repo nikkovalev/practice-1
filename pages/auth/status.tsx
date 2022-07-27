@@ -2,7 +2,7 @@ import React from "react";
 import { NextPage } from "next";
 import { useRouter } from "next/router";
 
-import { Modal } from "@/components/modal/Modal";
+import { Modal } from "@/components/layouts/modalLayout";
 import Link from "next/link";
 
 const AuthType: NextPage = () => {

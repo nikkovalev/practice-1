@@ -1,0 +1,94 @@
+@import "../../../assets/styles/_variables.scss";
+
+.modal {
+  @apply py-[50px];
+}
+
+.top {
+  @apply mt-[20px];
+}
+
+.selects {
+  @apply flex items-center flex-wrap md:flex-col;
+  & > div {
+    @apply mr-[10px] mb-[20px] md:mr-0;
+    width: calc(33.3% - 6.6px);
+    &:nth-child(3) {
+      margin-right: 0;
+    }
+    & > div {
+      width: 100%;
+    }
+    @media (max-width: $breakpoint992) {
+      width: 100%;
+    }
+  }
+}
+.selectWithIcon {
+  & > div:first-child {
+    padding: 11px 25px 11px 11px;
+  }
+}
+.label {
+  @apply inline-block pl-[25px] mb-[15px];
+}
+.textarea {
+  @apply block mt-[20px] w-full min-h-[100px] resize-none bg-black-300 py-[20px] px-[25px] font-medium text-[17px] placeholder:text-gray-400 text-white-100;
+  line-height: 20px;
+  border-radius: 10px;
+  &_large {
+    @apply min-h-[200px] mb-[20px];
+  }
+  &_error {
+    border: 1px solid $red-100;
+  }
+}
+.input {
+  @apply relative lg:first:mr-[10px] sm:first:mr-0;
+  & > b {
+    @apply absolute top-1/2 -translate-y-1/2 right-[25px];
+  }
+  & > div {
+    @apply lg:w-full;
+  }
+  &_count input {
+    padding-right: 60px;
+  }
+  @media (max-width: $breakpoint1200) {
+    width: calc(50% - 5px);
+  }
+}
+.inputs {
+  @apply flex items-center justify-between lg:flex-wrap sm:flex-col;
+  & > div {
+    @apply sm:w-full sm:first:mb-[20px];
+    @media (max-width: $breakpoint768) {
+      width: calc(100vw - 40px);
+    }
+  }
+  & > button {
+    @apply lg:mt-[20px] sm:w-full;
+  }
+}
+.icon {
+  @apply w-[38px] h-[38px] rounded-full bg-cover bg-center bg-no-repeat;
+}
+.radioWrapper {
+  @apply flex items-center justify-center mb-[20px];
+}
+.radio {
+  @apply p-2 flex items-center justify-between relative ml-[20px] rounded-full min-h-[40px] min-w-[80px] cursor-pointer;
+  border: 2px solid $gray-400;
+  & > span {
+    @apply relative text-white-100 z-10;
+  }
+}
+.radioIndicator {
+  @apply absolute -left-[5px] -top-[2px] w-[45px] h-[40px] bg-primary-400 rounded-full;
+  transition: transform 0.25s;
+  box-shadow: 0px 10px 20px rgba(127, 134, 232, 0.25);
+}
+
+.form {
+  @apply w-[980px] max-w-[980px] lg:w-full;
+}

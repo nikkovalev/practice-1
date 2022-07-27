@@ -12,7 +12,7 @@ export interface IGetOffer {
 }
 
 export interface IOffer {
-  id: number;
+  id?: number;
   seller: IUser;
   filters: string[];
   categoryId: number;

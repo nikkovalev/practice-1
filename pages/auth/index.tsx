@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import cn from "classnames";
 import { NextPage } from "next";
 import { useRouter } from "next/router";
 import Link from "next/link";
@@ -11,8 +12,8 @@ import { IAuthLogin } from "@/models/IAuth";
 import { useLoginUserMutation } from "@/store/auth/authApi";
 import { useActions } from "@/hooks/useActions";
 
-import { Modal, styles as modalStyles } from "@/components/modal/Modal";
-import { Button } from "@/components/ui";
+import { Modal, styles as modalStyles } from "@/components/layouts/modalLayout";
+import { Button, Text } from "@/components/ui";
 import { Input } from "@/components/ui/Input/Input";
 
 const AuthPage: NextPage = () => {
@@ -52,13 +53,18 @@ const AuthPage: NextPage = () => {
   return (
     <Modal title="Войти" handleClose={handleClose}>
       <div className="flex flex-col items-center w-full">
-        <div className={modalStyles.modalTop}>
-          <h1 className="mr-[50px] sm:mr-[25px]">Войти</h1>
-          <Link href="/register">
-            <a>
-              <h3 className="text-primary-400 font-bold">Зарегистрироваться</h3>
-            </a>
-          </Link>
+        <div className={cn(modalStyles.top, modalStyles.top_flex)}>
+          <Text
+            className="mr-[50px] sm:mr-[25px] xs:mr-0 xs:mb-[10px]"
+            as="h1"
+            size="xxl"
+            weight={700}
+          >
+            Войти
+          </Text>
+          <Text as="a" href="/register" color="primary" size="xl" weight={700}>
+            Зарегистрироваться
+          </Text>
         </div>
         <form onSubmit={handleSubmit(handleLogin)}>
           <Input

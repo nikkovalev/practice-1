@@ -85,7 +85,7 @@
 }
 
 .itemIconButton {
-  @apply flex items-center justify-center w-[40px] h-[40px] rounded-full bg-gray-400 hover:bg-black-400 hover:shadow-none;
+  @apply flex items-center justify-center w-[40px] h-[40px] rounded-full bg-gray-400 hover:bg-red-100 hover:shadow-none;
   &_yellow {
     @apply bg-secondary-400 hover:bg-secondary-300;
     box-shadow: 0px 5px 15px rgba(255, 219, 89, 0.25);
@@ -98,4 +98,8 @@
 
 .items {
   @apply flex items-center justify-between;
+}
+
+.button {
+  @apply mb-[30px];
 }

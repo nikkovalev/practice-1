@@ -1,13 +1,24 @@
 @import "../../../assets/styles/_variables.scss";
 
 .select {
-  @apply relative flex-shrink;
-  width: 270px;
+  @apply w-[270px] relative flex-shrink;
+  &_large {
+    @apply w-[320px] lg:w-[250px];
+  }
 }
 .selectHeader {
   @apply w-full flex items-center justify-between bg-black-400 cursor-pointer rounded-full;
   padding: 15px 25px;
   min-height: 50px;
+  &_light {
+    @apply bg-black-300;
+  }
+  &_large {
+    padding: 20px 25px;
+  }
+  &_error {
+    border: 1px solid $red-100;
+  }
 }
 .selectText {
   @apply text-white-100 font-medium;
@@ -16,6 +27,7 @@
 }
 .selectHeaderActive {
   border-radius: 10px 10px 0 0;
+  border: none;
   & svg {
     transform: rotate(180deg);
   }
@@ -27,6 +39,9 @@
   padding: 0 25px 20px;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
+  &_light {
+    @apply bg-black-300;
+  }
   & ul {
     & li {
       @apply text-gray-400 font-medium hover:text-secondary-400 cursor-pointer;
@@ -40,7 +55,4 @@
 }
 .selectItemsActive {
   display: block;
-}
-.selectIcon {
-  margin-right: 15px;
 }

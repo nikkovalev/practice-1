@@ -13,7 +13,7 @@
 }
 
 .title {
-  @apply font-bold text-white-100 mb-[30px] sm:mb-[20px];
+  @apply font-bold dark:text-white-100 mb-[30px] sm:mb-[20px];
   font-size: 52px;
   line-height: 67.6px;
   @media (max-width: $breakpoint992) {
