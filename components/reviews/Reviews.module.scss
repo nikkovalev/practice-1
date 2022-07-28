@@ -1,7 +1,10 @@
 @import "../../assets/styles/_variables.scss";
 
 .reviewsHeader {
-  @apply flex items-center mb-[50px] sm:items-start sm:flex-col sm:mb-[20px];
+  @apply flex items-center mb-[30px] sm:items-start sm:flex-col sm:mb-[20px];
+  &_short {
+    @apply mb-[50px];
+  }
 }
 .reviewHeaderLeft {
   @apply flex items-center mr-[50px] sm:mr-0;
@@ -43,6 +46,9 @@
   }
   &_normal {
     width: calc(50% - 10px);
+    @media (max-width: $breakpoint1200) {
+      width: 100%;
+    }
   }
 }
 .reviewAvatar {
@@ -72,7 +78,7 @@
   }
 }
 .reviewHeader {
-  @apply flex items-center justify-between mb-[20px] sm:mb-[10px] sm:pl-[55px] xs:pl-0 xs:pt-[50px];
+  @apply flex items-center justify-between mb-[20px] sm:mb-[20px] sm:pl-[55px] xs:pl-0 xs:pt-[50px];
   & > b {
     @apply font-bold text-primary-400;
     font-size: 20px;

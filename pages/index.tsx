@@ -1,4 +1,4 @@
-import type { NextPage, NextPageContext } from "next";
+import type { NextPage } from "next";
 import { ICategory } from "@/models/ICategory";
 
 import { Home } from "@/components/screens/home/Home";
@@ -7,7 +7,7 @@ interface IHomePage {
   categories: ICategory[];
 }
 
-export const getServerSideProps = async (context: NextPageContext) => {
+export const getServerSideProps = async () => {
   const categories = await (await fetch(`${process.env.API_URL}/categories?full=false`)).json();
   return {
     props: {

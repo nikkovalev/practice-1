@@ -19,9 +19,10 @@ import styles from "./ProfileLayout.module.scss";
 interface IProfileLayout {
   title: string;
   children: ReactNode;
+  hideTitle?: boolean;
 }
 
-export const ProfileLayout: FC<IProfileLayout> = ({ children, title }) => {
+export const ProfileLayout: FC<IProfileLayout> = ({ children, title, hideTitle }) => {
   const { isAuth, user } = useAppSelector((state) => state.auth);
   const [updateProfileAvatar, { data: newAvatar }] = useUpdateProfileAvatarMutation();
   const { saveAvatar } = useActions();
@@ -48,7 +49,7 @@ export const ProfileLayout: FC<IProfileLayout> = ({ children, title }) => {
         <ProfileLayoutButtons />
       </Preview>
       <div className="inner-container">
-        <h1 className={styles.title}>{title}</h1>
+        {!hideTitle && <h1 className={styles.title}>{title}</h1>}
         {children}
       </div>
     </Layout>

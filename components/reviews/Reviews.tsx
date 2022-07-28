@@ -1,15 +1,17 @@
 import React, { FC } from "react";
-import { RotateIcon } from "../icons";
+import cn from "classnames";
 
 import { Stars } from "../stars/Stars";
 import { Review } from "./Review";
+
+import { RotateIcon } from "../icons";
 
 import styles from "./Reviews.module.scss";
 
 export const Reviews: FC<{ size?: "normal" | "short" }> = ({ size = "normal" }) => {
   return (
     <div>
-      <div className={styles.reviewsHeader}>
+      <div className={cn(styles.reviewsHeader, { [styles.reviewHeader_short]: size === "short" })}>
         <div className={styles.reviewHeaderLeft}>
           <b>1554</b>
           <span>отзыва</span>

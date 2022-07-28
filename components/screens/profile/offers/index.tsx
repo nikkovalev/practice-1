@@ -46,7 +46,7 @@ const Offers = () => {
         >
           Добавить предложение
         </Button>
-        <Text size="xl" className="dark:text-secondary-400">
+        <Text size="xl" className="dark:text-secondary-400" color="black">
           Здесь пока ничего нет
         </Text>
         {/*  <div>
