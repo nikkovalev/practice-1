@@ -19,18 +19,21 @@
   &_error {
     border: 1px solid $red-100;
   }
+  &_small-padding {
+    padding: 11px 25px 11px 11px;
+  }
+  &Active {
+    border-radius: 10px 10px 0 0;
+    border: none;
+    & > svg {
+      transform: rotate(180deg);
+    }
+  }
 }
 .selectText {
   @apply text-white-100 font-medium;
   width: 90%;
   font-size: 17px;
-}
-.selectHeaderActive {
-  border-radius: 10px 10px 0 0;
-  border: none;
-  & svg {
-    transform: rotate(180deg);
-  }
 }
 .selectItems {
   @apply absolute left-0 w-full bg-black-400 hidden z-50;

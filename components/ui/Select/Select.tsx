@@ -15,6 +15,7 @@ interface ISelect {
   size?: "large";
   iconCN?: string;
   isError?: boolean;
+  padding?: "small";
   handleChange?: (val: string | null, idx?: number) => void;
 }
 
@@ -23,7 +24,10 @@ export interface SelectHandle {
 }
 
 export const Select = forwardRef<SelectHandle, ISelect>(
-  ({ className, label, color, size, items, icon, iconCN, isError, handleChange }, ref: any) => {
+  (
+    { className, label, color, size, items, icon, iconCN, isError, padding, handleChange },
+    ref: any
+  ) => {
     const { isShow, ref: rootRef, setIsShow } = useOutside(false);
     const [val, setVal] = useState<string>(label);
 
@@ -51,6 +55,7 @@ export const Select = forwardRef<SelectHandle, ISelect>(
             [styles[`selectHeader_${color}`]]: !!color,
             [styles[`selectHeader_${size}`]]: !!size,
             [styles.selectHeader_error]: isError,
+            [styles[`selectHeader_${padding}-padding`]]: !!padding,
           })}
           onClick={handleToggle}
         >

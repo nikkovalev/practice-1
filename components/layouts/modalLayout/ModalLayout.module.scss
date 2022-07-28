@@ -3,7 +3,7 @@
 .modal {
   @apply w-full min-h-screen relative px-[20px] flex items-center justify-center bg-black-400;
   @media (max-width: $breakpoint768) {
-    @apply py-[70px];
+    @apply py-[80px];
     & form {
       @apply flex flex-col items-center min-w-full;
       & > div {

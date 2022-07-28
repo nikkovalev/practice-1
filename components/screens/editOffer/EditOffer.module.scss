@@ -24,11 +24,6 @@
     }
   }
 }
-.selectWithIcon {
-  & > div:first-child {
-    padding: 11px 25px 11px 11px;
-  }
-}
 .label {
   @apply inline-block pl-[25px] mb-[15px];
 }
@@ -50,9 +45,12 @@
   }
   & > div {
     @apply lg:w-full;
+    & > input {
+      padding-right: 45px;
+    }
   }
-  &_count input {
-    padding-right: 60px;
+  &_count > div > input {
+    padding-right: 61px;
   }
   @media (max-width: $breakpoint1200) {
     width: calc(50% - 5px);

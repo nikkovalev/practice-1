@@ -1,0 +1,83 @@
+// Text
+.title {
+  @apply block mb-[20px];
+}
+.text {
+  @apply block w-full mb-[40px];
+  line-height: 150%;
+}
+
+.inputWithIcon,
+.select {
+  @apply mr-[10px] last:mr-0 mb-[20px];
+}
+
+.select {
+  @apply lg:w-[250px] md:w-full;
+}
+
+// Flex container
+.items {
+  @apply flex items-center md:flex-col;
+}
+
+// Input wrapper
+.inputWithIcon {
+  @apply relative md:w-full;
+  & > b {
+    @apply absolute top-1/2 -translate-y-1/2 right-[25px];
+  }
+  & > div {
+    @apply lg:w-[250px] md:w-full;
+    & > input {
+      @apply pr-[45px];
+    }
+  }
+  &_large > div > input {
+    @apply pr-[61px];
+  }
+}
+
+// Input button
+.inputIcon {
+  @apply absolute top-1/2 right-[11px] -translate-y-1/2 flex items-center justify-center w-[40px] h-[40px] rounded-full bg-secondary-400;
+  transition: transform 0.25s;
+  &:active {
+    transform: translateY(-50%) scale(0.9);
+  }
+}
+
+// Popper
+.inputPopper {
+  @apply absolute right-0 -top-[17px] -translate-y-[100%] bg-black-300;
+  border-radius: 10px;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.25s;
+  & > div {
+    @apply relative;
+    & > ul {
+      @apply p-[25px];
+      & > li {
+        @apply text-white-200 text-[17px] font-medium hover:text-secondary-400 mb-[15px] last:mb-0 cursor-pointer;
+        line-height: 20px;
+        transition: color 0.25s;
+      }
+    }
+  }
+  &_active {
+    visibility: visible;
+    opacity: 1;
+  }
+}
+
+.inputPopperArrow {
+  @apply absolute bg-black-300 right-[23px] -bottom-[5px] w-[16px] h-[16px] z-10;
+  border-radius: 4px;
+  transform: rotate(45deg);
+}
+
+// Bottom Button
+.button {
+  @apply mb-[20px] lg:min-w-[250px] md:w-full;
+}

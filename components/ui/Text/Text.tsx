@@ -13,7 +13,7 @@ interface IText {
   weight?: 400 | 500 | 600 | 700;
   align?: "center" | "left" | "right";
   href?: string;
-  children: string;
+  children: any;
 }
 
 export const Text: FC<IText> = ({

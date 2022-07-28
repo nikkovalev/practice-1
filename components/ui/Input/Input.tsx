@@ -11,14 +11,13 @@ interface IInput {
   name: string;
   placeholder: string;
   isError?: boolean;
-  withIcon?: boolean;
   onBlur?: (event: FocusEvent<HTMLInputElement>) => void;
   onChange: (event: ChangeEvent<HTMLInputElement>) => void;
 }
 
 export const Input = forwardRef<HTMLInputElement, IInput>(
   (
-    { className, name, placeholder, type, isError, withIcon, onBlur, onChange },
+    { className, name, placeholder, type, isError, onBlur, onChange },
     ref: ForwardedRef<HTMLInputElement>
   ) => {
     const [inputType, setInputType] = useState<"password" | "text">(type || "text");
@@ -31,7 +30,7 @@ export const Input = forwardRef<HTMLInputElement, IInput>(
           type={inputType}
           className={cn(styles.input, {
             [styles.inputError]: isError,
-            [styles.inputWithIcon]: type === "password" || withIcon,
+            [styles.inputWithIcon]: type === "password",
           })}
           name={name}
           placeholder={placeholder}

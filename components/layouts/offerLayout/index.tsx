@@ -1,7 +1,6 @@
 import React, { FC, ReactNode } from "react";
 import cn from "classnames";
 import Link from "next/link";
-import Image from "next/image";
 import { useAppSelector } from "@/hooks/useTypedSelector";
 
 import { Layout } from "../Layout";
@@ -12,10 +11,10 @@ import { Counter } from "@/components/ui/Counter/Counter";
 import { Chat } from "@/components/Chat/Chat";
 import { Preview } from "../previewLayout";
 
-import cardsIcon from "@/assets/images/cards.svg";
-
 import { IOffer } from "@/models/IOffer";
 import { ICategory } from "@/models/ICategory";
+
+import { CardsIcon } from "@/components/icons/CardsIcon";
 
 import styles from "./OL.module.scss";
 
@@ -62,12 +61,7 @@ export const OfferLayout: FC<IOfferLayout> = ({ children, offer, category }) => 
             <div className={styles.topActions}>
               <b className={styles.topPrice}>{offer.price}₽</b>
               <Counter initial={offer.quantity} />
-              <Select
-                label="Банковская карта"
-                items={[]}
-                iconCN="mr-[15px]"
-                icon={<Image src={cardsIcon} width={20} height={20} alt="Cards icon" />}
-              />
+              <Select label="Банковская карта" items={[]} iconCN="mr-[15px]" icon={<CardsIcon />} />
               <Button color="secondary" size="fit">
                 Купить
               </Button>

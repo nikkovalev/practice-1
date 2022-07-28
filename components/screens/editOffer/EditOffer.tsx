@@ -162,9 +162,6 @@ export const EditOffer: FC<IEditOffer> = ({ initial, categories }) => {
               Категория
             </Text>
             <Select
-              className={cn({
-                [styles.selectWithIcon]: !!currentCategory,
-              })}
               label="Выберите категорию"
               items={categoriesNames}
               icon={
@@ -178,6 +175,7 @@ export const EditOffer: FC<IEditOffer> = ({ initial, categories }) => {
               iconCN="mr-[10px]"
               size="large"
               color="light"
+              padding={!!currentCategory ? "small" : undefined}
               isError={errorsObj.category}
               handleChange={handleChangeCategory}
             />
@@ -260,7 +258,6 @@ export const EditOffer: FC<IEditOffer> = ({ initial, categories }) => {
             <Input
               {...register("price", { required: true, validate: (v) => !Number.isNaN(Number(v)) })}
               placeholder="Цена за 1 шт."
-              withIcon={true}
               isError={!!errors?.price}
             />
             <Text as="b" color="gray" size="s" weight={700}>
@@ -275,7 +272,6 @@ export const EditOffer: FC<IEditOffer> = ({ initial, categories }) => {
                   validate: (v) => !Number.isNaN(Number(v)),
                 })}
                 placeholder="Наличие, например 6000"
-                withIcon={true}
                 isError={!!errors?.count}
               />
               <Text as="b" color="gray" size="s" weight={700}>
