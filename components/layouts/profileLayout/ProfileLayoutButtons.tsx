@@ -53,7 +53,7 @@ export const ProfileLayoutButtons: FC = () => {
               variant="outlined"
               size="fit"
               color="black"
-              component="link"
+              as="link"
               href={btn.path}
               isActive={isActive}
             >

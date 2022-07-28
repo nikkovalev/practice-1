@@ -1,4 +1,4 @@
-import React, { FC, ReactNode } from "react";
+import React, { FC } from "react";
 import cn from "classnames";
 
 import { Link } from "@/components/link";
@@ -7,7 +7,7 @@ import styles from "./Text.module.scss";
 
 interface IText {
   className?: string;
-  as?: "h1" | "a" | "span" | "p" | "b";
+  as?: "h1" | "h3" | "h4" | "a" | "span" | "p" | "b";
   size?: "xxs" | "xs" | "s" | "m" | "l" | "xl" | "xxl";
   color?: "white" | "gray" | "primary" | "secondary" | "black";
   weight?: 400 | 500 | 600 | 700;

@@ -1,0 +1,18 @@
+.buttons {
+  @apply flex items-center flex-wrap mb-[20px];
+  & > button {
+    @apply mr-[20px] mb-[20px];
+  }
+}
+
+.title {
+  @apply mb-[20px] md:mb-[15px];
+}
+
+.successIconWrapper {
+  @apply xxs:w-full xxs:mt-[15px];
+}
+
+.successIcon {
+  @apply flex items-center justify-center w-[40px] h-[40px] rounded-full bg-green-100 shadow-green;
+}

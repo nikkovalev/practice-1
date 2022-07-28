@@ -41,7 +41,7 @@ const Offers = () => {
           className={styles.button}
           size="fit"
           variant="outlined"
-          component="link"
+          as="link"
           href="/edit-offer"
         >
           Добавить предложение
@@ -49,39 +49,41 @@ const Offers = () => {
         <Text size="xl" className="dark:text-secondary-400" color="black">
           Здесь пока ничего нет
         </Text>
-        {/*  <div>
-          <h3 className={styles.itemTitle}>Буст</h3>
-          <div className={styles.items}>
-            <div className={cn(styles.item, styles.item_limit)}>
-              <div className={cn(styles.itemStatus)}></div>
-              <div className={cn(styles.itemList, styles.itemList_short)}>
-                <div>
-                  <div className={styles.itemText}>Сервер</div>
-                  <div className={cn(styles.itemText, styles.itemText_white)}>
-                    FIFA 22 Ultimate Team (PS)
+        {/* <div>
+          <div className={styles.itemWrapper}>
+            <h3 className={styles.itemTitle}>Буст</h3>
+            <div className={styles.items}>
+              <div className={cn(styles.item, styles.item_limit)}>
+                <div className={cn(styles.itemStatus)}></div>
+                <div className={cn(styles.itemList, styles.itemList_short)}>
+                  <div>
+                    <div className={styles.itemText}>Сервер</div>
+                    <div className={cn(styles.itemText, styles.itemText_white)}>
+                      FIFA 22 Ultimate Team (PS)
+                    </div>
+                  </div>
+                  <div>
+                    <div className={styles.itemText}>Описание</div>
+                    <div className={cn(styles.itemText, styles.itemText_white)}>
+                      Сыграю вл за вас на 5 ранг, пишите в любое время как буду онлайн отвечу
+                    </div>
                   </div>
                 </div>
-                <div>
-                  <div className={styles.itemText}>Описание</div>
-                  <div className={cn(styles.itemText, styles.itemText_white)}>
-                    Сыграю вл за вас на 5 ранг, пишите в любое время как буду онлайн отвечу
+                <div className={styles.itemFooter}>
+                  <b className={styles.itemPrice}>
+                    1000 <span>монет</span> / 50₽
+                  </b>
+                  <div className={cn(styles.itemIcons, styles.itemIcons_short)}>
+                    <button className="circle circle_yellow">
+                      <EditIcon className="fill-black-400" />
+                    </button>
+                    <button className="circle circle_purple">
+                      <Image src={stopIcon} width={15} height={15} alt="Stop icon" />
+                    </button>
+                    <button className="circle">
+                      <Image src={removeIcon} width={20} height={20} alt="Remove icon" />
+                    </button>
                   </div>
-                </div>
-              </div>
-              <div className={styles.itemFooter}>
-                <b className={styles.itemPrice}>
-                  1000 <span>монет</span> / 50₽
-                </b>
-                <div className={cn(styles.itemIcons, styles.itemIcons_short)}>
-                  <button className={cn(styles.itemIconButton, styles.itemIconButton_yellow)}>
-                    <EditIcon className="fill-black-400" />
-                  </button>
-                  <button className={cn(styles.itemIconButton, styles.itemIconButton_purple)}>
-                    <Image src={stopIcon} width={15} height={15} alt="Stop icon" />
-                  </button>
-                  <button className={styles.itemIconButton}>
-                    <Image src={removeIcon} width={20} height={20} alt="Remove icon" />
-                  </button>
                 </div>
               </div>
             </div>

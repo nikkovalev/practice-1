@@ -40,6 +40,13 @@ module.exports = {
       "black-400": "rgba(24, 26, 32, 0.6)",
       "black-500": "#14161B",
     }),
+    extend: {
+      boxShadow: {
+        primary: "0px 10px 20px rgba(127, 134, 232, 0.25)",
+        secondary: "0px 10px 20px rgba(255, 219, 89, 0.25)",
+        green: "0px 5px 15px rgba(0, 166, 36, 0.25)",
+      },
+    },
   },
   plugins: [],
 };

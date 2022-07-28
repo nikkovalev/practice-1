@@ -16,7 +16,7 @@ import { ICategory } from "@/models/ICategory";
 
 import { CardsIcon } from "@/components/icons/CardsIcon";
 
-import styles from "./OL.module.scss";
+import styles from "./OfferLayout.module.scss";
 
 interface IOfferLayout {
   children: ReactNode;

@@ -11,38 +11,45 @@ interface IButton {
   variant?: "contained" | "outlined";
   color?: "primary" | "secondary" | "black";
   isDisabled?: boolean;
-  component?: "link";
+  as?: "link" | "button";
   href?: string;
   isActiveOutlined?: boolean;
   onClick?: (e: MouseEvent<HTMLButtonElement>) => void;
 }
 export const Button: FC<IButton> = ({
+  as = "button",
   className,
   size,
   children,
   isActive = false,
-  isActiveOutlined,
+  isActiveOutlined = false,
   color = "primary",
   variant = "contained",
   isDisabled,
-  component,
   href,
   onClick,
 }) => {
   const CN = cn(styles.button, className, {
-    [styles.buttonContained]: variant === "contained" || (isActive && variant === "outlined"),
-    [styles.buttonOutlined]: variant === "outlined" && !isActive,
-    [styles.buttonSecondary]: color === "secondary",
-    [styles.buttonSecondary_active]: isActive && color === "secondary",
-    [styles.buttonPrimary_active]: isActive && color === "primary" && variant !== "outlined",
+    // Button size
     [styles[`button_${size}`]]: !!size,
-    [styles.buttonOutlinedBlack]: color === "black" && variant === "outlined",
-    [styles.buttonOutlinedBlack_active]: isActiveOutlined,
-    [styles.buttonDisabled]: isDisabled,
-    "text-center": component === "link",
+    // Button - Primary
+    [styles.primaryContained]:
+      (isActive && variant === "outlined") || (variant === "contained" && color === "primary"),
+    [styles.primaryOutlined]: !isActive && variant === "outlined" && color === "primary",
+    [styles.primaryContained_active]: isActive && color === "primary" && variant === "contained",
+    // Button - Secondary
+    [styles.secondaryContained]: variant === "contained" && color === "secondary",
+    [styles.secondaryContained_active]: isActive && color === "secondary",
+    // Button - Black
+    [styles.blackOutlined]: !isActive && color === "black",
+    [styles.blackOutlined_active]: isActiveOutlined && color === "black",
+    // Disabled styles
+    [styles.button_disabled]: isDisabled,
+    // Styles for link
+    "text-center": as === "link",
   });
 
-  if (component === "link" && !!href) {
+  if (as === "link" && !!href) {
     return (
       <Link href={href}>
         <a className={CN}>{children}</a>

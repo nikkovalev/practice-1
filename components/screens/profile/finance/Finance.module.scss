@@ -1,0 +1,87 @@
+@import "../../../../assets/styles/_variables.scss";
+
+.top {
+  @apply flex items-center justify-between mb-[50px] sm:mb-[20px] md:flex-wrap;
+  & > button {
+    @apply md:min-w-full md:mt-[10px];
+  }
+}
+
+.item {
+  @apply flex items-center justify-center bg-black-300 w-[350px] p-[10px] rounded-full mr-[10px] md:mr-0;
+  & > b {
+    @apply text-[32px] text-gray-400 font-bold sm:text-[24px];
+  }
+  &_yellow > b {
+    @apply text-secondary-400;
+  }
+  @media (max-width: $breakpoint992) {
+    width: calc(33% - 6.6px);
+  }
+}
+
+.middle {
+  @apply flex items-center mb-[40px] sm:mb-[20px];
+  & > h4 {
+    @apply mr-[30px];
+  }
+}
+
+.middleButton {
+  @apply sm:w-[60px] sm:h-[60px] sm:p-0;
+  &:hover > span {
+    @apply text-white-100;
+  }
+  & > span {
+    @apply sm:hidden text-primary-400 text-[18px] font-bold;
+    line-height: 22px;
+    transition: color 0.25s;
+  }
+  &:active,
+  &:hover {
+    @apply bg-black-400;
+  }
+}
+
+.middleIcon {
+  @apply hidden sm:flex items-center sm:mt-[5px];
+}
+
+.cards {
+  @apply flex items-center flex-wrap sm:flex-col;
+}
+
+.card {
+  @apply relative flex items-center justify-between bg-black-300 p-[11px] rounded-full mr-[10px] mb-[10px] sm:w-full xxs:flex-wrap xxs:justify-center;
+  border: 1px solid transparent;
+  & > button {
+    @apply ml-[10px] sm:ml-[5px];
+  }
+  & > span {
+    @apply inline-block text-white-100 text-[18px] font-medium ml-[10px] sm:ml-[5px] flex-grow xxs:min-w-full xxs:text-center xxs:my-[10px];
+  }
+  & > input {
+    @apply absolute top-0 left-0 right-0 bottom-0 w-full h-full bg-black-300 rounded-full text-[17px] text-white-100 py-[15px] px-[25px] z-10 pr-[50px];
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.25s;
+  }
+  &_form > input {
+    opacity: 1;
+    visibility: visible;
+  }
+  &_error {
+    @apply border-red-100;
+  }
+}
+
+.doneIcon {
+  @apply absolute top-1/2 -translate-y-1/2 right-[11px] z-20;
+  visibility: hidden;
+  &_show {
+    visibility: visible;
+  }
+  &:active {
+    transform: translateY(-50%) scale(0.9);
+  }
+}

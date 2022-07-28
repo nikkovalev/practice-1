@@ -17,7 +17,7 @@ export const Favorites: FC<IFavorites> = ({ isAuth, favorites, like }) => {
   return (
     <Layout title="Избранные">
       <div className="inner-container">
-        <TextWithCount title="Избранные" count={count} />
+        <TextWithCount className="mb-[40px] md:mb-[20px]" title="Избранные" count={count} />
         <div className="columns-3 gap-x-[10px] lg:columns-2 sm:columns-1">
           {favorites.map((c: ICategory) => (
             <HomeCategory

@@ -1,16 +1,8 @@
 @import "../../../assets/styles/_variables.scss";
 
 .filters {
-  @apply flex items-center justify-between bg-white-200 dark:bg-black-300;
-  min-height: 100px;
-  padding: 25px;
-  margin-top: 50px;
+  @apply flex items-center justify-between min-h-[100px] p-[25px] bg-white-200 dark:bg-black-300 mt-[50px] xs:p-0 xs:min-h-0 xs:bg-transparent xs:dark:bg-black-400;
   border-radius: 10px;
-  @media (max-width: $breakpoint480) {
-    padding: 0;
-    min-height: 0;
-    background-color: transparent !important;
-  }
 }
 .filterBtn {
   @apply min-w-[220px] xs:mb-[10px];

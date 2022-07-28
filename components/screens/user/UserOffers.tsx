@@ -90,63 +90,65 @@ export const UserOffers = () => {
         Фильтр
       </Button>
       <div>
-        <h3 className={offersStyles.itemTitle}>Буст</h3>
-        <div className={offersStyles.item}>
-          <div className={offersStyles.itemList}>
-            <div>
-              <div className={offersStyles.itemText}>Сервер</div>
-              <div className={cn(offersStyles.itemText, offersStyles.itemText_white)}>
-                FIFA 22 Ultimate Team (PS)
+        <div className={offersStyles.itemWrapper}>
+          <h3 className={offersStyles.itemTitle}>Буст</h3>
+          <div className={offersStyles.item}>
+            <div className={offersStyles.itemList}>
+              <div>
+                <div className={offersStyles.itemText}>Сервер</div>
+                <div className={cn(offersStyles.itemText, offersStyles.itemText_white)}>
+                  FIFA 22 Ultimate Team (PS)
+                </div>
+              </div>
+              <div>
+                <div className={offersStyles.itemText}>Описание</div>
+                <div className={cn(offersStyles.itemText, offersStyles.itemText_white)}>
+                  Сыграю вл за вас на 5 ранг, пишите в любое время как буду онлайн отвечу
+                </div>
               </div>
             </div>
-            <div>
-              <div className={offersStyles.itemText}>Описание</div>
-              <div className={cn(offersStyles.itemText, offersStyles.itemText_white)}>
-                Сыграю вл за вас на 5 ранг, пишите в любое время как буду онлайн отвечу
+            <div className={offersStyles.itemFooter}>
+              <b className={offersStyles.itemPrice}>от 500₽</b>
+              <div className={offersStyles.itemIcons}>
+                <button>
+                  <InfoIcon />
+                </button>
+                <button>
+                  <LikeIcon isSmall={true} />
+                </button>
               </div>
-            </div>
-          </div>
-          <div className={offersStyles.itemFooter}>
-            <b className={offersStyles.itemPrice}>от 500₽</b>
-            <div className={offersStyles.itemIcons}>
-              <button>
-                <InfoIcon />
-              </button>
-              <button>
-                <LikeIcon isSmall={true} />
-              </button>
             </div>
           </div>
         </div>
-      </div>
-      <div>
-        <h3 className={offersStyles.itemTitle}>Монеты</h3>
-        <div className={offersStyles.item}>
-          <div className={offersStyles.itemList}>
-            <div>
-              <div className={offersStyles.itemText}>Сервер</div>
-              <div className={cn(offersStyles.itemText, offersStyles.itemText_white)}>
-                FIFA 22 Ultimate Team (PS)
+        <div className={offersStyles.itemWrapper}>
+          <h3 className={offersStyles.itemTitle}>Монеты</h3>
+          <div className={offersStyles.item}>
+            <div className={offersStyles.itemList}>
+              <div>
+                <div className={offersStyles.itemText}>Сервер</div>
+                <div className={cn(offersStyles.itemText, offersStyles.itemText_white)}>
+                  FIFA 22 Ultimate Team (PS)
+                </div>
+              </div>
+              <div>
+                <div className={offersStyles.itemText}>Наличие</div>
+                <div className={cn(offersStyles.itemText, offersStyles.itemText_white)}>
+                  1 000 000 000 монет
+                </div>
               </div>
             </div>
-            <div>
-              <div className={offersStyles.itemText}>Наличие</div>
-              <div className={cn(offersStyles.itemText, offersStyles.itemText_white)}>
-                1 000 000 000 монет
+            <div className={offersStyles.itemFooter}>
+              <b className={offersStyles.itemPrice}>
+                1000 <span>монет</span> / 50₽
+              </b>
+              <div className={offersStyles.itemIcons}>
+                <button>
+                  <InfoIcon />
+                </button>
+                <button>
+                  <LikeIcon isSmall={true} />
+                </button>
               </div>
-            </div>
-          </div>
-          <div className={offersStyles.itemFooter}>
-            <b className={offersStyles.itemPrice}>
-              1000 <span>монет</span> / 50₽
-            </b>
-            <div className={offersStyles.itemIcons}>
-              <button>
-                <InfoIcon />
-              </button>
-              <button>
-                <LikeIcon isSmall={true} />
-              </button>
             </div>
           </div>
         </div>

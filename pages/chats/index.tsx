@@ -8,7 +8,7 @@ const Chats = () => {
   return (
     <Layout title="Сообщения">
       <div className="inner-container">
-        <TextWithCount title="Сообщения" count="2" />
+        <TextWithCount className="mb-[30px]" title="Сообщения" count="2" />
         <Chat variant="full" />
       </div>
     </Layout>

@@ -28,10 +28,10 @@
   @media (max-width: $breakpoint1450) {
     width: 100%;
     flex-grow: 1;
-    margin-top: 20px;
     margin-bottom: 30px;
   }
   @media (max-width: $breakpoint992) {
+    margin-top: 30px;
     text-align: center;
   }
 }

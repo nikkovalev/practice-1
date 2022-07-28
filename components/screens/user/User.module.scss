@@ -54,7 +54,7 @@
 }
 
 .offersInput {
-  @apply absolute top-0 right-0 left-0 bottom-0 bg-black-300 text-gray-400 placeholder:text-gray-400 font-medium text-[17px] rounded-full opacity-0 z-20;
+  @apply absolute top-0 right-0 left-0 bottom-0 bg-black-300 text-white-100 placeholder:text-gray-400 font-medium text-[17px] rounded-full opacity-0 z-20;
   padding: 15px 25px;
   visibility: hidden;
   transition: opacity 0.25s;
@@ -71,7 +71,7 @@
 }
 
 .offersButton {
-  @apply hidden sm:flex sm:w-full sm:text-white-100;
+  @apply hidden sm:flex sm:w-full sm:text-white-100 mb-[30px];
   & > svg {
     margin-right: 15px;
   }
