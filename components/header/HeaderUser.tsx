@@ -70,7 +70,7 @@ export const HeaderUser: FC<IHeaderUser> = ({ me }) => {
         <div className={styles.headerUserInfo}>
           <div>
             <span>{me.username}</span>
-            <ArrowIcon />
+            <ArrowIcon direction="bottom" color="gray" />
           </div>
           <b>1500₽</b>
         </div>

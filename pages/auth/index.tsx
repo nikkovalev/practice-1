@@ -1,20 +1,22 @@
 import React, { useEffect } from "react";
 import cn from "classnames";
 import { NextPage } from "next";
+import Image from "next/image";
 import { useRouter } from "next/router";
-import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { useAppSelector } from "@/hooks/useTypedSelector";
 import { toast } from "react-toastify";
 
 import { IAuthLogin } from "@/models/IAuth";
 
-import { useLoginUserMutation } from "@/store/auth/authApi";
+import { useLoginUserMutation, useLoginVKMutation } from "@/store/auth/authApi";
 import { useActions } from "@/hooks/useActions";
 
 import { Modal, styles as modalStyles } from "@/components/layouts/modalLayout";
 import { Button, Text } from "@/components/ui";
 import { Input } from "@/components/ui/Input/Input";
+
+import vkIcon from "@/assets/images/socials/vk.svg";
 
 const AuthPage: NextPage = () => {
   const {
@@ -23,6 +25,7 @@ const AuthPage: NextPage = () => {
     formState: { errors },
   } = useForm();
   const [loginUser, { data, isLoading }] = useLoginUserMutation();
+  const [loginVK, { isLoading: isLoadingVK }] = useLoginVKMutation();
   const router = useRouter();
   const { isAuth } = useAppSelector((state) => state.auth);
   const { modalPrevUrl } = useAppSelector((state) => state.global);
@@ -30,6 +33,7 @@ const AuthPage: NextPage = () => {
 
   const handleClose = () => router.push(modalPrevUrl);
   const handleLogin = (data: { [key: string]: any }) => loginUser(data as IAuthLogin);
+  const handleLoginVK = () => loginVK();
 
   useEffect(() => {
     if (!isLoading && data) {
@@ -52,7 +56,7 @@ const AuthPage: NextPage = () => {
 
   return (
     <Modal title="Войти" handleClose={handleClose}>
-      <div className="flex flex-col items-center w-full">
+      <form className="flex flex-col items-center" onSubmit={handleSubmit(handleLogin)}>
         <div className={cn(modalStyles.top, modalStyles.top_flex)}>
           <Text
             className="mr-[50px] sm:mr-[25px] xs:mr-0 xs:mb-[10px]"
@@ -66,29 +70,37 @@ const AuthPage: NextPage = () => {
             Зарегистрироваться
           </Text>
         </div>
-        <form onSubmit={handleSubmit(handleLogin)}>
-          <Input
-            {...register("login", { required: true })}
-            className="mb-5"
-            placeholder="Имя или почта"
-            isError={!!errors.login}
-          />
-          <Input
-            {...register("password", { required: true })}
-            placeholder="Пароль"
-            type="password"
-            isError={!!errors.password}
-          />
-          <Button
-            className={modalStyles.authButton}
-            color="secondary"
-            size="large"
-            isDisabled={isLoading}
-          >
-            Войти
-          </Button>
-        </form>
-      </div>
+        <Input
+          {...register("login", { required: true })}
+          className="mb-5"
+          placeholder="Имя или почта"
+          isError={!!errors.login}
+        />
+        <Input
+          {...register("password", { required: true })}
+          placeholder="Пароль"
+          type="password"
+          isError={!!errors.password}
+        />
+        <Button
+          className={modalStyles.authButton}
+          color="secondary"
+          size="large"
+          isDisabled={isLoading || isLoadingVK}
+        >
+          Войти
+        </Button>
+        <Button
+          className={modalStyles.authVK}
+          color="blue"
+          size="large"
+          isDisabled={isLoading || isLoadingVK}
+          onClick={handleLoginVK}
+        >
+          <Image src={vkIcon.src} width={25} height={25} alt="VK" />
+          Войти через вк
+        </Button>
+      </form>
     </Modal>
   );
 };

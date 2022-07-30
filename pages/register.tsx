@@ -13,7 +13,6 @@ import { toast } from "react-toastify";
 import { Modal, styles as modalStyles } from "@/components/layouts/modalLayout";
 import { Button, Text } from "@/components/ui";
 import { Input } from "@/components/ui/Input/Input";
-import { Checkbox } from "@/components/ui/Checkbox/Checkbox";
 
 const AuthPage: NextPage = () => {
   const {
@@ -28,7 +27,7 @@ const AuthPage: NextPage = () => {
   const router = useRouter();
 
   const validatePassword = (value: string) => {
-    if (watch("password") != value) {
+    if (watch("password") !== value) {
       return "Пароли не совпадают";
     }
     if (
@@ -109,7 +108,7 @@ const AuthPage: NextPage = () => {
             placeholder="Подтвердить пароль"
             isError={!!errors.confirm_password}
           />
-          {errors.confirm_password && (
+          {errors.confirm_password && errors.confirm_password.length > 0 && (
             <div className="text-red-100 mt-4 text-center w-full">
               {errors.confirm_password.message}
             </div>

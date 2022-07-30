@@ -61,7 +61,7 @@ export const Select = forwardRef<SelectHandle, ISelect>(
         >
           {!!icon && <div className={cn(iconCN, "flex items-center")}>{icon}</div>}
           <div className={cn("text-ellipsis", styles.selectText)}>{val}</div>
-          <ArrowIcon pathClassName="fill-primary-400 stroke-primary-400" />
+          <ArrowIcon />
         </div>
         <div
           className={cn("custom_scrollbar", styles.selectItems, {

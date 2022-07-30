@@ -40,6 +40,11 @@ export const authApi = createApi({
         method: "POST",
       }),
     }),
+    loginVK: build.mutation<undefined, void>({
+      query: () => ({
+        url: "/auth/vk",
+      }),
+    }),
     updateProfileAvatar: build.mutation<{ avatarURL: string }, FormData>({
       query: (formData) => ({
         url: "/profile/set/photo",
@@ -84,4 +89,5 @@ export const {
   useGetUserQuery,
   useFetchLikedServicesQuery,
   useLikeServiceMutation,
+  useLoginVKMutation,
 } = authApi;

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FC } from "react";
 import cn from "classnames";
 import { url } from "@/helpers/url";
 
@@ -6,9 +6,13 @@ import anonymousImage from "@/assets/images/anonymous.jpg";
 
 import styles from "./Chat.module.scss";
 
-export const ChatNav = () => {
+export const ChatNav: FC<{ isSelected: boolean }> = ({ isSelected }) => {
   return (
-    <div className={styles.chatNav}>
+    <div
+      className={cn(styles.chatNav, {
+        [styles.chatNav_selected]: isSelected,
+      })}
+    >
       <div className={cn(styles.chatNavItem, styles.chatNavItem_active)}>
         <div className={styles.chatNavItemStatus} />
         <div

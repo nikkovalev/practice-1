@@ -87,7 +87,7 @@ export const CategoryLayout: FC<ICategoryLayout> = ({
         <div className="inner-container">
           <Link href={`/?category=${category.slug}`}>
             <a className="link_with_arrow">
-              <ArrowIcon direction="left" />
+              <ArrowIcon direction="left" color="gray" />
               <b>В каталог {category.name}</b>
             </a>
           </Link>

@@ -64,7 +64,7 @@
 }
 
 .authButton {
-  margin-top: 30px;
+  @apply mt-[30px] md:mt-[20px];
 }
 
 .registerInputs {
@@ -112,4 +112,11 @@
 
 .checkboxError label::before {
   border-color: $red-100;
+}
+
+.authVK {
+  @apply mt-[30px] md:mt-[20px];
+  & > span {
+    margin-right: 5px !important;
+  }
 }

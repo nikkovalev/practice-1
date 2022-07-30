@@ -25,7 +25,7 @@ const Modal: FC<IModal> = ({ className, title, children, hideClose, handleClose 
           <CloseIcon />
         </div>
       )}
-      <div>{children}</div>
+      {children}
     </div>
   );
 };

@@ -60,7 +60,7 @@ export const UserOffers = () => {
       >
         <div className="filter_menu_top hidden sm:flex items-center">
           <div onClick={handleHideFilter}>
-            <ArrowIcon pathClassName="fill-primary-400 stroke-primary-400" />
+            <ArrowIcon direction="left" color="primary" />
           </div>
           <h3>Фильтр</h3>
         </div>
@@ -78,10 +78,7 @@ export const UserOffers = () => {
         <Select className={styles.select} label="Сервер" items={[]} />
         <Select className={styles.select} label="Тип" items={[]} />
         <div className="text_with_icon sm:pt-[10px] sm:ml-[25px]">
-          <ArrowIcon
-            pathClassName="fill-black-400 dark:fill-white-100 sm:fill-white-100"
-            type="two"
-          />
+          <ArrowIcon variant="two" />
           По популярности
         </div>
       </div>

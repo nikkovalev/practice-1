@@ -68,3 +68,8 @@
     @apply bg-secondary-500;
   }
 }
+
+// Blue
+.blue {
+  @apply bg-blue-200 shadow-blue hover:shadow-none;
+}

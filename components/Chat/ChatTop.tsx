@@ -3,7 +3,9 @@ import cn from "classnames";
 import { url } from "@/helpers/url";
 import { useOutside } from "@/hooks/useOutside";
 
-import { ChatIcon, MoreIcon } from "@/components/icons";
+import { Link } from "@/components/link";
+
+import { ArrowIcon, ChatIcon, MoreIcon } from "@/components/icons";
 import anonymousImage from "@/assets/images/anonymous.jpg";
 
 import styles from "./Chat.module.scss";
@@ -35,6 +37,9 @@ export const ChatTop: FC<IChatTop> = ({ variant }) => {
 
   return (
     <div className={cn(styles.chatTop, { "border-r-2 border-gray-500": variant === "full" })}>
+      <Link className={styles.chatTopArrow} href="/chats/1">
+        <ArrowIcon direction="left" color="primary" />
+      </Link>
       <div
         className="avatar avatarWithStatus"
         style={{ backgroundImage: url(anonymousImage.src) }}

@@ -2,7 +2,7 @@
 
 // Chat
 .chat {
-  @apply bg-black-300;
+  @apply min-w-fit bg-black-300 md:overflow-hidden;
   border-radius: 10px;
   &_normal {
     @apply w-[650px] lg:w-full;
@@ -22,7 +22,18 @@
 .chatContent {
   @apply flex flex-col h-full;
   &_limit {
+    @apply md:hidden;
     width: 720px;
+  }
+  // if chat is selected (mobile)
+  &_selected {
+    @apply md:flex;
+    @media (max-width: $breakpoint992) {
+      width: 100%;
+      & > div {
+        border-right: none;
+      }
+    }
   }
 }
 
@@ -80,6 +91,10 @@
 .chatTopIndicator {
   @apply absolute -left-[1px] w-[45px] h-[45px] top-1/2 rounded-full bg-primary-400 z-10 sm:hidden;
   transition: transform 0.25s;
+}
+
+.chatTopArrow {
+  @apply hidden md:block mr-[20px];
 }
 
 // text
@@ -190,8 +205,11 @@
 
 // Chat navigation
 .chatNav {
-  @apply w-[300px] h-full border-r-2 border-gray-500;
-  padding: 15px 10px;
+  @apply w-[300px] py-[15px] px-[10px] h-full border-r-2 border-gray-500 md:border-none md:w-full md:p-0;
+  // if chat is selected (mobile)
+  &_selected {
+    @apply md:hidden;
+  }
 }
 .chatNavItem {
   @apply relative flex items-center cursor-pointer rounded-full hover:bg-dark;
@@ -199,6 +217,12 @@
   transition: background-color 0.25s;
   &_active {
     border: 2px solid $primary-400;
+  }
+  @media (max-width: $breakpoint992) {
+    padding: 20px 35px 20px 20px;
+    border: none;
+    border-bottom: 2px solid $gray-500;
+    border-radius: 0;
   }
 }
 .chatNavItemInfo {
@@ -217,5 +241,5 @@
   }
 }
 .chatNavItemStatus {
-  @apply absolute right-0 top-[15px] w-[6px] h-[6px] bg-secondary-400 rounded-full;
+  @apply absolute right-0 top-[15px] w-[6px] h-[6px] bg-secondary-400 rounded-full md:top-[20px] md:right-[20px];
 }

@@ -42,7 +42,7 @@ export const HomeCategory: FC<IHomeCategory> = ({ category, likedServices, like,
         <Link href={`/categories/${category.slug}`}>
           <a className="dark:text-white-100 dark:hover:text-secondary-400">{category.name}</a>
         </Link>
-        <ArrowIcon pathClassName="fill-primary-400 stroke-primary-400" />
+        <ArrowIcon />
       </div>
       <ul>
         {category.services.map((s: IService) => {

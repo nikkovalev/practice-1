@@ -49,7 +49,7 @@ export const CategoryFilters: FC<ICategoryFilters> = ({
       <div ref={ref} className={cn(styles.filtersLeft, { [styles.filtersLeftActive]: isShow })}>
         <div className="filter_menu_top hidden lg:flex items-center">
           <div onClick={handleToggle}>
-            <ArrowIcon pathClassName="fill-primary-400 stroke-primary-400" />
+            <ArrowIcon direction="left" color="primary" />
           </div>
           <h3>Фильтр</h3>
         </div>
@@ -76,17 +76,11 @@ export const CategoryFilters: FC<ICategoryFilters> = ({
         </div>
         <div className="flex items-center lg:flex-col lg:items-start">
           <div className={cn("text_with_icon", styles.filterText)}>
-            <ArrowIcon
-              pathClassName="fill-black-400 dark:fill-white-100 lg:fill-white-100"
-              type="two"
-            />
+            <ArrowIcon variant="two" />
             По рейтингу
           </div>
           <div className={cn("text_with_icon", styles.filterText)} onClick={handleChangeOrder}>
-            <ArrowIcon
-              pathClassName="fill-black-400 dark:fill-white-100 lg:fill-white-100"
-              type="two"
-            />
+            <ArrowIcon variant="two" />
             По цене
           </div>
           <Checkbox

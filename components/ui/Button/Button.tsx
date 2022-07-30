@@ -9,7 +9,7 @@ interface IButton {
   children: any;
   isActive?: boolean;
   variant?: "contained" | "outlined";
-  color?: "primary" | "secondary" | "black";
+  color?: "primary" | "secondary" | "black" | "blue";
   isDisabled?: boolean;
   as?: "link" | "button";
   href?: string;
@@ -43,6 +43,8 @@ export const Button: FC<IButton> = ({
     // Button - Black
     [styles.blackOutlined]: !isActive && color === "black",
     [styles.blackOutlined_active]: isActiveOutlined && color === "black",
+    // Button - Blur
+    [styles.blue]: color === "blue",
     // Disabled styles
     [styles.button_disabled]: isDisabled,
     // Styles for link

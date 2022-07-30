@@ -36,7 +36,7 @@ export const OfferLayout: FC<IOfferLayout> = ({ children, offer, category }) => 
           <div className={styles.topLeft}>
             <Link href={`/categories/${category.slug}?page=${service?.id}`}>
               <a className="link_with_arrow">
-                <ArrowIcon direction="left" />
+                <ArrowIcon direction="left" color="gray" />
                 <b>
                   {service?.name} {category.name}
                 </b>

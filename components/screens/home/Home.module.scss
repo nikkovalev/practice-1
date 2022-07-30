@@ -323,10 +323,8 @@
   }
 }
 
-.categoryTopActive {
-  & svg {
-    transform: rotate(180deg);
-  }
+.categoryTopActive svg {
+  transform: rotate(180deg);
 }
 
 .categoryIcon {

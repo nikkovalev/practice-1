@@ -49,7 +49,7 @@ export const UserPreview: FC<IUserPreview> = ({ user, isOwner, updateProfileAvat
       <div className={styles.left}>
         {!isOwner && (
           <a className={cn("link_with_arrow", styles.leftBack)} href="#" onClick={handleClickLink}>
-            <ArrowIcon direction="left" />
+            <ArrowIcon direction="left" color="gray" />
             <b>Назад</b>
           </a>
         )}

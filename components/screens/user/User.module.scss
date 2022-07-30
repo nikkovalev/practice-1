@@ -71,7 +71,7 @@
 }
 
 .offersButton {
-  @apply hidden sm:flex sm:w-full sm:text-white-100 mb-[30px];
+  @apply hidden sm:flex sm:w-full sm:dark:text-white-100 mb-[30px];
   & > svg {
     margin-right: 15px;
   }
