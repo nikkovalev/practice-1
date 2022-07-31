@@ -22,13 +22,13 @@
 .chatContent {
   @apply flex flex-col h-full;
   &_limit {
-    @apply md:hidden;
+    @apply lg:hidden;
     width: 720px;
   }
   // if chat is selected (mobile)
   &_selected {
-    @apply md:flex;
-    @media (max-width: $breakpoint992) {
+    @apply lg:flex;
+    @media (max-width: $breakpoint1200) {
       width: 100%;
       & > div {
         border-right: none;
@@ -42,7 +42,7 @@
   @apply flex items-center;
   padding: 30px 40px;
   border-bottom: 2px solid $gray-500;
-  @media (max-width: $breakpoint768) {
+  @media (max-width: $breakpoint1200) {
     padding: 20px;
   }
 }
@@ -205,10 +205,10 @@
 
 // Chat navigation
 .chatNav {
-  @apply w-[300px] py-[15px] px-[10px] h-full border-r-2 border-gray-500 md:border-none md:w-full md:p-0;
+  @apply w-[300px] py-[15px] px-[10px] h-full border-r-2 border-gray-500 lg:border-none lg:w-full lg:p-0;
   // if chat is selected (mobile)
   &_selected {
-    @apply md:hidden;
+    @apply lg:hidden;
   }
 }
 .chatNavItem {

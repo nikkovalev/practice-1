@@ -37,9 +37,11 @@ export const ChatTop: FC<IChatTop> = ({ variant }) => {
 
   return (
     <div className={cn(styles.chatTop, { "border-r-2 border-gray-500": variant === "full" })}>
-      <Link className={styles.chatTopArrow} href="/chats/1">
-        <ArrowIcon direction="left" color="primary" />
-      </Link>
+      {variant === "full" && (
+        <Link className={styles.chatTopArrow} href="/chats/1">
+          <ArrowIcon direction="left" color="primary" />
+        </Link>
+      )}
       <div
         className="avatar avatarWithStatus"
         style={{ backgroundImage: url(anonymousImage.src) }}

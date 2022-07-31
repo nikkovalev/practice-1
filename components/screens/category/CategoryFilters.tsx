@@ -86,7 +86,8 @@ export const CategoryFilters: FC<ICategoryFilters> = ({
           <Checkbox
             id="filter-id"
             label="Только продавцы онлайн"
-            handleChange={handleChangeOnline}
+            isSupportLight={true}
+            onChange={handleChangeOnline}
           />
         </div>
       </div>

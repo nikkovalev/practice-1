@@ -254,7 +254,7 @@
         }
       }
       & a {
-        @apply inline-block text-xl font-medium text-gray-400 cursor-pointer flex-shrink-0;
+        @apply inline-block text-[20px] font-medium text-gray-400 cursor-pointer flex-shrink-0 sm:text-[18px];
         padding-right: 10px;
         transition: color 0.25s;
       }
@@ -373,8 +373,7 @@
       margin-bottom: 0;
     }
     & a {
-      @apply text-gray-400 font-medium hover:text-primary-400;
-      font-size: 20px;
+      @apply text-gray-400 font-medium hover:text-primary-400 text-[20px] sm:text-[18px];
       transition: color 0.25s;
     }
   }

@@ -83,35 +83,7 @@
 }
 
 .checkbox {
-  margin-top: 10px;
-  & input {
-    width: 0;
-    height: 0;
-    overflow: none;
-    display: none;
-  }
-  & input:checked ~ label::before {
-    color: $white-100;
-  }
-  & label {
-    @apply w-[550px] block font-medium cursor-pointer relative pl-[34px] text-gray-400 text-[17px] sm:w-auto;
-    & > a {
-      @apply text-primary-400 hover:underline;
-    }
-    &::before {
-      content: "\2713";
-      @apply absolute w-6 h-6 left-0 flex items-center justify-center;
-      top: calc(50% - 12.5px);
-      border: 2px solid #ffffff;
-      border-radius: 5px;
-      color: transparent;
-      transition: color 0.15s;
-    }
-  }
-}
-
-.checkboxError label::before {
-  border-color: $red-100;
+  @apply w-[550px] sm:w-auto;
 }
 
 .authVK {

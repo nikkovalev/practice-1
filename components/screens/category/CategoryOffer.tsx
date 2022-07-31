@@ -60,7 +60,9 @@ export const CategoryOffer: FC<ICategoryOffer> = ({ offer, servers, view }) => {
             <Link href={`/users/${offer.seller.id}`} className="text-ellipsis">
               {offer.seller.username}
             </Link>
-            <b className="text-ellipsis">1554 отзыва</b>
+            <Link href={`/users/${offer.seller.id}?page=reviews`} className="text-ellipsis">
+              1554 отзыва
+            </Link>
           </div>
         </div>
       </div>

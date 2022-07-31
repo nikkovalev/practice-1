@@ -10,8 +10,8 @@ import { useActions } from "@/hooks/useActions";
 import { useRegisterUserMutation } from "@/store/auth/authApi";
 import { toast } from "react-toastify";
 
-import { Modal, styles as modalStyles } from "@/components/layouts/modalLayout";
-import { Button, Text } from "@/components/ui";
+import { Modal, styles as modalStyles, styles } from "@/components/layouts/modalLayout";
+import { Button, Checkbox, Text } from "@/components/ui";
 import { Input } from "@/components/ui/Input/Input";
 
 const AuthPage: NextPage = () => {
@@ -114,22 +114,19 @@ const AuthPage: NextPage = () => {
             </div>
           )}
         </div>
-        <div
-          className={cn(modalStyles.checkbox, {
-            [modalStyles.checkboxError]: errors.register_checkbox,
-          })}
-        >
-          <input
-            {...register("register_checkbox", { required: true })}
-            id="register_checkbox"
-            type="checkbox"
-          />
-          <label htmlFor="register_checkbox">
-            С<a href="#"> лицензионным соглашением</a>, включая
-            <a href="#"> агентский договор правилами сайта </a>
-            ознакомился, принимаю в полном объеме
-          </label>
-        </div>
+        <Checkbox
+          {...register("register_checkbox", { required: true })}
+          className={styles.checkbox}
+          id="register_checkbox"
+          color="gray"
+          label={
+            <>
+              С <a href="#">лицензионным соглашением</a>, включая <a href="#">агентский договор</a>{" "}
+              <a href="#">правилами сайта</a> ознакомился, принимаю в полном объеме
+            </>
+          }
+          isError={!!errors?.register_checkbox}
+        />
         <Button className={modalStyles.authButton} size="large" isDisabled={isLoading}>
           Зарегистрироваться
         </Button>

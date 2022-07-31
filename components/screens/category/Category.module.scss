@@ -211,7 +211,7 @@
   order: 4;
 }
 .offerTitle {
-  @apply inline-block font-bold text-2xl dark:text-white-100;
+  @apply inline-block font-bold text-2xl md:text-xl dark:text-white-100;
   margin-bottom: 25px;
   &L {
     margin-bottom: 0;
@@ -234,11 +234,11 @@
   @apply flex items-center;
 }
 .offerSellerInfo {
-  @apply flex flex-row;
+  @apply flex flex-row xxs:flex-col;
   width: 70%;
   margin-left: 10px;
-  & > a {
-    @apply inline-block font-medium dark:text-white-100;
+  & > a:first-child {
+    @apply inline-block font-medium dark:text-white-100 xxs:mb-[5px];
     font-size: 17px;
     transition: color 0.25s;
     margin-right: 10px;
@@ -246,7 +246,7 @@
       @apply text-primary-400;
     }
   }
-  & > b {
+  & > a:last-child {
     @apply text-primary-400 font-bold;
     font-size: 17px;
     transition: color 0.25s;
@@ -256,15 +256,14 @@
   }
   &L {
     @apply flex-col;
-    & > a {
+    & > a:first-child {
       margin-right: 0;
       margin-bottom: 5px;
     }
   }
 }
 .offerPrice {
-  @apply text-gray-400 font-bold order-5;
-  font-size: 32px;
+  @apply text-gray-400 text-[32px] font-bold order-5 md:text-[24px];
   &L {
     @apply inline-block flex-shrink-0 text-right;
     margin-top: auto;
