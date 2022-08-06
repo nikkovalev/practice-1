@@ -1,5 +1,4 @@
 import React, { ChangeEvent, FC, MouseEvent } from "react";
-import Image from "next/image";
 import cn from "classnames";
 import { toast } from "react-toastify";
 import { getDate } from "@/helpers/date";

@@ -12,12 +12,12 @@ import { useFetchLikedServicesQuery, useGetMeQuery } from "@/store/auth/authApi"
 
 import { HeaderNavButton } from "./HeaderNavButton";
 import { HeaderMode } from "./HeaderMode";
-import { HeaderSearch } from "./HeaderSearch";
-import { HeaderCategory } from "./HeaderCategory";
+import { HeaderSearchInput } from "./HeaderSearchInput";
 import { Link } from "@/components/link";
 import { HeaderUser } from "./HeaderUser";
 import { Button } from "@/components/ui";
 import { HeaderSelect } from "./HeaderSelect";
+import { HeaderSearch } from "./HeaderSearch";
 
 import { CloseIcon, HamburgerIcon, LikeIcon, MessageIcon, SearchIcon, UserIcon } from "../icons";
 import logoIcon from "@/assets/images/logo.svg";
@@ -44,7 +44,7 @@ export const Header = () => {
     setIsShow: setIsShowMenu,
   } = useOutside(false);
   // Requests
-  const [search, { data: searchCategories }] = useSearchMutation();
+  const [search, { data: searchCategories, reset: resetCategories }] = useSearchMutation();
   const { data: likedServices } = useFetchLikedServicesQuery(true, { skip: !isAuth });
   const { data: me, refetch: getMe, isError: isMeError } = useGetMeQuery("", { skip: !isAuth });
   // variables
@@ -67,25 +67,19 @@ export const Header = () => {
   return (
     <>
       {isAuth && isMeError && (
-        <div className="fixed top-[108px] left-0 right-0 bg-secondary-400 z-20 pt-[10px] pb-[10px]">
+        <div className={styles.alert}>
           <div className="inner-container font-medium">Подтвердите электронную почту</div>
         </div>
       )}
-      {isShowSearch && (
-        <div className={styles.headerSearchWrapper}>
-          {!!searchCategories && (
-            <div className={styles.headerSearchItems}>
-              <div ref={searchRef2} className="custom_scrollbar inner-container">
-                {searchCategories.map((c) => (
-                  <HeaderCategory key={c.id} category={c} />
-                ))}
-              </div>
-            </div>
-          )}
-        </div>
-      )}
+      {isShowSearch && <HeaderSearch searchRef2={searchRef2} categories={searchCategories} />}
       <header className={styles.header}>
-        <HeaderSearch ref={searchRef} isShow={isShowSearch} search={search} />
+        <HeaderSearchInput
+          ref={searchRef}
+          isShow={isShowSearch}
+          search={search}
+          isData={!!searchCategories}
+          resetCategories={resetCategories}
+        />
         <div className={cn("inner-container", styles.headerContainer)}>
           <div
             className={cn(styles.headerLeft, {

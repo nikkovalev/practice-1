@@ -66,6 +66,17 @@ export const ArrowIcon: FC<IArrowIcon> = ({ variant, direction, color }) => {
         />
       </svg>
     );
+  } else if (direction === "bottom" && color === "primary") {
+    return (
+      <svg width="15" height="9" viewBox="0 0 15 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M7.5 6.26217L7.5 7M7.5 7L0.999999 1M7.5 7L14 1"
+          stroke="#7F86E8"
+          strokeWidth="1.5"
+          strokeMiterlimit="10"
+        />
+      </svg>
+    );
   } else if (direction === "left" && color === "primary") {
     return (
       <svg width="6" height="18" viewBox="0 0 6 18" fill="none" xmlns="http://www.w3.org/2000/svg">

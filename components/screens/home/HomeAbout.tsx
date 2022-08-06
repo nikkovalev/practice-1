@@ -1,47 +1,40 @@
 import React from "react";
-import { motion } from "framer-motion";
+import cn from "classnames";
+import { aboutList } from "./home.data";
+
+import { Text } from "@/components/ui";
 
 import styles from "./Home.module.scss";
 
-const list = [
-  {
-    title: "Кто мы?",
-    text: "YaonPay - это официальная торговая площадка, которая позволяет пользователям совершать выгодные сделки.",
-  },
-  {
-    title: "Что мы можешь тебе дать?",
-    text: "Наша платформа предоставляет инструменты для покупки и продажи ваших товаров и услуг в игровой индустрии или соц.сетях.",
-  },
-  {
-    title: "Для чего ты здесь?",
-    text: "Сайт создан для того, чтобы сэкономить твои деньги и время на продажу или покупку нужного тебе товара",
-  },
-];
-
 export const HomeAbout = () => {
   return (
-    <div className={styles.about}>
-      <div className="inner-container text-center">
-        <h2>YaonPay</h2>
-        <p className={styles.aboutTitle}>
+    <section className={styles.about}>
+      <div className="inner-container">
+        <h3 className={styles.aboutTitle}>YaonPay</h3>
+        <Text className={styles.aboutText} size="l" color="gray" weight={400}>
           Добро пожаловать к нам. Давай попробуем ответить на основные вопросы
-        </p>
+        </Text>
         <div className={styles.aboutList}>
-          {list.map((i) => (
-            <div key={i.title} className={styles.aboutItem}>
-              <b>{i.title}</b>
-              <p>{i.text}</p>
+          {aboutList.map((i) => (
+            <div key={i.title}>
+              <Text as="b" weight={700} align="center" color="black">
+                {i.title}
+              </Text>
+              <p dangerouslySetInnerHTML={{ __html: i.text }} />
             </div>
           ))}
         </div>
-        <p className={styles.aboutBottomText}>
+        <Text
+          className={cn(styles.aboutText, styles.aboutBottomText)}
+          size="l"
+          color="gray"
+          weight={400}
+        >
           А теперь пару слов от нашей команды лично тебе. Мы рады что ты выбрал именно нас и уверены
-          в том
-          <br />
-          что ты не усомнишься в своём выборе. Совершай выгодные сделки и совершенствуйся вместе с
-          YaonPay.
-        </p>
+          в том что ты не усомнишься в своём выборе. Совершай выгодные сделки и совершенствуйся
+          вместе с YaonPay.
+        </Text>
       </div>
-    </div>
+    </section>
   );
 };

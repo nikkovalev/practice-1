@@ -4,5 +4,5 @@
   @apply flex items-center flex-wrap mt-[40px] pb-[50px] md:flex-nowrap md:overflow-x-auto md:pb-[20px];
 }
 .button {
-  @apply mr-[20px] last:mr-0;
+  @apply mr-[20px] last:mr-0 text-white-100;
 }

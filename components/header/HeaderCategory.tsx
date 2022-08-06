@@ -1,8 +1,7 @@
 import React, { FC } from "react";
-import Link from "next/link";
-
 import { ICategory } from "@/models/ICategory";
 
+import { Text } from "../ui";
 import styles from "./Header.module.scss";
 
 interface IHeaderCategory {
@@ -11,22 +10,31 @@ interface IHeaderCategory {
 
 export const HeaderCategory: FC<IHeaderCategory> = ({ category }) => {
   return (
-    <div className={styles.headerSearchItem}>
-      <div style={{ backgroundImage: `url(${category.icon}` }} />
-      <div>
-        <Link href={`/categories/${category.slug}`}>
-          <a>{category.name}</a>
-        </Link>
-        <ul>
-          {category.services.map((s) => (
-            <li key={s.id}>
-              <Link href={`/categories/${category.slug}?page=${s.id}`}>
-                <a>{s.name}</a>
-              </Link>
-            </li>
-          ))}
-        </ul>
+    <div className={styles.headerCategory}>
+      <div className={styles.headerCategoryTop}>
+        <div
+          className={styles.headerCategoryImage}
+          style={{ backgroundImage: `url(${category.icon}` }}
+        />
+        <Text as="a" href={`/categories/${category.slug}`} color="white" weight={700} size="xl">
+          {category.name}
+        </Text>
       </div>
+      <ul className={styles.headerCategoryList}>
+        {category.services.map(({ id, name }) => (
+          <li key={id}>
+            <Text
+              as="a"
+              href={`/categories/${category.slug}?page=${id}`}
+              size="l"
+              color="white"
+              weight={500}
+            >
+              {name}
+            </Text>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };

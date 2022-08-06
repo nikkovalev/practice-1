@@ -23,34 +23,15 @@ a {
   text-decoration: none;
 }
 
-.page {
-  padding-top: 122px;
-  &__content {
-    @apply mb-[175px] sm:mb-[120px] xxs:mb-[50px];
-    &_m0 {
-      @apply mb-0;
-    }
-  }
-  @media (max-width: $breakpoint1450) {
-    padding-top: 108px;
-  }
-  @media (max-width: $breakpoint1200) {
-    padding-top: 90px;
-  }
-  @media (max-width: $breakpoint768) {
-    padding-top: 70px;
-  }
-  @media (max-width: $breakpoint350) {
-    padding-top: 118px;
-  }
-}
-.page__title {
+.title {
   @apply text-white-100 font-bold text-[62px] mb-[30px] md:text-[45px] md:mb-[10px] xs:text-[30px];
 }
-.page__desc {
+
+.description {
   @apply text-gray-400 font-normal text-[20px] w-[60%] md:w-full md:text-[17px];
   line-height: 34px;
 }
+
 .link_with_arrow {
   @apply inline-flex items-center;
   margin-bottom: 15px;
@@ -142,7 +123,7 @@ a {
 }
 
 .avatar {
-  @apply relative bg-cover bg-center bg-no-repeat flex-shrink-0;
+  @apply bg-cover bg-center bg-no-repeat flex-shrink-0;
   width: 40px;
   height: 40px;
   border-radius: 50%;
@@ -150,6 +131,7 @@ a {
 }
 
 .avatarWithStatus {
+  @apply relative;
   &::before {
     content: "";
     position: absolute;
@@ -185,12 +167,12 @@ a {
 
 .filter_menu_top {
   margin-bottom: 20px;
-  & h3 {
+  & > h3 {
     @apply text-white-100 font-bold;
     font-size: 30px;
     margin-left: 10px;
   }
-  & svg {
+  & > button {
     margin-top: 5px;
   }
 }

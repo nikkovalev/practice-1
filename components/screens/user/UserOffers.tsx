@@ -59,9 +59,9 @@ export const UserOffers = () => {
         className={cn(styles.offersFilters, { [styles.offersFiltersActive]: isShowFilter })}
       >
         <div className="filter_menu_top hidden sm:flex items-center">
-          <div onClick={handleHideFilter}>
+          <button onClick={handleHideFilter}>
             <ArrowIcon direction="left" color="primary" />
-          </div>
+          </button>
           <h3>Фильтр</h3>
         </div>
         <div className={styles.offersSearch}>

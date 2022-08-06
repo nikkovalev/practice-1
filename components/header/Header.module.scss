@@ -1,5 +1,10 @@
 @import "../../assets/styles/_variables.scss";
 
+// alert
+.alert {
+  @apply fixed top-[122px] left-0 right-0 bg-secondary-400 z-20 pt-[10px] pb-[10px] xl:top-[108px] lg:top-[90px] sm:top-[70px] xxs:top-[118px];
+}
+
 .header {
   @apply fixed top-0 left-0 right-0 bg-white-100 dark:bg-black-400 dark:bg-opacity-75 z-20 bg-opacity-75;
   height: 122px;
@@ -403,27 +408,18 @@
 }
 
 // Header search
-.headerSearch {
-  @apply absolute top-0 left-0 right-0 w-full bg-primary-400;
-  height: 120px;
+.headerSearchInput {
+  @apply absolute top-0 left-0 right-0 w-full bg-primary-400 h-full z-[100];
   visibility: hidden;
-  z-index: 100;
   & input {
-    @apply w-full h-full outline-none border-none text-white-100 font-bold;
-    background-color: transparent;
-    font-size: 32px;
-    padding-right: 40px;
+    @apply w-full h-full outline-none border-none text-white-100 font-bold bg-transparent text-[32px] pr-[40px] md:text-[24px];
     &::placeholder {
       color: rgba(255, 255, 255, 0.2);
     }
   }
-  @media (max-width: $breakpoint480) {
-    & input {
-      font-size: 24px;
-    }
-  }
   &Active {
     visibility: visible;
+    border-bottom: 2px solid $primary-500;
   }
 }
 
@@ -440,54 +436,41 @@
 }
 
 .headerSearchWrapper {
-  @apply fixed top-0 left-0 right-0 bottom-0;
-  background-color: rgba(0, 0, 0, 0.8);
-  z-index: 20;
+  @apply fixed w-screen h-screen top-0 pt-[122px] xl:pt-[108px] lg:pt-[90px] sm:pt-[70px] xxs:pt-[118px] bg-black-500 bg-opacity-90 z-[20];
 }
 
-.headerSearchItems {
-  @apply bg-primary-400 bg-opacity-80;
-  backdrop-filter: blur(10px);
-  & > div {
-    @apply flex items-center justify-between flex-wrap overflow-y-auto;
-    max-height: calc(80vh);
-    margin-top: 120px;
-  }
+.headerSearchContent {
+  @apply bg-primary-400 max-h-[80vh] bg-opacity-80 overflow-y-auto;
 }
 
-.headerSearchItem {
-  @apply flex items-center;
-  width: calc(25% - 10px);
-  padding: 25px 0;
-  border-bottom: 2px solid $primary-500;
-  & > div:first-child {
-    @apply bg-center bg-cover bg-no-repeat flex-shrink-0;
-    width: 60px;
-    height: 60px;
-    margin-right: 15px;
-  }
+.headerSearchList {
+  @apply columns-3 gap-[10px] lg:columns-2 sm:columns-1;
   & a {
-    @apply text-white-100 text-[24px] hover:text-secondary-400 md:text-[18px];
+    @apply hover:text-secondary-400;
     transition: color 0.25s;
   }
-  & ul {
-    @apply flex flex-wrap;
-    width: 200px;
-    margin-top: 5px;
-    & li {
-      margin-right: 10px;
-      & a {
-        font-size: 17px;
+}
+
+// Header search item
+
+.headerCategory {
+  @apply inline-block w-full py-[30px] md:py-[20px];
+  & > ul {
+    @apply flex items-center flex-wrap gap-y-[15px] gap-x-[20px];
+    & > li {
+      @apply relative last:after:hidden;
+      &::after {
+        @apply block bg-secondary-400 w-[5px] h-[5px] rounded-full ml-[5px] absolute -right-[11px] top-1/2 -translate-y-1/2;
+        content: "";
       }
     }
   }
-  @media (max-width: $breakpoint1450) {
-    width: calc(33.3% - 10px);
-  }
-  @media (max-width: $breakpoint992) {
-    width: calc(50% - 10px);
-  }
-  @media (max-width: $breakpoint480) {
-    width: 100%;
-  }
+}
+
+.headerCategoryTop {
+  @apply flex items-center mb-[20px] md:mb-[15px];
+}
+
+.headerCategoryImage {
+  @apply w-[50px] h-[50px] bg-cover bg-no-repeat bg-center mr-[15px] flex-shrink-0;
 }

@@ -91,10 +91,10 @@ export const CategoryLayout: FC<ICategoryLayout> = ({
               <b>В каталог {category.name}</b>
             </a>
           </Link>
-          <h1 className="page__title">
+          <h1 className="title">
             {s?.name} {category.name}
           </h1>
-          <p className="page__desc">{s?.description}</p>
+          <p className="description">{s?.description}</p>
         </div>
         <div className={cn("inner-container", styles.buttons)}>
           {category.services.map((i) => (

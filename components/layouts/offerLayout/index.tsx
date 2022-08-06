@@ -42,7 +42,7 @@ export const OfferLayout: FC<IOfferLayout> = ({ children, offer, category }) => 
                 </b>
               </a>
             </Link>
-            <h1 className="page__title">FUT Champions</h1>
+            <h1 className="title">FUT Champions</h1>
             <div className={styles.topInfo}>
               {offer.server !== undefined && (
                 <div>
@@ -57,7 +57,7 @@ export const OfferLayout: FC<IOfferLayout> = ({ children, offer, category }) => 
                 </div>
               ))}
             </div>
-            <p className="page__desc">{offer.description}</p>
+            <p className="description">{offer.description}</p>
             <div className={styles.topActions}>
               <b className={styles.topPrice}>{offer.price}₽</b>
               <Counter initial={offer.quantity} />

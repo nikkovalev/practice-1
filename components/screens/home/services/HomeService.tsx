@@ -1,41 +1,36 @@
 import React, { FC } from "react";
-import cn from "classnames";
-
-import Link from "next/link";
-import Image from "next/image";
+import { Text } from "@/components/ui";
 
 import styles from "../Home.module.scss";
 
 interface IHomeService {
   service: {
-    name: string;
+    title: string;
+    items: { text: string; path: string }[];
     icon: string;
-    items: {
-      text: string;
-      path: string;
-    }[];
   };
 }
 
 export const HomeService: FC<IHomeService> = ({ service }) => {
   return (
-    <div
-      className={cn("dark:bg-black-300 inline-flex items-center justify-between", styles.service)}
-    >
-      <div className="flex-shrink-0">
-        <b className="dark:text-white-100">{service.name}</b>
-        <ul>
+    <div key={service.title} className={styles.service}>
+      <div className={styles.serviceLeft}>
+        <Text className={styles.link} size="xl" color="black" weight={700} as="a">
+          {service.title}
+        </Text>
+        <ul className={styles.serviceList}>
           {service.items.map((i) => (
             <li key={i.text}>
-              <Link href={i.path}>
-                <a className="dark:hover:text-secondary-400">{i.text}</a>
-              </Link>
+              <Text className={styles.link} as="a" href={i.path} weight={500} color="gray" size="l">
+                {i.text}
+              </Text>
             </li>
           ))}
         </ul>
       </div>
-      <div className={styles.serviceImage}>
-        <Image src={service.icon} width={100} height={100} alt={service.name} />
+      <div className={styles.serviceRight}>
+        {/* eslint-disable-next-line */}
+        <img src={service.icon} alt={service.title} />
       </div>
     </div>
   );

@@ -1,57 +1,45 @@
-import React from "react";
+import React, { useState } from "react";
+import cn from "classnames";
+
+import { advantages } from "../home.data";
+
+import { Text } from "@/components/ui";
+import { ArrowIcon } from "@/components/icons";
 
 import styles from "../Home.module.scss";
 
-const advantages = [
-  {
-    title: "Дешевле, чем у многих",
-    text: "Наша торговая площадка предоставляет вам возможность заработать, т.к. комиссия сделки будет минимальная от 3%",
-  },
-  {
-    title: "Удобный дизайн",
-    text: "Мы ориентировались на ошибки других площадок и создали для вас функционально удобный и яркий дизайн",
-  },
-  {
-    title: "Рейтинг продавцов",
-    text: "Это система оценки продавца, получаемая от реального покупателя  после совершения сделки. Чем выше рейтинг, тем выше доверие",
-  },
-  {
-    title: "Широкий ассортимент",
-    text: "Вы можете приобрести не только многочисленные товары из игровой индустрии, но так же аккаунты и услуги в социальных сетях",
-  },
-  {
-    title: "Гарант",
-    text: "Автоматическая система YaonPay предоставляет гарантии безопасности ваших средств при совершении сделки",
-  },
-  {
-    title: "Тех.поддержка",
-    text: "Сотрудники YaonPay всегда рады оказать вам любую помощь касаемо нашей площадки и ответить на интересующие вас вопросы",
-  },
-  {
-    title: "Довольные клиенты",
-    text: "Мы развиваем и совершенствуем сайт для вас,чтобы от посещения YaonPay вы получали только положительный спектр эмоций",
-  },
-  {
-    title: "Оплата",
-    text: "Торговая площадка предоставляет самые удобные способы оплаты товаров для комфортных сделок наших клиентов",
-  },
-];
-
 export const HomeAdvantages = () => {
+  const [isOpened, setIsOpened] = useState<boolean>(false);
+
+  const toggleIsOpened = () => setIsOpened(!isOpened);
+
   return (
-    <section className="dark:bg-black-400">
+    <section className={styles.advantages}>
       <div className="inner-container">
-        <div className={styles.advList}>
-          {advantages.map((adv, idx: number) => (
-            <div key={adv.title} className={styles.adv}>
-              <span>{idx + 1}</span>
-              <div className="relative z-10">
-                <b>{adv.title}</b>
-                <p>{adv.text}</p>
-              </div>
+        <div
+          className={cn(styles.advantagesContent, { [styles.advantagesContent_opened]: isOpened })}
+        >
+          {advantages.map((advantage, idx) => (
+            <div key={advantage.title} className={styles.advantage}>
+              <Text as="b" weight={700}>
+                {idx + 1}
+              </Text>
+              <Text as="span" weight={700} color="black">
+                {advantage.title}
+              </Text>
+              <p dangerouslySetInnerHTML={{ __html: advantage.text }} />
             </div>
           ))}
         </div>
+        <button
+          className={cn(styles.advantagesMore, { [styles.advantagesMore_opened]: isOpened })}
+          onClick={toggleIsOpened}
+        >
+          <Text size="s" color="primary" weight={700}>
+            Смотреть все преимущества
+          </Text>
+          <ArrowIcon direction="bottom" color="primary" />
+        </button>
       </div>
     </section>
   );

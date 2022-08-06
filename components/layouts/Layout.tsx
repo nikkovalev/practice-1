@@ -9,15 +9,15 @@ interface ILayout {
   title: string;
   children: ReactNode;
   withImage?: boolean;
-  hideMargin?: boolean;
+  hideContentPadding?: boolean;
 }
 
-export const Layout: FC<ILayout> = ({ children, title, withImage, hideMargin }) => {
+export const Layout: FC<ILayout> = ({ children, title, withImage, hideContentPadding }) => {
   return (
     <div
       className={cn(
         "flex flex-col min-h-screen transition-colors duration-300 dark:bg-black-400 overflow-x-hidden",
-        { page: !withImage }
+        { "pt-[125px] xl:pt-[110px] lg:pt-[90px] sm:pt-[70px] xxs:pt-[120px]": !withImage }
       )}
     >
       <Head>
@@ -25,13 +25,13 @@ export const Layout: FC<ILayout> = ({ children, title, withImage, hideMargin }) 
       </Head>
       <Header />
       <main
-        className={cn("flex-grow page__content", {
-          page__content_m0: hideMargin,
+        className={cn({
+          "flex-grow pb-[175px] lg:pb-[110px] xs:pb-[50px]": !hideContentPadding,
         })}
       >
         {children}
       </main>
-      <Footer isGray={!!hideMargin} />
+      <Footer isLight={!!hideContentPadding} />
     </div>
   );
 };

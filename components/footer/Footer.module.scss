@@ -1,210 +1,107 @@
 @import "../../assets/styles/_variables.scss";
 
+// Footer
 .footer {
-  @apply bg-white-200 dark:bg-black-500;
-  & a {
-    @apply font-medium text-gray-400 hover:text-secondary-400;
-    transition: color 0.25s;
-  }
-  &_gray {
-    @apply dark:bg-black-300;
+  @apply bg-white-200 pb-[100px] dark:bg-black-500 lg:pb-[20px];
+  &_light {
+    @apply bg-white-100 dark:bg-black-300;
   }
 }
 
 .footerContainer {
-  @apply relative;
-  padding-top: 175px;
-  padding-bottom: 100px;
-  @media (max-width: $breakpoint992) {
-    padding-top: 89px;
-    padding-bottom: 20px;
+  @apply relative pt-[175px] xl:pt-[120px] sm:pt-[90px] xs:pt-[20px];
+}
+
+// Footer - Top
+.footerTop {
+  @apply absolute top-0 left-0 right-0 bg-white-200 dark:bg-black-500 p-[50px] border-2 border-solid border-white-100 dark:border-black-400 -translate-y-1/2 xl:left-[20px] xl:right-[20px] lg:p-[20px] xs:static xs:translate-y-0 xs:border-none xs:p-0 xs:mb-[30px];
+  border-radius: 10px;
+  &_light {
+    @apply bg-white-100 dark:bg-black-300 dark:border-black-500;
   }
-  @media (max-width: $breakpoint350) {
-    padding: 20px;
+  & > ul {
+    @apply flex items-center justify-between w-[70%] mx-auto sm:w-full sm:justify-center;
+    & > li {
+      @apply sm:mr-[15px] sm:last:mr-0;
+      & > a {
+        @apply flex items-center lg:flex-col;
+        & > b {
+          @apply inline-block ml-[20px] lg:ml-0 lg:mt-[8px] md:text-[20px];
+          transition: color 0.25s;
+        }
+        & img {
+          @media (max-width: $breakpoint480) {
+            max-width: 30px;
+            max-height: 30px;
+          }
+        }
+      }
+    }
   }
+}
+
+.footerSocial {
+  &_red > a > b {
+    @apply text-red-100;
+    &:hover {
+      color: lighten($red-100, 10);
+    }
+  }
+  &_blue > a > b {
+    @apply text-blue-200;
+    &:hover {
+      color: lighten($blue-200, 10);
+    }
+  }
+  &_dark-blue > a > b {
+    @apply text-blue-100;
+    &:hover {
+      color: lighten($blue-100, 10);
+    }
+  }
+}
+
+// Footer - Content
+.footerContent {
+  @apply flex items-center justify-between xl:flex-col;
 }
 
 .footerLogo {
-  @media (max-width: $breakpoint1450) {
-    width: 100%;
-    flex-grow: 1;
-    margin-bottom: 30px;
-  }
-  @media (max-width: $breakpoint992) {
-    margin-top: 30px;
-    text-align: center;
-  }
+  @apply inline-block mb-[15px] flex-shrink-0 xl:mb-0;
 }
 
-.footerMain {
-  @apply flex items-center justify-between;
-  @media (max-width: $breakpoint1450) {
-    flex-wrap: wrap;
-  }
-  @media (max-width: $breakpoint992) {
-    justify-content: center;
-  }
-}
-
-.footerInfo {
-  @apply flex items-center;
-  margin: 0 70px;
-  & li {
-    margin-right: 50px;
-    &:last-child {
-      margin-right: 0;
-    }
-    & b {
-      @apply block font-bold text-primary-400 mb-1;
-      font-size: 28px;
-    }
-    & span {
-      @apply font-medium text-gray-400;
-      font-size: 17px;
-    }
-  }
-  @media (max-width: $breakpoint1450) {
-    width: 35%;
-    margin-left: 0;
-    margin-right: 30px;
-    & li {
-      margin-right: 20px;
-      & b {
-        font-size: 24px;
-      }
-    }
-  }
-  @media (max-width: $breakpoint992) {
-    width: 100%;
-    justify-content: center;
-    margin-right: 0;
-    & li {
-      text-align: center;
-    }
-  }
-  @media (max-width: $breakpoint350) {
-    & li {
-      & b {
-        font-size: 17px;
-      }
-      & span {
-        font-size: 14px;
-      }
+// Footer - Statistics
+.footerStatistics {
+  @apply flex items-center mx-[70px] mb-[15px] xl:my-[30px] xl:mx-0;
+  & > li {
+    @apply mr-[50px] last:mr-0 lg:text-center sm:mr-[30px] xs:mr-[10px];
+    & > b {
+      @apply block text-[28px] mb-[5px] sm:text-[24px] xs:text-[20px];
     }
   }
 }
 
-.footerNav {
-  @apply flex items-center flex-wrap;
-  & li {
-    width: 25%;
-    margin-bottom: 18px;
-    a {
+// Footer - list
+.footerList {
+  @apply flex-grow flex items-center justify-between flex-wrap sm:hidden;
+  & > li {
+    @apply w-1/4 mb-[15px] xl:text-center;
+    & > a {
+      @apply hover:text-secondary-400;
       transition: color 0.25s;
-      font-size: 18px;
     }
-    &:nth-last-child(-n + 4) {
-      margin-bottom: 0;
-    }
-  }
-  @media (max-width: $breakpoint1450) {
-    width: 60%;
-  }
-  @media (max-width: $breakpoint992) {
-    display: none;
   }
 }
 
+// Footer - bottom
 .footerBottom {
-  @apply flex items-center justify-between;
-  margin-top: 50px;
-  & a,
-  & span {
-    @apply text-gray-400 font-medium;
-    font-size: 16px;
-  }
-  @media (max-width: $breakpoint1200) {
-    & div {
-      @apply flex flex-col items-center;
-      & a:first-child {
-        display: inline-block;
-        margin-bottom: 15px;
-        margin-right: 0;
-      }
-    }
-  }
-  @media (max-width: $breakpoint992) {
-    justify-content: center;
-    flex-wrap: wrap;
-    margin-top: 30px;
-    & span {
-      order: 2;
-      text-align: center;
-    }
-    & div {
-      @apply order-1;
-      width: 100%;
-      margin-bottom: 30px;
-    }
-  }
+  @apply flex items-center justify-between w-[90%] mx-auto mt-[45px] lg:mt-[30px] sm:mt-0 lg:flex-col-reverse sm:text-center;
 }
 
-.footerTop {
-  @apply absolute top-0 w-full flex items-center justify-center bg-white-200 dark:bg-black-500 dark:border-black-400 z-10;
-  border: 2px solid $white-100;
-  border-radius: 10px;
-  min-height: 150px;
-  padding: 56px 0;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  &_gray {
-    @apply dark:bg-black-300;
-  }
-  & a {
-    margin-right: 120px;
-    &:last-child {
-      margin-right: 0;
-    }
-  }
-  & b {
-    @apply inline-block font-bold;
-    font-size: 32px;
-    margin-left: 20px;
-  }
-  @media (max-width: $breakpoint1200) {
-    width: calc(100% - 40px);
-    padding: 20px;
-    left: 20px;
-    transform: translate(0, -50%);
-  }
-  @media (max-width: $breakpoint992) {
-    & b {
-      font-size: 24px;
-    }
-    & a {
-      margin-right: 60px;
-    }
-  }
-  @media (max-width: $breakpoint768) {
-    & a {
-      flex-direction: column;
-      margin-right: 15px;
-    }
-    & b {
-      margin-top: 5px;
-      margin-left: 0;
-      font-size: 20px;
-    }
-  }
-  @media (max-width: $breakpoint350) {
-    @apply static border-none w-full p-0 translate-y-0 min-h-0;
-    & a {
-      & > span:first-child {
-        width: 40px !important;
-      }
-      & > b {
-        font-size: 16px;
-      }
-    }
+.footerTexts {
+  @apply flex items-center lg:mb-[30px] sm:flex-col;
+  & > a {
+    @apply first:inline-block first:mr-[35px] hover:text-secondary-400 sm:first:mr-0 sm:first:mb-[15px];
+    transition: color 0.25s;
   }
 }

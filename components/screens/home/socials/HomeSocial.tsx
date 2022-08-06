@@ -1,34 +1,32 @@
 import React, { FC } from "react";
-import cn from "classnames";
 import Image from "next/image";
-import Link from "next/link";
+import { Text } from "@/components/ui";
 
 import styles from "../Home.module.scss";
 
 interface IHomeSocial {
   social: {
-    name: string;
+    title: string;
+    items: { text: string; path: string }[];
     icon: string;
-    items: {
-      text: string;
-      path: string;
-    }[];
   };
 }
 
 export const HomeSocial: FC<IHomeSocial> = ({ social }) => {
   return (
-    <div className={cn("dark:bg-black-300", styles.social)}>
-      <div className="flex items-center">
-        <Image src={social.icon} width={50} height={50} alt={social.name} />
-        <b className="dark:text-white-100">{social.name}</b>
+    <div className={styles.social}>
+      <div className={styles.socialHeader}>
+        <Image src={social.icon} width={50} height={50} alt={social.title} />
+        <Text className={styles.link} as="a" size="xl" href="/" color="black" weight={700}>
+          {social.title}
+        </Text>
       </div>
-      <ul>
+      <ul className={styles.socialList}>
         {social.items.map((i) => (
           <li key={i.text}>
-            <Link href={i.path}>
-              <a className="dark:hover:text-secondary-400">{i.text}</a>
-            </Link>
+            <Text className={styles.link} as="a" href={i.path} weight={500} color="gray" size="l">
+              {i.text}
+            </Text>
           </li>
         ))}
       </ul>

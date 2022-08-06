@@ -48,9 +48,9 @@ export const CategoryFilters: FC<ICategoryFilters> = ({
     <div className={styles.filters}>
       <div ref={ref} className={cn(styles.filtersLeft, { [styles.filtersLeftActive]: isShow })}>
         <div className="filter_menu_top hidden lg:flex items-center">
-          <div onClick={handleToggle}>
+          <button onClick={handleToggle}>
             <ArrowIcon direction="left" color="primary" />
-          </div>
+          </button>
           <h3>Фильтр</h3>
         </div>
         <div className={styles.filtersInputs}>

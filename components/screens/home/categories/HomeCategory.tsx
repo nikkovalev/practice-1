@@ -1,12 +1,12 @@
 import React, { FC, useState } from "react";
-import cn from "classnames";
-import Link from "next/link";
 import { toast } from "react-toastify";
 import { url } from "@/helpers/url";
+import cn from "classnames";
+import { ICategory } from "@/models/ICategory";
 
-import { ICategory, IService } from "@/models/ICategory";
-
-import { ArrowIcon, LikeIcon } from "@/components/icons";
+import { Text } from "@/components/ui";
+import { ArrowIcon } from "@/components/icons";
+import { HomeCategoryInfo } from "./HomeCategoryInfo";
 
 import styles from "../Home.module.scss";
 
@@ -18,49 +18,49 @@ interface IHomeCategory {
 }
 
 export const HomeCategory: FC<IHomeCategory> = ({ category, likedServices, like, isAuth }) => {
-  const [isActive, setIsActive] = useState<boolean>(false);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
 
-  const handleClick = () => setIsActive(!isActive);
-  const handleLike = (id: number) => async () => {
+  const handleOpen = () => window.screen.width <= 992 && setIsOpen(!isOpen);
+  const handleLike = async (id: number) => {
     const isLiked = likedServices.indexOf(id) !== -1;
     const res: any = await like(id);
     if (!res.error) toast.success(isLiked ? "Удалено из избранного" : "Добавлено в избранное");
   };
 
   return (
-    <div
-      id={category.slug}
-      className={cn("dark:bg-black-300", styles.category, {
-        [styles.categoryActive]: isActive,
-      })}
-    >
-      <div
-        className={cn(styles.categoryTop, { [styles.categoryTopActive]: isActive })}
-        onClick={window.screen.width <= 992 ? handleClick : undefined}
-      >
-        <div className={styles.categoryIcon} style={{ backgroundImage: url(category.icon) }} />
-        <Link href={`/categories/${category.slug}`}>
-          <a className="dark:text-white-100 dark:hover:text-secondary-400">{category.name}</a>
-        </Link>
-        <ArrowIcon />
+    <div id={category.slug} className={styles.category}>
+      <div className={styles.categoryHeader} onClick={handleOpen}>
+        <div className={styles.categoryImage} style={{ backgroundImage: url(category.icon) }} />
+        <Text
+          className={styles.link}
+          as="a"
+          size="xl"
+          color="black"
+          weight={700}
+          href={`/categories/${category.id}`}
+        >
+          {category.name}
+        </Text>
+        <button
+          className={cn(styles.categoryIcon, {
+            [styles.categoryIcon_active]: isOpen,
+          })}
+        >
+          <ArrowIcon />
+        </button>
       </div>
-      <ul>
-        {category.services.map((s: IService) => {
-          const isLiked = likedServices.indexOf(s.id) !== -1;
+      <ul className={cn(styles.categoryList, { [styles.categoryList_active]: isOpen })}>
+        {category.services.map((service) => {
+          const isLiked = likedServices?.indexOf(service.id) !== -1;
           return (
-            <li
-              key={s.id}
-              className={cn({
-                [styles.serviceLiked]: isLiked,
-              })}
-            >
-              <div>
-                <Link href={`/categories/${category.slug}?page=${s.id}`}>
-                  <a>{s.name}</a>
-                </Link>
-                {isAuth && <LikeIcon isSmall={true} isFill={isLiked} onClick={handleLike(s.id)} />}
-              </div>
-            </li>
+            <HomeCategoryInfo
+              key={service.id}
+              category={category}
+              service={service}
+              isLiked={isLiked}
+              isAuth={isAuth}
+              handleLike={handleLike}
+            />
           );
         })}
       </ul>

@@ -1,11 +1,11 @@
 import React, { FC, useEffect } from "react";
-import cn from "classnames";
-import { useAppSelector } from "@/hooks/useTypedSelector";
 import { useRouter } from "next/router";
+import cn from "classnames";
+
+import { useAppSelector } from "@/hooks/useTypedSelector";
+import { useFetchLikedServicesQuery, useLikeServiceMutation } from "@/store/auth/authApi";
 
 import { ICategory } from "@/models/ICategory";
-
-import { useFetchLikedServicesQuery, useLikeServiceMutation } from "@/store/auth/authApi";
 
 import { HomeCategory } from "./HomeCategory";
 
@@ -13,9 +13,11 @@ import styles from "../Home.module.scss";
 
 interface IHomeCategories {
   categories: ICategory[];
+  listClassName?: string;
+  hideTitle?: boolean;
 }
 
-export const HomeCategories: FC<IHomeCategories> = ({ categories }) => {
+export const HomeCategories: FC<IHomeCategories> = ({ categories, listClassName, hideTitle }) => {
   const { isAuth, user } = useAppSelector((state) => state.auth);
   const { data: likedServices } = useFetchLikedServicesQuery(true, {
     skip: !isAuth || !user?.emailVerified,
@@ -28,27 +30,34 @@ export const HomeCategories: FC<IHomeCategories> = ({ categories }) => {
     if (query.category) {
       document.getElementById(query.category as string)?.scrollIntoView({ block: "center" });
     }
+    // eslint-disable-next-line
   }, []);
 
   return (
-    <section className={cn("dark:bg-black-400 relative", styles.categories)}>
-      <div className="inner-container">
-        <h2 className={cn("dark:text-black-300", styles.sectionTitle)}>Игры</h2>
-      </div>
-      <div className="container">
-        {categories && (
-          <div className={styles.categoriesList}>
-            {categories.map((c: ICategory) => (
-              <HomeCategory
-                key={c.id}
-                category={c}
-                likedServices={(likedServices as number[]) || []}
-                like={like}
-                isAuth={isAuth}
-              />
-            ))}
-          </div>
-        )}
+    <section
+      className={cn({
+        [`container ${styles.section}`]: !hideTitle,
+      })}
+    >
+      {!hideTitle && (
+        <div className="inner-container">
+          <h2 className={cn(styles.title, styles.categoriesTitle)}>Игры</h2>
+        </div>
+      )}
+      <div
+        className={cn(listClassName, {
+          [styles.categoriesList]: !hideTitle,
+        })}
+      >
+        {categories.map((c) => (
+          <HomeCategory
+            key={c.id}
+            category={c}
+            likedServices={likedServices as number[]}
+            like={like}
+            isAuth={isAuth}
+          />
+        ))}
       </div>
     </section>
   );

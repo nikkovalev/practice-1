@@ -46,8 +46,10 @@
 
 .itemText {
   @apply text-[18px] font-medium text-gray-400;
+  line-height: 22px;
   &_white {
     @apply inline-block dark:text-white-100 font-bold mt-[10px];
+    line-height: 130%;
   }
 }
 

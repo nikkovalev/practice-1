@@ -45,13 +45,13 @@
     font-size: 18px;
   }
   &l {
-    font-size: 20px;
+    @apply text-[20px] md:text-[18px];
   }
   &xl {
-    @apply text-[32px] sm:text-[24px];
+    @apply text-[32px] md:text-[24px];
   }
   &xxl {
-    @apply text-[52px] sm:text-[32px];
+    @apply text-[52px] md:text-[32px];
   }
 }
 

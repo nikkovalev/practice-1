@@ -1,9 +1,9 @@
 import type { NextPage } from "next";
 import { ICategory } from "@/models/ICategory";
 
-import { Home } from "@/components/screens/home";
+import { Categories } from "@/components/screens/categories/Categories";
 
-interface IHomePage {
+interface ICategoriesPage {
   categories: ICategory[];
 }
 
@@ -16,6 +16,8 @@ export const getServerSideProps = async () => {
   };
 };
 
-const HomePage: NextPage<IHomePage> = ({ categories }) => <Home categories={categories} />;
+const CategoriesPage: NextPage<ICategoriesPage> = ({ categories }) => (
+  <Categories categories={categories} />
+);
 
-export default HomePage;
+export default CategoriesPage;
