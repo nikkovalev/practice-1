@@ -51,7 +51,7 @@ export const HomeCategory: FC<IHomeCategory> = ({ category, likedServices, like,
       </div>
       <ul className={cn(styles.categoryList, { [styles.categoryList_active]: isOpen })}>
         {category.services.map((service) => {
-          const isLiked = likedServices?.indexOf(service.id) !== -1;
+          const isLiked = !!likedServices && likedServices.indexOf(service.id) !== -1;
           return (
             <HomeCategoryInfo
               key={service.id}
