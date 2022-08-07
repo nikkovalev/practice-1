@@ -8,7 +8,7 @@ import { ICategory } from "@/models/ICategory";
 export const authApi = createApi({
   reducerPath: "api/auth",
   baseQuery,
-  tagTypes: ["liked-services"],
+  tagTypes: ["liked-services", "user"],
   endpoints: (build) => ({
     registerUser: build.mutation<{ id: number }, IAuthReg>({
       query: (data) => ({
@@ -26,7 +26,7 @@ export const authApi = createApi({
     }),
     getMe: build.query<IUser, "">({
       query: () => "/auth/me",
-      providesTags: ["liked-services"],
+      providesTags: ["user"],
     }),
     get2faCode: build.mutation<{ token: string }, "">({
       query: () => ({
@@ -49,8 +49,9 @@ export const authApi = createApi({
       query: (formData) => ({
         url: "/profile/set/photo",
         method: "PUT",
-        body: formData,
+        body: formData as FormData,
       }),
+      invalidatesTags: ["user"],
     }),
     updateProfileEmail: build.mutation<undefined, string>({
       query: (email) => ({

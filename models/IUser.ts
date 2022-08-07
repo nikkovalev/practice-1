@@ -12,4 +12,5 @@ export interface IUser {
   isSuspended: boolean;
   emailVerified: boolean;
   likedServices: IService[];
+  telegramId: number | null;
 }

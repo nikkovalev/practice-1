@@ -12,17 +12,24 @@ import styles from "../Home.module.scss";
 
 interface IHomeCategory {
   category: ICategory;
-  likedServices: number[];
+  likedServices?: number[];
+  allLiked?: boolean;
   isAuth: boolean;
   like: (id: number) => void;
 }
 
-export const HomeCategory: FC<IHomeCategory> = ({ category, likedServices, like, isAuth }) => {
+export const HomeCategory: FC<IHomeCategory> = ({
+  category,
+  likedServices,
+  allLiked,
+  like,
+  isAuth,
+}) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const handleOpen = () => window.screen.width <= 992 && setIsOpen(!isOpen);
   const handleLike = async (id: number) => {
-    const isLiked = likedServices.indexOf(id) !== -1;
+    const isLiked = likedServices?.indexOf(id) !== -1;
     const res: any = await like(id);
     if (!res.error) toast.success(isLiked ? "Удалено из избранного" : "Добавлено в избранное");
   };
@@ -51,7 +58,7 @@ export const HomeCategory: FC<IHomeCategory> = ({ category, likedServices, like,
       </div>
       <ul className={cn(styles.categoryList, { [styles.categoryList_active]: isOpen })}>
         {category.services.map((service) => {
-          const isLiked = !!likedServices && likedServices.indexOf(service.id) !== -1;
+          const isLiked = allLiked || (!!likedServices && likedServices.indexOf(service.id) !== -1);
           return (
             <HomeCategoryInfo
               key={service.id}

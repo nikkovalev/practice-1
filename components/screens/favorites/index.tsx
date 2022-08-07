@@ -26,13 +26,7 @@ export const Favorites: FC<IFavorites> = ({ isAuth }) => {
         {isLoading && <Loader />}
         <div className="columns-3 gap-x-[10px] lg:columns-2 sm:columns-1">
           {favorites?.map((c: ICategory) => (
-            <HomeCategory
-              key={c.id}
-              category={c}
-              likedServices={[c.id]}
-              like={like}
-              isAuth={isAuth}
-            />
+            <HomeCategory key={c.id} category={c} like={like} allLiked={true} isAuth={isAuth} />
           ))}
         </div>
         {!favorites?.length && (

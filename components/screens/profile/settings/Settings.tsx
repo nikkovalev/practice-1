@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import cn from "classnames";
 import { toast } from "react-toastify";
 import { useForm } from "react-hook-form";
+import { useAppSelector } from "@/hooks/useTypedSelector";
 
 import { useGet2faCodeMutation, useUpdateProfileEmailMutation } from "@/store/auth/authApi";
 
@@ -12,6 +13,8 @@ import { Loader } from "@/components/loader/Loader";
 import styles from "./Settings.module.scss";
 
 export const Settings = () => {
+  const { user } = useAppSelector((state) => state.auth);
+  // Forms
   const {
     register,
     handleSubmit,
@@ -23,6 +26,7 @@ export const Settings = () => {
     handleSubmit: handleSubmit2,
     formState: { errors: errors2 },
   } = useForm();
+  // Requests
   const [get2faCode, { isLoading: is2faCodeLoading, data: dataCode }] = useGet2faCodeMutation();
   const [updateProfileEmail, { isLoading: isEmailLoading, data: newEmail }] =
     useUpdateProfileEmailMutation();
@@ -94,23 +98,27 @@ export const Settings = () => {
           </Button>
         </form>
       </div>
-      <h3>Подтвердить аккаунт</h3>
-      <Button
-        size="large"
-        variant="outlined"
-        onClick={handleConfirm}
-        isDisabled={is2faCodeLoading || !!dataCode}
-      >
-        Подтвердить аккаунт
-      </Button>
-      {(is2faCodeLoading || dataCode) && (
-        <div className={styles.code}>
-          {is2faCodeLoading ? (
-            <Loader />
-          ) : (
-            dataCode?.token.split("").map((l, idx) => <span key={`${l}_${idx}`}>{l}</span>)
+      {!user?.telegramId && (
+        <>
+          <h3>Подтвердить аккаунт</h3>
+          <Button
+            size="large"
+            variant="outlined"
+            onClick={handleConfirm}
+            isDisabled={is2faCodeLoading || !!dataCode}
+          >
+            Подтвердить аккаунт
+          </Button>
+          {(is2faCodeLoading || dataCode) && (
+            <div className={styles.code}>
+              {is2faCodeLoading ? (
+                <Loader />
+              ) : (
+                dataCode?.token.split("").map((l, idx) => <span key={`${l}_${idx}`}>{l}</span>)
+              )}
+            </div>
           )}
-        </div>
+        </>
       )}
     </div>
   );
