@@ -55,7 +55,7 @@ export const HomeCategories: FC<IHomeCategories> = ({ categories, listClassName,
             category={c}
             likedServices={likedServices as number[]}
             like={like}
-            isAuth={isAuth}
+            isAuth={isAuth && !!user}
           />
         ))}
       </div>

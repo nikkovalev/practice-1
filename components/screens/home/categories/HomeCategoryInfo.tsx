@@ -43,9 +43,11 @@ export const HomeCategoryInfo: FC<IHomeCategoryInfo> = ({
         >
           {service.name}
         </Text>
-        <button>
-          <LikeIcon isSmall={true} isFill={isLiked} onClick={handleClick} />
-        </button>
+        {isAuth && (
+          <button>
+            <LikeIcon isSmall={true} isFill={isLiked} onClick={handleClick} />
+          </button>
+        )}
       </div>
     </li>
   );

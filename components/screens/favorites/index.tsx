@@ -1,7 +1,4 @@
-import React from "react";
-import { useRouter } from "next/router";
-import { toast } from "react-toastify";
-import { useAppSelector } from "@/hooks/useTypedSelector";
+import React, { FC } from "react";
 
 import { ICategory } from "@/models/ICategory";
 
@@ -12,19 +9,15 @@ import { Text, TextWithCount } from "@/components/ui";
 import { HomeCategory } from "../home/categories/HomeCategory";
 import { Loader } from "@/components/loader/Loader";
 
-export const Favorites = () => {
-  const router = useRouter();
-  const { isAuth } = useAppSelector((state) => state.auth);
+interface IFavorites {
+  isAuth: boolean;
+}
+
+export const Favorites: FC<IFavorites> = ({ isAuth }) => {
   const { data: favorites, isLoading } = useFetchLikedServicesQuery(false) as any;
   const [like] = useLikeServiceMutation();
   const count =
     favorites?.reduce((acc: number, i: ICategory) => (acc += i.services.length), 0) ?? 0;
-
-  if (!isAuth) {
-    router.replace("/auth");
-    toast.error("Авторизуйтесь", { toastId: "auth_error" });
-    return null;
-  }
 
   return (
     <Layout title="Избранные">
@@ -43,7 +36,7 @@ export const Favorites = () => {
           ))}
         </div>
         {!favorites?.length && (
-          <Text size="xl" className="dark:text-secondary-400" color="black">
+          <Text size="xl" className=" dark:text-secondary-400" color="primary">
             Здесь пока ничего нет
           </Text>
         )}
