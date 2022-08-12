@@ -19,7 +19,6 @@ import { IOffer } from "@/models/IOffer";
 
 import { Modal } from "@/components/layouts/modalLayout";
 import { Avatar, Button, Input, SelectHandle, SelectWithLabel, Text } from "@/components/ui";
-import { EditOfferInput } from "./EditOfferInput";
 
 import { styles as modalStyles } from "@/components/layouts/modalLayout";
 import styles from "./EditOffer.module.scss";
@@ -231,8 +230,7 @@ export const EditOffer: FC<IEditOffer> = ({ initial, categories }) => {
         <div className={styles.inputs}>
           <Input
             {...register("price", { required: true, validate })}
-            className={styles.input}
-            style={{ paddingRight: 45 }}
+            className={cn("pr-[45px]", styles.input)}
             placeholder="Цена за 1 шт."
             isError={!!errors?.price}
             icon="₽"
@@ -240,8 +238,7 @@ export const EditOffer: FC<IEditOffer> = ({ initial, categories }) => {
           {isCountable && (
             <Input
               {...register("count", { required: true, validate })}
-              className={styles.input}
-              style={{ paddingRight: 61 }}
+              className={cn("pr-[61px]", styles.input)}
               placeholder="Наличие, например 6000"
               isError={!!errors?.count}
               icon="шт."

@@ -41,14 +41,6 @@
   }
 }
 
-// Input button
-.inputIcon {
-  @apply absolute top-1/2 right-[11px] -translate-y-1/2 shadow-none;
-  &:active {
-    transform: translateY(-50%) scale(0.9);
-  }
-}
-
 // Popper
 .inputPopper {
   @apply absolute right-0 -top-[17px] -translate-y-[100%] bg-black-300;

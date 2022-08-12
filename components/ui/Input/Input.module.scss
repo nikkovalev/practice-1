@@ -5,9 +5,14 @@
   &_sm {
     @apply w-[270px];
   }
-  &_wi {
-    & > b {
-      @apply absolute top-1/2 -translate-y-1/2 right-[25px];
+}
+
+.icon {
+  @apply absolute top-1/2 -translate-y-1/2 right-[25px];
+  &_button {
+    @apply right-[11px] shadow-none;
+    &:active {
+      transform: translateY(-50%) scale(0.9);
     }
   }
 }

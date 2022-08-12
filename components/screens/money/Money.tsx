@@ -6,7 +6,7 @@ import { useOutside } from "@/hooks/useOutside";
 import { useForm } from "react-hook-form";
 
 import { Modal } from "@/components/layouts/modalLayout";
-import { Button, CircleButton, Input, SelectWithIcon, Text } from "@/components/ui";
+import { Button, Input, SelectWithIcon, Text } from "@/components/ui";
 import { MoneyPopper } from "./MoneyPopper";
 
 import { CardsIcon } from "@/components/icons/CardsIcon";
@@ -19,7 +19,7 @@ export const Money = () => {
   const { register } = useForm();
   const { ref, ref2, isShow, setIsShow } = useOutside(false);
 
-  const handleIconClick = () => setIsShow(!isShow);
+  const handlePopper = () => setIsShow(!isShow);
   const handleClose = () => router.push("/");
   const validate = (v: string) => !Number.isNaN(Number(v));
 
@@ -45,31 +45,25 @@ export const Money = () => {
           <MoneyPopper popperRef={ref} isShow={isShow} />
           <Input
             {...register("account_number")}
+            className="pr-[61px]"
+            iconRef={ref2}
             placeholder="WMR324039475235"
-            style={{ paddingRight: 61 }}
+            icon={<CardsIcon color="black" />}
+            variantIcon="button"
+            onClickIcon={handlePopper}
           />
-          <CircleButton
-            className={styles.inputIcon}
-            buttonRef={ref2}
-            color="yellow"
-            onClick={handleIconClick}
-          >
-            <CardsIcon color="black" />
-          </CircleButton>
         </div>
       </div>
       <div className={styles.items}>
         <Input
           {...register("sum", { required: true, validate })}
-          className={styles.input}
-          style={{ paddingRight: 45 }}
+          className={cn("pr-[45px]", styles.input)}
           placeholder="Сумма"
           icon="€"
         />
         <Input
           {...register("sum_2", { required: true, validate })}
-          className={styles.input}
-          style={{ paddingRight: 45 }}
+          className={cn("pr-[45px]", styles.input)}
           placeholder="К получению"
           icon="€"
         />
