@@ -82,7 +82,7 @@
 .itemStatus {
   @apply absolute top-0 right-0 w-[14px] h-[14px] rounded-full bg-gray-400;
   &_online {
-    @apply bg-green-100;
+    @apply bg-green-200;
   }
 }
 

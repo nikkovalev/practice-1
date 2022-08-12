@@ -1,5 +1,14 @@
 @import "../../../assets/styles/_variables.scss";
 
+// Buttons
+.buttons {
+  @apply flex items-center flex-wrap mt-[40px] md:mt-[30px] pb-[30px] md:flex-nowrap md:overflow-x-auto md:pb-0;
+}
+.button {
+  @apply mr-[20px] mb-[20px] text-white-100 last:mr-0 md:mr-[10px];
+}
+
+// Filters
 .filters {
   @apply flex items-center justify-between min-h-[100px] p-[25px] bg-white-200 dark:bg-black-300 mt-[50px] xs:p-0 xs:min-h-0 xs:bg-transparent xs:dark:bg-black-400;
   border-radius: 10px;
@@ -32,41 +41,23 @@
   }
 }
 .filterIcon {
-  @apply hidden lg:flex;
-  min-width: 112px;
-  margin-right: 10px;
-  & svg path {
+  @apply hidden mr-[10px] min-w-[110px] lg:flex xs:mb-[10px];
+  & > svg > path {
     transition: stroke 0.25s;
   }
-  &:hover svg path {
+  &:hover > svg > path {
     stroke: $white-100;
-  }
-  @media (max-width: $breakpoint480) {
-    margin-bottom: 10px;
   }
 }
 .filtersInput {
-  @apply relative flex-shrink;
-  margin-right: 10px;
-  margin-bottom: 10px;
-  & input {
-    @apply bg-black-400;
-    width: 100%;
+  @apply relative mr-[10px] mb-[10px] lg:mr-0;
+  & > svg {
+    @apply absolute top-1/2 right-[25px] -translate-y-1/2 pointer-events-none;
+  }
+  & > div > input {
+    @apply bg-white-200 dark:bg-black-400 border-2 border-solid border-primary-400 dark:border-none text-black-400 dark:text-white-100;
     padding: 15px 50px 15px 25px;
     min-height: 50px;
-  }
-  & svg {
-    position: absolute;
-    top: 50%;
-    right: 25px;
-    transform: translateY(-50%);
-    pointer-events: none;
-  }
-  & > div {
-    width: 270px;
-  }
-  @media (max-width: $breakpoint1200) {
-    margin-right: 0;
   }
 }
 .filterText {
@@ -96,6 +87,8 @@
     }
   }
 }
+
+// Offers
 .offers {
   @apply flex flex-wrap;
   margin-top: 50px;

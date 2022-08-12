@@ -3,7 +3,7 @@ import cn from "classnames";
 import Image from "next/image";
 
 import { ProfileLayout } from "@/components/layouts/profileLayout";
-import { Button, Text } from "@/components/ui";
+import { Button, Text, CircleButton } from "@/components/ui";
 
 import { EditIcon } from "@/components/icons/EditIcon";
 import stopIcon from "@/assets/images/stop.svg";
@@ -74,15 +74,15 @@ const Offers = () => {
                     1000 <span>монет</span> / 50₽
                   </b>
                   <div className={cn(styles.itemIcons, styles.itemIcons_short)}>
-                    <button className="circle circle_yellow">
+                    <CircleButton color="yellow">
                       <EditIcon className="fill-black-400" />
-                    </button>
-                    <button className="circle circle_purple">
+                    </CircleButton>
+                    <CircleButton color="purple">
                       <Image src={stopIcon} width={15} height={15} alt="Stop icon" />
-                    </button>
-                    <button className="circle">
+                    </CircleButton>
+                    <CircleButton>
                       <Image src={removeIcon} width={20} height={20} alt="Remove icon" />
-                    </button>
+                    </CircleButton>
                   </div>
                 </div>
               </div>

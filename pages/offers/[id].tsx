@@ -1,14 +1,15 @@
 import React from "react";
 import { NextPage, NextPageContext } from "next";
+import { useRouter } from "next/router";
+import { toast } from "react-toastify";
 
 import { IOffer } from "@/models/IOffer";
 import { ICategory } from "@/models/ICategory";
 
-import { OfferLayout } from "@/components/layouts/offerLayout";
-import { Reviews } from "@/components/reviews/Reviews";
+import { Offer } from "@/components/screens/offer";
 
 interface IOfferPage {
-  offer: IOffer;
+  offer: IOffer & { error: string; message: string; statusCode: number };
   category: ICategory;
 }
 
@@ -22,12 +23,16 @@ export const getServerSideProps = async (context: NextPageContext) => {
   };
 };
 
-const OfferPage: NextPage<IOfferPage> = ({ offer, category }) => (
-  <OfferLayout offer={offer} category={category}>
-    <div className="w-1/2 lg:w-full pt-[30px]">
-      <Reviews size="short" />
-    </div>
-  </OfferLayout>
-);
+const OfferPage: NextPage<IOfferPage> = ({ offer, category }) => {
+  const router = useRouter();
+
+  if (offer?.message) {
+    router.replace("/404");
+    toast.error(offer?.message, { toastId: "offer_error" });
+    return null;
+  }
+
+  return <Offer category={category} offer={offer} />;
+};
 
 export default OfferPage;

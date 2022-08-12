@@ -21,7 +21,7 @@ export const Layout: FC<ILayout> = ({ children, title, withImage, hideContentPad
       )}
     >
       <Head>
-        <title>YaonPay - {title}</title>
+        <title>YaonClub - {title}</title>
       </Head>
       <Header />
       <main

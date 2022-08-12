@@ -1,7 +1,7 @@
 import React, { FC, useState } from "react";
 
 import { IServiceFilter } from "@/models/ICategory";
-import { Select } from "@/components/ui/Select/Select";
+import { Select } from "@/components/ui";
 
 import styles from "./Category.module.scss";
 

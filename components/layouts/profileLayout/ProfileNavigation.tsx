@@ -1,9 +1,6 @@
 import React, { FC } from "react";
-import cn from "classnames";
 import { useRouter } from "next/router";
-
 import { Button } from "@/components/ui";
-
 import styles from "./ProfileLayout.module.scss";
 
 const buttons = [
@@ -38,7 +35,7 @@ const buttons = [
   },
 ];
 
-export const ProfileLayoutButtons: FC = () => {
+export const ProfileNavigation: FC = () => {
   const router = useRouter();
 
   return (

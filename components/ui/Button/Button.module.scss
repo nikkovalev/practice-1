@@ -2,12 +2,8 @@
 
 // Common styles
 .button {
-  @apply flex items-center justify-center py-[19px] px-[40px] rounded-full text-white-100 text-[18px] font-bold min-w-[245px] sm:px-[25px];
-  line-height: 22px;
+  @apply flex items-center justify-center py-[19px] px-[40px] rounded-full text-white-100 text-[18px] font-bold min-w-[245px] leading-[22px] active:scale-95;
   transition: background-color 0.25s, color 0.25s, box-shadow 0.25s, transform 0.25s, border-color 0.25s;
-  &:active {
-    transform: scale(0.95);
-  }
   // Styles for b
   & > b {
     @apply inline-block font-bold text-[18px] ml-[5px];
@@ -16,7 +12,7 @@
   }
   // Sizes
   &_large {
-    @apply min-w-[320px] xs:min-w-full;
+    @apply min-w-[320px] sm:min-w-full;
   }
   &_small {
     @apply min-w-[180px];
@@ -50,8 +46,11 @@
     & > b {
       @apply text-white-100 dark:text-secondary-400;
     }
-    &:hover > b {
-      @apply text-white-100 dark:text-secondary-400;
+    &:hover {
+      @apply shadow-none;
+      & > b {
+        @apply text-white-100 dark:text-secondary-400;
+      }
     }
   }
 }

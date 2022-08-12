@@ -6,8 +6,7 @@ import { useAppSelector } from "@/hooks/useTypedSelector";
 
 import { useGet2faCodeMutation, useUpdateProfileEmailMutation } from "@/store/auth/authApi";
 
-import { Input } from "@/components/ui/Input/Input";
-import { Button } from "@/components/ui";
+import { Button, Input } from "@/components/ui";
 import { Loader } from "@/components/loader/Loader";
 
 import styles from "./Settings.module.scss";

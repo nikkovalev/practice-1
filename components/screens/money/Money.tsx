@@ -6,7 +6,8 @@ import { useOutside } from "@/hooks/useOutside";
 import { useForm } from "react-hook-form";
 
 import { Modal } from "@/components/layouts/modalLayout";
-import { Button, Input, Select, Text } from "@/components/ui";
+import { Button, CircleButton, Input, SelectWithIcon, Text } from "@/components/ui";
+import { MoneyPopper } from "./MoneyPopper";
 
 import { CardsIcon } from "@/components/icons/CardsIcon";
 import webmoneyImage from "@/assets/images/webmoney.svg";
@@ -20,10 +21,11 @@ export const Money = () => {
 
   const handleIconClick = () => setIsShow(!isShow);
   const handleClose = () => router.push("/");
+  const validate = (v: string) => !Number.isNaN(Number(v));
 
   return (
     <Modal title="Вывод средств" handleClose={handleClose}>
-      <Text className={styles.title} size="xxl" align="center" weight={700}>
+      <Text className={styles.title} as="h1" size="xxl" weight={700}>
         Вывод средств
       </Text>
       <Text className={styles.text} color="gray" align="center">
@@ -32,63 +34,45 @@ export const Money = () => {
         Другие страны: комиссия 3%, но не менее 2.4 €
       </Text>
       <div className={styles.items}>
-        <Select className={styles.select} color="light" size="large" label="Евро" items={[]} />
-        <Select
+        <SelectWithIcon className={styles.select} label="Евро" items={[]} />
+        <SelectWithIcon
           className={styles.select}
-          color="light"
           label="Webmoney RUB"
           items={[]}
-          iconCN="mr-[10px]"
-          size="large"
-          padding="small"
           icon={<Image src={webmoneyImage.src} width={40} height={40} alt="Webmoney" />}
         />
-        <div className={cn(styles.inputWithIcon, styles.inputWithIcon_large)}>
-          <div
-            ref={ref}
-            className={cn(styles.inputPopper, {
-              [styles.inputPopper_active]: isShow,
-            })}
-          >
-            <div>
-              <ul>
-                <li>WMR324039475235</li>
-                <li>WMR324039475235</li>
-              </ul>
-              <div className={styles.inputPopperArrow}></div>
-            </div>
-          </div>
+        <div className={styles.inputWithButton}>
+          <MoneyPopper popperRef={ref} isShow={isShow} />
           <Input
             {...register("account_number")}
-            className={styles.input}
             placeholder="WMR324039475235"
+            style={{ paddingRight: 61 }}
           />
-          <button ref={ref2} className={styles.inputIcon} onClick={handleIconClick}>
+          <CircleButton
+            className={styles.inputIcon}
+            buttonRef={ref2}
+            color="yellow"
+            onClick={handleIconClick}
+          >
             <CardsIcon color="black" />
-          </button>
+          </CircleButton>
         </div>
       </div>
       <div className={styles.items}>
-        <div className={styles.inputWithIcon}>
-          <Input
-            {...register("sum", { required: true, validate: (v) => !Number.isNaN(Number(v)) })}
-            className={styles.input}
-            placeholder="Сумма"
-          />
-          <Text as="b" color="gray" size="s" weight={700}>
-            €
-          </Text>
-        </div>
-        <div className={styles.inputWithIcon}>
-          <Input
-            {...register("sum_2", { required: true, validate: (v) => !Number.isNaN(Number(v)) })}
-            className={styles.input}
-            placeholder="К получению"
-          />
-          <Text as="b" color="gray" size="s" weight={700}>
-            €
-          </Text>
-        </div>
+        <Input
+          {...register("sum", { required: true, validate })}
+          className={styles.input}
+          style={{ paddingRight: 45 }}
+          placeholder="Сумма"
+          icon="€"
+        />
+        <Input
+          {...register("sum_2", { required: true, validate })}
+          className={styles.input}
+          style={{ paddingRight: 45 }}
+          placeholder="К получению"
+          icon="€"
+        />
         <Button className={styles.button} size="large">
           Вывести
         </Button>

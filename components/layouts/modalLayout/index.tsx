@@ -16,17 +16,19 @@ interface IModal {
 
 const Modal: FC<IModal> = ({ className, title, children, hideClose, handleClose }) => {
   return (
-    <div className={cn(styles.modal, className)}>
+    <>
       <Head>
-        <title>YaonPay {title && "- " + title}</title>
+        <title>YaonClub {title && "- " + title}</title>
       </Head>
-      {!hideClose && (
-        <div className={styles.modalClose} onClick={handleClose}>
-          <CloseIcon />
-        </div>
-      )}
-      {children}
-    </div>
+      <div className={cn(styles.modal, className)}>
+        {!hideClose && (
+          <div className={styles.modalClose} onClick={handleClose}>
+            <CloseIcon />
+          </div>
+        )}
+        <div className={styles.modalContent}>{children}</div>
+      </div>
+    </>
   );
 };
 

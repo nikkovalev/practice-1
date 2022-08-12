@@ -4,7 +4,7 @@ import { url } from "@/helpers/url";
 
 import { IOffer } from "@/models/IOffer";
 
-import { Link } from "@/components/link";
+import { Avatar, Link } from "@/components/ui";
 import anonymousImage from "@/assets/images/anonymous.jpg";
 
 import styles from "./Category.module.scss";
@@ -49,10 +49,10 @@ export const CategoryOffer: FC<ICategoryOffer> = ({ offer, servers, view }) => {
       <div className={cn(styles.offerSeller, { [styles.offerSellerL]: view === "list" })}>
         <b className={styles.offerText}>Продавец</b>
         <div className={styles.offerSellerContent}>
-          <Link
+          <Avatar
+            as="a"
             href={`/users/${offer.seller.id}`}
-            className={cn("avatar avatarWithStatus", { online: offer.seller?.online })}
-            style={{ backgroundImage: url(offer.seller?.photoUrl || anonymousImage.src) }}
+            bg={offer.seller?.photoUrl || anonymousImage.src}
           />
           <div
             className={cn(styles.offerSellerInfo, { [styles.offerSellerInfoL]: view === "list" })}

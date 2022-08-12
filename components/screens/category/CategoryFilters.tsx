@@ -5,9 +5,7 @@ import { useOutside } from "@/hooks/useOutside";
 import { ICategory, IServiceFilter } from "@/models/ICategory";
 
 import { ArrowIcon, FilterIcon, ListIcon, SearchIcon } from "@/components/icons";
-import { Input } from "@/components/ui/Input/Input";
-import { Select } from "@/components/ui/Select/Select";
-import { Checkbox } from "@/components/ui/Checkbox/Checkbox";
+import { Select, Input, Checkbox } from "@/components/ui";
 import { Button } from "@/components/ui";
 import { CategoryFilter } from "./CategoryFilter";
 
@@ -47,7 +45,7 @@ export const CategoryFilters: FC<ICategoryFilters> = ({
   return (
     <div className={styles.filters}>
       <div ref={ref} className={cn(styles.filtersLeft, { [styles.filtersLeftActive]: isShow })}>
-        <div className="filter_menu_top hidden lg:flex items-center">
+        <div className="filter_menu_top lg:flex">
           <button onClick={handleToggle}>
             <ArrowIcon direction="left" color="primary" />
           </button>
@@ -56,6 +54,7 @@ export const CategoryFilters: FC<ICategoryFilters> = ({
         <div className={styles.filtersInputs}>
           <div className={styles.filtersInput}>
             <Input
+              size="sm"
               name="category-search"
               placeholder="Поиск по описанию"
               onChange={handleChangeQuery}

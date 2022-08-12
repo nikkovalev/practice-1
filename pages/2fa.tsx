@@ -7,8 +7,7 @@ import { useActions } from "@/hooks/useActions";
 
 import { useLogin2faMutation } from "@/store/auth/authApi";
 
-import { Input } from "@/components/ui/Input/Input";
-import { Button, Text } from "@/components/ui";
+import { Button, Text, Input } from "@/components/ui";
 import { Modal, styles as modalStyles } from "@/components/layouts/modalLayout";
 
 export const CodeEntryPage = () => {

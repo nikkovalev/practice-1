@@ -1,16 +1,11 @@
 @import "../../../assets/styles/variables";
 
 .modal {
-  @apply w-full min-h-screen relative px-[20px] flex items-center justify-center bg-black-400;
-  @media (max-width: $breakpoint768) {
-    @apply py-[80px];
-    & form {
-      @apply flex flex-col items-center min-w-full;
-      & > div {
-        @apply w-full;
-      }
-    }
-  }
+  @apply flex items-center w-full min-h-screen relative px-[10px] bg-black-400 sm:py-[80px];
+}
+
+.modalContent {
+  @apply w-full flex flex-col items-center;
 }
 
 .modalClose {
@@ -42,16 +37,7 @@
 }
 
 .top {
-  @apply mb-[50px] sm:mb-[30px];
-  & > h1 {
-    line-height: 57px;
-    @media (max-width: $breakpoint768) {
-      line-height: 1.1;
-    }
-    @media (max-width: $breakpoint350) {
-      font-size: 24px;
-    }
-  }
+  @apply mb-[50px] md:mb-[30px];
   &_flex {
     @apply flex items-end justify-center xs:flex-col xs:items-center;
     & > a {
@@ -70,15 +56,17 @@
 .registerInputs {
   @apply flex justify-between flex-wrap w-[650px] sm:flex-col sm:items-center sm:w-full;
   & > div {
-    @apply mb-[20px];
+    @apply mb-[20px] sm:w-full;
   }
-  @media (max-width: $breakpoint768) {
-    & > div {
-      @apply w-full;
-    }
-    & > button {
-      @apply w-full;
-    }
+  & > button {
+    @apply sm:w-full;
+  }
+}
+
+.authInputs {
+  @apply sm:w-full;
+  & > div {
+    @apply sm:w-full;
   }
 }
 
@@ -91,4 +79,8 @@
   & > span {
     margin-right: 5px !important;
   }
+}
+
+.form {
+  @apply flex flex-col items-center md:w-full;
 }

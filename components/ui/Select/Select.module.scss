@@ -1,9 +1,9 @@
 @import "../../../assets/styles/_variables.scss";
 
 .select {
-  @apply w-[270px] relative flex-shrink;
-  &_large {
-    @apply w-[320px] lg:w-[250px];
+  @apply relative w-[270px];
+  &_l {
+    @apply w-[320px];
   }
 }
 .selectHeader {
@@ -13,16 +13,16 @@
   &_light {
     @apply bg-black-300;
   }
-  &_large {
-    padding: 20px 25px;
-  }
   &_error {
     border: 1px solid $red-100;
   }
-  &_small-padding {
+  &_l {
+    padding: 20px 25px;
+  }
+  &_sm {
     padding: 11px 25px 11px 11px;
   }
-  &Active {
+  &_active {
     border-radius: 10px 10px 0 0;
     border: none;
     & > svg {
@@ -31,9 +31,7 @@
   }
 }
 .selectText {
-  @apply text-white-100 font-medium;
-  width: 90%;
-  font-size: 17px;
+  @apply w-[90%] text-white-100 font-medium text-[17px];
 }
 .selectItems {
   @apply absolute left-0 w-full bg-black-400 hidden z-50;
@@ -45,17 +43,14 @@
   &_light {
     @apply bg-black-300;
   }
-  & ul {
-    & li {
-      @apply text-gray-400 font-medium hover:text-secondary-400 cursor-pointer;
-      transition: color 0.25s;
-      margin-bottom: 15px;
-      &:last-child {
-        margin-bottom: 0;
-      }
-    }
+  & ul > li {
+    @apply text-gray-400 font-medium hover:text-secondary-400 cursor-pointer mb-[15px] last:mb-0;
+    transition: color 0.25s;
+  }
+  &_active {
+    display: block;
   }
 }
-.selectItemsActive {
-  display: block;
+.label {
+  @apply inline-block pl-[25px] mb-[15px];
 }

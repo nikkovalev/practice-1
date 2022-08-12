@@ -45,19 +45,19 @@ export const list = [
 
 export const socials = [
   {
-    name: "YaonPay",
+    name: "YaonClub",
     href: "#",
     icon: youtubeIcon,
     color: "red",
   },
   {
-    name: "@YaonPay",
+    name: "@YaonClub",
     href: "#",
     icon: telegramIcon,
     color: "blue",
   },
   {
-    name: "YaonPay",
+    name: "YaonClub",
     href: "#",
     icon: vkIcon,
     color: "dark-blue",

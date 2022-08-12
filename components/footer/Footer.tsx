@@ -4,11 +4,10 @@ import Image from "next/image";
 
 import { statistics, list, socials } from "./footer.data";
 
-import { Text } from "@/components/ui";
-import { Link } from "@/components/link";
+import { Text, Link } from "@/components/ui";
 
 import logoIcon from "@/assets/images/logo.svg";
-import logo2Icon from "@/assets/images/logo-2.svg";
+import logo2Icon from "@/assets/images/logo_2.svg";
 
 import styles from "./Footer.module.scss";
 
@@ -36,7 +35,7 @@ export const Footer: FC<{ isLight: boolean }> = ({ isLight }) => {
               width={window.screen.width > 768 ? 270 : 124}
               height={window.screen.width > 768 ? 79 : 34}
               src={window.screen.width > 768 ? logoIcon : logo2Icon}
-              alt="YaonPay"
+              alt="YaonClub"
             />
           </Link>
           <ul className={styles.footerStatistics}>
@@ -63,7 +62,7 @@ export const Footer: FC<{ isLight: boolean }> = ({ isLight }) => {
         </div>
         <div className={styles.footerBottom}>
           <Text as="span" color="gray" weight={500}>
-            © 2022 YaonPay. Твоя торговая площадка цифровых товар
+            © 2022 YaonClub. Твоя торговая площадка цифровых товаров
           </Text>
           <div className={styles.footerTexts}>
             <Text as="a" href="#" color="gray" weight={500}>

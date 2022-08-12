@@ -31,7 +31,7 @@
 
 //Header logo
 .headerLogo {
-  @apply xl:w-[200px] lg:w-auto sm:mr-[10px] xxs:mb-[10px];
+  @apply flex items-center xl:w-[200px] lg:w-auto sm:mr-[10px] xxs:mb-[10px] xxs:mr-0;
 }
 
 // Header navigation

@@ -3,7 +3,7 @@ import cn from "classnames";
 import Image from "next/image";
 
 import { ProfileLayout } from "@/components/layouts/profileLayout";
-import { Button, Text, TextWithCount } from "@/components/ui";
+import { Button, TextWithCount } from "@/components/ui";
 
 import doneImage from "@/assets/images/ok.svg";
 

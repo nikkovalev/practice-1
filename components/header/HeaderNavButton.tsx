@@ -3,7 +3,7 @@ import cn from "classnames";
 import { useOutside } from "@/hooks/useOutside";
 import { navList } from "./header.data";
 
-import { Link } from "@/components/link";
+import { Link } from "@/components/ui";
 import { HamburgerIcon } from "@/components/icons";
 
 import styles from "./Header.module.scss";

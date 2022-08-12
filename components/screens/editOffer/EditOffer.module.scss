@@ -3,74 +3,63 @@
 .modal {
   @apply py-[50px];
 }
-
 .top {
   @apply mt-[20px];
 }
-
+.form {
+  @apply w-[980px] max-w-[980px] lg:w-full;
+}
+// Selects
 .selects {
-  @apply flex items-center flex-wrap md:flex-col;
+  @apply flex items-center flex-wrap lg:justify-between;
+  // Select wrapper
   & > div {
-    @apply mr-[10px] mb-[20px] md:mr-0;
+    @apply mb-[20px] mr-[10px] lg:mr-0;
     width: calc(33.3% - 6.6px);
-    &:nth-child(3) {
-      margin-right: 0;
+    &:nth-child(3n) {
+      @apply mr-0;
     }
+    // Select
     & > div {
-      width: 100%;
+      @apply w-full;
     }
-    @media (max-width: $breakpoint992) {
+    @media (max-width: $breakpoint1200) {
+      width: calc(50% - 5px);
+    }
+    @media (max-width: $breakpoint768) {
       width: 100%;
     }
   }
 }
-.label {
-  @apply inline-block pl-[25px] mb-[15px];
-}
+//Textarea
 .textarea {
-  @apply block mt-[20px] w-full min-h-[100px] resize-none bg-black-300 py-[20px] px-[25px] font-medium text-[17px] placeholder:text-gray-400 text-white-100;
+  @apply block w-full min-h-[100px] resize-none bg-black-300 py-[20px] px-[25px] font-medium text-[17px] placeholder:text-gray-400 text-white-100;
   line-height: 20px;
   border-radius: 10px;
   &_large {
-    @apply min-h-[200px] mb-[20px];
+    @apply min-h-[200px] mb-[20px] mt-[20px];
   }
   &_error {
     border: 1px solid $red-100;
   }
 }
-.input {
-  @apply relative lg:first:mr-[10px] sm:first:mr-0;
-  & > b {
-    @apply absolute top-1/2 -translate-y-1/2 right-[25px];
-  }
-  & > div {
+// Inputs
+.inputs {
+  @apply flex items-center justify-between lg:flex-wrap sm:flex-col;
+  & > button {
     @apply lg:w-full;
-    & > input {
-      padding-right: 45px;
-    }
   }
-  &_count > div > input {
-    padding-right: 61px;
-  }
+}
+.input {
+  @apply lg:mb-[20px];
   @media (max-width: $breakpoint1200) {
     width: calc(50% - 5px);
   }
-}
-.inputs {
-  @apply flex items-center justify-between lg:flex-wrap sm:flex-col;
-  & > div {
-    @apply sm:w-full sm:first:mb-[20px];
-    @media (max-width: $breakpoint768) {
-      width: calc(100vw - 40px);
-    }
-  }
-  & > button {
-    @apply lg:mt-[20px] sm:w-full;
+  @media (max-width: $breakpoint768) {
+    width: 100%;
   }
 }
-.icon {
-  @apply w-[38px] h-[38px] rounded-full bg-cover bg-center bg-no-repeat;
-}
+//Radio
 .radioWrapper {
   @apply flex items-center justify-center mb-[20px];
 }
@@ -85,8 +74,4 @@
   @apply absolute -left-[5px] -top-[2px] w-[45px] h-[40px] bg-primary-400 rounded-full;
   transition: transform 0.25s;
   box-shadow: 0px 10px 20px rgba(127, 134, 232, 0.25);
-}
-
-.form {
-  @apply w-[980px] max-w-[980px] lg:w-full;
 }

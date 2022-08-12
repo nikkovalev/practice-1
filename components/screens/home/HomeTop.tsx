@@ -1,8 +1,6 @@
 import React from "react";
 import Image from "next/image";
 import cn from "classnames";
-import { motion } from "framer-motion";
-import { BACK_IN_RIGHT } from "animation/effects";
 
 import { Button } from "@/components/ui";
 
@@ -17,7 +15,7 @@ export const HomeTop = () => {
         <div>
           <h1>
             Экономь своё время и зарабатывай вместе
-            <br /> с<b> YaonPay</b>
+            <br /> с<b> YaonClub</b>
           </h1>
           <p>
             Хочешь совершать выгодные сделки покупая и продавая аккаунты в играх и соц.сетях, а так
@@ -35,16 +33,16 @@ export const HomeTop = () => {
           </Button>
         </div>
       </div>
-      <motion.div {...BACK_IN_RIGHT} className={styles.topRight}>
+      <div className={styles.topRight}>
         <Image
           src={logoLGImage.src}
-          alt="YaonPay"
+          alt="YaonClub"
           width="100%"
           height="100%"
           layout="responsive"
           objectFit="contain"
         />
-      </motion.div>
+      </div>
     </div>
   );
 };

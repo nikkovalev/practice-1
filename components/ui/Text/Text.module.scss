@@ -53,6 +53,9 @@
   &xxl {
     @apply text-[52px] md:text-[32px];
   }
+  &vl {
+    @apply text-[62px] md:text-[45px] xs:text-[30px];
+  }
 }
 
 .align_ {

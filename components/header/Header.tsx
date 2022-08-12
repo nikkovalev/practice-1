@@ -13,15 +13,14 @@ import { useFetchLikedServicesQuery, useGetMeQuery } from "@/store/auth/authApi"
 import { HeaderNavButton } from "./HeaderNavButton";
 import { HeaderMode } from "./HeaderMode";
 import { HeaderSearchInput } from "./HeaderSearchInput";
-import { Link } from "@/components/link";
 import { HeaderUser } from "./HeaderUser";
-import { Button } from "@/components/ui";
+import { Button, Link } from "@/components/ui";
 import { HeaderSelect } from "./HeaderSelect";
 import { HeaderSearch } from "./HeaderSearch";
 
 import { CloseIcon, HamburgerIcon, LikeIcon, MessageIcon, SearchIcon, UserIcon } from "../icons";
 import logoIcon from "@/assets/images/logo.svg";
-import logo2Icon from "@/assets/images/logo-2.svg";
+import logo2Icon from "@/assets/images/logo_2.svg";
 
 import styles from "./Header.module.scss";
 
@@ -91,7 +90,7 @@ export const Header = () => {
                 width={window.screen.width > 1200 ? 270 : 124}
                 height={window.screen.width > 1200 ? 79 : 34}
                 src={window.screen.width > 1200 ? logoIcon : logo2Icon}
-                alt="YaonPay"
+                alt="YaonClub"
               />
             </Link>
             <HeaderNavButton />

@@ -1,4 +1,4 @@
-import React, { FC, forwardRef, useImperativeHandle, useState } from "react";
+import React, { forwardRef, useImperativeHandle, useState } from "react";
 import cn from "classnames";
 import { useOutside } from "@/hooks/useOutside";
 
@@ -6,16 +6,16 @@ import { ArrowIcon } from "@/components/icons";
 
 import styles from "./Select.module.scss";
 
-interface ISelect {
+export interface ISelect {
   className?: any;
+  iconClassName?: any;
   label: string;
   items: string[];
-  icon?: any;
   color?: "light";
-  size?: "large";
-  iconCN?: string;
+  size?: "l";
   isError?: boolean;
-  padding?: "small";
+  icon?: any;
+  padding?: "sm" | "l";
   handleChange?: (val: string | null, idx?: number) => void;
 }
 
@@ -25,7 +25,7 @@ export interface SelectHandle {
 
 export const Select = forwardRef<SelectHandle, ISelect>(
   (
-    { className, label, color, size, items, icon, iconCN, isError, padding, handleChange },
+    { className, label, items, color, size, isError, padding, icon, iconClassName, handleChange },
     ref: any
   ) => {
     const { isShow, ref: rootRef, setIsShow } = useOutside(false);
@@ -51,21 +51,20 @@ export const Select = forwardRef<SelectHandle, ISelect>(
       >
         <div
           className={cn(styles.selectHeader, {
-            [styles.selectHeaderActive]: isShow,
-            [styles[`selectHeader_${color}`]]: !!color,
-            [styles[`selectHeader_${size}`]]: !!size,
+            [styles.selectHeader_active]: isShow,
             [styles.selectHeader_error]: isError,
-            [styles[`selectHeader_${padding}-padding`]]: !!padding,
+            [styles[`selectHeader_${color}`]]: !!color,
+            [styles[`selectHeader_${padding}`]]: !!padding,
           })}
           onClick={handleToggle}
         >
-          {!!icon && <div className={cn(iconCN, "flex items-center")}>{icon}</div>}
+          {!!icon && <div className={iconClassName}>{icon}</div>}
           <div className={cn("text-ellipsis", styles.selectText)}>{val}</div>
           <ArrowIcon />
         </div>
         <div
           className={cn("custom_scrollbar", styles.selectItems, {
-            [styles.selectItemsActive]: isShow,
+            [styles.selectItems_active]: isShow,
             [styles[`selectItems_${color}`]]: !!color,
           })}
         >

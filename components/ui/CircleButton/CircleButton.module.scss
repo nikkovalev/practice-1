@@ -1,0 +1,18 @@
+@import "../../../assets/styles/_variables.scss";
+
+.circle {
+  @apply flex items-center justify-center w-[40px] h-[40px] rounded-full bg-gray-400 hover:bg-red-100 hover:shadow-none;
+  transition: transform 0.25s, background-color 0.25s, box-shadow 0.25s;
+  &:active {
+    transform: scale(0.9);
+  }
+  &_yellow {
+    @apply bg-secondary-400 hover:bg-secondary-300 shadow-secondary;
+  }
+  &_purple {
+    @apply bg-primary-400 hover:bg-primary-300 shadow-primary;
+  }
+  &_green {
+    @apply bg-green-200 shadow-green hover:bg-green-100;
+  }
+}

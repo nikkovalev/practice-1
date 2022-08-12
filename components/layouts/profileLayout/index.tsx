@@ -8,7 +8,7 @@ import { useUpdateProfileAvatarMutation } from "@/store/auth/authApi";
 
 import { Layout } from "@/components/layouts/Layout";
 import { UserPreview } from "@/components/userPreview/UserPreview";
-import { ProfileLayoutButtons } from "./ProfileLayoutButtons";
+import { ProfileNavigation } from "./ProfileNavigation";
 import { Preview } from "../previewLayout";
 
 import profileBg from "@/assets/images/profile_bg.png";
@@ -45,7 +45,7 @@ export const ProfileLayout: FC<IProfileLayout> = ({ children, title, hideTitle }
     <Layout title={title} withImage={true}>
       <Preview className={styles.preview} bg={profileBg.src}>
         <UserPreview user={user} updateProfileAvatar={updateProfileAvatar} isOwner={true} />
-        <ProfileLayoutButtons />
+        <ProfileNavigation />
       </Preview>
       <div className="inner-container">
         {!hideTitle && <h1 className={styles.title}>{title}</h1>}

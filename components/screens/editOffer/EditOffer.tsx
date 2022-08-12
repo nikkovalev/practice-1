@@ -9,7 +9,6 @@ import React, {
 } from "react";
 import cn from "classnames";
 import { useForm } from "react-hook-form";
-import { url } from "@/helpers/url";
 import { useRouter } from "next/router";
 import { toast } from "react-toastify";
 
@@ -19,7 +18,8 @@ import { ICategory, IService } from "@/models/ICategory";
 import { IOffer } from "@/models/IOffer";
 
 import { Modal } from "@/components/layouts/modalLayout";
-import { Button, Input, Select, SelectHandle, Text } from "@/components/ui";
+import { Avatar, Button, Input, SelectHandle, SelectWithLabel, Text } from "@/components/ui";
+import { EditOfferInput } from "./EditOfferInput";
 
 import { styles as modalStyles } from "@/components/layouts/modalLayout";
 import styles from "./EditOffer.module.scss";
@@ -58,8 +58,11 @@ export const EditOffer: FC<IEditOffer> = ({ initial, categories }) => {
   // Refs
   const serviceRef = useRef<SelectHandle>(null);
 
+  // Close modal
+
   const handleClose = () => router.push("/offers");
 
+  // Change states
   const handleChangeCategory = (val: string | null) => {
     if (!val) {
       setCurrentCategory(null);
@@ -118,6 +121,7 @@ export const EditOffer: FC<IEditOffer> = ({ initial, categories }) => {
     };
     createEditOffer(offer as any);
   };
+
   const onSubmit = (event: BaseSyntheticEvent<object, any, any>) => {
     const errorsObj: { [key: string]: boolean } = {
       category: false,
@@ -133,6 +137,9 @@ export const EditOffer: FC<IEditOffer> = ({ initial, categories }) => {
     if (Object.values(errorsObj).some((v) => !!v)) setErrorsObj(errorsObj);
     handleSubmit(handleSave)(event);
   };
+
+  // Validate
+  const validate = (v: string) => !Number.isNaN(Number(v));
 
   useEffect(() => {
     if (isSuccess && !!data) {
@@ -150,145 +157,101 @@ export const EditOffer: FC<IEditOffer> = ({ initial, categories }) => {
       }
       handleClose={handleClose}
     >
-      <div>
-        <div className={cn(modalStyles.top, styles.top)}>
-          <Text as="h1" size="xxl" align="center" weight={700}>
-            {!!initial ? "Измените предложение" : "Добавьте предложение"}
-          </Text>
-        </div>
-        <form className={styles.form} onSubmit={onSubmit}>
-          <div className={styles.selects}>
-            <div>
-              <Text className={styles.label} color="gray" weight={500} size="m">
-                Категория
-              </Text>
-              <Select
-                label="Выберите категорию"
-                items={categoriesNames}
-                icon={
-                  currentCategory && (
-                    <div
-                      className={styles.icon}
-                      style={{ backgroundImage: url(currentCategory.icon) }}
-                    />
-                  )
-                }
-                iconCN="mr-[10px]"
-                size="large"
-                color="light"
-                padding={!!currentCategory ? "small" : undefined}
-                isError={errorsObj.category}
-                handleChange={handleChangeCategory}
-              />
-            </div>
-            <div>
-              <Text className={styles.label} color="gray" weight={500} size="m">
-                Тип услуги
-              </Text>
-              <Select
-                ref={serviceRef}
-                label="Выберите тип услуги"
-                items={servicesNames}
-                size="large"
-                color="light"
-                isError={errorsObj.service}
-                handleChange={handleChangeService}
-              />
-            </div>
-            <div>
-              <Text className={styles.label} color="gray" weight={500} size="m">
-                Сервер
-              </Text>
-              <Select
-                label="Выберите сервер"
-                items={serversNames}
-                size="large"
-                color="light"
-                isError={errorsObj.server}
-                handleChange={handleChangeServer}
-              />
-            </div>
-            {!!service &&
-              service.filters.map((filter) => (
-                <div key={filter.id}>
-                  <Text className={styles.label} color="gray" weight={500} size="m">
-                    {filter.name}
-                  </Text>
-                  <Select
-                    label={filter.name}
-                    items={filter.values}
-                    size="large"
-                    color="light"
-                    isError={!!errorsObj[filter.name]}
-                    handleChange={handleChangeFilter(filter.name)}
-                  />
-                </div>
-              ))}
-          </div>
-          <textarea
-            {...register("short_description", { required: true })}
-            className={cn(styles.textarea, {
-              [styles.textarea_error]: !!errors?.short_description,
-            })}
-            placeholder="Краткое описание"
-          />
-          <textarea
-            {...register("description", { required: true })}
-            className={cn(styles.textarea, styles.textarea_large, {
-              [styles.textarea_error]: !!errors?.description,
-            })}
-            placeholder="Подробное описание"
-          />
-          <div className={styles.radioWrapper}>
-            <Text color="gray" size="m">
-              Исчисляемое
-            </Text>
-            <button className={styles.radio} onClick={handleChangeCountable}>
-              <div
-                className={styles.radioIndicator}
-                style={{
-                  transform: `translateX(${isCountable ? 0 : 37}px)`,
-                }}
-              />
-              <span>Да</span>
-              <span>Нет</span>
-            </button>
-          </div>
-          <div className={styles.inputs}>
-            <div className={styles.input}>
-              <Input
-                {...register("price", {
-                  required: true,
-                  validate: (v) => !Number.isNaN(Number(v)),
-                })}
-                placeholder="Цена за 1 шт."
-                isError={!!errors?.price}
-              />
-              <Text as="b" color="gray" size="s" weight={700}>
-                ₽
-              </Text>
-            </div>
-            {isCountable && (
-              <div className={cn(styles.input, styles.input_count)}>
-                <Input
-                  {...register("count", {
-                    required: true,
-                    validate: (v) => !Number.isNaN(Number(v)),
-                  })}
-                  placeholder="Наличие, например 6000"
-                  isError={!!errors?.count}
-                />
-                <Text as="b" color="gray" size="s" weight={700}>
-                  шт.
-                </Text>
-              </div>
-            )}
-            <Button variant="contained" size="large" isDisabled={isLoading}>
-              Добавить
-            </Button>
-          </div>
-        </form>
+      <div className={cn(modalStyles.top, styles.top)}>
+        <Text as="h1" size="xxl" align="center" weight={700}>
+          {!!initial ? "Измените предложение" : "Добавьте предложение"}
+        </Text>
       </div>
+      <form className={styles.form} onSubmit={onSubmit}>
+        <div className={styles.selects}>
+          <SelectWithLabel
+            text="Категория"
+            label="Выберите категорию"
+            items={categoriesNames}
+            isError={errorsObj.category}
+            handleChange={handleChangeCategory}
+            icon={currentCategory && <Avatar bg={currentCategory.icon} borderNone={true} />}
+          />
+          <SelectWithLabel
+            rootRef={serviceRef}
+            text="Тип услуги"
+            label="Выберите тип услуги"
+            items={servicesNames}
+            isError={errorsObj.service}
+            handleChange={handleChangeService}
+          />
+          <SelectWithLabel
+            text="Сервер"
+            label="Выберите сервер"
+            items={serversNames}
+            isError={errorsObj.server}
+            handleChange={handleChangeServer}
+          />
+          {!!service &&
+            service.filters.map((filter) => (
+              <SelectWithLabel
+                key={filter.id}
+                text={filter.name}
+                label={filter.name}
+                items={filter.values}
+                isError={!!errorsObj[filter.name]}
+                handleChange={handleChangeFilter(filter.name)}
+              />
+            ))}
+        </div>
+        <textarea
+          {...register("short_description", { required: true })}
+          className={cn(styles.textarea, {
+            [styles.textarea_error]: !!errors?.short_description,
+          })}
+          placeholder="Краткое описание"
+        />
+        <textarea
+          {...register("description", { required: true })}
+          className={cn(styles.textarea, styles.textarea_large, {
+            [styles.textarea_error]: !!errors?.description,
+          })}
+          placeholder="Подробное описание"
+        />
+        <div className={styles.radioWrapper}>
+          <Text color="gray" size="m">
+            Исчисляемое
+          </Text>
+          <button className={styles.radio} onClick={handleChangeCountable}>
+            <div
+              className={styles.radioIndicator}
+              style={{
+                transform: `translateX(${isCountable ? 0 : 37}px)`,
+              }}
+            />
+            <span>Да</span>
+            <span>Нет</span>
+          </button>
+        </div>
+        <div className={styles.inputs}>
+          <Input
+            {...register("price", { required: true, validate })}
+            className={styles.input}
+            style={{ paddingRight: 45 }}
+            placeholder="Цена за 1 шт."
+            isError={!!errors?.price}
+            icon="₽"
+          />
+          {isCountable && (
+            <Input
+              {...register("count", { required: true, validate })}
+              className={styles.input}
+              style={{ paddingRight: 61 }}
+              placeholder="Наличие, например 6000"
+              isError={!!errors?.count}
+              icon="шт."
+            />
+          )}
+          <Button variant="contained" size="large" isDisabled={isLoading}>
+            Добавить
+          </Button>
+        </div>
+      </form>
     </Modal>
   );
 };

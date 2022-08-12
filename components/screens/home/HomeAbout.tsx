@@ -10,7 +10,7 @@ export const HomeAbout = () => {
   return (
     <section className={styles.about}>
       <div className="inner-container">
-        <h3 className={styles.aboutTitle}>YaonPay</h3>
+        <h3 className={styles.aboutTitle}>YaonClub</h3>
         <Text className={styles.aboutText} size="l" color="gray" weight={400}>
           Добро пожаловать к нам. Давай попробуем ответить на основные вопросы
         </Text>
@@ -32,7 +32,7 @@ export const HomeAbout = () => {
         >
           А теперь пару слов от нашей команды лично тебе. Мы рады что ты выбрал именно нас и уверены
           в том что ты не усомнишься в своём выборе. Совершай выгодные сделки и совершенствуйся
-          вместе с YaonPay.
+          вместе с YaonClub.
         </Text>
       </div>
     </section>

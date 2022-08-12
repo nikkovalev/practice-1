@@ -1,39 +1,31 @@
 @import "../../../assets/styles/variables.scss";
 
-.inputWrapper {
-  @apply relative w-[320px];
-}
-
-.input {
-  width: 100%;
-  padding: 20px 25px;
-  font-size: 17px;
-  font-weight: 500;
-  background-color: $black-300;
-  border-radius: 50px;
-  color: $white-100;
-  &::placeholder {
-    color: $gray-400;
+.wrapper {
+  @apply w-[320px];
+  &_sm {
+    @apply w-[270px];
+  }
+  &_wi {
+    & > b {
+      @apply absolute top-1/2 -translate-y-1/2 right-[25px];
+    }
   }
 }
 
-.inputWithIcon {
-  padding-right: 50px;
-}
-
-.inputError {
-  border: 1px solid $red-100;
+.input {
+  @apply w-full py-[20px] px-[25px] text-[17px] font-medium bg-black-300 text-white-100 placeholder:text-gray-400;
+  border-radius: 50px;
+  &_pass {
+    @apply pr-[50px];
+  }
+  &_error {
+    border: 1px solid $red-100;
+  }
 }
 
 .passwordIcon {
-  position: absolute;
-  top: 50%;
-  right: 15px;
-  transform: translateY(-47%);
-  cursor: pointer;
-  & svg {
-    width: 25px;
-    height: 25px;
-    fill: $primary-400;
+  @apply absolute top-1/2 right-[15px] -translate-y-[47%] cursor-pointer;
+  & > svg {
+    @apply w-[25px] h-[25px] fill-primary-400;
   }
 }

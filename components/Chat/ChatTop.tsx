@@ -1,10 +1,8 @@
 import React, { FC, useEffect, useState } from "react";
 import cn from "classnames";
-import { url } from "@/helpers/url";
 import { useOutside } from "@/hooks/useOutside";
 
-import { Link } from "@/components/link";
-
+import { Avatar, Link } from "@/components/ui";
 import { ArrowIcon, ChatIcon, MoreIcon } from "@/components/icons";
 import anonymousImage from "@/assets/images/anonymous.jpg";
 
@@ -42,10 +40,7 @@ export const ChatTop: FC<IChatTop> = ({ variant }) => {
           <ArrowIcon direction="left" color="primary" />
         </Link>
       )}
-      <div
-        className="avatar avatarWithStatus"
-        style={{ backgroundImage: url(anonymousImage.src) }}
-      />
+      <Avatar withStatus={true} bg={anonymousImage.src} />
       <div
         className={cn(styles.chatTopText, {
           [styles.chatTopText_full]: variant === "global",

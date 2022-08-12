@@ -1,8 +1,0 @@
-@import "../../../assets/styles/_variables.scss";
-
-.buttons {
-  @apply flex items-center flex-wrap mt-[40px] pb-[30px] md:flex-nowrap md:overflow-x-auto md:pb-0;
-}
-.button {
-  @apply mr-[20px] last:mr-0 text-white-100 mb-[20px];
-}

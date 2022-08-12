@@ -10,12 +10,15 @@
 
 // Left
 .left {
-  @apply relative flex items-center w-[970px] bg-black-300 bg-opacity-60 lg:w-full lg:bg-transparent py-[35px] pr-[35px] mr-[10px] lg:pr-0 lg:pt-0 lg:pb-[20px] sm:pb-[70px] xxs:pb-[130px];
+  @apply relative flex items-center w-[970px] bg-black-300 bg-opacity-60 lg:w-full lg:bg-transparent py-[35px] pr-[35px] mr-[10px] lg:pr-0 lg:pt-0 lg:pb-[20px] sm:pb-[70px];
   backdrop-filter: blur(10px);
   border-radius: 10px;
   @media (max-width: $breakpoint1200) {
     @apply static justify-center mr-0;
     backdrop-filter: blur(0);
+  }
+  @media (max-width: 370px) {
+    @apply pb-[130px];
   }
 }
 .leftAvatar {
@@ -68,12 +71,15 @@
     @apply absolute justify-center left-[20px] bottom-[20px];
     width: calc(100% - 40px);
   }
-  @media (max-width: $breakpoint350) {
+  @media (max-width: 370px) {
     @apply flex-col;
   }
 }
 .leftInfoItem {
-  @apply flex flex-col items-center first:mr-[50px] sm:first:mr-[25px] xxs:first:mb-[15px] xxs:first:mr-0;
+  @apply flex flex-col items-center first:mr-[50px] sm:first:mr-[25px];
+  @media (max-width: 370px) {
+    @apply first:mb-[15px] first:mr-0;
+  }
 }
 .leftBack {
   @apply absolute left-[35px] top-1/2 -translate-y-1/2 sm:hidden;
@@ -96,7 +102,7 @@
 .status {
   @apply text-[17px] font-medium text-gray-400 mb-[20px] sm:text-[15px] sm:mb-0;
   &_online {
-    @apply text-green-100;
+    @apply text-green-200;
   }
 }
 

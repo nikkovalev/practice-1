@@ -1,15 +1,15 @@
 @import "../../../assets/styles/_variables.scss";
 
 .preview {
-  @apply mb-[30px];
+  @apply mb-[50px] md:mb-[30px];
 }
 
 .buttons {
-  @apply flex items-center pb-[50px] lg:pb-[30px] lg:overflow-x-auto lg:pl-[20px] lg:pr-[10px] lg:-mx-[20px] lg:flex-nowrap;
+  @apply flex items-center flex-wrap md:overflow-x-auto md:flex-nowrap pb-[30px] md:pb-0;
 }
 
 .button {
-  @apply mr-[20px] last:mr-0 lg:flex-shrink-0 lg:mr-[10px] lg:last:mt-0 xl:px-[30px] text-white-100;
+  @apply mr-[20px] last:mr-0 mb-[20px] md:flex-shrink-0 md:px-[25px] text-white-100 md:mr-[10px];
 }
 
 .title {

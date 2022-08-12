@@ -13,8 +13,7 @@ import { useLoginUserMutation, useLoginVKMutation } from "@/store/auth/authApi";
 import { useActions } from "@/hooks/useActions";
 
 import { Modal, styles as modalStyles } from "@/components/layouts/modalLayout";
-import { Button, Text } from "@/components/ui";
-import { Input } from "@/components/ui/Input/Input";
+import { Button, Text, Input } from "@/components/ui";
 
 import vkIcon from "@/assets/images/socials/vk.svg";
 
@@ -45,6 +44,7 @@ const AuthPage: NextPage = () => {
       saveToken(data.token);
       handleClose();
     }
+    // eslint-disable-next-line
   }, [isLoading, data]);
 
   useEffect(() => {
@@ -52,14 +52,15 @@ const AuthPage: NextPage = () => {
       toast.warning("Вы уже авторизованы", { toastId: "auth_warning" });
       handleClose();
     }
+    // eslint-disable-next-line
   }, []);
 
   return (
     <Modal title="Войти" handleClose={handleClose}>
-      <form className="flex flex-col items-center" onSubmit={handleSubmit(handleLogin)}>
+      <form className={modalStyles.form} onSubmit={handleSubmit(handleLogin)}>
         <div className={cn(modalStyles.top, modalStyles.top_flex)}>
           <Text
-            className="mr-[50px] sm:mr-[25px] xs:mr-0 xs:mb-[10px]"
+            className="mr-[50px] md:mr-[25px] xs:mr-0 xs:mb-[10px]"
             as="h1"
             size="xxl"
             weight={700}
@@ -70,18 +71,20 @@ const AuthPage: NextPage = () => {
             Зарегистрироваться
           </Text>
         </div>
-        <Input
-          {...register("login", { required: true })}
-          className="mb-5"
-          placeholder="Имя или почта"
-          isError={!!errors.login}
-        />
-        <Input
-          {...register("password", { required: true })}
-          placeholder="Пароль"
-          type="password"
-          isError={!!errors.password}
-        />
+        <div className={modalStyles.authInputs}>
+          <Input
+            {...register("login", { required: true })}
+            className="mb-5"
+            placeholder="Имя или почта"
+            isError={!!errors.login}
+          />
+          <Input
+            {...register("password", { required: true })}
+            placeholder="Пароль"
+            type="password"
+            isError={!!errors.password}
+          />
+        </div>
         <Button
           className={modalStyles.authButton}
           color="secondary"

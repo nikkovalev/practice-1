@@ -23,33 +23,21 @@ a {
   text-decoration: none;
 }
 
-.title {
-  @apply text-white-100 font-bold text-[62px] mb-[30px] md:text-[45px] md:mb-[10px] xs:text-[30px];
-}
-
-.description {
-  @apply text-gray-400 font-normal text-[20px] w-[60%] md:w-full md:text-[17px];
-  line-height: 34px;
-}
-
 .link_with_arrow {
-  @apply inline-flex items-center;
-  margin-bottom: 15px;
-  & b {
-    @apply inline-block font-bold text-gray-400;
-    font-size: 17px;
-    margin-left: 15px;
+  @apply inline-flex items-center mb-[15px] sm:mb-[10px];
+  & > b {
+    @apply inline-block font-bold text-gray-400 leading-[20px] text-[17px] ml-[15px];
     transition: color 0.25s;
   }
-  & svg path {
+  & > svg > path {
     transition: stroke 0.25s;
   }
   &:hover {
-    & b {
+    & > b {
       @apply text-secondary-400;
     }
-    & svg path {
-      stroke: $secondary-400;
+    & > svg > path {
+      @apply stroke-secondary-400;
     }
   }
 }
@@ -122,32 +110,6 @@ a {
   }
 }
 
-.avatar {
-  @apply bg-cover bg-center bg-no-repeat flex-shrink-0;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  border: 2px solid $gray-400;
-}
-
-.avatarWithStatus {
-  @apply relative;
-  &::before {
-    content: "";
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background-color: $gray-400;
-    box-shadow: 0 0 0 5px $black-300;
-  }
-  &.online::before {
-    background-color: $green-100;
-  }
-}
-
 .text_with_icon {
   @apply flex items-center dark:text-white-100 font-medium cursor-pointer flex-shrink-0 text-[17px] lg:text-white-100;
   transition: color 0.25s;
@@ -166,6 +128,7 @@ a {
 }
 
 .filter_menu_top {
+  @apply hidden items-center;
   margin-bottom: 20px;
   & > h3 {
     @apply text-white-100 font-bold;
@@ -174,25 +137,5 @@ a {
   }
   & > button {
     margin-top: 5px;
-  }
-}
-
-.circle {
-  @apply flex items-center justify-center w-[40px] h-[40px] rounded-full bg-gray-400 hover:bg-red-100 hover:shadow-none;
-  transition: transform 0.25s, background-color 0.25s, box-shadow 0.25s;
-  &:active {
-    transform: scale(0.9);
-  }
-  &_yellow {
-    @apply bg-secondary-400 hover:bg-secondary-300 shadow-secondary;
-  }
-  &_purple {
-    @apply bg-primary-400 hover:bg-primary-300 shadow-primary;
-  }
-  &_green {
-    @apply bg-green-100 shadow-green;
-    &:hover {
-      background-color: lighten($green-100, 5%);
-    }
   }
 }

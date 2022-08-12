@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import cn from "classnames";
 
-import { Text } from "./Text/Text";
+import { Text } from "@/components/ui";
 
 interface ITextWithCount {
   className?: string;

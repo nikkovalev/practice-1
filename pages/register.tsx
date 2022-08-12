@@ -10,8 +10,7 @@ import { useRegisterUserMutation } from "@/store/auth/authApi";
 import { toast } from "react-toastify";
 
 import { Modal, styles as modalStyles, styles } from "@/components/layouts/modalLayout";
-import { Button, Checkbox, Text } from "@/components/ui";
-import { Input } from "@/components/ui/Input/Input";
+import { Button, Checkbox, Text, Input } from "@/components/ui";
 
 const AuthPage: NextPage = () => {
   const {
@@ -54,6 +53,7 @@ const AuthPage: NextPage = () => {
       toast.success("Успешная регистрация");
       router.push("/auth");
     }
+    // eslint-disable-next-line
   }, [isLoading, data]);
 
   useEffect(() => {
@@ -61,11 +61,12 @@ const AuthPage: NextPage = () => {
       toast.warning("Вы уже авторизованы", { toastId: "register_warning" });
       handleClose();
     }
+    // eslint-disable-next-line
   }, []);
 
   return (
     <Modal title="Зарегистрироваться" handleClose={handleClose}>
-      <form className="flex flex-col items-center" onSubmit={handleSubmit(onRegister)}>
+      <form className={styles.form} onSubmit={handleSubmit(onRegister)}>
         <div className={cn(modalStyles.top, modalStyles.top_flex)}>
           <Text as="a" href="/auth" color="primary" size="xl" weight={700}>
             Войти
@@ -83,7 +84,7 @@ const AuthPage: NextPage = () => {
           <Input
             {...register("login", { required: true })}
             className="mb-5"
-            placeholder="Имя учётной записи YaonPay"
+            placeholder="Имя учётной записи YaonClub"
             isError={!!errors.login}
           />
           <Input
@@ -107,10 +108,8 @@ const AuthPage: NextPage = () => {
             placeholder="Подтвердить пароль"
             isError={!!errors.confirm_password}
           />
-          {errors.confirm_password && errors.confirm_password.length > 0 && (
-            <div className="text-red-100 mt-4 text-center w-full">
-              {errors.confirm_password.message}
-            </div>
+          {errors.confirm_password && errors.confirm_password?.message && (
+            <div className="text-red-100 text-center w-full">{errors.confirm_password.message}</div>
           )}
         </div>
         <Checkbox

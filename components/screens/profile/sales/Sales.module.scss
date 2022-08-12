@@ -5,14 +5,10 @@
   }
 }
 
-.title {
-  @apply mb-[20px] md:mb-[15px];
-}
-
 .successIconWrapper {
   @apply xxs:w-full xxs:mt-[15px];
 }
 
 .successIcon {
-  @apply flex items-center justify-center w-[40px] h-[40px] rounded-full bg-green-100 shadow-green;
+  @apply flex items-center justify-center w-[40px] h-[40px] rounded-full bg-green-200 shadow-green;
 }

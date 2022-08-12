@@ -4,6 +4,7 @@ import cn from "classnames";
 import anonymousImage from "@/assets/images/anonymous.jpg";
 
 import styles from "./Chat.module.scss";
+import { Avatar } from "../ui";
 
 interface IChatMiddle {
   variant: "normal" | "global" | "full";
@@ -19,10 +20,7 @@ export const ChatMiddle: FC<IChatMiddle> = ({ variant }) => {
         })}
       >
         {variant === "global" && (
-          <div
-            className="avatar avatarWithStatus mr-[10px]"
-            style={{ backgroundImage: `url(${anonymousImage.src})` }}
-          />
+          <Avatar className="mr-[10px" withStatus={true} bg={anonymousImage.src} />
         )}
         <div>
           <div

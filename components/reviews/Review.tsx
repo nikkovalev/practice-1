@@ -1,6 +1,7 @@
 import React, { FC } from "react";
 import cn from "classnames";
 
+import { Avatar } from "../ui";
 import { Stars } from "../stars/Stars";
 import ypIcon from "@/assets/images/yp.svg";
 
@@ -9,10 +10,7 @@ import styles from "./Reviews.module.scss";
 export const Review: FC<{ size: "normal" | "short" }> = ({ size }) => {
   return (
     <div className={cn(styles.review, styles[`review_${size}`])}>
-      <div
-        className={cn("avatar", styles.reviewAvatar)}
-        style={{ backgroundImage: `url(${ypIcon.src})` }}
-      />
+      <Avatar bg={ypIcon.src} />
       <div className={styles.reviewRight}>
         <div className={styles.reviewHeader}>
           <div className={styles.reviewInfo}>

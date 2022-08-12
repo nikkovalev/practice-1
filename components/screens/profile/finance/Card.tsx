@@ -4,6 +4,7 @@ import cn from "classnames";
 import { useOutside } from "@/hooks/useOutside";
 
 import { EditIcon } from "@/components/icons/EditIcon";
+import { CircleButton } from "@/components/ui";
 import removeIcon from "@/assets/images/remove.svg";
 import doneIcon from "@/assets/images/ok.svg";
 
@@ -45,25 +46,27 @@ export const Card: FC<ICard> = ({ card }) => {
         placeholder="Номер карты"
         onChange={handleChangeValue}
       />
-      <button
-        ref={ref2}
-        className={cn("circle circle_green", styles.doneIcon, {
+
+      <CircleButton
+        className={cn(styles.doneIcon, {
           [styles.doneIcon_show]: isShow,
         })}
+        color="green"
+        buttonRef={ref2}
         disabled={isError}
         onClick={handleSave}
       >
         <Image src={doneIcon.src} width={20} height={20} alt="Save icon" />
-      </button>
+      </CircleButton>
       {/* eslint-disable-next-line */}
       <img src={card.icon} alt="Master card" />
       <span className="text-ellipsis">{card.text}</span>
-      <button className="circle circle_yellow" onClick={handleClick}>
+      <CircleButton color="yellow" onClick={handleClick}>
         <EditIcon className="fill-black-400" />
-      </button>
-      <button className="circle">
+      </CircleButton>
+      <CircleButton>
         <Image src={removeIcon.src} width={20} height={20} alt="Remove icon" />
-      </button>
+      </CircleButton>
     </div>
   );
 };

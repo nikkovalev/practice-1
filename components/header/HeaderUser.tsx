@@ -5,7 +5,7 @@ import { useOutside } from "@/hooks/useOutside";
 
 import { IUser } from "@/models/IUser";
 
-import { Link } from "@/components/link";
+import { Link } from "@/components/ui";
 
 import { ArrowIcon } from "../icons";
 import anonymous from "@/assets/images/anonymous.jpg";

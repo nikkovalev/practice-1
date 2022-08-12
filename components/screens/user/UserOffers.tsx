@@ -2,9 +2,8 @@ import React, { useEffect } from "react";
 import cn from "classnames";
 import { useOutside } from "@/hooks/useOutside";
 
-import { Button } from "@/components/ui";
+import { Button, Select } from "@/components/ui";
 import { ArrowIcon, FilterIcon, InfoIcon, LikeIcon, SearchIcon } from "@/components/icons";
-import { Select } from "@/components/ui/Select/Select";
 
 import { styles as offersStyles } from "@/components/screens/profile/offers";
 import styles from "./User.module.scss";
@@ -58,7 +57,7 @@ export const UserOffers = () => {
         ref={filterRef}
         className={cn(styles.offersFilters, { [styles.offersFiltersActive]: isShowFilter })}
       >
-        <div className="filter_menu_top hidden sm:flex items-center">
+        <div className="filter_menu_top sm:flex">
           <button onClick={handleHideFilter}>
             <ArrowIcon direction="left" color="primary" />
           </button>

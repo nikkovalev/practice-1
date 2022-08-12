@@ -1,6 +1,6 @@
 import React, { FC, MouseEvent } from "react";
-import Link from "next/link";
-import cn from "classnames";
+import cx from "classnames";
+import { Link } from "@/components/ui";
 import styles from "./Button.module.scss";
 
 interface IButton {
@@ -18,18 +18,18 @@ interface IButton {
 }
 export const Button: FC<IButton> = ({
   as = "button",
-  className,
+  className: cn,
   size,
   children,
-  isActive = false,
-  isActiveOutlined = false,
+  isActive,
+  isActiveOutlined,
   color = "primary",
   variant = "contained",
   isDisabled,
   href,
   onClick,
 }) => {
-  const CN = cn(styles.button, className, {
+  const className = cx(styles.button, cn, {
     // Button size
     [styles[`button_${size}`]]: !!size,
     // Button - Primary
@@ -43,24 +43,22 @@ export const Button: FC<IButton> = ({
     // Button - Black
     [styles.blackOutlined]: !isActive && color === "black",
     [styles.blackOutlined_active]: isActiveOutlined && color === "black",
-    // Button - Blur
+    // Button - Blue
     [styles.blue]: color === "blue",
     // Disabled styles
     [styles.button_disabled]: isDisabled,
-    // Styles for link
-    "text-center": as === "link",
   });
 
   if (as === "link" && !!href) {
     return (
-      <Link href={href}>
-        <a className={CN}>{children}</a>
+      <Link className={className} href={href}>
+        {children}
       </Link>
     );
   }
 
   return (
-    <button className={CN} disabled={isDisabled} onClick={onClick}>
+    <button className={className} disabled={isDisabled} onClick={onClick}>
       {children}
     </button>
   );
