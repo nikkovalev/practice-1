@@ -64,9 +64,12 @@ export const OfferTop: FC<IOfferTop> = ({ category, offer }) => {
           <div className={styles.topActions}>
             <b className={styles.topPrice}>{offer.price}₽</b>
             <Counter initial={offer.quantity} />
-            <Select label="Банковская карта" items={[]} iconCN="mr-[15px]">
-              <CardsIcon />
-            </Select>
+            <Select
+              label="Банковская карта"
+              items={[]}
+              iconClassName="mr-[15px]"
+              icon={<CardsIcon />}
+            />
             <Button color="secondary" size="fit">
               Купить
             </Button>

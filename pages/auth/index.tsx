@@ -101,7 +101,7 @@ const AuthPage: NextPage = () => {
           onClick={handleLoginVK}
         >
           <Image src={vkIcon.src} width={25} height={25} alt="VK" />
-          Войти через вк
+          Войти через VK
         </Button>
       </form>
     </Modal>
