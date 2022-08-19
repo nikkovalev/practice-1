@@ -27,25 +27,18 @@ export const CodeEntryPage = () => {
   }, [data]);
 
   return (
-    <Modal title="Подтверждение аккаунта" hideClose>
-      <div>
-        <div className={modalStyles.top}>
-          <Text as="h1" size="xxl" align="center" weight={700}>
-            Подтверждение аккаунта
-          </Text>
-        </div>
-        <form className="flex items-center justify-between" onSubmit={handleSubmit(handleSend)}>
-          <Input {...register("code")} placeholder="Код" />
-          <Button
-            className="ml-3 sm:ml-0 sm:mt-[20px]"
-            color="secondary"
-            size="large"
-            isDisabled={isLoading}
-          >
-            Отправить
-          </Button>
-        </form>
+    <Modal title="Подтверждение аккаунта" hideClose={true}>
+      <div className={modalStyles.top}>
+        <Text as="h1" size="xxl" align="center" weight={700}>
+          Подтверждение аккаунта
+        </Text>
       </div>
+      <form className="md:w-full" onSubmit={handleSubmit(handleSend)}>
+        <Input {...register("code")} className="mb-[20px] md:w-full" placeholder="Код" />
+        <Button className="mx-auto" color="secondary" size="large" isDisabled={isLoading}>
+          Отправить
+        </Button>
+      </form>
     </Modal>
   );
 };

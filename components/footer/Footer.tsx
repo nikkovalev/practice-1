@@ -38,7 +38,7 @@ export const Footer: FC<{ isLight: boolean }> = ({ isLight }) => {
               alt="YaonClub"
             />
           </Link>
-          <ul className={styles.footerStatistics}>
+          {/* <ul className={styles.footerStatistics}>
             {statistics.map((item) => (
               <li key={item.title}>
                 <Text as="b" color="primary" weight={700}>
@@ -49,7 +49,7 @@ export const Footer: FC<{ isLight: boolean }> = ({ isLight }) => {
                 </Text>
               </li>
             ))}
-          </ul>
+          </ul> */}
           <ul className={styles.footerList}>
             {list.map((item) => (
               <li key={item.title}>

@@ -54,9 +54,9 @@ export const CategoryFilters: FC<ICategoryFilters> = ({
         <div className={styles.filtersInputs}>
           <div className={styles.filtersInput}>
             <Input
-              size="sm"
               name="category-search"
               placeholder="Поиск по описанию"
+              size="md"
               onChange={handleChangeQuery}
             />
             <SearchIcon color="primary" />
@@ -94,9 +94,13 @@ export const CategoryFilters: FC<ICategoryFilters> = ({
         <Button className={styles.filterIcon} variant="outlined" onClick={handleToggle}>
           <FilterIcon />
         </Button>
-        <div className={styles.filterIcons}>
-          <ListIcon type="tile" isActive={view === "card"} onClick={handleChangeView("card")} />
-          <ListIcon isActive={view === "list"} onClick={handleChangeView("list")} />
+        <div className={styles.filterButtons}>
+          <button onClick={handleChangeView("card")}>
+            <ListIcon type="tile" isActive={view === "card"} />
+          </button>
+          <button onClick={handleChangeView("list")}>
+            <ListIcon isActive={view === "list"} />
+          </button>
         </div>
         <Button className={styles.filterBtn} color="secondary">
           Продать буст

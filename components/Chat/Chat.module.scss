@@ -142,7 +142,7 @@
   &_full {
     @apply w-full flex mb-[22px];
     & > div:last-child {
-      @apply flex-grow;
+      @apply flex-grow ml-[10px];
     }
   }
 }

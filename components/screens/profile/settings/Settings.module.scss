@@ -1,97 +1,51 @@
 @import "../../../../assets/styles/_variables.scss";
 
-.settings {
-  & h3 {
-    @apply font-bold dark:text-gray-400;
-    font-size: 32px;
-    line-height: 130%;
-    margin-bottom: 20px;
-  }
-  @media (max-width: $breakpoint1200) {
-    & button {
-      min-width: calc(33.3% - 10px);
-    }
-  }
-  @media (max-width: $breakpoint992) {
-    & h3 {
-      font-size: 28px;
-    }
-  }
-  @media (max-width: $breakpoint768) {
-    & button {
-      min-width: 100%;
-    }
-  }
-  @media (max-width: $breakpoint480) {
-    & h3 {
-      font-size: 24px;
-      margin-bottom: 15px;
-    }
-  }
+.name {
+  @apply leading-[40px] md:leading-[30px] mb-[20px];
 }
 
-.settingsItem {
-  margin-bottom: 40px;
-  & form {
-    @apply flex items-center;
-    & > div {
-      margin-right: 10px;
-    }
-    & input {
-      @apply bg-transparent border-2 border-solid border-primary-400 text-black-400 dark:bg-black-300 dark:text-white-100 dark:border-transparent;
-    }
-  }
-  @media (max-width: $breakpoint1450) {
-    & form > div {
-      width: auto;
-    }
-  }
-  @media (max-width: $breakpoint1200) {
-    & form {
-      @apply flex-wrap;
-      & div {
-        width: calc(33.3% - 10px);
+.item {
+  @apply mb-[40px] sm:mb-[30px];
+  & > form {
+    @apply flex items-center flex-wrap;
+    & > input {
+      @apply mr-[10px];
+      @media (max-width: $breakpoint1200) {
+        width: calc(50% - 5px);
+      }
+      @media (max-width: $breakpoint768) {
+        @apply w-full mb-[10px] mr-0;
       }
     }
   }
-  @media (max-width: $breakpoint992) {
-    & form {
-      & div {
-        width: 100%;
-        margin-bottom: 15px;
-        margin-right: 0;
+  &_password > form {
+    @apply xl:justify-between;
+    @media (max-width: $breakpoint1450) {
+      & > button {
+        @apply mt-[10px] sm:mt-0;
+      }
+      & > input {
+        @apply mr-0;
+      }
+    }
+    @media (max-width: $breakpoint1200) {
+      & > input:nth-child(3) {
+        @apply mt-[10px] sm:mt-0;
       }
     }
   }
 }
 
-.settingsPassword {
+.button {
   @media (max-width: $breakpoint1200) {
-    & form div {
-      margin-right: 0;
-    }
+    width: calc(50% - 5px);
   }
 }
 
 .code {
-  @apply text-center border-2 border-secondary-400;
-  width: fit-content;
-  padding: 20px 40px;
+  @apply w-fit text-center border-2 border-secondary-400 py-[20px] px-[40px] mt-[30px] sm:w-full sm:px-[10px];
   border-radius: 10px;
-  margin-top: 30px;
-  & span {
-    @apply inline-block text-secondary-400 font-bold text-2xl;
-    margin-right: 15px;
-    &:last-child {
-      margin-right: 0;
-    }
-  }
-  @media (max-width: $breakpoint768) {
-    width: 100%;
-    padding: 20px 10px;
-    & span {
-      font-size: 16px;
-      margin-right: 10px;
-    }
+  & > span {
+    @apply inline-block text-secondary-400 font-bold text-2xl mr-[15px] last:mr-0 sm:text-[18px] sm:mr-[10px];
   }
 }

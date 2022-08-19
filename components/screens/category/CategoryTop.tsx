@@ -87,7 +87,7 @@ export const CategoryTop: FC<ICategoryTop> = ({ category, view, getOffers, setVi
                 color="black"
                 size="fit"
                 as="link"
-                href={`/categories/1?page=${i.id}`}
+                href={`/categories/${category.id}?page=${i.id}`}
                 isActive={service?.id === i.id}
               >
                 {i.name}

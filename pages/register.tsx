@@ -9,8 +9,8 @@ import { useActions } from "@/hooks/useActions";
 import { useRegisterUserMutation } from "@/store/auth/authApi";
 import { toast } from "react-toastify";
 
-import { Modal, styles as modalStyles, styles } from "@/components/layouts/modalLayout";
-import { Button, Checkbox, Text, Input } from "@/components/ui";
+import { Modal, styles } from "@/components/layouts/modalLayout";
+import { Button, Checkbox, Text, Input, PasswordInput } from "@/components/ui";
 
 const AuthPage: NextPage = () => {
   const {
@@ -67,49 +67,40 @@ const AuthPage: NextPage = () => {
   return (
     <Modal title="Зарегистрироваться" handleClose={handleClose}>
       <form className={styles.form} onSubmit={handleSubmit(onRegister)}>
-        <div className={cn(modalStyles.top, modalStyles.top_flex)}>
+        <div className={cn(styles.top, styles.top_flex)}>
           <Text as="a" href="/auth" color="primary" size="xl" weight={700}>
             Войти
           </Text>
-          <Text
-            className="ml-[50px] sm:ml-[25px] xs:ml-0 xs:mb-[10px]"
-            as="h1"
-            size="xxl"
-            weight={700}
-          >
+          <Text className={styles.registerTitle} as="h1" size="xxl" weight={700}>
             Зарегистрироваться
           </Text>
         </div>
-        <div className={modalStyles.registerInputs}>
+        <div className={styles.registerInputs}>
           <Input
             {...register("login", { required: true })}
-            className="mb-5"
             placeholder="Имя учётной записи YaonClub"
             isError={!!errors.login}
           />
           <Input
             {...register("email", { required: true })}
-            className="mb-5"
             placeholder="Электронная почта"
             isError={!!errors.email}
           />
-          <Input
+          <PasswordInput
             {...register("password", { required: true })}
-            type="password"
             placeholder="Пароль"
             isError={!!errors.password}
           />
-          <Input
+          <PasswordInput
             {...register("confirm_password", {
               required: true,
               validate: validatePassword,
             })}
-            type="password"
             placeholder="Подтвердить пароль"
             isError={!!errors.confirm_password}
           />
           {errors.confirm_password && errors.confirm_password?.message && (
-            <div className="text-red-100 text-center w-full">{errors.confirm_password.message}</div>
+            <div className={styles.errorText}>{errors.confirm_password.message}</div>
           )}
         </div>
         <Checkbox
@@ -125,7 +116,7 @@ const AuthPage: NextPage = () => {
           }
           isError={!!errors?.register_checkbox}
         />
-        <Button className={modalStyles.authButton} size="large" isDisabled={isLoading}>
+        <Button className={styles.authButton} size="large" isDisabled={isLoading}>
           Зарегистрироваться
         </Button>
       </form>

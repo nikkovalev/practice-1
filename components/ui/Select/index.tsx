@@ -15,7 +15,7 @@ export interface ISelect {
   size?: "l";
   isError?: boolean;
   icon?: any;
-  padding?: "sm" | "l";
+  padding?: "sm" | "l" | "m";
   handleChange?: (val: string | null, idx?: number) => void;
 }
 

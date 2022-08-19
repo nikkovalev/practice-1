@@ -1,12 +1,11 @@
 import React from "react";
 import Image from "next/image";
-import cn from "classnames";
 import { useRouter } from "next/router";
 import { useOutside } from "@/hooks/useOutside";
 import { useForm } from "react-hook-form";
 
 import { Modal } from "@/components/layouts/modalLayout";
-import { Button, Input, SelectWithIcon, Text } from "@/components/ui";
+import { Button, InputWithButton, InputWithText, SelectWithIcon, Text } from "@/components/ui";
 import { MoneyPopper } from "./MoneyPopper";
 
 import { CardsIcon } from "@/components/icons/CardsIcon";
@@ -25,7 +24,7 @@ export const Money = () => {
 
   return (
     <Modal title="Вывод средств" handleClose={handleClose}>
-      <Text className={styles.title} as="h1" size="xxl" weight={700}>
+      <Text className={styles.title} as="h1" size="xxl" weight={700} align="center">
         Вывод средств
       </Text>
       <Text className={styles.text} color="gray" align="center">
@@ -41,31 +40,32 @@ export const Money = () => {
           items={[]}
           icon={<Image src={webmoneyImage.src} width={40} height={40} alt="Webmoney" />}
         />
-        <div className={styles.inputWithButton}>
+        <InputWithButton
+          {...register("account_number")}
+          wrapperClassName={styles.inputWithButton}
+          pr={59}
+          onClick={handlePopper}
+          placeholder="WMR324039475235"
+          iconRef={ref2}
+          icon={<CardsIcon color="black" />}
+        >
           <MoneyPopper popperRef={ref} isShow={isShow} />
-          <Input
-            {...register("account_number")}
-            className="pr-[61px]"
-            iconRef={ref2}
-            placeholder="WMR324039475235"
-            icon={<CardsIcon color="black" />}
-            variantIcon="button"
-            onClickIcon={handlePopper}
-          />
-        </div>
+        </InputWithButton>
       </div>
       <div className={styles.items}>
-        <Input
+        <InputWithText
           {...register("sum", { required: true, validate })}
-          className={cn("pr-[45px]", styles.input)}
+          wrapperClassName={styles.input}
+          pr={45}
           placeholder="Сумма"
-          icon="€"
+          text="€"
         />
-        <Input
+        <InputWithText
           {...register("sum_2", { required: true, validate })}
-          className={cn("pr-[45px]", styles.input)}
+          wrapperClassName={styles.input}
+          pr={45}
           placeholder="К получению"
-          icon="€"
+          text="€"
         />
         <Button className={styles.button} size="large">
           Вывести

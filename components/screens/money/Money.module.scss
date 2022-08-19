@@ -25,7 +25,7 @@
 
 // Flex container
 .items {
-  @apply flex items-center justify-center mb-[20px] last:mb-0 lg:w-full lg:flex-wrap lg:justify-between;
+  @apply flex items-center mb-[20px] last:mb-0 lg:w-full lg:flex-wrap lg:justify-between;
 }
 
 // Input
@@ -34,9 +34,8 @@
 }
 
 .inputWithButton {
-  @apply relative lg:w-full;
-  // Input
-  & > div:nth-child(2) {
+  @apply lg:w-full;
+  & > input {
     @apply lg:w-full;
   }
 }

@@ -18,7 +18,14 @@ import { ICategory, IService } from "@/models/ICategory";
 import { IOffer } from "@/models/IOffer";
 
 import { Modal } from "@/components/layouts/modalLayout";
-import { Avatar, Button, Input, SelectHandle, SelectWithLabel, Text } from "@/components/ui";
+import {
+  Avatar,
+  Button,
+  InputWithText,
+  SelectHandle,
+  SelectWithLabel,
+  Text,
+} from "@/components/ui";
 
 import { styles as modalStyles } from "@/components/layouts/modalLayout";
 import styles from "./EditOffer.module.scss";
@@ -150,13 +157,12 @@ export const EditOffer: FC<IEditOffer> = ({ initial, categories }) => {
 
   return (
     <Modal
-      className={styles.modal}
       title={
         !!initial ? `Редактирование предложения - ${initial.description}` : "Создание предложения"
       }
       handleClose={handleClose}
     >
-      <div className={cn(modalStyles.top, styles.top)}>
+      <div className={modalStyles.top}>
         <Text as="h1" size="xxl" align="center" weight={700}>
           {!!initial ? "Измените предложение" : "Добавьте предложение"}
         </Text>
@@ -228,20 +234,22 @@ export const EditOffer: FC<IEditOffer> = ({ initial, categories }) => {
           </button>
         </div>
         <div className={styles.inputs}>
-          <Input
+          <InputWithText
             {...register("price", { required: true, validate })}
-            className={cn("pr-[45px]", styles.input)}
+            wrapperClassName={styles.input}
+            pr={45}
             placeholder="Цена за 1 шт."
             isError={!!errors?.price}
-            icon="₽"
+            text="₽"
           />
           {isCountable && (
-            <Input
+            <InputWithText
               {...register("count", { required: true, validate })}
-              className={cn("pr-[61px]", styles.input)}
+              wrapperClassName={styles.input}
+              pr={61}
               placeholder="Наличие, например 6000"
               isError={!!errors?.count}
-              icon="шт."
+              text="шт."
             />
           )}
           <Button variant="contained" size="large" isDisabled={isLoading}>

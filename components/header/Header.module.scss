@@ -387,10 +387,9 @@
 .headerLeft {
   @apply flex items-center flex-grow;
   @media (max-width: $breakpoint1200) {
-    position: relative;
     z-index: 40;
     &::before {
-      @apply fixed top-0 left-0 right-0 bottom-0 h-full bg-black-400 hidden;
+      @apply absolute top-0 left-0 right-0 bottom-0 h-full bg-black-400 hidden;
       content: "";
     }
     &Active::before {

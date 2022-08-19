@@ -4,6 +4,7 @@
 .buttons {
   @apply flex items-center flex-wrap mt-[40px] md:mt-[30px] pb-[30px] md:flex-nowrap md:overflow-x-auto md:pb-0;
 }
+
 .button {
   @apply mr-[20px] mb-[20px] text-white-100 last:mr-0 md:mr-[10px];
 }
@@ -18,7 +19,7 @@
 }
 .filtersLeft {
   @media (max-width: $breakpoint1200) {
-    @apply fixed top-0 bottom-0 left-0 bg-black-300 w-fit h-screen;
+    @apply fixed top-0 bottom-0 left-0 bg-black-300 w-fit h-screen xxs:w-full;
     z-index: 999;
     padding: 30px 10px;
     transform: translateX(-100%);
@@ -29,9 +30,9 @@
       }
     }
   }
-}
-.filtersLeftActive {
-  transform: translateX(0);
+  &Active {
+    transform: translateX(0);
+  }
 }
 .filtersInputs {
   @apply flex items-center flex-wrap lg:flex-col;
@@ -50,40 +51,51 @@
   }
 }
 .filtersInput {
-  @apply relative mr-[10px] mb-[10px] lg:mr-0;
+  @apply relative mr-[10px] mb-[10px] lg:mr-0 xxs:w-full;
   & > svg {
     @apply absolute top-1/2 right-[25px] -translate-y-1/2 pointer-events-none;
   }
-  & > div > input {
-    @apply bg-white-200 dark:bg-black-400 border-2 border-solid border-primary-400 dark:border-none text-black-400 dark:text-white-100;
-    padding: 15px 50px 15px 25px;
+  & > input {
+    @apply bg-white-200 dark:bg-black-400 border-2 border-solid border-primary-400 dark:border-none text-black-400 dark:text-white-100 xxs:w-full;
     min-height: 50px;
+    padding-right: 50px;
   }
 }
 .filterText {
   @apply mr-[20px] lg:mb-[20px];
-  margin-right: 20px;
 }
 .filterSelect {
-  margin-right: 10px;
-  margin-bottom: 10px;
-  @media (max-width: $breakpoint1200) {
-    margin-right: 0;
-  }
+  @apply mr-[10px] mb-[10px] xxs:w-full lg:mr-0;
 }
-.filterIcons {
+.filterButtons {
   @apply flex items-center lg:hidden;
   margin-right: 40px;
-  & svg:first-child {
-    margin-right: 20px;
-  }
-  & svg {
-    cursor: pointer;
-    & rect {
-      transition: stroke 0.25s;
+  & > button {
+    @apply first:mr-[20px];
+    & > svg {
+      & > rect {
+        transition: stroke 0.25s;
+      }
+      &:hover > rect {
+        @apply stroke-primary-400;
+      }
     }
-    &:hover rect {
-      @apply stroke-primary-400;
+  }
+}
+
+.filterTextWithIcon {
+  @apply flex items-center dark:text-white-100 font-medium cursor-pointer flex-shrink-0 text-[17px] lg:text-white-100;
+  transition: color 0.25s;
+  & > svg {
+    margin-right: 10px;
+    & > path {
+      transition: fill 0.25s;
+    }
+  }
+  &:hover {
+    @apply text-secondary-400;
+    & > svg path {
+      @apply fill-secondary-400;
     }
   }
 }

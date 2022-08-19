@@ -1,8 +1,7 @@
 @import "../../../assets/styles/_variables.scss";
 
 .checkbox {
-  @apply flex items-center cursor-pointer flex-shrink-0;
-  font-size: 17px;
+  @apply flex items-center cursor-pointer flex-shrink-0 text-[17px];
   & input {
     display: none;
   }
@@ -29,7 +28,7 @@
   }
   &_light {
     & > div {
-      @apply border-secondary-400 dark:border-white-100 lg:border-white-100;
+      @apply border-primary-400 dark:border-white-100 lg:border-white-100;
       &::before {
         @apply text-black-400 dark:text-white-100 lg:text-white-100;
       }

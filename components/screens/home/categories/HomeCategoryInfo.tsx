@@ -39,7 +39,7 @@ export const HomeCategoryInfo: FC<IHomeCategoryInfo> = ({
           size="l"
           as="a"
           weight={500}
-          href={`/categories/${category.id}?page=${service.id}`}
+          href={`/categories/${category.slug}?page=${service.id}`}
         >
           {service.name}
         </Text>

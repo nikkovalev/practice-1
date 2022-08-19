@@ -1,11 +1,5 @@
 @import "../../../assets/styles/_variables.scss";
 
-.modal {
-  @apply py-[50px];
-}
-.top {
-  @apply mt-[20px];
-}
 .form {
   @apply w-[980px] max-w-[980px] lg:w-full;
 }
@@ -45,20 +39,22 @@
 }
 // Inputs
 .inputs {
-  @apply flex items-center justify-between lg:flex-wrap sm:flex-col;
+  @apply flex items-center lg:flex-wrap sm:flex-col;
   & > button {
     @apply lg:w-full;
   }
 }
+
 .input {
-  @apply lg:mb-[20px];
+  @apply lg:mb-[20px] mr-[10px];
   @media (max-width: $breakpoint1200) {
-    width: calc(50% - 5px);
-  }
-  @media (max-width: $breakpoint768) {
-    width: 100%;
+    @apply sm:mr-0;
+    &:nth-child(2) {
+      @apply mr-0;
+    }
   }
 }
+
 //Radio
 .radioWrapper {
   @apply flex items-center justify-center mb-[20px];

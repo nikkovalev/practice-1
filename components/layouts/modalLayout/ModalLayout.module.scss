@@ -1,7 +1,7 @@
 @import "../../../assets/styles/variables";
 
 .modal {
-  @apply flex items-center w-full min-h-screen relative px-[10px] bg-black-400 sm:py-[80px];
+  @apply flex items-center w-full min-h-screen relative px-[10px] bg-black-400 py-[100px];
 }
 
 .modalContent {
@@ -9,30 +9,26 @@
 }
 
 .modalClose {
-  @apply flex items-center justify-center absolute bg-black-300 cursor-pointer;
-  width: 70px;
-  height: 70px;
-  top: 10px;
-  right: 10px;
+  @apply w-[70px] h-[70px] top-[10px] right-[10px] flex items-center justify-center absolute bg-black-300 cursor-pointer;
   border-radius: 10px;
   transition: background-color 0.3s;
-  & svg {
+  & > svg {
     transition: transform 0.3s;
-    path {
+    & > path {
       transition: fill 0.3s;
     }
   }
   &:hover {
     background-color: lighten($black-300, 5%);
-    & svg {
+    & > svg {
       transform: scale(1.1);
-      path {
+      & > path {
         fill: #ffffff;
       }
     }
   }
   @media (max-width: $breakpoint768) {
-    transform: scale(0.7);
+    @apply right-0 scale-75;
   }
 }
 
@@ -54,28 +50,35 @@
 }
 
 .registerInputs {
-  @apply flex justify-between flex-wrap w-[650px] sm:flex-col sm:items-center sm:w-full;
+  @apply flex flex-wrap justify-between w-[650px] md:flex-col md:items-center md:w-full mb-[10px];
+  & > input,
   & > div {
-    @apply mb-[20px] sm:w-full;
-  }
-  & > button {
-    @apply sm:w-full;
+    @apply mb-[20px] md:w-full;
   }
 }
 
-.authInputs {
-  @apply sm:w-full;
-  & > div {
-    @apply sm:w-full;
+.registerTitle {
+  @apply ml-[50px] md:ml-[25px] xs:ml-0 xs:mb-[10px];
+  @media (max-width: 400px) {
+    font-size: 24px !important;
+    margin-top: 5px;
   }
+}
+
+.loginTitle {
+  @apply mr-[50px] md:mr-[25px] xs:mr-0 xs:mb-[10px];
+}
+
+.input {
+  @apply mb-[20px];
 }
 
 .checkbox {
   @apply w-[550px] sm:w-auto;
 }
 
-.authVK {
-  @apply mt-[30px] md:mt-[20px];
+.vkButton {
+  @apply mt-[20px];
   & > span {
     margin-right: 5px !important;
   }
@@ -83,4 +86,8 @@
 
 .form {
   @apply flex flex-col items-center md:w-full;
+}
+
+.errorText {
+  @apply text-[17px] text-red-100 text-center w-full;
 }

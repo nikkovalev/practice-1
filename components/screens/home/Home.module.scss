@@ -214,7 +214,7 @@
 
 // Home - advantages
 .advantages {
-  @apply pt-[185px] pb-[100px] lg:py-[135px] lg:pb-[50px] bg-white-200 dark:bg-black-500;
+  @apply pt-[185px] pb-[100px] lg:py-[135px] lg:pb-[50px];
 }
 .advantagesContent {
   @apply flex flex-wrap;
@@ -275,7 +275,7 @@
 
 // Home - About
 .about {
-  @apply pt-[100px] lg:pt-[50px];
+  @apply bg-white-200 dark:bg-black-500 pt-[100px] lg:pt-[50px] pb-[175px] lg:pb-[110px] xs:pb-[50px];
   & > div {
     @apply text-center;
   }
@@ -331,4 +331,9 @@
 }
 .aboutBottomText {
   @apply sm:hidden;
+}
+
+// Home - Chat
+.chat {
+  @apply bg-white-200 dark:bg-black-500;
 }

@@ -29,6 +29,7 @@ export const Button: FC<IButton> = ({
   href,
   onClick,
 }) => {
+  const Wrapper = as === "button" ? "button" : Link;
   const className = cx(styles.button, cn, {
     // Button size
     [styles[`button_${size}`]]: !!size,
@@ -48,18 +49,9 @@ export const Button: FC<IButton> = ({
     // Disabled styles
     [styles.button_disabled]: isDisabled,
   });
-
-  if (as === "link" && !!href) {
-    return (
-      <Link className={className} href={href}>
-        {children}
-      </Link>
-    );
-  }
-
   return (
-    <button className={className} disabled={isDisabled} onClick={onClick}>
+    <Wrapper className={className} disabled={isDisabled} onClick={onClick} href={href ?? ""}>
       {children}
-    </button>
+    </Wrapper>
   );
 };

@@ -12,8 +12,8 @@ import { IAuthLogin } from "@/models/IAuth";
 import { useLoginUserMutation, useLoginVKMutation } from "@/store/auth/authApi";
 import { useActions } from "@/hooks/useActions";
 
-import { Modal, styles as modalStyles } from "@/components/layouts/modalLayout";
-import { Button, Text, Input } from "@/components/ui";
+import { Modal, styles } from "@/components/layouts/modalLayout";
+import { Button, Text, Input, PasswordInput } from "@/components/ui";
 
 import vkIcon from "@/assets/images/socials/vk.svg";
 
@@ -57,36 +57,28 @@ const AuthPage: NextPage = () => {
 
   return (
     <Modal title="Войти" handleClose={handleClose}>
-      <form className={modalStyles.form} onSubmit={handleSubmit(handleLogin)}>
-        <div className={cn(modalStyles.top, modalStyles.top_flex)}>
-          <Text
-            className="mr-[50px] md:mr-[25px] xs:mr-0 xs:mb-[10px]"
-            as="h1"
-            size="xxl"
-            weight={700}
-          >
+      <form className={styles.form} onSubmit={handleSubmit(handleLogin)}>
+        <div className={cn(styles.top, styles.top_flex)}>
+          <Text className={styles.loginTitle} as="h1" size="xxl" weight={700}>
             Войти
           </Text>
           <Text as="a" href="/register" color="primary" size="xl" weight={700}>
             Зарегистрироваться
           </Text>
         </div>
-        <div className={modalStyles.authInputs}>
-          <Input
-            {...register("login", { required: true })}
-            className="mb-5"
-            placeholder="Имя или почта"
-            isError={!!errors.login}
-          />
-          <Input
-            {...register("password", { required: true })}
-            placeholder="Пароль"
-            type="password"
-            isError={!!errors.password}
-          />
-        </div>
+        <Input
+          {...register("login", { required: true })}
+          className={styles.input}
+          placeholder="Имя или почта"
+          isError={!!errors.login}
+        />
+        <PasswordInput
+          {...register("password", { required: true })}
+          placeholder="Пароль"
+          isError={!!errors.password}
+        />
         <Button
-          className={modalStyles.authButton}
+          className={styles.authButton}
           color="secondary"
           size="large"
           isDisabled={isLoading || isLoadingVK}
@@ -94,7 +86,7 @@ const AuthPage: NextPage = () => {
           Войти
         </Button>
         <Button
-          className={modalStyles.authVK}
+          className={styles.vkButton}
           color="blue"
           size="large"
           isDisabled={isLoading || isLoadingVK}

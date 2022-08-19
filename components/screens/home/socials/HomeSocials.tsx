@@ -8,7 +8,7 @@ import { HomeSocial } from "./HomeSocial";
 
 export const HomeSocials = () => {
   return (
-    <section className={cn(styles.section)}>
+    <section className={styles.section}>
       <div className="inner-container">
         <h2 className={styles.title}>Соц.сети</h2>
       </div>

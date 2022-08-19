@@ -6,7 +6,8 @@ import { useAppSelector } from "@/hooks/useTypedSelector";
 
 import { useGet2faCodeMutation, useUpdateProfileEmailMutation } from "@/store/auth/authApi";
 
-import { Button, Input } from "@/components/ui";
+import { ProfileLayout } from "@/components/layouts";
+import { Button, Input, Text } from "@/components/ui";
 import { Loader } from "@/components/loader/Loader";
 
 import styles from "./Settings.module.scss";
@@ -26,7 +27,7 @@ export const Settings = () => {
     formState: { errors: errors2 },
   } = useForm();
   // Requests
-  const [get2faCode, { isLoading: is2faCodeLoading, data: dataCode }] = useGet2faCodeMutation();
+  const [get2faCode, { isLoading: isCodeLoading, data: code }] = useGet2faCodeMutation();
   const [updateProfileEmail, { isLoading: isEmailLoading, data: newEmail }] =
     useUpdateProfileEmailMutation();
 
@@ -55,27 +56,32 @@ export const Settings = () => {
   }, [newEmail, isEmailLoading]);
 
   return (
-    <div className={styles.settings}>
-      <h3>Изменить пароль</h3>
-      <div className={cn(styles.settingsItem, styles.settingsPassword)}>
-        <form className="justify-between" onSubmit={handleSubmit(handleChangePassword)}>
+    <ProfileLayout title="Настройки">
+      <div className={cn(styles.item, styles.item_password)}>
+        <Text className={styles.name} as="h2" color="gray" size="xl" weight={700}>
+          Изменить пароль
+        </Text>
+        <form onSubmit={handleSubmit(handleChangePassword)}>
           <Input
             {...register("old_password", { required: true })}
             placeholder="Старый пароль"
             isError={errors.old_password}
+            isSupportLight={true}
           />
           <Input
             {...register("new_password", { required: true })}
             placeholder="Новый пароль"
             isError={errors.new_password}
+            isSupportLight={true}
           />
           <Input
             {...register("confirm_password", { required: true, validate: validatePassword })}
             placeholder="Подтвердите пароль"
             isError={errors.confirm_password}
+            isSupportLight={true}
           />
-          <Button className="lg:mt-3 sm:mt-0" size="large" variant="outlined">
-            Изменить
+          <Button className={styles.button} size="large" variant="outlined">
+            Привязать
           </Button>
         </form>
         {errors.confirm_password && (
@@ -84,41 +90,52 @@ export const Settings = () => {
           </div>
         )}
       </div>
-      <h3>Изменить почту</h3>
-      <div className={styles.settingsItem}>
+      <div className={styles.item}>
+        <Text className={styles.name} as="h2" color="gray" size="xl" weight={700}>
+          Привязать почту
+        </Text>
         <form onSubmit={handleSubmit2(handleBindEmail)}>
           <Input
             {...register2("email", { required: true })}
             placeholder="Электронная почта"
             isError={errors2.email}
+            isSupportLight={true}
           />
-          <Button size="large" variant="outlined" isDisabled={isEmailLoading}>
-            Изменить
+          <Button
+            className={styles.button}
+            size="large"
+            variant="outlined"
+            isDisabled={isEmailLoading}
+          >
+            Привязать
           </Button>
         </form>
       </div>
       {!user?.telegramId && (
         <>
-          <h3>Подтвердить аккаунт</h3>
+          <Text className={styles.name} as="h2" color="gray" size="xl" weight={700}>
+            Подтвердить аккаунт
+          </Text>
           <Button
+            className={styles.button}
             size="large"
             variant="outlined"
             onClick={handleConfirm}
-            isDisabled={is2faCodeLoading || !!dataCode}
+            isDisabled={isCodeLoading || !!code}
           >
             Подтвердить аккаунт
           </Button>
-          {(is2faCodeLoading || dataCode) && (
+          {(isCodeLoading || code) && (
             <div className={styles.code}>
-              {is2faCodeLoading ? (
+              {isCodeLoading ? (
                 <Loader />
               ) : (
-                dataCode?.token.split("").map((l, idx) => <span key={`${l}_${idx}`}>{l}</span>)
+                code?.token.split("").map((l, idx) => <span key={`${l}_${idx}`}>{l}</span>)
               )}
             </div>
           )}
         </>
       )}
-    </div>
+    </ProfileLayout>
   );
 };

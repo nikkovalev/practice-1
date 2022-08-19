@@ -69,6 +69,7 @@ export const OfferTop: FC<IOfferTop> = ({ category, offer }) => {
               items={[]}
               iconClassName="mr-[15px]"
               icon={<CardsIcon />}
+              padding="m"
             />
             <Button color="secondary" size="fit">
               Купить

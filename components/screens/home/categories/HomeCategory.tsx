@@ -44,7 +44,7 @@ export const HomeCategory: FC<IHomeCategory> = ({
           size="xl"
           color="black"
           weight={700}
-          href={`/categories/${category.id}`}
+          href={`/categories/${category.slug}`}
         >
           {category.name}
         </Text>

@@ -67,7 +67,7 @@
 }
 
 .footerLogo {
-  @apply inline-block mb-[15px] flex-shrink-0 xl:mb-0;
+  @apply inline-block mb-[15px] flex-shrink-0 xl:mb-0 sm:mb-[30px];
 }
 
 // Footer - Statistics
@@ -83,7 +83,7 @@
 
 // Footer - list
 .footerList {
-  @apply flex-grow flex items-center justify-between flex-wrap sm:hidden;
+  @apply w-[700px] flex items-center justify-between flex-wrap sm:hidden xl:mt-[30px];
   & > li {
     @apply w-1/4 mb-[15px] xl:text-center;
     & > a {
