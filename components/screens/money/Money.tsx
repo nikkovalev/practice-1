@@ -67,7 +67,7 @@ export const Money = () => {
           placeholder="К получению"
           text="€"
         />
-        <Button className={styles.button} size="large">
+        <Button className={styles.button} theme="primary_contained" size="large">
           Вывести
         </Button>
       </div>

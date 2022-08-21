@@ -6,6 +6,7 @@ import { IOffer } from "@/models/IOffer";
 import { Layout } from "@/components/layouts";
 import { OfferTop } from "./OfferTop";
 import { Reviews } from "@/components/reviews/Reviews";
+import { Container } from "@/components/ui";
 
 interface IOfferPage {
   offer: IOffer;
@@ -16,9 +17,11 @@ export const Offer: FC<IOfferPage> = ({ category, offer }) => {
   return (
     <Layout title={category.name} withImage={true}>
       <OfferTop category={category} offer={offer} />
-      <div className="w-1/2 lg:w-full pt-[30px]">
-        <Reviews size="short" />
-      </div>
+      <Container variant="ic">
+        <div className="w-1/2 lg:w-full pt-[30px]">
+          <Reviews size="short" />
+        </div>
+      </Container>
     </Layout>
   );
 };

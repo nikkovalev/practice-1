@@ -105,9 +105,8 @@ const AuthPage: NextPage = () => {
         </div>
         <Checkbox
           {...register("register_checkbox", { required: true })}
-          className={styles.checkbox}
           id="register_checkbox"
-          color="gray"
+          className={styles.checkbox}
           label={
             <>
               С <a href="#">лицензионным соглашением</a>, включая <a href="#">агентский договор</a>{" "}
@@ -116,7 +115,12 @@ const AuthPage: NextPage = () => {
           }
           isError={!!errors?.register_checkbox}
         />
-        <Button className={styles.authButton} size="large" isDisabled={isLoading}>
+        <Button
+          className={styles.authButton}
+          size="large"
+          theme="primary_contained"
+          disabled={isLoading}
+        >
           Зарегистрироваться
         </Button>
       </form>

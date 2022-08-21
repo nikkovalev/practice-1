@@ -4,7 +4,7 @@ import { ProfileLayout } from "@/components/layouts/profileLayout";
 
 const ReviewPage: NextPage = () => (
   <ProfileLayout title="Отзывы" hideTitle={true}>
-    <Reviews />;
+    <Reviews />
   </ProfileLayout>
 );
 export default ReviewPage;

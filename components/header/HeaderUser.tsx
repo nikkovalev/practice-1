@@ -65,7 +65,7 @@ export const HeaderUser: FC<IHeaderUser> = ({ me }) => {
       <div className={styles.headerUser} onClick={handleClick}>
         <div
           className={styles.headerUserAvatar}
-          style={{ backgroundImage: url(me.photoUrl || anonymous.src) }}
+          style={{ backgroundImage: url(me?.photoUrl || anonymous.src) }}
         />
         <div className={styles.headerUserInfo}>
           <div>

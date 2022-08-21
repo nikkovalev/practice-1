@@ -10,6 +10,7 @@ interface ILayout {
   children: ReactNode;
   withImage?: boolean;
   hideContentPadding?: boolean;
+  hideTitle?: boolean;
 }
 
 export const Layout: FC<ILayout> = ({ children, title, withImage, hideContentPadding }) => {

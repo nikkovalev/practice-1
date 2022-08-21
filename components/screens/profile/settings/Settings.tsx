@@ -80,8 +80,8 @@ export const Settings = () => {
             isError={errors.confirm_password}
             isSupportLight={true}
           />
-          <Button className={styles.button} size="large" variant="outlined">
-            Привязать
+          <Button className={styles.button} size="large" theme="primary_outlined">
+            Изменить
           </Button>
         </form>
         {errors.confirm_password && (
@@ -104,8 +104,8 @@ export const Settings = () => {
           <Button
             className={styles.button}
             size="large"
-            variant="outlined"
-            isDisabled={isEmailLoading}
+            theme="primary_outlined"
+            disabled={isEmailLoading}
           >
             Привязать
           </Button>
@@ -119,9 +119,9 @@ export const Settings = () => {
           <Button
             className={styles.button}
             size="large"
-            variant="outlined"
+            theme="primary_outlined"
             onClick={handleConfirm}
-            isDisabled={isCodeLoading || !!code}
+            disabled={isCodeLoading || !!code}
           >
             Подтвердить аккаунт
           </Button>

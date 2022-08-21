@@ -10,6 +10,9 @@
 
 .button {
   @apply mr-[20px] last:mr-0 mb-[20px] md:flex-shrink-0 md:px-[25px] text-white-100 md:mr-[10px];
+  &:nth-child(5n) > b {
+    color: $secondary-400;
+  }
 }
 
 .title {

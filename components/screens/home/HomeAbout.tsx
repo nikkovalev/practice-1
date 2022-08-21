@@ -2,14 +2,14 @@ import React from "react";
 import cn from "classnames";
 import { aboutList } from "./home.data";
 
-import { Text } from "@/components/ui";
+import { Container, Text } from "@/components/ui";
 
 import styles from "./Home.module.scss";
 
 export const HomeAbout = () => {
   return (
     <section className={styles.about}>
-      <div className="inner-container">
+      <Container variant="ic">
         <h3 className={styles.aboutTitle}>YaonClub</h3>
         <Text className={styles.aboutText} size="l" color="gray" weight={400}>
           Добро пожаловать к нам. Давай попробуем ответить на основные вопросы
@@ -34,7 +34,7 @@ export const HomeAbout = () => {
           в том что ты не усомнишься в своём выборе. Совершай выгодные сделки и совершенствуйся
           вместе с YaonClub.
         </Text>
-      </div>
+      </Container>
     </section>
   );
 };

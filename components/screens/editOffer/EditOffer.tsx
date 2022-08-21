@@ -252,7 +252,7 @@ export const EditOffer: FC<IEditOffer> = ({ initial, categories }) => {
               text="шт."
             />
           )}
-          <Button variant="contained" size="large" isDisabled={isLoading}>
+          <Button theme="primary_contained" size="large" disabled={isLoading}>
             Добавить
           </Button>
         </div>

@@ -2,31 +2,35 @@
 
 .checkbox {
   @apply flex items-center cursor-pointer flex-shrink-0 text-[17px];
-  & input {
+  & > input {
     display: none;
   }
-  & input:checked ~ div::before {
+  & > input:checked ~ div::before {
     opacity: 1;
   }
   // Arrow
   & > div {
-    @apply w-[24px] h-[24px] flex items-center justify-center flex-shrink-0 border-2 border-solid border-white-100 mr-[10px];
-    border-radius: 5px;
+    @apply w-[24px] h-[24px] flex items-center justify-center flex-shrink-0 border-2 border-solid border-white-100 mr-[10px] rounded-[5px];
+    transition: border-color 0.25s;
     &::before {
       @apply block text-white-100 font-medium text-[17px] opacity-0;
       content: "\2713";
     }
   }
+  // Label
   & > span {
     @apply text-white-100 font-medium text-[17px];
+    transition: color 0.25s;
     & > a {
       @apply text-primary-400 hover:underline;
     }
   }
+  // Error
   &_error > div {
     border-color: $red-100;
   }
-  &_light {
+  // Support light
+  &_support {
     & > div {
       @apply border-primary-400 dark:border-white-100 lg:border-white-100;
       &::before {
@@ -36,8 +40,20 @@
     & > span {
       @apply text-black-400 dark:text-white-100 lg:text-white-100;
     }
+    &:hover {
+      & > span {
+        @apply text-primary-400 dark:text-secondary-400;
+      }
+      & > div {
+        @apply dark:border-secondary-400;
+      }
+    }
   }
+  // Gray text
   &_gray > span {
     @apply text-gray-400;
+  }
+  &:hover > div {
+    @apply border-primary-400;
   }
 }

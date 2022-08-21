@@ -4,7 +4,7 @@ import Image from "next/image";
 
 import { statistics, list, socials } from "./footer.data";
 
-import { Text, Link } from "@/components/ui";
+import { Text, Link, Container } from "@/components/ui";
 
 import logoIcon from "@/assets/images/logo.svg";
 import logo2Icon from "@/assets/images/logo_2.svg";
@@ -14,7 +14,7 @@ import styles from "./Footer.module.scss";
 export const Footer: FC<{ isLight: boolean }> = ({ isLight }) => {
   return (
     <footer className={cn(styles.footer, { [styles.footer_light]: isLight })}>
-      <div className={cn("inner-container", styles.footerContainer)}>
+      <Container variant="ic" className={styles.footerContainer}>
         <div className={cn(styles.footerTop, { [styles.footerTop_light]: isLight })}>
           <ul>
             {socials.map((item, idx) => (
@@ -73,7 +73,7 @@ export const Footer: FC<{ isLight: boolean }> = ({ isLight }) => {
             </Text>
           </div>
         </div>
-      </div>
+      </Container>
     </footer>
   );
 };

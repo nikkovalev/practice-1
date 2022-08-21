@@ -1,0 +1,134 @@
+@import "../../assets/styles/_variables.scss";
+
+.filter {
+  @apply flex items-center justify-between bg-white-200 dark:bg-black-300 rounded-[10px] md:bg-transparent md:dark:bg-transparent;
+  &_default {
+    @apply p-[25px] md:p-0;
+  }
+  &_small {
+    @apply relative p-[10px] pb-0 md:p-0;
+  }
+}
+.left {
+  @apply md:fixed md:top-0 md:bottom-0 md:left-0 md:bg-black-300 md:h-screen md:w-fit md:-translate-x-full md:z-50 md:px-[10px] md:pt-[20px] md:overflow-y-auto;
+  transition: transform 0.25s;
+  &_active {
+    @apply translate-x-0;
+  }
+  @media (max-width: $breakpoint992) {
+    &::-webkit-scrollbar {
+      width: 2px;
+    }
+    &::-webkit-scrollbar-track {
+      background-color: $black-300;
+    }
+    &::-webkit-scrollbar-thumb {
+      background-color: $secondary-400;
+      border-radius: 10px;
+    }
+  }
+  &_small {
+    @apply flex items-center flex-wrap md:block;
+  }
+}
+.items {
+  @apply flex items-center flex-wrap md:flex-col;
+  & > div {
+    @apply mb-[10px] mr-[10px];
+  }
+  &_small > div {
+    @apply w-[190px] md:w-[270px];
+  }
+}
+.right {
+  @apply flex items-center;
+  &_small {
+    @apply md:w-full;
+    & > button {
+      @apply hidden md:first:flex;
+    }
+  }
+}
+.searchInput {
+  @apply mr-[10px] mb-[10px];
+  &_default {
+    @apply relative lg:mr-0 xxs:w-full;
+    & > svg {
+      @apply absolute top-1/2 right-[25px] -translate-y-1/2 pointer-events-none;
+    }
+    & > input {
+      @apply bg-white-200 dark:bg-black-400 border-2 border-solid border-primary-400 dark:border-transparent text-black-400 dark:text-white-100 xxs:w-full;
+      min-height: 50px;
+      padding-right: 50px;
+    }
+  }
+  &_small {
+    @apply w-[50px] h-[50px] flex items-center justify-center bg-black-400 rounded-full hover:bg-black-500;
+    transition: background-color 0.25s;
+    & > input {
+      @apply absolute top-0 right-0 bottom-0 left-0 w-full h-full bg-black-300 opacity-0 invisible rounded-[10px] z-30;
+      transition: opacity 0.25s;
+    }
+  }
+  &_active > input {
+    @apply opacity-100 visible;
+  }
+}
+.textWithIcon {
+  @apply flex items-center dark:text-white-100 font-medium cursor-pointer flex-shrink-0 text-[17px] lg:text-white-100;
+  transition: color 0.25s;
+  & > svg {
+    @apply mr-[10px];
+    & > path {
+      transition: fill 0.25s;
+    }
+  }
+  &:hover {
+    @apply text-secondary-400;
+    & > svg path {
+      @apply fill-secondary-400;
+    }
+  }
+  &_small {
+    @apply mb-[10px];
+  }
+}
+.icons {
+  @apply flex items-center md:flex-col md:items-start md:pl-[25px] md:pt-[10px];
+  & > div {
+    @apply mr-[25px] last:mr-0 md:mb-[20px];
+  }
+}
+.button {
+  @apply min-w-[220px] ml-[40px] md:ml-[10px];
+}
+.viewButton {
+  @apply ml-[20px] md:hidden;
+  & > svg > rect {
+    transition: stroke 0.25s;
+  }
+  &:hover > svg > rect {
+    @apply stroke-primary-400;
+  }
+}
+.top {
+  @apply hidden md:flex items-center mb-[20px];
+  & > h3 {
+    @apply text-white-100 font-bold text-[30px] ml-[10px];
+  }
+  & > button {
+    @apply mt-[5px];
+  }
+}
+.menuButton {
+  @apply hidden md:flex;
+  &:hover > svg > path {
+    @apply stroke-white-100;
+  }
+  &_small {
+    @apply w-full text-white-100;
+    & > svg {
+      @apply mr-[15px];
+    }
+  }
+}

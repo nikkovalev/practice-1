@@ -5,7 +5,7 @@ import { ICategory } from "@/models/ICategory";
 import { useFetchLikedServicesQuery, useLikeServiceMutation } from "@/store/auth/authApi";
 
 import { Layout } from "@/components/layouts/Layout";
-import { Text, TextWithCount } from "@/components/ui";
+import { Container, Text, TextWithCount } from "@/components/ui";
 import { HomeCategory } from "../home/categories/HomeCategory";
 import { Loader } from "@/components/loader/Loader";
 
@@ -21,7 +21,7 @@ export const Favorites: FC<IFavorites> = ({ isAuth }) => {
 
   return (
     <Layout title="Избранные">
-      <div className="inner-container">
+      <Container variant="ic">
         <TextWithCount className="mb-[40px] md:mb-[20px]" title="Избранные" count={count} />
         {isLoading && <Loader />}
         <div className="columns-3 gap-x-[10px] lg:columns-2 sm:columns-1">
@@ -34,7 +34,7 @@ export const Favorites: FC<IFavorites> = ({ isAuth }) => {
             Здесь пока ничего нет
           </Text>
         )}
-      </div>
+      </Container>
     </Layout>
   );
 };

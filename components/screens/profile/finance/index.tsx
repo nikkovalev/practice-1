@@ -31,15 +31,13 @@ export const Finance = () => {
         <div className={styles.item}>
           <b>0€</b>
         </div>
-        <Button color="secondary" size="fit">
-          Вывести средства
-        </Button>
+        <Button theme="secondary_contained">Вывести средства</Button>
       </div>
       <div className={styles.middle}>
         <Text as="h4" color="gray" size="xl" weight={700}>
           Карты и кошельки
         </Text>
-        <Button className={styles.middleButton} variant="outlined" size="extra-small">
+        <Button className={styles.middleButton} theme="primary_outlined">
           <span>Добавить счет</span>
           <div className={styles.middleIcon}>
             <Image src={plusIcon.src} width={20} height={20} alt="Add card" />

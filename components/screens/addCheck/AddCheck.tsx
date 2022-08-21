@@ -35,7 +35,9 @@ export const AddCheck = () => {
         className={styles.input}
         placeholder="WMR324039475235"
       />
-      <Button size="large">Добавить</Button>
+      <Button size="large" theme="primary_contained">
+        Добавить
+      </Button>
     </Modal>
   );
 };

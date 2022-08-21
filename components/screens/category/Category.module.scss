@@ -3,110 +3,19 @@
 // Buttons
 .buttons {
   @apply flex items-center flex-wrap mt-[40px] md:mt-[30px] pb-[30px] md:flex-nowrap md:overflow-x-auto md:pb-0;
-}
-
-.button {
-  @apply mr-[20px] mb-[20px] text-white-100 last:mr-0 md:mr-[10px];
-}
-
-// Filters
-.filters {
-  @apply flex items-center justify-between min-h-[100px] p-[25px] bg-white-200 dark:bg-black-300 mt-[50px] xs:p-0 xs:min-h-0 xs:bg-transparent xs:dark:bg-black-400;
-  border-radius: 10px;
-}
-.filterBtn {
-  @apply min-w-[220px] xs:mb-[10px];
-}
-.filtersLeft {
-  @media (max-width: $breakpoint1200) {
-    @apply fixed top-0 bottom-0 left-0 bg-black-300 w-fit h-screen xxs:w-full;
-    z-index: 999;
-    padding: 30px 10px;
-    transform: translateX(-100%);
-    transition: transform 0.25s;
-    & > div {
-      &:nth-child(3) {
-        margin-left: 25px;
-      }
-    }
-  }
-  &Active {
-    transform: translateX(0);
-  }
-}
-.filtersInputs {
-  @apply flex items-center flex-wrap lg:flex-col;
-  margin-bottom: 5px;
-  @media (max-width: $breakpoint1200) {
-    margin-bottom: 10px;
-  }
-}
-.filterIcon {
-  @apply hidden mr-[10px] min-w-[110px] lg:flex xs:mb-[10px];
-  & > svg > path {
-    transition: stroke 0.25s;
-  }
-  &:hover > svg > path {
-    stroke: $white-100;
-  }
-}
-.filtersInput {
-  @apply relative mr-[10px] mb-[10px] lg:mr-0 xxs:w-full;
-  & > svg {
-    @apply absolute top-1/2 right-[25px] -translate-y-1/2 pointer-events-none;
-  }
-  & > input {
-    @apply bg-white-200 dark:bg-black-400 border-2 border-solid border-primary-400 dark:border-none text-black-400 dark:text-white-100 xxs:w-full;
-    min-height: 50px;
-    padding-right: 50px;
-  }
-}
-.filterText {
-  @apply mr-[20px] lg:mb-[20px];
-}
-.filterSelect {
-  @apply mr-[10px] mb-[10px] xxs:w-full lg:mr-0;
-}
-.filterButtons {
-  @apply flex items-center lg:hidden;
-  margin-right: 40px;
-  & > button {
-    @apply first:mr-[20px];
-    & > svg {
-      & > rect {
-        transition: stroke 0.25s;
-      }
-      &:hover > rect {
-        @apply stroke-primary-400;
-      }
-    }
+  & > a {
+    @apply mr-[20px] mb-[20px] text-white-100 last:mr-0 md:mr-[10px];
   }
 }
 
-.filterTextWithIcon {
-  @apply flex items-center dark:text-white-100 font-medium cursor-pointer flex-shrink-0 text-[17px] lg:text-white-100;
-  transition: color 0.25s;
-  & > svg {
-    margin-right: 10px;
-    & > path {
-      transition: fill 0.25s;
-    }
-  }
-  &:hover {
-    @apply text-secondary-400;
-    & > svg path {
-      @apply fill-secondary-400;
-    }
-  }
+// Filter
+.filter {
+  @apply mt-[50px];
 }
 
 // Offers
 .offers {
-  @apply flex flex-wrap;
-  margin-top: 50px;
-  @media (max-width: $breakpoint1200) {
-    margin-top: 10px;
-  }
+  @apply flex flex-wrap mt-[50px] md:mt-[20px];
 }
 .more {
   @apply flex flex-col items-center justify-center bg-white-200 dark:bg-black-300 cursor-pointer;

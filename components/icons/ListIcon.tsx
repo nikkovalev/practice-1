@@ -1,13 +1,13 @@
 import React, { FC } from "react";
 
 interface IListIcon {
-  type?: "tile";
+  type?: "card";
   isActive: boolean;
 }
 
 export const ListIcon: FC<IListIcon> = ({ type, isActive }) => {
-  const rectClassName = isActive ? `stroke-primary-400` : "";
-  if (type === "tile") {
+  const rectClassName = isActive ? "stroke-primary-400" : "";
+  if (type === "card") {
     return (
       <svg
         width="24"

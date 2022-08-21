@@ -67,7 +67,7 @@
     @apply inline-block mx-[20px] text-[20px] font-normal text-gray-400 md:mx-[10px] xxs:mx-auto xxs:my-[10px] sm:text-[17px];
   }
   & > button {
-    @apply md:min-w-[145px] xxs:min-w-full;
+    @apply md:min-w-[145px] md:px-[35px] xxs:min-w-full;
   }
 }
 .topRight {

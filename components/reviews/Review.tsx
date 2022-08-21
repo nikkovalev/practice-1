@@ -10,7 +10,7 @@ import styles from "./Reviews.module.scss";
 export const Review: FC<{ size: "normal" | "short" }> = ({ size }) => {
   return (
     <div className={cn(styles.review, styles[`review_${size}`])}>
-      <Avatar bg={ypIcon.src} />
+      <Avatar className={styles.reviewAvatar} bg={ypIcon.src} />
       <div className={styles.reviewRight}>
         <div className={styles.reviewHeader}>
           <div className={styles.reviewInfo}>

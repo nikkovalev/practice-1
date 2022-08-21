@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image";
 import cn from "classnames";
 
-import { Button } from "@/components/ui";
+import { Button, Container } from "@/components/ui";
 
 import logoLGImage from "@/assets/images/logo_lg.svg";
 
@@ -10,7 +10,7 @@ import styles from "./Home.module.scss";
 
 export const HomeTop = () => {
   return (
-    <div className={cn("inner-container", styles.top)}>
+    <Container variant="ic" className={styles.top}>
       <div className={styles.topLeft}>
         <div>
           <h1>
@@ -24,11 +24,11 @@ export const HomeTop = () => {
           </p>
         </div>
         <div className={styles.topButtons}>
-          <Button color="primary" size="small">
+          <Button theme="primary_contained" size="medium">
             Купить
           </Button>
           <span>или</span>
-          <Button color="secondary" size="small">
+          <Button theme="secondary_contained" size="medium">
             Продать
           </Button>
         </div>
@@ -43,6 +43,6 @@ export const HomeTop = () => {
           objectFit="contain"
         />
       </div>
-    </div>
+    </Container>
   );
 };

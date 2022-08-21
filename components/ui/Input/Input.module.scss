@@ -18,7 +18,7 @@
     @apply bg-transparent border-2 border-solid border-primary-400 text-black-400 dark:bg-black-300 dark:text-white-100 dark:border-transparent;
   }
   &_error {
-    @apply border-red-100 dark:border-red-100;
+    @apply border-2 border-red-100 dark:border-red-100;
   }
 }
 

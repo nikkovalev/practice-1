@@ -16,6 +16,8 @@ interface ICategoryOffer {
 }
 
 export const CategoryOffer: FC<ICategoryOffer> = ({ offer, servers, view }) => {
+  const sellerUrl = `/users/${offer.seller.id}`;
+
   return (
     <Link
       href={`/offers/${offer.id}`}
@@ -49,18 +51,14 @@ export const CategoryOffer: FC<ICategoryOffer> = ({ offer, servers, view }) => {
       <div className={cn(styles.offerSeller, { [styles.offerSellerL]: view === "list" })}>
         <b className={styles.offerText}>Продавец</b>
         <div className={styles.offerSellerContent}>
-          <Avatar
-            as="a"
-            href={`/users/${offer.seller.id}`}
-            bg={offer.seller?.photoUrl || anonymousImage.src}
-          />
+          <Avatar as="a" href={sellerUrl} bg={offer.seller?.photoUrl || anonymousImage.src} />
           <div
             className={cn(styles.offerSellerInfo, { [styles.offerSellerInfoL]: view === "list" })}
           >
-            <Link href={`/users/${offer.seller.id}`} className="text-ellipsis">
+            <Link href={sellerUrl} className="text-ellipsis">
               {offer.seller.username}
             </Link>
-            <Link href={`/users/${offer.seller.id}?page=reviews`} className="text-ellipsis">
+            <Link href={`${sellerUrl}?page=reviews`} className="text-ellipsis">
               1554 отзыва
             </Link>
           </div>

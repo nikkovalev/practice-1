@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import { useRouter } from "next/router";
-import { Button } from "@/components/ui";
+import { Button, Container } from "@/components/ui";
 import styles from "./ProfileLayout.module.scss";
 
 const buttons = [
@@ -26,7 +26,6 @@ const buttons = [
   {
     title: "Отзывы",
     path: "/reviews",
-    color: true,
     count: 14,
   },
   {
@@ -39,7 +38,7 @@ export const ProfileNavigation: FC = () => {
   const router = useRouter();
 
   return (
-    <div className="inner-container">
+    <Container variant="ic">
       <div className={styles.buttons}>
         {buttons.map((btn) => {
           const isActive = btn.path === router.pathname;
@@ -47,23 +46,17 @@ export const ProfileNavigation: FC = () => {
             <Button
               key={btn.title}
               className={styles.button}
-              variant="outlined"
-              size="fit"
-              color="black"
+              theme="black_contained"
               as="link"
               href={btn.path}
               isActive={isActive}
             >
               {btn.title}
-              {btn.count && (
-                <b className={!!isActive || btn.color ? "text-secondary-400" : "text-gray-400"}>
-                  ({btn.count})
-                </b>
-              )}
+              {btn.count && <b>({btn.count})</b>}
             </Button>
           );
         })}
       </div>
-    </div>
+    </Container>
   );
 };

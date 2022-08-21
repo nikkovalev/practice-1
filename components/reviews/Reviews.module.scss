@@ -39,7 +39,7 @@
 
 // Review
 .review {
-  @apply flex items-start bg-white-200 dark:bg-black-300 p-[30px] mb-[10px] sm:p-[20px] sm:relative;
+  @apply flex items-start bg-white-200 dark:bg-black-300 p-[30px] mb-[10px] sm:p-[20px] sm:relative xs:flex-col xs:items-center;
   border-radius: 10px;
   &_short {
     @apply w-full;
@@ -58,8 +58,9 @@
     left: 20px;
   }
   @media (max-width: $breakpoint480) {
-    left: 50%;
-    transform: translateX(-50%);
+    position: static;
+    top: 0;
+    left: 0;
   }
 }
 .reviewRight {
@@ -78,7 +79,7 @@
   }
 }
 .reviewHeader {
-  @apply flex items-center justify-between mb-[20px] sm:mb-[20px] sm:pl-[55px] xs:pl-0 xs:pt-[50px];
+  @apply flex items-center justify-between mb-[20px] sm:mb-[20px] sm:pl-[55px] xs:pl-0 xs:mt-[20px];
   & > b {
     @apply font-bold text-primary-400;
     font-size: 20px;

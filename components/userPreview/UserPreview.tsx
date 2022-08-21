@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FC, MouseEvent } from "react";
+import React, { ChangeEvent, FC } from "react";
 import cn from "classnames";
 import { toast } from "react-toastify";
 import { getDate } from "@/helpers/date";
@@ -7,10 +7,10 @@ import { useRouter } from "next/router";
 
 import { IUser } from "@/models/IUser";
 
+import { Container, TextWithArrow } from "../ui";
 import { Stars } from "../stars/Stars";
 
 import anonymousImage from "@/assets/images/anonymous.jpg";
-import { ArrowIcon } from "../icons";
 import { EditIcon } from "../icons/EditIcon";
 
 import styles from "./UserPreview.module.scss";
@@ -38,19 +38,15 @@ export const UserPreview: FC<IUserPreview> = ({ user, isOwner, updateProfileAvat
     }
   };
 
-  const handleClickLink = (event: MouseEvent<HTMLAnchorElement>) => {
-    event.preventDefault();
-    router.back();
-  };
+  const handlePrev = () => router.back();
 
   return (
-    <div className={cn("inner-container", styles.wrapper)}>
+    <Container variant="ic" className={styles.wrapper}>
       <div className={styles.left}>
         {!isOwner && (
-          <a className={cn("link_with_arrow", styles.leftBack)} href="#" onClick={handleClickLink}>
-            <ArrowIcon direction="left" color="gray" />
-            <b>Назад</b>
-          </a>
+          <TextWithArrow className={styles.leftBack} as="button" onClick={handlePrev}>
+            Назад
+          </TextWithArrow>
         )}
         {isOwner ? (
           <label
@@ -104,6 +100,6 @@ export const UserPreview: FC<IUserPreview> = ({ user, isOwner, updateProfileAvat
           <span>отзывов</span>
         </div>
       </div>
-    </div>
+    </Container>
   );
 };

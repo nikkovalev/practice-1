@@ -10,6 +10,7 @@ import { Layout } from "@/components/layouts/Layout";
 import { UserPreview } from "@/components/userPreview/UserPreview";
 import { ProfileNavigation } from "./ProfileNavigation";
 import { Preview } from "../previewLayout";
+import { Container } from "@/components/ui";
 
 import profileBg from "@/assets/images/profile_bg.png";
 
@@ -47,10 +48,10 @@ export const ProfileLayout: FC<IProfileLayout> = ({ children, title, hideTitle }
         <UserPreview user={user} updateProfileAvatar={updateProfileAvatar} isOwner={true} />
         <ProfileNavigation />
       </Preview>
-      <div className="inner-container">
+      <Container variant="ic">
         {!hideTitle && <h1 className={styles.title}>{title}</h1>}
         {children}
-      </div>
+      </Container>
     </Layout>
   );
 };

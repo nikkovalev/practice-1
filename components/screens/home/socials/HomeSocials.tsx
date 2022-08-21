@@ -3,20 +3,22 @@ import cn from "classnames";
 
 import { socials } from "../home.data";
 
-import styles from "../Home.module.scss";
 import { HomeSocial } from "./HomeSocial";
+import { Container } from "@/components/ui";
+
+import styles from "../Home.module.scss";
 
 export const HomeSocials = () => {
   return (
     <section className={styles.section}>
-      <div className="inner-container">
+      <Container variant="ic">
         <h2 className={styles.title}>Соц.сети</h2>
-      </div>
-      <div className={cn("container", styles.list, styles.socialsList)}>
+      </Container>
+      <Container className={cn(styles.list, styles.socialsList)}>
         {socials.map((social) => (
           <HomeSocial key={social.title} social={social} />
         ))}
-      </div>
+      </Container>
     </section>
   );
 };

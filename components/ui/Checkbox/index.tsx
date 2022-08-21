@@ -10,19 +10,17 @@ interface ICheckbox {
   label: any;
   isError?: boolean;
   isSupportLight?: boolean;
-  color?: "gray";
   onBlur?: (event: FocusEvent<HTMLInputElement>) => void;
   onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
 }
 
 export const Checkbox: FC<ICheckbox> = forwardRef(
-  ({ className, id, label, name, isError, isSupportLight, color, onBlur, onChange }, ref: any) => {
+  ({ className, id, label, name, isError, isSupportLight, onBlur, onChange }, ref: any) => {
     return (
       <label
         className={cn(styles.checkbox, className, {
           [styles.checkbox_error]: !!isError,
-          [styles.checkbox_light]: !!isSupportLight,
-          [styles[`checkbox_${color}`]]: !!color,
+          [styles.checkbox_support]: !!isSupportLight,
         })}
         htmlFor={id}
       >

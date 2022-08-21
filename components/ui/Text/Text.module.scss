@@ -69,3 +69,22 @@
     text-align: right;
   }
 }
+
+.textWithArrow {
+  @apply inline-flex items-center mb-[15px] sm:mb-[10px];
+  & > b {
+    @apply inline-block font-bold text-gray-400 leading-[20px] text-[17px] ml-[15px];
+    transition: color 0.25s;
+  }
+  & > svg > path {
+    transition: stroke 0.25s;
+  }
+  &:hover {
+    & > b {
+      @apply text-secondary-400;
+    }
+    & > svg > path {
+      @apply stroke-secondary-400;
+    }
+  }
+}

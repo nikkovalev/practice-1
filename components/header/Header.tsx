@@ -4,6 +4,7 @@ import cn from "classnames";
 import { useAppSelector } from "@/hooks/useTypedSelector";
 import { useActions } from "@/hooks/useActions";
 import { useOutside } from "@/hooks/useOutside";
+import { useRouter } from "next/router";
 
 import { navList } from "./header.data";
 
@@ -14,7 +15,7 @@ import { HeaderNavButton } from "./HeaderNavButton";
 import { HeaderMode } from "./HeaderMode";
 import { HeaderSearchInput } from "./HeaderSearchInput";
 import { HeaderUser } from "./HeaderUser";
-import { Button, Link } from "@/components/ui";
+import { Button, Container, Link } from "@/components/ui";
 import { HeaderSelect } from "./HeaderSelect";
 import { HeaderSearch } from "./HeaderSearch";
 
@@ -25,6 +26,7 @@ import logo2Icon from "@/assets/images/logo_2.svg";
 import styles from "./Header.module.scss";
 
 export const Header = () => {
+  const { query } = useRouter();
   // store
   const { theme } = useAppSelector((state) => state.global);
   const { isAuth } = useAppSelector((state) => state.auth);
@@ -45,7 +47,11 @@ export const Header = () => {
   // Requests
   const [search, { data: searchCategories, reset: resetCategories }] = useSearchMutation();
   const { data: likedServices } = useFetchLikedServicesQuery(true, { skip: !isAuth });
-  const { data: me, refetch: getMe, isError: isMeError } = useGetMeQuery("", { skip: !isAuth });
+  const {
+    data: me,
+    refetch: getMe,
+    isError: isMeError,
+  } = useGetMeQuery("", { skip: !isAuth, refetchOnMountOrArgChange: true });
   // variables
   const isLikedServices = !!likedServices?.length && likedServices.length > 0;
   const currencies = ["₽", "$", "€"];
@@ -63,11 +69,18 @@ export const Header = () => {
     if (!isMeError && me) saveUser(me);
   }, [me, isMeError, saveUser]);
 
+  useEffect(() => {
+    if (!!query && isShowSearch) setIsShowSearch(false);
+    // eslint-disable-next-line
+  }, [query]);
+
   return (
     <>
       {isAuth && isMeError && (
         <div className={styles.alert}>
-          <div className="inner-container font-medium">Подтвердите электронную почту</div>
+          <Container className="font-medium" variant="ic">
+            Подтвердите электронную почту
+          </Container>
         </div>
       )}
       {isShowSearch && <HeaderSearch searchRef2={searchRef2} categories={searchCategories} />}
@@ -77,9 +90,9 @@ export const Header = () => {
           isShow={isShowSearch}
           search={search}
           isData={!!searchCategories}
-          resetCategories={resetCategories}
+          resetData={resetCategories}
         />
-        <div className={cn("inner-container", styles.headerContainer)}>
+        <Container variant="ic" className={styles.headerContainer}>
           <div
             className={cn(styles.headerLeft, {
               [styles.headerLeftActive]: isShowMenu,
@@ -151,8 +164,8 @@ export const Header = () => {
               className={cn(styles.headerButton, {
                 [styles.headerButtonTranslated]: isAuth && !!me,
               })}
-              variant="outlined"
-              size="small"
+              size="medium"
+              theme="primary_outlined"
             >
               Продать
             </Button>
@@ -170,7 +183,7 @@ export const Header = () => {
               </ul>
             </div>
           </div>
-        </div>
+        </Container>
       </header>
     </>
   );

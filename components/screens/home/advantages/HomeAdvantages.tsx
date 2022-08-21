@@ -3,7 +3,7 @@ import cn from "classnames";
 
 import { advantages } from "../home.data";
 
-import { Text } from "@/components/ui";
+import { Container, Text } from "@/components/ui";
 import { ArrowIcon } from "@/components/icons";
 
 import styles from "../Home.module.scss";
@@ -15,7 +15,7 @@ export const HomeAdvantages = () => {
 
   return (
     <section className={styles.advantages}>
-      <div className="inner-container">
+      <Container variant="ic">
         <div
           className={cn(styles.advantagesContent, { [styles.advantagesContent_opened]: isOpened })}
         >
@@ -40,7 +40,7 @@ export const HomeAdvantages = () => {
           </Text>
           <ArrowIcon direction="bottom" color="primary" />
         </button>
-      </div>
+      </Container>
     </section>
   );
 };

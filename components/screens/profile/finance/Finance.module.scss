@@ -21,7 +21,7 @@
 }
 
 .middle {
-  @apply flex items-center mb-[40px] sm:mb-[20px];
+  @apply flex items-center mb-[30px] sm:mb-[20px];
   & > h4 {
     @apply mr-[30px];
   }
@@ -36,10 +36,6 @@
     @apply sm:hidden text-primary-400 text-[18px] font-bold;
     line-height: 22px;
     transition: color 0.25s;
-  }
-  &:active,
-  &:hover {
-    @apply bg-black-400;
   }
 }
 

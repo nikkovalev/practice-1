@@ -1,56 +1,52 @@
 import React, { FC, MouseEvent } from "react";
-import cx from "classnames";
+import cn from "classnames";
+
 import { Link } from "@/components/ui";
+
 import styles from "./Button.module.scss";
 
+type ITheme =
+  | "primary_contained"
+  | "primary_outlined"
+  | "secondary_contained"
+  | "secondary_outlined"
+  | "blue"
+  | "black_contained"
+  | "black_outlined";
+
 interface IButton {
-  className?: any;
-  size?: "large" | "small" | "fit" | "extra-small";
-  children: any;
-  isActive?: boolean;
-  variant?: "contained" | "outlined";
-  color?: "primary" | "secondary" | "black" | "blue";
-  isDisabled?: boolean;
+  className?: string;
+  size?: "large" | "medium" | "small";
+  theme: ITheme;
   as?: "link" | "button";
   href?: string;
-  isActiveOutlined?: boolean;
+  children: any;
+  disabled?: boolean;
+  isActive?: boolean;
+  isLight?: boolean;
   onClick?: (e: MouseEvent<HTMLButtonElement>) => void;
 }
 export const Button: FC<IButton> = ({
   as = "button",
-  className: cn,
+  className,
   size,
   children,
   isActive,
-  isActiveOutlined,
-  color = "primary",
-  variant = "contained",
-  isDisabled,
-  href,
-  onClick,
+  theme,
+  disabled,
+  isLight,
+  ...props
 }) => {
-  const Wrapper = as === "button" ? "button" : Link;
-  const className = cx(styles.button, cn, {
-    // Button size
-    [styles[`button_${size}`]]: !!size,
-    // Button - Primary
-    [styles.primaryContained]:
-      (isActive && variant === "outlined") || (variant === "contained" && color === "primary"),
-    [styles.primaryOutlined]: !isActive && variant === "outlined" && color === "primary",
-    [styles.primaryContained_active]: isActive && color === "primary" && variant === "contained",
-    // Button - Secondary
-    [styles.secondaryContained]: variant === "contained" && color === "secondary",
-    [styles.secondaryContained_active]: isActive && color === "secondary",
-    // Button - Black
-    [styles.blackOutlined]: !isActive && color === "black",
-    [styles.blackOutlined_active]: isActiveOutlined && color === "black",
-    // Button - Blue
-    [styles.blue]: color === "blue",
-    // Disabled styles
-    [styles.button_disabled]: isDisabled,
+  const Wrapper: any = as === "button" ? "button" : Link;
+  const rootClassName = cn(styles.button, className, styles[theme], {
+    [styles[`${theme}_active`]]: isActive,
+    [styles[`${theme}_support`]]: isLight,
+    [styles[`size_${size}`]]: !!size,
+    [styles.button_disabled]: disabled,
+    [styles.link]: as === "link",
   });
   return (
-    <Wrapper className={className} disabled={isDisabled} onClick={onClick} href={href ?? ""}>
+    <Wrapper className={rootClassName} disabled={disabled} {...props}>
       {children}
     </Wrapper>
   );

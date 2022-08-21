@@ -8,6 +8,7 @@ import { useFetchLikedServicesQuery, useLikeServiceMutation } from "@/store/auth
 import { ICategory } from "@/models/ICategory";
 
 import { HomeCategory } from "./HomeCategory";
+import { Container } from "@/components/ui";
 
 import styles from "../Home.module.scss";
 
@@ -36,29 +37,31 @@ export const HomeCategories: FC<IHomeCategories> = ({ categories, listClassName,
   return (
     <section
       className={cn({
-        [`container ${styles.section}`]: !hideTitle,
+        [styles.section]: !hideTitle,
       })}
     >
-      {!hideTitle && (
-        <div className="inner-container">
-          <h2 className={cn(styles.title, styles.categoriesTitle)}>Игры</h2>
+      <Container variant={hideTitle ? "ic" : "c"}>
+        {!hideTitle && (
+          <Container variant="ic">
+            <h2 className={cn(styles.title, styles.categoriesTitle)}>Игры</h2>
+          </Container>
+        )}
+        <div
+          className={cn(listClassName, {
+            [styles.categoriesList]: !hideTitle,
+          })}
+        >
+          {categories.map((c) => (
+            <HomeCategory
+              key={c.id}
+              category={c}
+              likedServices={likedServices as number[]}
+              like={like}
+              isAuth={isAuth && !!user}
+            />
+          ))}
         </div>
-      )}
-      <div
-        className={cn(listClassName, {
-          [styles.categoriesList]: !hideTitle,
-        })}
-      >
-        {categories.map((c) => (
-          <HomeCategory
-            key={c.id}
-            category={c}
-            likedServices={likedServices as number[]}
-            like={like}
-            isAuth={isAuth && !!user}
-          />
-        ))}
-      </div>
+      </Container>
     </section>
   );
 };

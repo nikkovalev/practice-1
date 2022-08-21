@@ -24,29 +24,23 @@ const Offers = () => {
     <ProfileLayout title="Ваши предложения">
       <div className={styles.buttons}>
         {buttons.map((button) => (
-          <Button
-            key={button.title}
-            variant="outlined"
-            color="black"
-            size="extra-small"
-            isActiveOutlined={button.active}
-          >
+          <Button key={button.title} theme="black_outlined" size="small" isActive={button.active}>
             {button.title}
-            <b className={button.active ? "text-primary-400" : "text-gray-400"}>{button.count}</b>
+            <b>({button.count})</b>
           </Button>
         ))}
       </div>
       <div>
         <Button
-          className={styles.button}
-          size="fit"
-          variant="outlined"
+          className={styles.addButton}
+          theme="primary_outlined"
           as="link"
+          size="large"
           href="/edit-offer"
         >
           Добавить предложение
         </Button>
-        <Text size="xl" className="dark:text-secondary-400" color="black">
+        <Text size="xl" className="dark:text-secondary-400" color="primary">
           Здесь пока ничего нет
         </Text>
         {/* <div>

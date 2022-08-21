@@ -33,14 +33,8 @@ export const Sales = () => {
       />
       <div className={offerStyles.buttons}>
         {buttons.map((button) => (
-          <Button
-            key={button.title}
-            variant="outlined"
-            color="black"
-            size="extra-small"
-            isActiveOutlined={button.active}
-          >
-            {button.title} <b className="text-gray-400">({button.count})</b>
+          <Button key={button.title} theme="black_outlined" size="small" isActive={button.active}>
+            {button.title} <b>({button.count})</b>
           </Button>
         ))}
       </div>

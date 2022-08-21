@@ -7,7 +7,7 @@ import { IUser } from "@/models/IUser";
 import { Layout } from "@/components/layouts/Layout";
 import { UserPreview } from "@/components/userPreview/UserPreview";
 import { Chat } from "@/components/Chat/Chat";
-import { Button } from "@/components/ui";
+import { Button, Container } from "@/components/ui";
 import { UserOffers } from "./UserOffers";
 import { Reviews } from "@/components/reviews/Reviews";
 import { Preview } from "@/components/layouts/previewLayout";
@@ -32,34 +32,32 @@ export const User: FC<IUserPage> = ({ profile }) => {
   useEffect(() => {
     const page = router.query?.page;
     if (!!page && (page === "offers" || page === "reviews")) setActiveTab(page as any);
-  }, []);
+  }, [router]);
 
   return (
     <Layout title={profile.username} withImage={true}>
       <Preview className={styles.preview} bg={userBg.src}>
         <UserPreview user={profile} isOwner={false} />
       </Preview>
-      <div className={cn("inner-container", styles.wrapper)}>
+      <Container variant="ic" className={styles.wrapper}>
         <div className={styles.left}>
           <div className={styles.buttons}>
             <Button
-              variant="outlined"
-              color="black"
-              size="fit"
+              theme="black_contained"
               isActive={activeTab === "offers"}
+              isLight={true}
               onClick={handleChangeTab("offers")}
             >
-              Предложения <b className="text-secondary-400">(29)</b>
+              Предложения <b>(29)</b>
             </Button>
             <Button
-              variant="outlined"
-              color="black"
-              size="fit"
+              theme="black_contained"
               isActive={activeTab === "reviews"}
+              isLight={true}
               onClick={handleChangeTab("reviews")}
             >
               Отзывы
-              <b className="text-secondary-400">(1554)</b>
+              <b>(1554)</b>
             </Button>
           </div>
           <h1 className={styles.title}>
@@ -69,7 +67,7 @@ export const User: FC<IUserPage> = ({ profile }) => {
           {activeTab === "reviews" && <Reviews size="short" />}
         </div>
         <Chat variant="normal" inputColor="gray" />
-      </div>
+      </Container>
     </Layout>
   );
 };

@@ -1,13 +1,10 @@
-import React, { FC, ReactNode } from "react";
-import cn from "classnames";
-import Link from "next/link";
+import React, { FC } from "react";
 import { useAppSelector } from "@/hooks/useTypedSelector";
 
 import { IOffer } from "@/models/IOffer";
 import { ICategory } from "@/models/ICategory";
 
-import { ArrowIcon } from "@/components/icons";
-import { Button, Select, Counter, Text } from "@/components/ui";
+import { Button, Select, Counter, Text, Container, TextWithArrow } from "@/components/ui";
 import { Chat } from "@/components/Chat/Chat";
 import { Preview } from "@/components/layouts";
 import { CardsIcon } from "@/components/icons";
@@ -26,16 +23,11 @@ export const OfferTop: FC<IOfferTop> = ({ category, offer }) => {
 
   return (
     <Preview className={styles.top} withMask={true} bg={category.banner ?? ""}>
-      <div className={cn("inner-container", styles.topContent)}>
+      <Container variant="ic" className={styles.topContent}>
         <div className={styles.topLeft}>
-          <Link href={`/categories/${category.slug}?page=${service?.id}`}>
-            <a className="link_with_arrow">
-              <ArrowIcon direction="left" color="gray" />
-              <b>
-                {service?.name} {category.name}
-              </b>
-            </a>
-          </Link>
+          <TextWithArrow href={`/categories/${category.slug}?page=${service?.id}`}>
+            {service?.name} {category.name}
+          </TextWithArrow>
           <Text className="mb-[30px] md:mb-[10px]" as="h1" weight={700} size="vl">
             FUT Champions
           </Text>
@@ -71,13 +63,11 @@ export const OfferTop: FC<IOfferTop> = ({ category, offer }) => {
               icon={<CardsIcon />}
               padding="m"
             />
-            <Button color="secondary" size="fit">
-              Купить
-            </Button>
+            <Button theme="secondary_contained">Купить</Button>
           </div>
         </div>
-        {isAuth && offer.seller.id !== user?.id && <Chat variant="normal" />}
-      </div>
+        {isAuth && user?.id !== offer?.seller?.id && <Chat variant="normal" />}
+      </Container>
     </Preview>
   );
 };

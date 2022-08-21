@@ -23,59 +23,6 @@ a {
   text-decoration: none;
 }
 
-.link_with_arrow {
-  @apply inline-flex items-center mb-[15px] sm:mb-[10px];
-  & > b {
-    @apply inline-block font-bold text-gray-400 leading-[20px] text-[17px] ml-[15px];
-    transition: color 0.25s;
-  }
-  & > svg > path {
-    transition: stroke 0.25s;
-  }
-  &:hover {
-    & > b {
-      @apply text-secondary-400;
-    }
-    & > svg > path {
-      @apply stroke-secondary-400;
-    }
-  }
-}
-
-.container {
-  max-width: ($container + $containerPadding) + px;
-  @media (max-width: $breakpoint1450) {
-    max-width: 1300px;
-  }
-}
-
-.inner-container {
-  max-width: ($inner-container + $containerPadding) + px;
-  @media (max-width: $breakpoint1450) {
-    max-width: 1200px;
-  }
-}
-
-.container,
-.inner-container {
-  width: 100%;
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: $containerSideSpacing + px;
-  padding-right: $containerSideSpacing + px;
-  @media (max-width: $breakpoint992) {
-    max-width: 920px;
-  }
-  @media (max-width: $breakpoint768) {
-    max-width: 740px;
-    padding-left: 10px;
-    padding-right: 10px;
-  }
-  @media (max-width: $breakpoint480) {
-    max-width: none;
-  }
-}
-
 #blur {
   height: 100vh;
   position: fixed;
@@ -107,35 +54,5 @@ a {
   &::-webkit-scrollbar-thumb {
     background-color: $secondary-400;
     border-radius: 10px;
-  }
-}
-
-.text_with_icon {
-  @apply flex items-center dark:text-white-100 font-medium cursor-pointer flex-shrink-0 text-[17px] lg:text-white-100;
-  transition: color 0.25s;
-  & > svg {
-    margin-right: 10px;
-    & > path {
-      transition: fill 0.25s;
-    }
-  }
-  &:hover {
-    @apply text-secondary-400;
-    & > svg path {
-      @apply fill-secondary-400;
-    }
-  }
-}
-
-.filter_menu_top {
-  @apply hidden items-center;
-  margin-bottom: 20px;
-  & > h3 {
-    @apply text-white-100 font-bold;
-    font-size: 30px;
-    margin-left: 10px;
-  }
-  & > button {
-    margin-top: 5px;
   }
 }

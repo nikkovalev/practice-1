@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import cx from "classnames";
+import cn from "classnames";
 import { url } from "@/helpers/url";
 
 import { Link } from "@/components/ui";
@@ -21,7 +21,7 @@ interface IAvatar {
 export const Avatar: FC<IAvatar> = ({
   as,
   href,
-  className: cn,
+  className,
   bg,
   withStatus,
   width = 40,
@@ -29,14 +29,15 @@ export const Avatar: FC<IAvatar> = ({
   radius = 99999,
   borderNone,
 }) => {
-  const className = cx(styles.avatar, cn, {
+  const Wrapper: any = as === "a" ? Link : "div";
+  const rootClassName = cn(styles.avatar, className, {
     [styles.avatar_status]: withStatus,
     [styles.avatar_bn]: borderNone,
   });
-  if (as === "a" && href) return <Link href={href} />;
   return (
-    <div
-      className={className}
+    <Wrapper
+      className={rootClassName}
+      href={href}
       style={{ backgroundImage: url(bg), width, height, borderRadius: radius }}
     />
   );

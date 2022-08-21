@@ -2,7 +2,8 @@ import { createApi } from "@reduxjs/toolkit/query/react";
 import { baseQuery } from "@/api/fetchBaseQuery";
 
 import { ICategory } from "@/models/ICategory";
-import { IGetOffer, IOffer } from "@/models/IOffer";
+import { IOffer } from "@/models/IOffer";
+import { IFilterData } from "@/models/IFilterData";
 
 export const categoriesApi = createApi({
   reducerPath: "api/categories",
@@ -11,7 +12,7 @@ export const categoriesApi = createApi({
     fetchCategories: build.query<ICategory[], boolean>({
       query: (isFull) => `/categories?full=${isFull}`,
     }),
-    fetchOffers: build.mutation<IOffer[], IGetOffer>({
+    fetchOffers: build.mutation<IOffer[], IFilterData>({
       query: (params) => {
         const queryString = new URLSearchParams(params as any).toString();
         return {

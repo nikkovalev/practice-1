@@ -19,18 +19,18 @@
     }
   }
   &_password > form {
-    @apply xl:justify-between;
+    @apply lg:justify-between;
     @media (max-width: $breakpoint1450) {
       & > button {
-        @apply mt-[10px] sm:mt-0;
-      }
-      & > input {
-        @apply mr-0;
+        @apply mt-[10px];
       }
     }
     @media (max-width: $breakpoint1200) {
-      & > input:nth-child(3) {
-        @apply mt-[10px] sm:mt-0;
+      & > input {
+        @apply mr-0;
+        &:nth-child(3) {
+          @apply mt-[10px] sm:mt-0;
+        }
       }
     }
   }

@@ -75,6 +75,9 @@
 
 .checkbox {
   @apply w-[550px] sm:w-auto;
+  & > span {
+    @apply text-gray-400;
+  }
 }
 
 .vkButton {

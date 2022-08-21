@@ -79,17 +79,17 @@ const AuthPage: NextPage = () => {
         />
         <Button
           className={styles.authButton}
-          color="secondary"
+          theme="secondary_contained"
           size="large"
-          isDisabled={isLoading || isLoadingVK}
+          disabled={isLoading || isLoadingVK}
         >
           Войти
         </Button>
         <Button
           className={styles.vkButton}
-          color="blue"
+          theme="blue"
           size="large"
-          isDisabled={isLoading || isLoadingVK}
+          disabled={isLoading || isLoadingVK}
           onClick={handleLoginVK}
         >
           <Image src={vkIcon.src} width={25} height={25} alt="VK" />

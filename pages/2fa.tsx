@@ -11,7 +11,11 @@ import { Button, Text, Input } from "@/components/ui";
 import { Modal, styles as modalStyles } from "@/components/layouts/modalLayout";
 
 export const CodeEntryPage = () => {
-  const { register, handleSubmit } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
   const [login2fa, { data, isLoading }] = useLogin2faMutation();
   const { saveToken } = useActions();
   const router = useRouter();
@@ -24,6 +28,7 @@ export const CodeEntryPage = () => {
       toast.success("Успешная авторизация");
       router.push("/");
     }
+    // eslint-disable-next-line
   }, [data]);
 
   return (
@@ -34,8 +39,13 @@ export const CodeEntryPage = () => {
         </Text>
       </div>
       <form className="md:w-full" onSubmit={handleSubmit(handleSend)}>
-        <Input {...register("code")} className="mb-[20px] md:w-full" placeholder="Код" />
-        <Button className="mx-auto" color="secondary" size="large" isDisabled={isLoading}>
+        <Input
+          {...register("code", { required: true })}
+          className="mb-[20px] md:w-full"
+          placeholder="Код"
+          isError={!!errors?.code}
+        />
+        <Button className="mx-auto" theme="secondary_contained" size="large" disabled={isLoading}>
           Отправить
         </Button>
       </form>

@@ -24,7 +24,6 @@
   xs:text-[30px] mb-[30px] sm:mb-[20px];
 }
 
-// offers tab
 .offersButtons {
   @apply flex items-center flex-wrap md:overflow-x-auto md:flex-nowrap;
   & > button {
@@ -32,51 +31,6 @@
   }
 }
 
-.offersFilters {
-  @apply border-2 border-primary-400 relative flex items-center justify-between p-[10px] rounded-full bg-white-200 dark:bg-black-300 mb-[40px] dark:border-none;
-  @media (max-width: $breakpoint768) {
-    @apply flex-col justify-start items-start fixed top-0 bottom-0 left-0 bg-black-300 w-fit h-screen rounded-none border-none;
-    z-index: 999;
-    padding: 30px 10px;
-    transform: translateX(-100%);
-    transition: transform 0.25s;
-    &Active {
-      transform: translateX(0);
-    }
-  }
-}
-
-.offersSearch {
-  @apply mr-[10px] sm:mr-[0] sm:w-full sm:mb-[10px];
-  & > button {
-    @apply flex items-center justify-center w-[50px] h-[50px] rounded-full bg-black-400 sm:hidden;
-  }
-}
-
-.offersInput {
-  @apply absolute top-0 right-0 left-0 bottom-0 bg-black-300 text-white-100 placeholder:text-gray-400 font-medium text-[17px] rounded-full opacity-0 z-20;
-  padding: 15px 25px;
-  visibility: hidden;
-  transition: opacity 0.25s;
-  &Active {
-    @apply opacity-100;
-    visibility: visible;
-  }
-  @media (max-width: $breakpoint768) {
-    @apply w-full bg-black-400;
-    position: static;
-    visibility: visible;
-    opacity: 1;
-  }
-}
-
-.offersButton {
-  @apply hidden sm:flex sm:w-full sm:dark:text-white-100 mb-[30px];
-  & > svg {
-    margin-right: 15px;
-  }
-}
-
-.select {
-  @apply mr-[10px] w-[190px] lg:flex-grow sm:flex-grow-0 sm:mb-[10px] sm:w-[270px] sm:mr-0;
+.filter {
+  @apply mb-[40px] sm:mb-[30px];
 }

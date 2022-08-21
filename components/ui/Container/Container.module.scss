@@ -1,0 +1,35 @@
+@import "../../../assets/styles/_variables.scss";
+
+.container {
+  max-width: ($container + $containerPadding) + px;
+  @media (max-width: $breakpoint1450) {
+    max-width: 1300px;
+  }
+}
+
+.inner_container {
+  max-width: ($inner-container + $containerPadding) + px;
+  @media (max-width: $breakpoint1450) {
+    max-width: 1200px;
+  }
+}
+
+.container,
+.inner_container {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: $containerSideSpacing + px;
+  padding-right: $containerSideSpacing + px;
+  @media (max-width: $breakpoint992) {
+    max-width: 920px;
+  }
+  @media (max-width: $breakpoint768) {
+    max-width: 740px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  @media (max-width: $breakpoint480) {
+    max-width: none;
+  }
+}
