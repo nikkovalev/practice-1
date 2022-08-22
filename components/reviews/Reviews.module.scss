@@ -1,13 +1,16 @@
 @import "../../assets/styles/_variables.scss";
 
 .reviewsHeader {
-  @apply flex items-center mb-[30px] sm:items-start sm:flex-col sm:mb-[20px];
+  @apply flex items-center md:items-start md:flex-col;
+  &_normal {
+    @apply mb-[30px] md:mb-[20px];
+  }
   &_short {
-    @apply mb-[50px];
+    @apply mb-[50px] md:mb-[20px];
   }
 }
 .reviewHeaderLeft {
-  @apply flex items-center mr-[50px] sm:mr-0;
+  @apply flex items-center mr-[50px] md:mr-0;
   & > b,
   & > span {
     @apply text-secondary-400 dark:text-primary-400 font-bold;
@@ -25,7 +28,7 @@
   }
 }
 .reviewHeaderRight {
-  @apply flex items-center mt-[15px] sm:mt-[10px];
+  @apply flex items-center mt-[15px] md:mt-[10px];
   & > b {
     @apply inline-block font-bold text-gray-400 mr-[10px];
     font-size: 32px;
@@ -39,32 +42,22 @@
 
 // Review
 .review {
-  @apply flex items-start bg-white-200 dark:bg-black-300 p-[30px] mb-[10px] sm:p-[20px] sm:relative xs:flex-col xs:items-center;
-  border-radius: 10px;
+  @apply flex items-start bg-white-200 dark:bg-black-300 p-[30px] rounded-[10px] mb-[10px] md:p-[20px] md:relative xs:flex-col xs:items-center;
   &_short {
     @apply w-full;
   }
   &_normal {
-    width: calc(50% - 10px);
+    width: calc(50% - 5px);
     @media (max-width: $breakpoint1200) {
       width: 100%;
     }
   }
 }
 .reviewAvatar {
-  @media (max-width: $breakpoint768) {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-  }
-  @media (max-width: $breakpoint480) {
-    position: static;
-    top: 0;
-    left: 0;
-  }
+  @apply md:absolute md:top-[25px] md:left-[20px];
 }
 .reviewRight {
-  @apply ml-[15px] pt-[10px] sm:pt-0 sm:ml-0;
+  @apply ml-[15px] pt-[10px] md:pt-0 md:ml-0;
   & > p {
     @apply font-medium dark:text-white-100;
     font-size: 17px;
@@ -72,19 +65,19 @@
   }
 }
 .reviewInfo {
-  @apply flex items-center sm:flex-col;
+  @apply flex items-center flex-shrink mr-[10px] mb-[10px] md:flex-col md:pl-[55px];
   & > time {
     @apply font-medium text-gray-400;
     font-size: 15px;
   }
 }
 .reviewHeader {
-  @apply flex items-center justify-between mb-[20px] sm:mb-[20px] sm:pl-[55px] xs:pl-0 xs:mt-[20px];
+  @apply flex items-center justify-between flex-wrap mb-[10px] xs:flex-col xs:items-start;
   & > b {
-    @apply font-bold text-primary-400;
+    @apply font-bold text-primary-400 mb-[10px];
     font-size: 20px;
   }
-  @media (max-width: $breakpoint768) {
+  @media (max-width: $breakpoint992) {
     & > b {
       font-size: 18px;
     }
@@ -93,16 +86,18 @@
     @apply flex-col;
   }
 }
+.reviewStars {
+  @apply ml-[20px] md:ml-0 md:mt-[10px];
+}
 
 // Reviews more
 .reviewsMore {
-  @apply flex items-center justify-center cursor-pointer bg-white-200 dark:bg-black-300 min-h-[100px] sm:min-h-[70px];
-  border-radius: 10px;
+  @apply w-full flex items-center justify-center cursor-pointer bg-white-200 dark:bg-black-300 min-h-[100px] md:min-h-[70px] rounded-[10px];
   & > span {
-    @apply inline-block text-[24px] font-bold dark:text-white-100 ml-[15px] mr-[5px] sm:text-[20px];
+    @apply inline-block text-[24px] font-bold dark:text-white-100 ml-[15px] mr-[5px] md:text-[20px];
   }
   & > b {
-    @apply text-[24px] font-bold text-primary-400 dark:text-secondary-400 sm:text-[20px];
+    @apply text-[24px] font-bold text-primary-400 dark:text-secondary-400 md:text-[20px];
   }
   & > svg {
     transition: transform 0.5s;

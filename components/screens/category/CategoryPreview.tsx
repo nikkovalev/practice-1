@@ -1,9 +1,9 @@
-import React, { FC } from "react";
+import React, { FC, useMemo } from "react";
 import Head from "next/head";
 
 import { ICategory, IService } from "@/models/ICategory";
 
-import { Button, Container, Text, TextWithArrow } from "@/components/ui";
+import { Container, GroupButtons, Text, TextWithArrow } from "@/components/ui";
 import { Preview } from "@/components/layouts/previewLayout";
 
 import styles from "./Category.module.scss";
@@ -14,6 +14,11 @@ interface ICategoryPreview {
 }
 
 export const CategoryPreview: FC<ICategoryPreview> = ({ category, service }) => {
+  const buttons = useMemo<{ id: number; name: string }[]>(
+    () => category.services.map((s) => ({ id: s.id, name: s.name })),
+    [category]
+  );
+
   return (
     <Preview withMask={true} bg={category.banner ?? ""}>
       <Head>
@@ -29,26 +34,19 @@ export const CategoryPreview: FC<ICategoryPreview> = ({ category, service }) => 
           {service?.name} {category.name}
         </Text>
         <Text
-          className="w-[60%] md:w-full leading-[34px] sm:leading-[28px]"
+          className="w-[60%] lg:w-full leading-[34px] sm:leading-[28px]"
           as="p"
           size="l"
           color="gray"
         >
           {service?.description}
         </Text>
-        <div className={styles.buttons}>
-          {category.services.map((i) => (
-            <Button
-              key={i.id}
-              theme="black_contained"
-              as="link"
-              href={`/categories/${category.slug}?page=${i.id}`}
-              isActive={service?.id === i.id}
-            >
-              {i.name}
-            </Button>
-          ))}
-        </div>
+        <GroupButtons
+          className={styles.buttons}
+          items={buttons}
+          prefixPath={`/categories/${category.slug}?page=`}
+          active={service?.id}
+        />
       </Container>
     </Preview>
   );

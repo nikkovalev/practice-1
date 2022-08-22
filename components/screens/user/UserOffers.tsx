@@ -1,7 +1,7 @@
 import React from "react";
 import cn from "classnames";
 
-import { Button } from "@/components/ui";
+import { GroupButtons } from "@/components/ui";
 import { InfoIcon, LikeIcon } from "@/components/icons";
 import { Filter } from "@/components/filter";
 
@@ -9,23 +9,16 @@ import { styles as offersStyles } from "@/components/screens/profile/offers";
 import styles from "./User.module.scss";
 
 const buttons = [
-  { title: "Call of Duty", count: 1, active: true },
-  { title: "FIFA", count: 21 },
-  { title: "Battle.net", count: 5 },
-  { title: "Aion", count: 2 },
+  { id: 1, name: "Call of Duty", count: 1 },
+  { id: 2, name: "FIFA", count: 21 },
+  { id: 3, name: "Battle.net", count: 5 },
+  { id: 4, name: "Aion", count: 2 },
 ];
 
 export const UserOffers = () => {
   return (
     <div>
-      <div className={styles.offersButtons}>
-        {buttons.map(({ title, count, active }) => (
-          <Button key={title} theme="black_outlined" size="small" isActive={active}>
-            {title}
-            <b>({count})</b>
-          </Button>
-        ))}
-      </div>
+      <GroupButtons items={buttons} active={1} size="small" variant="black_outlined" />
       <Filter className={styles.filter} size="small" />
       <div className={offersStyles.itemWrapper}>
         <h3 className={offersStyles.itemTitle}>Буст</h3>

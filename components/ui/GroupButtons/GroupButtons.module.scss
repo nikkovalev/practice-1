@@ -1,0 +1,7 @@
+.buttons {
+  @apply flex items-center flex-wrap md:flex-nowrap md:overflow-x-auto;
+  & > a,
+  & > button {
+    @apply mr-[20px] mb-[20px] last:mr-0 md:mr-[10px] md:flex-shrink-0;
+  }
+}

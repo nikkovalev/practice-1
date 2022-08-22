@@ -15,10 +15,7 @@ export const Review: FC<{ size: "normal" | "short" }> = ({ size }) => {
         <div className={styles.reviewHeader}>
           <div className={styles.reviewInfo}>
             <time>10 мая, 2022 15:32 </time>
-            <Stars
-              className="ml-[20px] sm:ml-0 sm:mt-[5px] xs:mt-[10px] xs:mb-[10px]"
-              rating={4.0}
-            />
+            <Stars className={styles.reviewStars} rating={5.0} />
           </div>
           <b>FIFA, 500₽</b>
         </div>

@@ -7,7 +7,7 @@ import { IUser } from "@/models/IUser";
 import { Layout } from "@/components/layouts/Layout";
 import { UserPreview } from "@/components/userPreview/UserPreview";
 import { Chat } from "@/components/Chat/Chat";
-import { Button, Container } from "@/components/ui";
+import { Button, Container, GroupButtons, Text } from "@/components/ui";
 import { UserOffers } from "./UserOffers";
 import { Reviews } from "@/components/reviews/Reviews";
 import { Preview } from "@/components/layouts/previewLayout";
@@ -20,14 +20,22 @@ interface IUserPage {
   profile: IUser;
 }
 
+const buttons = [
+  {
+    id: "offers",
+    name: "Предложения",
+    count: 29,
+  },
+  {
+    id: "reviews",
+    name: "Отзывы",
+    count: 1554,
+  },
+];
+
 export const User: FC<IUserPage> = ({ profile }) => {
   const [activeTab, setActiveTab] = useState<"offers" | "reviews">("offers");
   const router = useRouter();
-
-  const handleChangeTab = (tab: "offers" | "reviews") => () => {
-    setActiveTab(tab);
-    router.replace(`/users/${profile.id}?page=${tab}`);
-  };
 
   useEffect(() => {
     const page = router.query?.page;
@@ -41,28 +49,16 @@ export const User: FC<IUserPage> = ({ profile }) => {
       </Preview>
       <Container variant="ic" className={styles.wrapper}>
         <div className={styles.left}>
-          <div className={styles.buttons}>
-            <Button
-              theme="black_contained"
-              isActive={activeTab === "offers"}
-              isLight={true}
-              onClick={handleChangeTab("offers")}
-            >
-              Предложения <b>(29)</b>
-            </Button>
-            <Button
-              theme="black_contained"
-              isActive={activeTab === "reviews"}
-              isLight={true}
-              onClick={handleChangeTab("reviews")}
-            >
-              Отзывы
-              <b>(1554)</b>
-            </Button>
-          </div>
-          <h1 className={styles.title}>
+          <GroupButtons
+            className={styles.tabs}
+            items={buttons}
+            active={activeTab}
+            isLight={true}
+            prefixPath={`/users/${profile.id}?page=`}
+          />
+          <Text className={styles.title} as="h1" size="xxl" weight={700}>
             {activeTab === "offers" ? "Все предложения" : "Все отзывы"}
-          </h1>
+          </Text>
           {activeTab === "offers" && <UserOffers />}
           {activeTab === "reviews" && <Reviews size="short" />}
         </div>

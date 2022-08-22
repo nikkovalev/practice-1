@@ -1,8 +1,5 @@
-.buttons {
-  @apply flex items-center flex-wrap mb-[20px];
-  & > button {
-    @apply mr-[20px] mb-[20px];
-  }
+.tabs {
+  @apply mb-[20px] md:mb-[10px];
 }
 
 .successIconWrapper {

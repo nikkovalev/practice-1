@@ -6,7 +6,7 @@
     @apply p-[25px] md:p-0;
   }
   &_small {
-    @apply relative p-[10px] pb-0 md:p-0;
+    @apply relative p-[10px] pb-0 md:p-0 border-2 border-primary-400 md:border-transparent dark:border-transparent;
   }
 }
 .left {
@@ -57,7 +57,7 @@
       @apply absolute top-1/2 right-[25px] -translate-y-1/2 pointer-events-none;
     }
     & > input {
-      @apply bg-white-200 dark:bg-black-400 border-2 border-solid border-primary-400 dark:border-transparent text-black-400 dark:text-white-100 xxs:w-full;
+      @apply bg-white-200 dark:bg-black-400 border-2 border-solid border-primary-400 dark:border-transparent text-black-400 dark:text-white-100 xxs:w-full md:bg-black-400 md:border-0 md:text-white-100;
       min-height: 50px;
       padding-right: 50px;
     }

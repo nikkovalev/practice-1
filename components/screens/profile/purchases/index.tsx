@@ -3,7 +3,7 @@ import cn from "classnames";
 import Image from "next/image";
 
 import { ProfileLayout } from "@/components/layouts/profileLayout";
-import { Button, TextWithCount } from "@/components/ui";
+import { GroupButtons } from "@/components/ui";
 
 import doneImage from "@/assets/images/ok.svg";
 
@@ -12,29 +12,22 @@ import styles from "./Purchases.module.scss";
 
 const buttons = [
   {
-    title: "FIFA",
+    id: 1,
+    name: "FIFA",
     count: 2,
-    active: true,
   },
 ];
 
 export const Purchases = () => {
   return (
-    <ProfileLayout title="Покупки" hideTitle={true}>
-      <TextWithCount
-        className="mb-[30px] md:mb-[20px]"
-        title="Покупки"
-        count="2"
-        countColor="primary"
-        isCircle={false}
+    <ProfileLayout title="Покупки" count={2} countColor="primary">
+      <GroupButtons
+        className={styles.tabs}
+        items={buttons}
+        variant="black_outlined"
+        active={1}
+        size="small"
       />
-      <div className={offerStyles.buttons}>
-        {buttons.map((button) => (
-          <Button key={button.title} theme="black_outlined" size="small" isActive={button.active}>
-            {button.title} <b>({button.count})</b>
-          </Button>
-        ))}
-      </div>
       <div className={offerStyles.itemWrapper}>
         <h3 className={offerStyles.itemTitle}>Буст</h3>
         <div className={offerStyles.items}>

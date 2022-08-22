@@ -12,3 +12,4 @@ export * from "./Link";
 export * from "./CircleButton";
 export * from "./Avatar";
 export * from "./Container";
+export * from "./GroupButtons";

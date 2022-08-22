@@ -1,5 +1,9 @@
 @import "../../../assets/styles/_variables.scss";
 
+.tabs {
+  @apply mb-[30px] md:mb-[10px];
+}
+
 .preview {
   @apply mb-[30px] lg:mb-0;
 }
@@ -12,23 +16,8 @@
   @apply w-1/2 mr-[10px] lg:w-full lg:mb-[50px];
 }
 
-.buttons {
-  @apply flex items-center pb-[50px] sm:overflow-x-auto sm:pb-[30px] sm:px-[10px] sm:-mx-[10px];
-  & > button {
-    @apply first:mr-[20px] sm:first:mr-[10px];
-  }
-}
-
 .title {
-  @apply text-black-400 dark:text-white-100 font-bold text-[52px] md:mb-[20px] md:text-[45px]
-  xs:text-[30px] mb-[30px] sm:mb-[20px];
-}
-
-.offersButtons {
-  @apply flex items-center flex-wrap md:overflow-x-auto md:flex-nowrap;
-  & > button {
-    @apply mr-[20px] mb-[20px] sm:mr-[10px] last:mr-0;
-  }
+  @apply mb-[30px] sm:mb-[20px];
 }
 
 .filter {

@@ -8,9 +8,8 @@ import { useUpdateProfileAvatarMutation } from "@/store/auth/authApi";
 
 import { Layout } from "@/components/layouts/Layout";
 import { UserPreview } from "@/components/userPreview/UserPreview";
-import { ProfileNavigation } from "./ProfileNavigation";
 import { Preview } from "../previewLayout";
-import { Container } from "@/components/ui";
+import { Container, GroupButtons, TextWithCount } from "@/components/ui";
 
 import profileBg from "@/assets/images/profile_bg.png";
 
@@ -18,14 +17,59 @@ import styles from "./ProfileLayout.module.scss";
 
 interface IProfileLayout {
   title: string;
+  text?: string;
+  count?: number;
+  countColor?: "primary" | "secondary";
   children: ReactNode;
   hideTitle?: boolean;
 }
 
-export const ProfileLayout: FC<IProfileLayout> = ({ children, title, hideTitle }) => {
+export const links = [
+  {
+    id: "/offers",
+    name: "Предложения",
+    count: 29,
+  },
+  {
+    id: "/sales",
+    name: "Продажи",
+    count: 4,
+  },
+  {
+    id: "/purchases",
+    name: "Покупки",
+
+    count: 2,
+  },
+  {
+    id: "/finance",
+    name: "Финансы",
+  },
+  {
+    id: "/reviews",
+    name: "Отзывы",
+    count: 14,
+  },
+  {
+    id: "/settings",
+    name: "Настройки",
+  },
+];
+
+export const ProfileLayout: FC<IProfileLayout> = ({
+  children,
+  title,
+  text = title,
+  count,
+  countColor,
+  hideTitle,
+}) => {
+  // Store
   const { isAuth, user } = useAppSelector((state) => state.auth);
+  // Request
   const [updateProfileAvatar, { data: newAvatar }] = useUpdateProfileAvatarMutation();
   const { saveAvatar } = useActions();
+  // Router
   const router = useRouter();
 
   useEffect(() => {
@@ -46,10 +90,20 @@ export const ProfileLayout: FC<IProfileLayout> = ({ children, title, hideTitle }
     <Layout title={title} withImage={true}>
       <Preview className={styles.preview} bg={profileBg.src}>
         <UserPreview user={user} updateProfileAvatar={updateProfileAvatar} isOwner={true} />
-        <ProfileNavigation />
+        <Container variant="ic">
+          <GroupButtons className={styles.buttons} items={links} active={router.pathname} />
+        </Container>
       </Preview>
       <Container variant="ic">
-        {!hideTitle && <h1 className={styles.title}>{title}</h1>}
+        {!hideTitle && (
+          <TextWithCount
+            className="mb-[30px] md:mb-[20px]"
+            title={text}
+            count={count}
+            countColor={countColor}
+            isCircle={false}
+          />
+        )}
         {children}
       </Container>
     </Layout>

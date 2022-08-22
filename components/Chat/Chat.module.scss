@@ -5,7 +5,7 @@
   @apply min-w-fit bg-black-300 md:overflow-hidden;
   border-radius: 10px;
   &_normal {
-    @apply w-[650px] lg:w-full;
+    @apply w-[650px] lg:w-full flex-shrink-0;
     height: 500px;
   }
   &_global,

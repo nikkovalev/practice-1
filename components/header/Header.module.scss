@@ -222,6 +222,9 @@
       font-size: 17px;
       margin-right: 7px;
     }
+    & > svg {
+      @apply flex-shrink-0;
+    }
   }
   & > b {
     @apply inline-block font-bold text-secondary-400;
@@ -264,7 +267,7 @@
 
 .headerUserPopperList {
   & > li {
-    margin-bottom: 15px;
+    @apply mb-[15px] lg:mb-[20px];
     &:last-child {
       margin-bottom: 0;
     }

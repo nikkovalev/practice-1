@@ -45,16 +45,16 @@
     font-size: 18px;
   }
   &l {
-    @apply text-[20px] md:text-[18px];
+    @apply text-[20px] md:text-[17px];
   }
   &xl {
     @apply text-[32px] md:text-[24px];
   }
   &xxl {
-    @apply text-[52px] md:text-[32px];
+    @apply text-[52px] md:text-[30px] leading-[130%];
   }
   &vl {
-    @apply text-[62px] md:text-[45px] sm:text-[30px];
+    @apply text-[62px] lg:text-[45px] sm:text-[30px];
   }
 }
 
@@ -76,8 +76,11 @@
     @apply inline-block font-bold text-gray-400 leading-[20px] text-[17px] ml-[15px];
     transition: color 0.25s;
   }
-  & > svg > path {
-    transition: stroke 0.25s;
+  & > svg {
+    @apply flex-shrink-0;
+    & > path {
+      transition: stroke 0.25s;
+    }
   }
   &:hover {
     & > b {

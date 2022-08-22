@@ -2,10 +2,7 @@
 
 // Buttons
 .buttons {
-  @apply flex items-center flex-wrap mt-[40px] md:mt-[30px] pb-[30px] md:flex-nowrap md:overflow-x-auto md:pb-0;
-  & > a {
-    @apply mr-[20px] mb-[20px] text-white-100 last:mr-0 md:mr-[10px];
-  }
+  @apply mt-[40px] pb-[30px] md:mt-[30px] md:pb-0;
 }
 
 // Filter

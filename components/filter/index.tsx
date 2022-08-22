@@ -108,7 +108,7 @@ export const Filter: FC<IFilter> = ({
             <FilterOption key={f.id} filter={f} handleChangeOption={handleChangeOption} />
           ))}
         </div>
-        <div className={styles.icons}>
+        <div className={cn(styles.icons, styles[`icons_${size}`])}>
           {size === "default" && (
             <div className={styles.textWithIcon}>
               <ArrowIcon variant="two" />

@@ -11,7 +11,7 @@ import styles from "./Reviews.module.scss";
 export const Reviews: FC<{ size?: "normal" | "short" }> = ({ size = "normal" }) => {
   return (
     <div>
-      <div className={cn(styles.reviewsHeader, { [styles.reviewHeader_short]: size === "short" })}>
+      <div className={cn(styles.reviewsHeader, styles[`reviewsHeader_${size}`])}>
         <div className={styles.reviewHeaderLeft}>
           <b>1554</b>
           <span>отзыва</span>
@@ -21,13 +21,13 @@ export const Reviews: FC<{ size?: "normal" | "short" }> = ({ size = "normal" }) 
           <Stars rating={5.0} />
         </div>
       </div>
-      <div className={styles.reviewsList}>
+      <div className={cn({ [styles.reviewsList_normal]: size === "normal" })}>
         <Review size={size} />
-        <div className={styles.reviewsMore}>
+        <button className={styles.reviewsMore}>
           <RotateIcon />
           <span>Еще</span>
           <b>25 отзывов</b>
-        </div>
+        </button>
       </div>
     </div>
   );

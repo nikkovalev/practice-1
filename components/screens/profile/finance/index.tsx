@@ -19,8 +19,7 @@ const cards = [
 
 export const Finance = () => {
   return (
-    <ProfileLayout title="Баланс" hideTitle={true}>
-      <TextWithCount className="mb-[30px] md:mb-[20px]" title="На балансе" isCircle={false} />
+    <ProfileLayout title="Баланс" text="На балансе">
       <div className={styles.top}>
         <div className={cn(styles.item, styles.item_yellow)}>
           <b>1500₽</b>

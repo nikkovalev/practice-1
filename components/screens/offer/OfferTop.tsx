@@ -28,7 +28,7 @@ export const OfferTop: FC<IOfferTop> = ({ category, offer }) => {
           <TextWithArrow href={`/categories/${category.slug}?page=${service?.id}`}>
             {service?.name} {category.name}
           </TextWithArrow>
-          <Text className="mb-[30px] md:mb-[10px]" as="h1" weight={700} size="vl">
+          <Text className="mb-[30px] md:mb-[20px]" as="h1" weight={700} size="vl">
             FUT Champions
           </Text>
           <div className={styles.topInfo}>
@@ -45,12 +45,7 @@ export const OfferTop: FC<IOfferTop> = ({ category, offer }) => {
               </div>
             ))}
           </div>
-          <Text
-            className="w-[60%] md:w-full leading-[34px] sm:leading-[28px]"
-            as="p"
-            size="l"
-            color="gray"
-          >
+          <Text className={styles.description} as="p" size="l" color="gray">
             {offer.description}
           </Text>
           <div className={styles.topActions}>
@@ -66,7 +61,7 @@ export const OfferTop: FC<IOfferTop> = ({ category, offer }) => {
             <Button theme="secondary_contained">Купить</Button>
           </div>
         </div>
-        {isAuth && user?.id !== offer?.seller?.id && <Chat variant="normal" />}
+        {<Chat className={styles.chat} variant="normal" />}
       </Container>
     </Preview>
   );

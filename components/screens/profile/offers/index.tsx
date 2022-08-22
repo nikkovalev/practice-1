@@ -3,7 +3,7 @@ import cn from "classnames";
 import Image from "next/image";
 
 import { ProfileLayout } from "@/components/layouts/profileLayout";
-import { Button, Text, CircleButton } from "@/components/ui";
+import { Button, Text, CircleButton, GroupButtons } from "@/components/ui";
 
 import { EditIcon } from "@/components/icons/EditIcon";
 import stopIcon from "@/assets/images/stop.svg";
@@ -13,23 +13,16 @@ import removeIcon from "@/assets/images/remove.svg";
 import styles from "./Offers.module.scss";
 
 const buttons = [
-  { title: "Call of Duty", count: 1 },
-  { title: "FIFA", count: 21, active: true },
-  { title: "Battle.net", count: 5 },
-  { title: "Aion", count: 2 },
+  { id: 1, name: "Call of Duty", count: 1 },
+  { id: 2, name: "FIFA", count: 21 },
+  { id: 3, name: "Battle.net", count: 5 },
+  { id: 4, name: "Aion", count: 2 },
 ];
 
 const Offers = () => {
   return (
     <ProfileLayout title="Ваши предложения">
-      <div className={styles.buttons}>
-        {buttons.map((button) => (
-          <Button key={button.title} theme="black_outlined" size="small" isActive={button.active}>
-            {button.title}
-            <b>({button.count})</b>
-          </Button>
-        ))}
-      </div>
+      <GroupButtons items={buttons} variant="black_outlined" active={2} size="small" />
       <div>
         <Button
           className={styles.addButton}

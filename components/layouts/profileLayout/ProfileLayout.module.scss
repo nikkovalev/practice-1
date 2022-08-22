@@ -5,26 +5,11 @@
 }
 
 .buttons {
-  @apply flex items-center flex-wrap md:overflow-x-auto md:flex-nowrap pb-[30px] md:pb-0;
-}
-
-.button {
-  @apply mr-[20px] last:mr-0 mb-[20px] md:flex-shrink-0 md:px-[25px] text-white-100 md:mr-[10px];
-  &:nth-child(5n) > b {
-    color: $secondary-400;
-  }
-}
-
-.title {
-  @apply font-bold dark:text-white-100 mb-[30px] sm:mb-[20px];
-  font-size: 52px;
-  line-height: 67.6px;
-  @media (max-width: $breakpoint992) {
-    font-size: 45px;
-    line-height: 55px;
-  }
-  @media (max-width: $breakpoint480) {
-    font-size: 30px;
-    line-height: 39px;
+  @apply pb-[30px] md:pb-0;
+  & > a {
+    @apply md:px-[25px];
+    &:nth-child(5n) > b {
+      color: $secondary-400;
+    }
   }
 }
