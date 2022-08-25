@@ -12,7 +12,7 @@ export const Reviews: FC<{ size?: "normal" | "short" }> = ({ size = "normal" }) 
   return (
     <div>
       <div className={cn(styles.reviewsHeader, styles[`reviewsHeader_${size}`])}>
-        <div className={styles.reviewHeaderLeft}>
+        <div className={cn(styles.reviewHeaderLeft, styles[`reviewHeaderLeft_${size}`])}>
           <b>1554</b>
           <span>отзыва</span>
         </div>

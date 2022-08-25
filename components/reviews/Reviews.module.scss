@@ -14,16 +14,21 @@
   & > b,
   & > span {
     @apply text-secondary-400 dark:text-primary-400 font-bold;
-    font-size: 52px;
-    line-height: 130%;
   }
   & > span {
     @apply inline-block text-black-400 dark:text-white-100 ml-[10px];
   }
-  @media (max-width: $breakpoint480) {
+  &_normal {
     & > b,
     & > span {
-      font-size: 30px;
+      @apply text-[52px] xs:text-[30px];
+      line-height: 130%;
+    }
+  }
+  &_short {
+    & > b,
+    & > span {
+      @apply text-[40px] md:text-[30px];
     }
   }
 }
