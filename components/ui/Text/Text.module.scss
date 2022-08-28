@@ -1,4 +1,4 @@
-.color_ {
+.c_ {
   &white {
     @apply text-white-100;
   }
@@ -16,57 +16,108 @@
   }
 }
 
-.weight_ {
+.w_ {
   &400 {
-    font-weight: 400;
+    @apply font-normal;
   }
   &500 {
-    font-weight: 500;
+    @apply font-medium;
   }
   &600 {
-    font-weight: 600;
+    @apply font-semibold;
   }
   &700 {
-    font-weight: 700;
+    @apply font-bold;
   }
 }
 
-.size_ {
+.s_ {
+  &d {
+    @apply text-[16px];
+  }
   &xxs {
-    font-size: 15px;
+    @apply text-[15px];
   }
   &xs {
-    font-size: 16px;
+    @apply text-[17px];
   }
   &s {
-    font-size: 17px;
+    @apply text-[18px] md:text-[17px];
   }
   &m {
-    font-size: 18px;
+    @apply text-[20px] md:text-[18px];
   }
   &l {
-    @apply text-[20px] md:text-[17px];
+    @apply text-[24px];
   }
   &xl {
     @apply text-[32px] md:text-[24px];
   }
   &xxl {
-    @apply text-[52px] md:text-[30px] leading-[130%];
+    @apply text-[52px] md:text-[30px];
   }
   &vl {
-    @apply text-[62px] lg:text-[45px] sm:text-[30px];
+    @apply text-[62px] lg:text-[52px] md:text-[30px];
   }
 }
 
-.align_ {
+.a_ {
   &center {
-    text-align: center;
+    @apply text-center;
   }
   &left {
-    text-align: left;
+    @apply text-left;
   }
   &right {
-    text-align: right;
+    @apply text-right;
+  }
+}
+
+.h_ {
+  &p {
+    @apply hover:text-primary-400;
+    transition: color 0.25s;
+  }
+  &s {
+    @apply hover:text-secondary-400;
+    transition: color 0.25s;
+  }
+  &m {
+    @apply hover:text-primary-400 dark:hover:text-secondary-400;
+    transition: color 0.25s;
+  }
+}
+
+.l_ {
+  &38 {
+    @apply leading-[38px] md:leading-[29px];
+  }
+  &24 {
+    @apply leading-[24px] md:leading-[22px];
+  }
+  &29 {
+    @apply leading-[29px];
+  }
+  &170 {
+    @apply leading-[170%];
+  }
+  &150 {
+    @apply leading-[150%];
+  }
+  &130 {
+    @apply leading-[130%];
+  }
+  &120 {
+    @apply leading-[120%];
+  }
+  &20 {
+    @apply leading-[20px];
+  }
+  &19 {
+    @apply leading-[19px];
+  }
+  &22 {
+    @apply leading-[22px] md:leading-[20px];
   }
 }
 

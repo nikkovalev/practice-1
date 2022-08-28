@@ -21,10 +21,8 @@ export const HomeAdvantages = () => {
         >
           {advantages.map((advantage, idx) => (
             <div key={advantage.title} className={styles.advantage}>
-              <Text as="b" weight={700}>
-                {idx + 1}
-              </Text>
-              <Text as="span" weight={700} color="black">
+              <Text as="b">{idx + 1}</Text>
+              <Text as="span" weight={700} size="l" color="black">
                 {advantage.title}
               </Text>
               <p dangerouslySetInnerHTML={{ __html: advantage.text }} />

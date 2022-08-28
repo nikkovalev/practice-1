@@ -3,12 +3,12 @@ import cn from "classnames";
 import Image from "next/image";
 
 import { ProfileLayout } from "@/components/layouts/profileLayout";
-import { Button, Text, TextWithCount } from "@/components/ui";
+import { Button, Text } from "@/components/ui";
 import { Card } from "./Card";
 
 import masterCardIcon from "@/assets/images/master_card.svg";
 import webmoneyIcon from "@/assets/images/webmoney.svg";
-import plusIcon from "@/assets/images/plus.svg";
+import { PlusIcon } from "@/components/icons";
 
 import styles from "./Finance.module.scss";
 
@@ -33,13 +33,13 @@ export const Finance = () => {
         <Button theme="secondary_contained">Вывести средства</Button>
       </div>
       <div className={styles.middle}>
-        <Text as="h4" color="gray" size="xl" weight={700}>
+        <Text as="h4" color="gray" size="xl" leading="130">
           Карты и кошельки
         </Text>
         <Button className={styles.middleButton} theme="primary_outlined">
           <span>Добавить счет</span>
           <div className={styles.middleIcon}>
-            <Image src={plusIcon.src} width={20} height={20} alt="Add card" />
+            <PlusIcon />
           </div>
         </Button>
       </div>

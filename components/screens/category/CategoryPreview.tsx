@@ -30,15 +30,10 @@ export const CategoryPreview: FC<ICategoryPreview> = ({ category, service }) => 
         <TextWithArrow href={`/?category=${category.slug}`}>
           В каталог {category.name}
         </TextWithArrow>
-        <Text className="mb-[30px] md:mb-[10px]" as="h1" weight={700} size="vl">
+        <Text className="mb-[30px] md:mb-[10px]" as="h1" size="vl">
           {service?.name} {category.name}
         </Text>
-        <Text
-          className="w-[60%] lg:w-full leading-[34px] sm:leading-[28px]"
-          as="p"
-          size="l"
-          color="gray"
-        >
+        <Text className="w-[60%] lg:w-full" as="p" color="gray">
           {service?.description}
         </Text>
         <GroupButtons

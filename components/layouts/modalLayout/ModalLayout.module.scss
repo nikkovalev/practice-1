@@ -36,12 +36,6 @@
   @apply mb-[50px] md:mb-[30px];
   &_flex {
     @apply flex items-end justify-center xs:flex-col xs:items-center;
-    & > a {
-      transition: color 0.25s;
-      &:hover {
-        color: darken($primary-400, 5);
-      }
-    }
   }
 }
 

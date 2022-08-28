@@ -15,13 +15,13 @@ export const HomeService: FC<IHomeService> = ({ service }) => {
   return (
     <div key={service.title} className={styles.service}>
       <div className={styles.serviceLeft}>
-        <Text className={styles.link} size="xl" color="black" weight={700} as="a">
+        <Text as="a" color="black" size="xl" weight={700}>
           {service.title}
         </Text>
         <ul className={styles.serviceList}>
           {service.items.map((i) => (
             <li key={i.text}>
-              <Text className={styles.link} as="a" href={i.path} weight={500} color="gray" size="l">
+              <Text as="a" href={i.path} color="gray" size="m">
                 {i.text}
               </Text>
             </li>

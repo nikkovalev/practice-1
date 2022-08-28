@@ -34,7 +34,7 @@ export const CodeEntryPage = () => {
   return (
     <Modal title="Подтверждение аккаунта" hideClose={true}>
       <div className={modalStyles.top}>
-        <Text as="h1" size="xxl" align="center" weight={700}>
+        <Text as="h1" align="center">
           Подтверждение аккаунта
         </Text>
       </div>

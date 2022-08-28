@@ -56,11 +56,11 @@ export const User: FC<IUserPage> = ({ profile }) => {
             isLight={true}
             prefixPath={`/users/${profile.id}?page=`}
           />
-          <Text className={styles.title} as="h1" size="xxl" weight={700}>
+          <Text className={styles.title} as="h1" color="black">
             {activeTab === "offers" ? "Все предложения" : "Все отзывы"}
           </Text>
           {activeTab === "offers" && <UserOffers />}
-          {activeTab === "reviews" && <Reviews size="short" />}
+          {activeTab === "reviews" && <Reviews size="small" />}
         </div>
         <Chat variant="normal" inputColor="gray" />
       </Container>

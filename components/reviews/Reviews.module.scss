@@ -5,7 +5,7 @@
   &_normal {
     @apply mb-[30px] md:mb-[20px];
   }
-  &_short {
+  &_small {
     @apply mb-[50px] md:mb-[20px];
   }
 }
@@ -25,7 +25,7 @@
       line-height: 130%;
     }
   }
-  &_short {
+  &_small {
     & > b,
     & > span {
       @apply text-[40px] md:text-[30px];
@@ -48,7 +48,7 @@
 // Review
 .review {
   @apply flex items-start bg-white-200 dark:bg-black-300 p-[30px] rounded-[10px] mb-[10px] md:p-[20px] md:relative xs:flex-col xs:items-center;
-  &_short {
+  &_small {
     @apply w-full;
   }
   &_normal {

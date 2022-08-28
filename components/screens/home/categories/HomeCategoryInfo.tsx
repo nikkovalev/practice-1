@@ -33,14 +33,7 @@ export const HomeCategoryInfo: FC<IHomeCategoryInfo> = ({
       key={service.id}
     >
       <div>
-        <Text
-          className={cn("text-ellipsis", styles.link)}
-          color="gray"
-          size="l"
-          as="a"
-          weight={500}
-          href={`/categories/${category.slug}?page=${service.id}`}
-        >
+        <Text color="gray" size="m" as="a" href={`/categories/${category.slug}?page=${service.id}`}>
           {service.name}
         </Text>
         {isAuth && (

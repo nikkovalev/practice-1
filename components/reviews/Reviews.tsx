@@ -8,11 +8,16 @@ import { RotateIcon } from "../icons";
 
 import styles from "./Reviews.module.scss";
 
-export const Reviews: FC<{ size?: "normal" | "short" }> = ({ size = "normal" }) => {
+interface IReviews {
+  size?: "normal" | "small";
+  textSize?: "normal" | "small";
+}
+
+export const Reviews: FC<IReviews> = ({ size = "normal", textSize = size }) => {
   return (
     <div>
       <div className={cn(styles.reviewsHeader, styles[`reviewsHeader_${size}`])}>
-        <div className={cn(styles.reviewHeaderLeft, styles[`reviewHeaderLeft_${size}`])}>
+        <div className={cn(styles.reviewHeaderLeft, styles[`reviewHeaderLeft_${textSize}`])}>
           <b>1554</b>
           <span>отзыва</span>
         </div>

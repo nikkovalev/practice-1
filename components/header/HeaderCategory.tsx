@@ -16,20 +16,14 @@ export const HeaderCategory: FC<IHeaderCategory> = ({ category }) => {
           className={styles.headerCategoryImage}
           style={{ backgroundImage: `url(${category.icon}` }}
         />
-        <Text as="a" href={`/categories/${category.slug}`} color="white" weight={700} size="xl">
+        <Text as="a" href={`/categories/${category.slug}`} weight={700} size="xl">
           {category.name}
         </Text>
       </div>
       <ul className={styles.headerCategoryList}>
         {category.services.map(({ id, name }) => (
           <li key={id}>
-            <Text
-              as="a"
-              href={`/categories/${category.slug}?page=${id}`}
-              size="l"
-              color="white"
-              weight={500}
-            >
+            <Text as="a" href={`/categories/${category.slug}?page=${id}`} size="m">
               {name}
             </Text>
           </li>

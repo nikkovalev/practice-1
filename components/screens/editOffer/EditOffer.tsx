@@ -163,7 +163,7 @@ export const EditOffer: FC<IEditOffer> = ({ initial, categories }) => {
       handleClose={handleClose}
     >
       <div className={modalStyles.top}>
-        <Text as="h1" size="xxl" align="center" weight={700}>
+        <Text as="h1" align="center">
           {!!initial ? "Измените предложение" : "Добавьте предложение"}
         </Text>
       </div>
@@ -219,7 +219,7 @@ export const EditOffer: FC<IEditOffer> = ({ initial, categories }) => {
           placeholder="Подробное описание"
         />
         <div className={styles.radioWrapper}>
-          <Text color="gray" size="m">
+          <Text color="gray" size="s">
             Исчисляемое
           </Text>
           <button className={styles.radio} onClick={handleChangeCountable}>

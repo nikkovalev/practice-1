@@ -2,6 +2,7 @@ export * from "./Button";
 export * from "./Text";
 export * from "./Text/TextWithCount";
 export * from "./Text/TextWithArrow";
+export * from "./Text/TextEmpty";
 export * from "./Checkbox";
 export * from "./Counter";
 export * from "./Input";

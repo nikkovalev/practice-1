@@ -86,10 +86,6 @@
   @apply w-[700px] flex items-center justify-between flex-wrap sm:hidden xl:mt-[30px];
   & > li {
     @apply w-1/4 mb-[15px] xl:text-center;
-    & > a {
-      @apply hover:text-secondary-400;
-      transition: color 0.25s;
-    }
   }
 }
 
@@ -101,7 +97,6 @@
 .footerTexts {
   @apply flex items-center lg:mb-[30px] sm:flex-col;
   & > a {
-    @apply first:inline-block first:mr-[35px] hover:text-secondary-400 sm:first:mr-0 sm:first:mb-[15px];
-    transition: color 0.25s;
+    @apply first:inline-block first:mr-[35px] sm:first:mr-0 sm:first:mb-[15px];
   }
 }

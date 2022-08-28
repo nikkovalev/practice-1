@@ -18,10 +18,10 @@ const VKAuth: NextPage = () => {
   return (
     <Modal title="Успешный вход через VK" hideClose={true}>
       <div className="text-center">
-        <Text className="block mb-[20px]" as="h1" size="xxl" weight={700}>
+        <Text className="block mb-[20px]" as="h1">
           Вы успешно вошли в аккаунт
         </Text>
-        <Text as="a" href="/" color="secondary" size="l" className="hover:underline">
+        <Text className="hover:underline" as="a" href="/" color="secondary" size="m" hover="p">
           Перейти на главную
         </Text>
       </div>

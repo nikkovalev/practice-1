@@ -13,9 +13,9 @@ import { RotateIcon } from "@/components/icons";
 import { Layout } from "@/components/layouts/Layout";
 import { CategoryPreview } from "./CategoryPreview";
 import { Filter } from "@/components/filter";
+import { Container, TextEmpty } from "@/components/ui";
 
 import styles from "./Category.module.scss";
-import { Container } from "@/components/ui";
 
 interface ICategoryProps {
   category: ICategory;
@@ -60,9 +60,7 @@ export const Category: FC<ICategoryProps> = ({ category }) => {
             </div>
           )}
           {!isLoading && !offers?.length && (
-            <h3 className="mx-auto text-2xl text-primary-400 dark:text-secondary-400">
-              Нет предложений.
-            </h3>
+            <TextEmpty className="mx-auto">Нет предложений.</TextEmpty>
           )}
           {offers?.map((offer) => (
             <CategoryOffer

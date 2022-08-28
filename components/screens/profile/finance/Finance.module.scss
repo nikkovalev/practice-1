@@ -29,8 +29,13 @@
 
 .middleButton {
   @apply sm:w-[60px] sm:h-[60px] sm:p-0;
-  &:hover > span {
-    @apply text-white-100;
+  &:hover {
+    > span {
+      @apply text-white-100;
+    }
+    & svg path {
+      @apply fill-white-100 stroke-white-100;
+    }
   }
   & > span {
     @apply sm:hidden text-primary-400 text-[18px] font-bold;

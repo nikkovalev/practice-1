@@ -8,11 +8,6 @@
   widows: 1;
 }
 
-.link {
-  @apply hover:text-primary-400 dark:hover:text-secondary-400 cursor-pointer;
-  transition: color 0.25s;
-}
-
 // Texts
 .title {
   @apply absolute top-[90px] text-[240px] -translate-x-[10px] font-bold text-primary-400 text-opacity-20 dark:text-black-300 dark:text-opacity-100 lg:top-[50px] lg:translate-x-[10px] xxs:top-[45px];
@@ -130,6 +125,9 @@
       visibility: hidden;
       transition: opacity 0.5s;
     }
+    & > a {
+      word-break: break-all;
+    }
   }
   &_icon > div {
     &:hover > button {
@@ -240,7 +238,7 @@
     pointer-events: none;
   }
   & > span {
-    @apply relative inline-block mb-[15px] text-[24px] dark:text-white-100 z-[2];
+    @apply relative inline-block mb-[15px] dark:text-white-100 z-[2];
   }
   & > p {
     @apply text-[17px] text-gray-400 font-normal;
@@ -294,9 +292,6 @@
     font-size: 75px;
     line-height: 90px;
   }
-}
-.aboutText {
-  line-height: 170%;
 }
 .aboutList {
   @apply flex justify-center items-center my-[50px] lg:flex-wrap lg:my-[30px] sm:mb-0;

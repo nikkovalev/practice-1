@@ -68,10 +68,10 @@ const AuthPage: NextPage = () => {
     <Modal title="Зарегистрироваться" handleClose={handleClose}>
       <form className={styles.form} onSubmit={handleSubmit(onRegister)}>
         <div className={cn(styles.top, styles.top_flex)}>
-          <Text as="a" href="/auth" color="primary" size="xl" weight={700}>
+          <Text as="a" href="/auth" color="primary" size="xl" weight={700} hover="s" leading="130">
             Войти
           </Text>
-          <Text className={styles.registerTitle} as="h1" size="xxl" weight={700}>
+          <Text className={styles.registerTitle} as="h1" leading="120">
             Зарегистрироваться
           </Text>
         </div>

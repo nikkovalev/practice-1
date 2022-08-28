@@ -38,14 +38,7 @@ export const HomeCategory: FC<IHomeCategory> = ({
     <div id={category.slug} className={styles.category}>
       <div className={styles.categoryHeader} onClick={handleOpen}>
         <div className={styles.categoryImage} style={{ backgroundImage: url(category.icon) }} />
-        <Text
-          className={styles.link}
-          as="a"
-          size="xl"
-          color="black"
-          weight={700}
-          href={`/categories/${category.slug}`}
-        >
+        <Text as="a" size="xl" color="black" weight={700} href={`/categories/${category.slug}`}>
           {category.name}
         </Text>
         <button

@@ -19,7 +19,7 @@ export const TextWithCount: FC<ITextWithCount> = ({
   isCircle = true,
 }) => (
   <div className={cn("mt-[50px] flex items-start md:mb-[20px] md:mt-[30px]", className)}>
-    <Text as="h1" className="dark:text-white-100" size="xxl" weight={700} color="black">
+    <Text as="h1" className="dark:text-white-100" size="xxl" color="black">
       {title}
     </Text>
     {!!count && (
@@ -30,7 +30,7 @@ export const TextWithCount: FC<ITextWithCount> = ({
             : "ml-[15px]"
         }
       >
-        <Text size={isCircle ? "l" : "xxl"} weight={700} color={isCircle ? "white" : countColor}>
+        <Text size={isCircle ? "m" : "xxl"} as="b" color={isCircle ? "white" : countColor}>
           {count}
         </Text>
       </div>

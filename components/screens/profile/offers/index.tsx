@@ -3,7 +3,7 @@ import cn from "classnames";
 import Image from "next/image";
 
 import { ProfileLayout } from "@/components/layouts/profileLayout";
-import { Button, Text, CircleButton, GroupButtons } from "@/components/ui";
+import { Button, CircleButton, GroupButtons, TextEmpty } from "@/components/ui";
 
 import { EditIcon } from "@/components/icons/EditIcon";
 import stopIcon from "@/assets/images/stop.svg";
@@ -33,9 +33,7 @@ const Offers = () => {
         >
           Добавить предложение
         </Button>
-        <Text size="xl" className="dark:text-secondary-400" color="primary">
-          Здесь пока ничего нет
-        </Text>
+        <TextEmpty />
         {/* <div>
           <div className={styles.itemWrapper}>
             <h3 className={styles.itemTitle}>Буст</h3>

@@ -24,7 +24,7 @@ export const HomeSocial: FC<IHomeSocial> = ({ social }) => {
       <ul className={styles.socialList}>
         {social.items.map((i) => (
           <li key={i.text}>
-            <Text className={styles.link} as="a" href={i.path} weight={500} color="gray" size="l">
+            <Text className={styles.link} as="a" href={i.path} color="gray" size="m">
               {i.text}
             </Text>
           </li>

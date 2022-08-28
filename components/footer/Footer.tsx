@@ -21,7 +21,7 @@ export const Footer: FC<{ isLight: boolean }> = ({ isLight }) => {
               <li className={styles[`footerSocial_${item.color}`]} key={`${item.name}_${idx}`}>
                 <Link href={item.href}>
                   <Image src={item.icon} width={50} height={50} alt={item.name} />
-                  <Text as="b" size="xl" weight={700}>
+                  <Text as="b" size="xl">
                     {item.name}
                   </Text>
                 </Link>
@@ -53,7 +53,7 @@ export const Footer: FC<{ isLight: boolean }> = ({ isLight }) => {
           <ul className={styles.footerList}>
             {list.map((item) => (
               <li key={item.title}>
-                <Text as="a" href={item.path} size="m" color="gray">
+                <Text as="a" href={item.path} size="s" color="gray">
                   {item.title}
                 </Text>
               </li>
@@ -61,14 +61,14 @@ export const Footer: FC<{ isLight: boolean }> = ({ isLight }) => {
           </ul>
         </div>
         <div className={styles.footerBottom}>
-          <Text as="span" color="gray" weight={500}>
+          <Text as="span" color="gray">
             © 2022 YaonClub. Твоя торговая площадка цифровых товаров
           </Text>
           <div className={styles.footerTexts}>
-            <Text as="a" href="#" color="gray" weight={500}>
+            <Text as="a" href="#" color="gray">
               Пользовательское соглашение
             </Text>
-            <Text as="a" href="#" color="gray" weight={500}>
+            <Text as="a" href="#" color="gray">
               Политика конфенденциальности
             </Text>
           </div>

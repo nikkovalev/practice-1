@@ -24,10 +24,10 @@ export const Money = () => {
 
   return (
     <Modal title="Вывод средств" handleClose={handleClose}>
-      <Text className={styles.title} as="h1" size="xxl" weight={700} align="center">
+      <Text className={styles.title} as="h1" align="center">
         Вывод средств
       </Text>
-      <Text className={styles.text} color="gray" align="center">
+      <Text className={styles.text} color="gray" align="center" leading="150">
         Россия: комиссия 3%, но не менее 2.4 €<br />
         Украина: комиссия 3%, но не менее 2.4 €<br />
         Другие страны: комиссия 3%, но не менее 2.4 €

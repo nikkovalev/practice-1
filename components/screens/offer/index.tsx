@@ -19,7 +19,7 @@ export const Offer: FC<IOfferPage> = ({ category, offer }) => {
       <OfferTop category={category} offer={offer} />
       <Container variant="ic">
         <div className="w-1/2 lg:w-full pt-[30px]">
-          <Reviews size="short" />
+          <Reviews size="small" textSize="normal" />
         </div>
       </Container>
     </Layout>

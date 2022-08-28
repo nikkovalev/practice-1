@@ -5,7 +5,7 @@ import { ICategory } from "@/models/ICategory";
 import { useFetchLikedServicesQuery, useLikeServiceMutation } from "@/store/auth/authApi";
 
 import { Layout } from "@/components/layouts/Layout";
-import { Container, Text, TextWithCount } from "@/components/ui";
+import { Container, TextEmpty, TextWithCount } from "@/components/ui";
 import { HomeCategory } from "../home/categories/HomeCategory";
 import { Loader } from "@/components/loader/Loader";
 
@@ -29,11 +29,7 @@ export const Favorites: FC<IFavorites> = ({ isAuth }) => {
             <HomeCategory key={c.id} category={c} like={like} allLiked={true} isAuth={isAuth} />
           ))}
         </div>
-        {!favorites?.length && (
-          <Text size="xl" className=" dark:text-secondary-400" color="primary">
-            Здесь пока ничего нет
-          </Text>
-        )}
+        {!favorites?.length && <TextEmpty />}
       </Container>
     </Layout>
   );

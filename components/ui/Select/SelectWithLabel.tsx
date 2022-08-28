@@ -8,7 +8,7 @@ export const SelectWithLabel: FC<{ text: string; rootRef?: any } & ISelect> = ({
 }) => {
   return (
     <div>
-      <Text className={styles.label} color="gray" weight={500} size="m">
+      <Text className={styles.label} color="gray" weight={500} size="s">
         {text}
       </Text>
       <SelectWithIcon {...props} />

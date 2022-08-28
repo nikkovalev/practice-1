@@ -58,7 +58,7 @@ export const Settings = () => {
   return (
     <ProfileLayout title="Настройки">
       <div className={cn(styles.item, styles.item_password)}>
-        <Text className={styles.name} as="h2" color="gray" size="xl" weight={700}>
+        <Text className={styles.name} as="h2" color="gray" size="xl" leading="130">
           Изменить пароль
         </Text>
         <form onSubmit={handleSubmit(handleChangePassword)}>
@@ -91,7 +91,7 @@ export const Settings = () => {
         )}
       </div>
       <div className={styles.item}>
-        <Text className={styles.name} as="h2" color="gray" size="xl" weight={700}>
+        <Text className={styles.name} as="h2" color="gray" size="xl" leading="130">
           Привязать почту
         </Text>
         <form onSubmit={handleSubmit2(handleBindEmail)}>
@@ -113,7 +113,7 @@ export const Settings = () => {
       </div>
       {!user?.telegramId && (
         <>
-          <Text className={styles.name} as="h2" color="gray" size="xl" weight={700}>
+          <Text className={styles.name} as="h2" color="gray" size="xl" leading="130">
             Подтвердить аккаунт
           </Text>
           <Button

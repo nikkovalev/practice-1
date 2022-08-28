@@ -6,9 +6,6 @@
 .topLeft {
   @apply w-1/2 mr-[50px] lg:w-full lg:mr-0 flex-shrink;
 }
-.description {
-  @apply w-[60%] md:w-full leading-[34px] sm:leading-[28px];
-}
 .topInfo {
   @apply flex items-center flex-wrap;
   margin-bottom: 20px;

@@ -1,42 +1,54 @@
 import React, { FC } from "react";
 import cx from "classnames";
+import { getDefaultTextLeading, getDefaultTextSize, getDefaultTextWeight } from "@/helpers/text";
 import { Link } from "@/components/ui";
 import styles from "./Text.module.scss";
 
 interface IText {
   className?: string;
-  as?: "h1" | "h2" | "h3" | "h4" | "a" | "span" | "p" | "b";
-  size?: "xxs" | "xs" | "s" | "m" | "l" | "xl" | "xxl" | "vl";
+  as?: "h1" | "h2" | "h3" | "h4" | "a" | "span" | "p" | "b" | "time";
+  size?: "d" | "xxs" | "xs" | "s" | "m" | "l" | "xl" | "xxl" | "vl";
   color?: "white" | "gray" | "primary" | "secondary" | "black";
+  leading?: "130" | "120" | "150" | "170";
   weight?: 400 | 500 | 600 | 700;
   align?: "center" | "left" | "right";
   href?: string;
   children: any;
+  hover?: "p" | "s" | "m" | null;
 }
 
 export const Text: FC<IText> = ({
-  as = "span",
+  as: Wrapper = "span",
   className: cn,
   color = "white",
-  size = "xs",
-  weight = 400,
+  size: s,
+  weight: w,
+  leading: l,
+  hover = "m",
   align,
   href,
   children,
 }) => {
-  const Wrapper = as === "a" ? Link : as;
+  const size = s ? s : getDefaultTextSize(Wrapper);
+  const weight = w ? w : getDefaultTextWeight(Wrapper);
+  const leading = l ? l : getDefaultTextLeading(size, Wrapper);
   const className = cx(
-    styles[`color_${color}`],
-    styles[`size_${size}`],
-    styles[`weight_${weight}`],
+    styles[`c_${color}`],
     cn,
+    styles[`s_${size}`],
+    styles[`w_${weight}`],
+    styles[`l_${leading}`],
     {
-      [styles[`align_${align}`]]: !!align,
+      [styles[`a_${align}`]]: !!align,
+      [styles[`h_${hover}`]]: Wrapper === "a" && !!hover,
     }
   );
-  return (
-    <Wrapper className={className} href={href ?? ""}>
-      {children}
-    </Wrapper>
-  );
+  if (Wrapper === "a") {
+    return (
+      <Link className={className} href={href ?? ""}>
+        {children}
+      </Link>
+    );
+  }
+  return <Wrapper className={className}>{children}</Wrapper>;
 };

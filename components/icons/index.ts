@@ -18,3 +18,4 @@ export * from "./BellIcon";
 export * from "./ChatIcon";
 export * from "./MoreIcon";
 export * from "./CardsIcon";
+export * from "./PlusIcon";

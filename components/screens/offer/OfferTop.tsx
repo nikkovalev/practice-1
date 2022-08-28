@@ -28,7 +28,7 @@ export const OfferTop: FC<IOfferTop> = ({ category, offer }) => {
           <TextWithArrow href={`/categories/${category.slug}?page=${service?.id}`}>
             {service?.name} {category.name}
           </TextWithArrow>
-          <Text className="mb-[30px] md:mb-[20px]" as="h1" weight={700} size="vl">
+          <Text className="mb-[30px] md:mb-[20px]" as="h1" size="vl">
             FUT Champions
           </Text>
           <div className={styles.topInfo}>
@@ -45,7 +45,7 @@ export const OfferTop: FC<IOfferTop> = ({ category, offer }) => {
               </div>
             ))}
           </div>
-          <Text className={styles.description} as="p" size="l" color="gray">
+          <Text className="w-[60%] md:w-full" as="p" color="gray">
             {offer.description}
           </Text>
           <div className={styles.topActions}>

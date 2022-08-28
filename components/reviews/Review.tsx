@@ -7,7 +7,7 @@ import ypIcon from "@/assets/images/yp.svg";
 
 import styles from "./Reviews.module.scss";
 
-export const Review: FC<{ size: "normal" | "short" }> = ({ size }) => {
+export const Review: FC<{ size: "normal" | "small" }> = ({ size }) => {
   return (
     <div className={cn(styles.review, styles[`review_${size}`])}>
       <Avatar className={styles.reviewAvatar} bg={ypIcon.src} />

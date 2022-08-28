@@ -20,7 +20,7 @@ export const AddCheck = () => {
   return (
     <Modal title="Добавить счет" handleClose={handleClose}>
       <div className={modalStyles.top}>
-        <Text as="h1" size="xxl" weight={700} align="center">
+        <Text as="h1" align="center">
           Добавить счет
         </Text>
       </div>
