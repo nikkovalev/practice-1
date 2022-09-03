@@ -34,7 +34,7 @@ export const CategoryPreview: FC<ICategoryPreview> = ({ category, service }) => 
           {service?.name} {category.name}
         </Text>
         <Text className="w-[60%] lg:w-full" as="p" color="gray">
-          {service?.description}
+          {service?.description.replaceAll("YaonPay", "YaonClub")}
         </Text>
         <GroupButtons
           className={styles.buttons}
